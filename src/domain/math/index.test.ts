@@ -28,3 +28,12 @@ describe('src/domain/math/kolam', () => {
     expect(pathStr.includes('Q')).toBe(true);
   });
 });
+
+describe('src/domain/math/index exports', () => {
+  it('exports numbers, fractions, and money functions', async () => {
+    const math = await import('./index');
+    expect(typeof math.formatIndianNumeral).toBe('function');
+    expect(typeof math.areFractionsEquivalent).toBe('function');
+    expect(typeof math.calculateTotalPaise).toBe('function');
+  });
+});
