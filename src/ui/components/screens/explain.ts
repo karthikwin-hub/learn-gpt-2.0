@@ -6,7 +6,7 @@
 import { t } from '../../../domain/i18n/core';
 import { getLesson } from '../../../domain/lesson/registry';
 import type { ExplainTemplate } from '../../../domain/lesson/types';
-import { storage } from '../../../persistence/storage';
+import { pothi } from '../../../persistence/pothi';
 import { clear, el } from '../../util/dom';
 import { enterThread, getCurrentThread } from '../../util/thread';
 import { router, type ScreenMeta } from '../app/router';
@@ -25,6 +25,14 @@ const DEFAULT_TEMPLATES: Record<string, ExplainTemplate> = {
     { tiles: ['area', 'perimeter', 'shape'], expect: 'area' },
   ],
 };
+
+export function sentenceText(thread: string, fills: string[]): string {
+  let s = t(`explain.${thread}.s`);
+  (fills || []).forEach((f, i) => {
+    s = s.replace(`{${i}}`, t(`explain.${thread}.${f}`));
+  });
+  return s;
+}
 
 export function renderSentence(
   thread: string,
@@ -149,16 +157,13 @@ export function createExplainScreen(): ScreenMeta {
               type: 'button',
               text: t('explain.keep'),
               onclick: () => {
-                const pageId = String(Date.now());
-                const pages = storage.get<Array<Record<string, unknown>>>('pages', []);
-                pages.push({
-                  id: pageId,
+                const saved = pothi.savePage({
                   thread,
-                  fills: state.fills,
+                  fills: (state.fills as string[]) || [],
                   time: Date.now(),
+                  date: new Date().toISOString(),
                 });
-                storage.set('pages', pages);
-                router.go('stop', { page: pageId });
+                router.go('stop', { page: saved.id });
               },
             })
           );

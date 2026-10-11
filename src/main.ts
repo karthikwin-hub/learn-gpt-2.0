@@ -16,6 +16,7 @@ import { createGrownupsScreen } from './ui/components/screens/grownups';
 import { createLanguageScreen } from './ui/components/screens/language';
 import { createMistakeScreen } from './ui/components/screens/mistake';
 import { createOpeningScreen } from './ui/components/screens/opening';
+import { createNotebookScreen } from './ui/components/screens/notebook';
 import { createPrashnaScreen } from './ui/components/screens/prashna';
 import { createRectScreen } from './ui/components/screens/rect';
 import { createDrumsScreen } from './ui/components/screens/drums';
@@ -44,6 +45,7 @@ export function initApp(): void {
   router.register(createAshramScreen());
   router.register(createShalaScreen());
   router.register(createJaalScreen());
+  router.register(createNotebookScreen());
   router.register(createGrownupsScreen());
 
   // Lesson engine & 7-stage rhythm screens

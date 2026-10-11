@@ -1,23 +1,18 @@
 /**
  * Stop screen: "A good place to stop".
  * Ends the learning session calmly without scores, streaks, or timer pressure.
- * Names what was understood in plain words, displays child's own sentence, and offers a quiet return.
+ * Names what was understood in plain words, displays child's own sentence,
+ * model thumbnail, and offers a quiet return to the Loom or Notebook.
  */
 
 import { t } from '../../../domain/i18n/core';
-import { storage } from '../../../persistence/storage';
-import { el } from '../../util/dom';
+import { pothi, type NotebookPage } from '../../../persistence/pothi';
+import { clear, el } from '../../util/dom';
 import { clearThread } from '../../util/thread';
 import { router, type ScreenMeta } from '../app/router';
 import { voice } from '../voice/voice';
 import { renderSentence } from './explain';
-
-interface PageEntry {
-  id: string;
-  thread: string;
-  fills: string[];
-  time: number;
-}
+import { renderThumbnail } from '../notebook/thumbs';
 
 export function createStopScreen(): ScreenMeta {
   return {
@@ -27,15 +22,19 @@ export function createStopScreen(): ScreenMeta {
     title: 'stop.title',
     hideBack: true,
     render(view, state, params) {
+      clear(view);
       clearThread();
 
-      const pages = storage.get<PageEntry[]>('pages', []);
-      const page =
+      const pages = pothi.getPages();
+      const page: NotebookPage | undefined =
         pages.find((p) => String(p.id) === String(params.page)) || pages[pages.length - 1];
 
       const wrap = el('div', { class: 'stop' });
 
       if (page) {
+        const thumbWrap = el('div', { class: 'thumb' }, [renderThumbnail(page)]);
+        wrap.appendChild(thumbWrap);
+
         wrap.appendChild(el('h2', { class: 'screen-title', text: t('stop.heading') }));
         wrap.appendChild(el('p', { class: 'say', text: t(`know.${page.thread}`) }));
         wrap.appendChild(el('p', { class: 'muted small', text: t('stop.yourWords') }));
@@ -61,10 +60,16 @@ export function createStopScreen(): ScreenMeta {
       view.appendChild(
         el('div', { class: 'btn-row' }, [
           el('button', {
-            class: 'btn primary block',
+            class: 'btn primary',
             type: 'button',
             text: t('stop.loom'),
             onclick: () => router.go('home'),
+          }),
+          el('button', {
+            class: 'btn quiet',
+            type: 'button',
+            text: t('stop.notebook'),
+            onclick: () => router.go('notebook'),
           }),
         ])
       );
