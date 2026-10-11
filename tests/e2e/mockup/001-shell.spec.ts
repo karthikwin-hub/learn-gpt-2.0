@@ -72,4 +72,19 @@ test.describe('Mockup Parity: Feature 001 Shell vs Prototype', () => {
     await expect(page.locator('.jaal-curve')).toHaveCount(10);
     await expect(page.locator('.card.jaal-detail')).toBeVisible();
   });
+
+  test('shala screens in night mode render knot text with high-contrast ink color', async ({
+    page,
+  }) => {
+    await page.addInitScript(() => {
+      localStorage.setItem('gurukul:lang', 'en');
+      localStorage.setItem('gurukul:theme', 'night');
+    });
+    await page.goto('/#/shala?s=vijnana');
+    const firstKnotTitle = page.locator('.knot .t1').first();
+    await expect(firstKnotTitle).toBeVisible();
+
+    const color = await firstKnotTitle.evaluate((el) => window.getComputedStyle(el).color);
+    expect(color).toBe('rgb(238, 232, 220)');
+  });
 });

@@ -265,9 +265,11 @@ p {
   width: calc(100% - 24px);
   max-width: 440px;
   background: var(--paper);
+  border: 1px solid var(--hair);
   border-radius: 20px;
   padding: 18px 16px 12px;
   box-shadow: 0 20px 50px rgba(0, 0, 0, 0.25);
+  color: var(--ink);
 }
 
 .sheet h2 {
@@ -562,6 +564,12 @@ p {
 }
 
 /* Shala Loom */
+.shala-sub {
+  margin: 0;
+  font-size: 14px;
+  color: var(--ink-soft);
+}
+
 .domain {
   position: relative;
   margin: 18px 0 6px;
@@ -615,6 +623,7 @@ p {
   text-align: left;
   cursor: pointer;
   border-radius: 12px;
+  color: var(--ink);
 }
 
 .knot:hover {
@@ -672,6 +681,7 @@ p {
   font-weight: 600;
   line-height: 1.35;
   display: block;
+  color: var(--ink);
 }
 
 .knot .t2 {
@@ -679,6 +689,21 @@ p {
   color: var(--ink-soft);
   line-height: 1.4;
   display: block;
+}
+
+.knot .tag {
+  font-size: 12px;
+  color: var(--ink-soft);
+  border: 1px solid var(--hair);
+  border-radius: 999px;
+  padding: 1px 8px;
+  white-space: nowrap;
+}
+
+.knot.next .tag {
+  color: var(--ink);
+  border-color: var(--thread);
+  background: var(--paper-raised);
 }
 
 .knot .jaal-tag {
@@ -731,6 +756,7 @@ p {
   border-radius: 12px;
   border: 1.5px solid var(--hair);
   background: var(--paper);
+  color: var(--ink);
   cursor: pointer;
   font-weight: 600;
 }
