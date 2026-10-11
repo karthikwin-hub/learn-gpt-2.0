@@ -1,50 +1,53 @@
-# [PROJECT_NAME] Constitution
-<!-- Example: Spec Constitution, TaskFlow Constitution, etc. -->
+# Learn GPT 2.0 Constitution
+
+<!-- Agentic Delivery Standard v1.0 (preset: agentic-delivery). Ratified for Learn GPT 2.0 -->
 
 ## Core Principles
 
-### [PRINCIPLE_1_NAME]
-<!-- Example: I. Library-First -->
-[PRINCIPLE_1_DESCRIPTION]
-<!-- Example: Every feature starts as a standalone library; Libraries must be self-contained, independently testable, documented; Clear purpose required - no organizational-only libraries -->
+### I. Specification Before Implementation
+Features are built only from an approved spec.md (what and why, technology-agnostic) and plan.md (how). Bugs start from a reproduced, assessed cause. Chores may skip the spec but never verification. A discovery during implementation that changes intent flows back into spec.md (and is re-approved at G1) before code that depends on it is merged.
+*Rationale: the spec is the agents' source of intent; code that outruns intent cannot be reviewed against anything.*
 
-### [PRINCIPLE_2_NAME]
-<!-- Example: II. CLI Interface -->
-[PRINCIPLE_2_DESCRIPTION]
-<!-- Example: Every library exposes functionality via CLI; Text in/out protocol: stdin/args → stdout, errors → stderr; Support JSON + human-readable formats -->
+### II. Testable Requirements and Traceable Evidence (NON-NEGOTIABLE)
+Every functional requirement (`FR-###`) and acceptance scenario (`US<n>-AS<m>`) is testable and is verified by an automated test that references its ID, or by documented manual verification marked `[VERIFY: manual]` with recorded evidence in `checks.md`. Acceptance scenarios are owned by the spec owner. Nobody — human or agent — weakens, skips or deletes tests or acceptance criteria to obtain a pass.
 
-### [PRINCIPLE_3_NAME]
-<!-- Example: III. Test-First (NON-NEGOTIABLE) -->
-[PRINCIPLE_3_DESCRIPTION]
-<!-- Example: TDD mandatory: Tests written → User approved → Tests fail → Then implement; Red-Green-Refactor cycle strictly enforced -->
+### III. Verification Before Done
+Work is done only when `python3 scripts/harness/verify.py` passes on the final change, `check_traceability.py` reports nothing missing, `/speckit-converge` reports Converged, and an independent review (an agent or person that did not write the change) has no unresolved BLOCKER or MAJOR findings. "Done" without command output is not done.
 
-### [PRINCIPLE_4_NAME]
-<!-- Example: IV. Integration Testing -->
-[PRINCIPLE_4_DESCRIPTION]
-<!-- Example: Focus areas requiring integration tests: New library contract tests, Contract changes, Inter-service communication, Shared schemas -->
+### IV. Conceptual Explanatory Manipulatives Over Decorative Graphics
+Learn GPT 2.0 exists to build deep intuition for 10-year-olds. Diagrams, models, and interactive elements MUST be active mathematical manipulatives (e.g., interactive Venn diagrams for set theory, area models for multiplication and division, dynamic geometric transformations, and truth tables/logic circuits). Passive animations or decorative clutter are strictly prohibited. The UI must remain calm, focused, and free of gamified arcade noise.
 
-### [PRINCIPLE_5_NAME]
-<!-- Example: V. Observability, VI. Versioning & Breaking Changes, VII. Simplicity -->
-[PRINCIPLE_5_DESCRIPTION]
-<!-- Example: Text I/O ensures debuggability; Structured logging required; Or: MAJOR.MINOR.BUILD format; Or: Start simple, YAGNI principles -->
+### V. First-Class Multilingual Accessibility
+English is the baseline interface, but the application must natively support seamless, zero-friction locale switching to Hindi, Telugu, Bengali, and Tamil. Content, labels, explanations, and voice prompts must preserve pedagogical accuracy across all supported languages.
 
-## [SECTION_2_NAME]
-<!-- Example: Additional Constraints, Security Requirements, Performance Standards, etc. -->
+### VI. Architecture Boundaries and Single Ownership
+Each business domain has exactly one owning module (`docs/ARCHITECTURE.md`). Logic is never duplicated: a second use moves logic to its owner first. Presentation components display state and bind user interactions; they never compute mathematical domain logic. Domain code depends on contracts, not UI frameworks.
 
-[SECTION_2_CONTENT]
-<!-- Example: Technology stack requirements, compliance standards, deployment policies, etc. -->
+### VII. Child Privacy and Safety by Default
+Zero tracking, zero ads, zero user data harvesting, and zero third-party telemetry. Storage of learning state must be local or end-to-end privacy compliant. External AI calls must be sanitized and protected behind server-side safety guardrails.
 
-## [SECTION_3_NAME]
-<!-- Example: Development Workflow, Review Process, Quality Gates, etc. -->
+### VIII. Simplicity and Smallest Sufficient Change
+Prefer existing code, standard platform APIs, and minimal dependencies. No speculative abstractions, layers, or flags. New dependencies require written justification in `plan.md` and approval at Gate G2.
 
-[SECTION_3_CONTENT]
-<!-- Example: Code review requirements, testing gates, deployment approval process, etc. -->
+### IX. Human Accountability (Gates G1–G4)
+Humans approve the spec (G1), the design (G2), readiness to build (G3), and completion (G4). Humans merge, release, and approve changes to protected files (`constitution.md`, `AGENTS.md`, acceptance tests, CI, hooks). AI assistance is disclosed in every pull request.
+
+### X. Continuous Harness Improvement
+Every human correction becomes a candidate lesson with an example in `docs/agent-memory/lessons.md`. Recurring patterns are promoted to automated checks.
+
+---
+
+## Technology and Quality Standards
+- **Target Audience**: 10-year-old learners (~Grade 5).
+- **Phase 1 Subject Scope**: Mathematics (Geometry, Set Theory, Multiplication, Division, Logic).
+- **Supported Locales**: English (`en`), Hindi (`hi`), Telugu (`te`), Bengali (`bn`), Tamil (`ta`).
+- **Verification Commands**: Configured in `harness.toml`.
+- **Quality Gates**: G1 Spec Ready → G2 Design Ready → G3 Ready to Build → G4 Done.
+
+---
 
 ## Governance
-<!-- Example: Constitution supersedes all other practices; Amendments require documentation, approval, migration plan -->
+This constitution supersedes conflicting practices. Amendments require human review and approval.
+Runtime guidance for agents lives in `AGENTS.md`; team standards live in `docs/standards/`.
 
-[GOVERNANCE_RULES]
-<!-- Example: All PRs/reviews must verify compliance; Complexity must be justified; Use [GUIDANCE_FILE] for runtime development guidance -->
-
-**Version**: [CONSTITUTION_VERSION] | **Ratified**: [RATIFICATION_DATE] | **Last Amended**: [LAST_AMENDED_DATE]
-<!-- Example: Version: 2.1.1 | Ratified: 2025-06-13 | Last Amended: 2025-07-16 -->
+**Version**: 1.0.0 | **Ratified**: 2026-10-11 | **Last Amended**: 2026-10-11
