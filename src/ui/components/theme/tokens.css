@@ -1,0 +1,128 @@
+/* Self-hosted Noto Fonts (SIL Open Font License) */
+@font-face {
+  font-family: 'Noto Sans';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('/fonts/NotoSans-Regular.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Noto Sans Devanagari';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('/fonts/NotoSansDevanagari-Regular.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Noto Sans Telugu';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('/fonts/NotoSansTelugu-Regular.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Noto Sans Bengali';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('/fonts/NotoSansBengali-Regular.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Noto Sans Tamil';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('/fonts/NotoSansTamil-Regular.ttf') format('truetype');
+}
+
+:root {
+  --paper: #f6f1e7;
+  --paper-raised: #fffbf3;
+  --paper-sunk: #ece4d4;
+  --ink: #1f2430;
+  --ink-soft: #5b6170;
+  --ghost: rgba(31, 36, 48, 0.25);
+  --hair: rgba(31, 36, 48, 0.12);
+  --thread: #e0a030;
+  --thread-soft: rgba(224, 160, 48, 0.22);
+  --indigo: #3e4c9a;
+  --indigo-soft: rgba(62, 76, 154, 0.16);
+  --teal: #0f7c80;
+  --teal-soft: rgba(15, 124, 128, 0.16);
+  --leaf: #4e8a3e;
+  --leaf-soft: rgba(78, 138, 62, 0.16);
+  --kumkum: #c2412d;
+  --ground: #2a2723;
+  --rice: #f3ebdd;
+
+  --font:
+    'Noto Sans', 'Noto Sans Devanagari', 'Noto Sans Telugu', 'Noto Sans Bengali', 'Noto Sans Tamil',
+    system-ui, sans-serif;
+  --font-display:
+    'Noto Serif', 'Noto Sans Devanagari', 'Noto Sans Telugu', 'Noto Sans Bengali',
+    'Noto Sans Tamil', Georgia, serif;
+  --lh: 1.45;
+
+  --fs-caption: 14px;
+  --fs-body: 17px;
+  --fs-lead: 20px;
+  --fs-title: 24px;
+  --fs-display: 32px;
+
+  --r: 14px;
+  --ease: cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+
+:root[data-theme='night'] {
+  --paper: #171a21;
+  --paper-raised: #20242d;
+  --paper-sunk: #12141a;
+  --ink: #eee8dc;
+  --ink-soft: #a9adb8;
+  --ghost: rgba(238, 232, 220, 0.25);
+  --hair: rgba(238, 232, 220, 0.14);
+  --indigo: #7f8ee0;
+  --indigo-soft: rgba(127, 142, 224, 0.2);
+  --teal: #3fb7bb;
+  --teal-soft: rgba(63, 183, 187, 0.2);
+  --leaf: #7dbe6a;
+  --leaf-soft: rgba(125, 190, 106, 0.2);
+  --kumkum: #e8664f;
+}
+
+:lang(hi),
+:lang(te),
+:lang(bn),
+:lang(ta) {
+  --lh: 1.7;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+button {
+  font: inherit;
+  color: inherit;
+}
+
+html,
+body {
+  margin: 0;
+  height: 100%;
+}
+
+body {
+  font-family: var(--font);
+  font-size: var(--fs-body);
+  line-height: var(--lh);
+  color: var(--ink);
+  background: var(--paper);
+  -webkit-font-smoothing: antialiased;
+  user-select: none;
+  -webkit-user-select: none;
+}

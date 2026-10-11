@@ -15,6 +15,12 @@
 | Manipulative | Active visual/tactile component (e.g., dynamic parallelogram, Turing Tumble pegboard) that explains a mathematical structure through direct physical interaction. |
 | CPA | Concrete-Pictorial-Abstract representational learning sequence (Bruner). |
 | Visual Residue | Persistent ghosted trails or state markers remaining visible to offload working memory. |
+| Ashram | The courtyard home screen centered around a banyan tree, hosting the entryways to the three Shalas. |
+| Shala | A subject hall (Ganita for Mathematics, Vijnana for Science, Loka for Social Studies). |
+| Sutra | Both a subject thread (e.g., Sankhya, Prakasha) and a memorable rule/aphorism kept at the end of a knot. |
+| Knot | A single conceptual lesson on a thread (e.g., M2 for Area, B3 for Digestion). |
+| Jaal | The cross-subject web connecting mathematical, scientific, and societal concepts. |
+| Pothi | The child's personal palm-leaf notebook containing kept sutras, child's sentences, and model snapshots. |
 
 ## Policies and links
 - Secrets management: Infisical (`learn_gpt` project)

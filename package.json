@@ -1,0 +1,33 @@
+{
+  "name": "gurukul",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Gurukul (Learn GPT 2.0) - A calm, visual learning companion for Class 5 children in India",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview",
+    "test": "vitest run",
+    "test:fast": "vitest run",
+    "e2e": "playwright test",
+    "lint": "eslint . --max-warnings=0",
+    "format": "prettier --check .",
+    "format:write": "prettier --write .",
+    "typecheck": "tsc --noEmit",
+    "arch": "depcruise src"
+  },
+  "devDependencies": {
+    "@axe-core/playwright": "^4.13.0",
+    "@playwright/test": "^1.64.0",
+    "@types/node": "^26.6.5",
+    "dependency-cruiser": "^18.5.0",
+    "eslint": "^10.12.0",
+    "jsdom": "^30.1.2",
+    "prettier": "^3.9.10",
+    "typescript": "^6.0.3",
+    "typescript-eslint": "^8.71.1",
+    "vite": "^8.3.4",
+    "vitest": "^5.0.3"
+  }
+}

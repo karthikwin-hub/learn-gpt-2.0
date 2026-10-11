@@ -1,0 +1,16 @@
+dist
+node_modules
+design/prototype
+.agent
+package-lock.json
+docs
+specs
+.specify
+.claude
+.github
+scripts
+context
+test-results
+playwright-report
+*.md
+

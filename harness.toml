@@ -27,45 +27,60 @@ hint = "Fix syntax error in Python harness scripts."
 name = "format"
 run = "npx prettier --check ."
 fast = true
-enabled = false
+enabled = true
 hint = "Run the formatter in write mode, then re-run verify. Never hand-format around the formatter."
 
 [[check]]
 name = "lint"
 run = "npx eslint . --max-warnings=0"
 fast = true
-enabled = false
+enabled = true
 hint = "Fix the rule violation. Do not disable a rule inline unless the PR explains why."
 
 [[check]]
 name = "typecheck"
 run = "npx tsc --noEmit"
 fast = true
-enabled = false
+enabled = true
 
 [[check]]
 name = "unit-tests"
 run = "npx vitest run"
 fast = true
 timeout = 900
-enabled = false
+enabled = true
 hint = "A failing test is information. Fix the code, not the test - unless the test is provably wrong (then ask)."
 
 # ---------------------------------------------------------------- full only -------------
 [[check]]
 name = "acceptance-tests"
-run = "npx vitest run tests/acceptance"
+run = "npx playwright test tests/acceptance"
 fast = false
 timeout = 1800
-enabled = false
+enabled = true
 hint = "Acceptance tests encode the spec owner's scenarios (US<n>-AS<m>). They are the contract - do not edit them to pass."
 
 [[check]]
 name = "architecture-rules"
 run = "npx depcruise src"
 fast = false
-enabled = false
+enabled = true
 hint = "A module depends on something it must not (docs/ARCHITECTURE.md). Move the logic to its owning module instead of adding the import."
+
+[[check]]
+name = "mockup-parity"
+run = "npx playwright test tests/e2e/tools/capture-mockups.spec.ts"
+fast = false
+enabled = true
+hint = "Mockup capture / parity tests verify UI against the approved prototype."
+
+[[check]]
+name = "sweep"
+run = "npx playwright test tests/e2e/sweep"
+fast = false
+enabled = true
+hint = "Five-language and accessibility sweep must pass with 0 errors/overflows."
+
 
 [[check]]
 name = "traceability"

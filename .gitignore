@@ -18,3 +18,8 @@ CLAUDE.local.md
 dist/
 build/
 .cache/
+test-results/
+playwright-report/
+specs/mockups-proto/
+
+
