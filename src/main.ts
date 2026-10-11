@@ -26,6 +26,7 @@ import { createKolamScreen } from './ui/components/screens/kolam';
 import { createSetsScreen } from './ui/components/screens/sets';
 import { createLogicScreen } from './ui/components/screens/logic';
 import { createPlaceScreen } from './ui/components/screens/place';
+import { createRomanScreen } from './ui/components/screens/roman';
 import { createFractionsScreen } from './ui/components/screens/fractions';
 import { createMoneyScreen } from './ui/components/screens/money';
 import { createDigestScreen } from './ui/components/screens/digest';
@@ -72,6 +73,7 @@ export function initApp(): void {
   router.register(createSetsScreen());
   router.register(createLogicScreen());
   router.register(createPlaceScreen());
+  router.register(createRomanScreen());
   router.register(createFractionsScreen());
   router.register(createMoneyScreen());
   router.register(createDigestScreen());

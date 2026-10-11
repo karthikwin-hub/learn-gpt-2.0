@@ -86,8 +86,8 @@ export function createExplainScreen(): ScreenMeta {
     stage: 'nididhyasana',
     step: 'explain',
     title: 'explain.title',
-    render(view, state) {
-      const thread = getCurrentThread() || 'M4';
+    render(view, state, params: Record<string, string> = {}) {
+      const thread = params.knot || params.k || getCurrentThread() || 'M4';
       enterThread(thread, 'explain');
 
       const lesson = getLesson(thread);

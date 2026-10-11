@@ -216,4 +216,63 @@ export const dictionary: Record<string, string> = {
   'explain.U1.hint': 'Look at the grid: what is one strip worth? How many strips make ₹0.5?',
   'know.U1':
     'After the dot, each place is a tenth of the place on its left, so you can read, change and compare rupees and paise.',
+
+  /* N2 Roman Numerals */
+  'prashna.N2.q': 'How do you write the number 4 in Roman numerals?',
+  'prashna.N2.c1': 'IIII',
+  'prashna.N2.c2': 'IV',
+  'prashna.N2.c3': 'VI',
+  'prashna.N2.a':
+    'IV. In Roman numerals, a smaller symbol placed before a larger one subtracts: 5 - 1 = 4. Symbols are never repeated four times.',
+  'bodha.N2.what':
+    '[[roman|Roman numerals]] are an ancient system of writing numbers using seven letters: I (1), V (5), X (10), L (50), C (100), D (500), and M (1000).',
+  'bodha.N2.can':
+    'You will be able to read and write Roman numerals, use additive and subtractive rules, and avoid repeating symbols.',
+  'bodha.N2.idea':
+    'Roman numerals do not use place value. Putting a smaller symbol to the right [[add|adds]] it (VI = 5 + 1 = 6); putting it to the left [[subtract|subtracts]] it (IV = 5 - 1 = 4).',
+  'bodha.N2.why':
+    'Only I, X, C, M can repeat, and never more than three times. V, L, D are never repeated and never subtracted. There is no symbol for zero.',
+  'bodha.N2.example': 'Write 24 and 45 in Roman numerals.',
+  'bodha.N2.example1': '24 is 20 + 4: XX + IV = XXIV.',
+  'bodha.N2.example2':
+    '45 is 40 + 5. 40 is 50 - 10 (XL). So 45 is XL + V = XLV (never VL, because V is never subtracted).',
+  'bodha.N2.where':
+    'Clock dials, book chapter headings, monarch titles (King Charles III), and school classes (Class V).',
+  'bodha.N2.sutra':
+    'To the right adds, to the left subtracts, and no symbol repeats more than three times.',
+  'gloss.roman': 'A number system from ancient Rome that uses seven letters without place value.',
+  'gloss.roman.en': 'Roman numerals',
+  'roman.title': 'Roman numerals',
+  'roman.art': 'A stone slate showing Roman numeral tiles I, V, X, L, and C.',
+  'roman.s1': 'Tap the stone tiles to explore how Roman symbols combine.',
+  'roman.s1done':
+    'Notice: placing a smaller symbol after adds to it; placing it before subtracts from it.',
+  'roman.s2': 'Your turn: build target numbers on the stone slate.',
+  'roman.s2build': 'Build {n} ({roman}):',
+  'roman.s2done': 'Well done! You assembled {n} ({roman}) tile by tile.',
+  'roman.s3': 'How should the number 40 be written?',
+  'roman.s3done': 'Exactly! No symbol repeats four times, so 40 is written as 50 - 10: XL.',
+  'roman.s3tryRepeat': 'Remember the rule: no symbol may be repeated more than three times.',
+  'roman.s3try': 'Think of 50 (L) minus 10 (X): XL.',
+  'mistake.N2.intro': 'Aman wrote 45 in Roman numerals. One step went wrong. Which one?',
+  'mistake.N2.s1': '45 is 40 + 5.',
+  'mistake.N2.s2': 'To make 40, subtract 5 from 50 (50 - 5).',
+  'mistake.N2.s3': 'So 45 is written as VL.',
+  'mistake.N2.s4': '45 = VL.',
+  'mistake.N2.fine1': 'That is right: breaking 45 into tens and ones is correct.',
+  'mistake.N2.fine4': 'This just writes down the earlier step. Look earlier.',
+  'mistake.N2.found':
+    'Here. The symbols V, L, D are never subtracted! To make 40, subtract X from L (XL). So 45 is XLV, not VL.',
+  'explain.N2.s':
+    'A smaller symbol before a larger one {0}. In Roman numerals, a symbol never repeats more than {1} times.',
+  'explain.N2.subtracts': 'subtracts',
+  'explain.N2.adds': 'adds',
+  'explain.N2.multiplies': 'multiplies',
+  'explain.N2.three': 'three',
+  'explain.N2.five': 'five',
+  'explain.N2.ten': 'ten',
+  'explain.N2.hint':
+    'Look at IV (5 - 1): does I add or subtract? How many times in a row can I or X appear?',
+  'know.N2':
+    'You can read and write Roman numerals using addition, subtraction, and the three-repetition rule.',
 };
