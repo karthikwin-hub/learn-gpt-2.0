@@ -4,3 +4,4 @@
 
 export * from './kolam';
 export * from './multiply';
+export * from './divide';

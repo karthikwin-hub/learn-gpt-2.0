@@ -14,6 +14,7 @@ import { enterThread } from '../../util/thread';
 import { router, type ScreenMeta } from '../app/router';
 import { renderM2Tiles, renderM4Rooms } from '../../diagrams/tiles';
 import { renderM5Beats } from '../../diagrams/drums';
+import { renderFairSharePlates } from '../../diagrams/share';
 import { voice } from '../voice/voice';
 
 function getCardFigure(knotId: string, cardKey: string, step: number): SVGSVGElement | null {
@@ -32,6 +33,28 @@ function getCardFigure(knotId: string, cardKey: string, step: number): SVGSVGEle
     if (cardKey === 'what' || cardKey === 'idea') return renderM5Beats(3, 4, 12, 2);
     if (cardKey === 'why') return renderM5Beats(3, 4, 12, 3);
     if (cardKey === 'example') return renderM5Beats(4, 6, 24, step);
+  } else if (knotId === 'D1') {
+    if (cardKey === 'what' || cardKey === 'idea') return renderFairSharePlates(4, 3, 0);
+    if (cardKey === 'why') return renderFairSharePlates(4, 3, 0, { eq: '4 × 3 = 12' });
+    if (cardKey === 'example') {
+      return renderFairSharePlates(5, Math.min(step, 3), 0, {
+        eq: step >= 3 ? '5 × 3 = 15' : null,
+      });
+    }
+  } else if (knotId === 'D3') {
+    if (cardKey === 'what' || cardKey === 'idea') {
+      return renderFairSharePlates(4, 3, 2, { eq: '14 ÷ 4 = 3 r 2' });
+    }
+    if (cardKey === 'why') {
+      return renderFairSharePlates(4, 3, 2, { cutLeft: true, half: true, eq: '3 + ½' });
+    }
+    if (cardKey === 'example') {
+      return renderFairSharePlates(2, step >= 1 ? 3 : 0, step >= 1 && step < 3 ? 1 : 0, {
+        cutLeft: step >= 2,
+        half: step >= 3,
+        eq: step >= 3 ? '7 ÷ 2 = 3½' : null,
+      });
+    }
   }
   return null;
 }
