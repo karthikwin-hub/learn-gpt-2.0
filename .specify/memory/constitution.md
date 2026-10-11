@@ -1,4 +1,4 @@
-# Learn GPT 2.0 Constitution
+# Learn GPT 2.0 (Gurukul) Constitution
 
 <!-- Agentic Delivery Standard v1.0 (preset: agentic-delivery). Ratified for Learn GPT 2.0 -->
 
@@ -15,7 +15,7 @@ Every functional requirement (`FR-###`) and acceptance scenario (`US<n>-AS<m>`) 
 Work is done only when `python3 scripts/harness/verify.py` passes on the final change, `check_traceability.py` reports nothing missing, `/speckit-converge` reports Converged, and an independent review (an agent or person that did not write the change) has no unresolved BLOCKER or MAJOR findings. "Done" without command output is not done.
 
 ### IV. Conceptual Explanatory Manipulatives Over Decorative Graphics
-Learn GPT 2.0 exists to build deep intuition for 10-year-olds. Diagrams, models, and interactive elements MUST be active mathematical manipulatives (e.g., interactive Venn diagrams for set theory, area models for multiplication and division, dynamic geometric transformations, and truth tables/logic circuits). Passive animations or decorative clutter are strictly prohibited. The UI must remain calm, focused, and free of gamified arcade noise.
+Gurukul exists to build deep intuition for 10-year-olds. Diagrams, models, and interactive elements MUST be active manipulatives that the child can change to see the concept: in mathematics (e.g., interactive Venn diagrams for set theory, area models for multiplication and division, dynamic geometric transformations, truth tables/logic circuits, place-value houses), in science (e.g., a ramp for friction fair tests, a lamp and stick for shadows, the food path for digestion) and in social studies (e.g., a timeline thread, the spinning and orbiting Earth, a map with directions and scale). Every lesson explains the concept first in short, learner-paced Bodha cards with a diagram, before practice (ADR-0002). Passive animations or decorative clutter are strictly prohibited. The UI must remain calm, focused, and free of gamified arcade noise.
 
 ### V. First-Class Multilingual Accessibility
 English is the baseline interface, but the application must natively support seamless, zero-friction locale switching to Hindi, Telugu, Bengali, and Tamil. Content, labels, explanations, and voice prompts must preserve pedagogical accuracy across all supported languages.
@@ -39,7 +39,8 @@ Every human correction becomes a candidate lesson with an example in `docs/agent
 
 ## Technology and Quality Standards
 - **Target Audience**: 10-year-old learners (~Grade 5).
-- **Phase 1 Subject Scope**: Mathematics (Geometry, Set Theory, Multiplication, Division, Logic).
+- **Subject Scope**: Class 5 Ganita (mathematics: numbers, operations, factors and multiples, geometry, measurement, data, patterns, logic and sets), Vijnana (science) and Loka (social studies: history, geography, civics), as mapped in `docs/product/CURRICULUM_PHASE2.md`. Phase 1 built mathematics (Geometry, Set Theory, Multiplication, Division, Logic); features 009–012 add the Gurukul shell, more Ganita, Vijnana and Loka.
+- **Content accuracy**: science and social-studies facts, dates and misconceptions are reviewed by a subject teacher before their feature passes G1.
 - **Supported Locales**: English (`en`), Hindi (`hi`), Telugu (`te`), Bengali (`bn`), Tamil (`ta`).
 - **Verification Commands**: Configured in `harness.toml`.
 - **Quality Gates**: G1 Spec Ready → G2 Design Ready → G3 Ready to Build → G4 Done.
@@ -50,4 +51,4 @@ Every human correction becomes a candidate lesson with an example in `docs/agent
 This constitution supersedes conflicting practices. Amendments require human review and approval.
 Runtime guidance for agents lives in `AGENTS.md`; team standards live in `docs/standards/`.
 
-**Version**: 1.0.0 | **Ratified**: 2026-10-11 | **Last Amended**: 2026-10-11
+**Version**: 1.1.0 | **Ratified**: 2026-10-11 | **Last Amended**: 2026-10-11 (scope widened to three subjects and Bodha-first lessons, approved by the product owner; ADR-0002, ADR-0003)
