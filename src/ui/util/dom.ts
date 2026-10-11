@@ -209,6 +209,32 @@ export function reducedMotion(): boolean {
   );
 }
 
+/**
+ * Runs fn(progress 0..1) over duration ms; returns a cancel function.
+ */
+export function tween(duration: number, fn: (p: number) => void, done?: () => void): () => void {
+  if (reducedMotion()) duration = 1;
+  let start: number | null = null;
+  let id = 0;
+  let cancelled = false;
+  function frame(ts: number) {
+    if (cancelled) return;
+    if (start === null) start = ts;
+    const p = clamp((ts - start) / duration, 0, 1);
+    fn(p);
+    if (p < 1) {
+      id = requestAnimationFrame(frame);
+    } else if (done) {
+      done();
+    }
+  }
+  id = requestAnimationFrame(frame);
+  return function cancel() {
+    cancelled = true;
+    cancelAnimationFrame(id);
+  };
+}
+
 let toastTimer: ReturnType<typeof setTimeout> | null = null;
 
 export function toast(msg: string, ms = 2600): void {

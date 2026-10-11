@@ -6,6 +6,11 @@ import { D1_LESSON } from './d1';
 import { D2_LESSON } from './d2';
 import { D3_LESSON } from './d3';
 import { D4_LESSON } from './d4';
+import { G1_LESSON } from './g1';
+import { G2_LESSON } from './g2';
+import { G3_LESSON } from './g3';
+import { G4_LESSON } from './g4';
+import { G5_LESSON } from './g5';
 import { M1_LESSON } from './m1';
 import { M2_LESSON } from './m2';
 import { M3_LESSON } from './m3';
@@ -23,6 +28,11 @@ const LESSONS: Record<string, LessonData> = {
   D2: D2_LESSON,
   D3: D3_LESSON,
   D4: D4_LESSON,
+  G1: G1_LESSON,
+  G2: G2_LESSON,
+  G3: G3_LESSON,
+  G4: G4_LESSON,
+  G5: G5_LESSON,
 };
 
 export function getLesson(knotId: string): LessonData | null {

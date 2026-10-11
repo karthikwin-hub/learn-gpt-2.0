@@ -15,6 +15,7 @@ import { router, type ScreenMeta } from '../app/router';
 import { renderM2Tiles, renderM4Rooms } from '../../diagrams/tiles';
 import { renderM5Beats } from '../../diagrams/drums';
 import { renderFairSharePlates } from '../../diagrams/share';
+import { renderG2Ropes, renderG4Flower } from '../../diagrams/geometry';
 import { voice } from '../voice/voice';
 
 function getCardFigure(knotId: string, cardKey: string, step: number): SVGSVGElement | null {
@@ -54,6 +55,44 @@ function getCardFigure(knotId: string, cardKey: string, step: number): SVGSVGEle
         half: step >= 3,
         eq: step >= 3 ? '7 ÷ 2 = 3½' : null,
       });
+    }
+  } else if (knotId === 'G2') {
+    if (cardKey === 'what' || cardKey === 'idea') {
+      return renderG2Ropes(
+        [
+          [11, 1],
+          [6, 6],
+        ],
+        false
+      );
+    }
+    if (cardKey === 'why') {
+      return renderG2Ropes(
+        [
+          [11, 1],
+          [6, 6],
+        ],
+        true
+      );
+    }
+    if (cardKey === 'example') {
+      return renderG2Ropes(
+        [
+          [8, 2],
+          [5, 5],
+        ],
+        step >= 2
+      );
+    }
+  } else if (knotId === 'G4') {
+    if (cardKey === 'what' || cardKey === 'idea') {
+      return renderG4Flower(true, true, true);
+    }
+    if (cardKey === 'why') {
+      return renderG4Flower(false, false, true);
+    }
+    if (cardKey === 'example') {
+      return renderG4Flower(false, false, step >= 2);
     }
   }
   return null;

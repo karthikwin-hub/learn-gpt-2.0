@@ -107,6 +107,7 @@ export function createShalaScreen(): ScreenMeta {
             {
               class: cls,
               type: 'button',
+              'data-knot': k.id,
               onclick: () => openKnot(k),
             },
             knotChildren
