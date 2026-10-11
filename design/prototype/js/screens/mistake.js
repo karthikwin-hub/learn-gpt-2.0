@@ -1,4 +1,5 @@
-/* Spot the mistake (M4): someone else's working, with one wrong step to find. */
+/* Spot the mistake: someone else's working, with one wrong step to find. M4 is built in; other lessons supply
+   Sutra.lessons[knot].mistake = { steps, wrong, picture(reveal), eq() } with strings 'mistake.<knot>.*'. */
 (function () {
   'use strict';
   var Sutra = window.Sutra;
@@ -6,8 +7,6 @@
   var ui = Sutra.ui;
   var t = ui.t;
 
-  var STEPS = ['mistake.m4.s1', 'mistake.m4.s2', 'mistake.m4.s3', 'mistake.m4.s4'];
-  var WRONG = 1;
 
   /* 23 × 14 as four rooms; the two the working forgot (20 × 4 and 3 × 10) are outlined in kumkum. */
   function rooms(reveal) {
@@ -41,12 +40,26 @@
     return svg;
   }
 
+  var M4 = {
+    steps: 4, wrong: 1, picture: rooms,
+    eq: function () { return '200 + <span style="color:var(--kumkum)">30</span> + <span style="color:var(--kumkum)">80</span> + 12 = <span class="r">322</span>'; }
+  };
+
+  function entryFor(thread) {
+    var L = Sutra.lessons[thread];
+    if (L && L.mistake) return { knot: thread, prefix: thread, data: L.mistake };
+    return { knot: 'M4', prefix: 'm4', data: M4 };
+  }
+
   Sutra.screens.mistake = {
     stage: 'manana', step: 'mistake',
     title: 'mistake.title',
-    note: 'Spot the mistake. Error-finding in someone else\'s worked example strengthens understanding without the sting of being wrong yourself. Tapping a correct step explains why it follows; tapping the wrong step reveals the four-room picture, with the two forgotten rooms outlined in kumkum. The mistake (multiplying only tens by tens and ones by ones) is the most common one for this idea.',
+    note: 'Spot the mistake. Error-finding in someone else\'s worked example strengthens understanding without the sting of being wrong yourself. Tapping a correct step explains why it follows; tapping the wrong step reveals a picture of what went wrong. Each lesson uses the most common mistake for its idea (for M4: multiplying only tens by tens and ones by ones).',
     render: function (view, state) {
-      ui.enterThread('M4', 'mistake');
+      var e = entryFor(Sutra.state.thread);
+      var key = function (k) { return 'mistake.' + e.prefix + '.' + k; };
+      ui.enterThread(e.knot, 'mistake');
+      if (state.knot !== e.knot) { state.knot = e.knot; state.found = false; state.fine = []; }
       var say = u.el('p', { class: 'say', hidden: true });
       var picture = u.el('div', { class: 'model' });
       var after = u.el('div');
@@ -54,33 +67,35 @@
 
       function paint() {
         u.clear(list);
-        STEPS.forEach(function (key, i) {
-          var cls = state.found && i === WRONG ? 'found' : state.fine && state.fine.indexOf(i) >= 0 ? 'fine' : '';
-          list.appendChild(u.el('button', {
-            class: cls, type: 'button',
-            onclick: function () {
-              if (state.found) return;
-              if (i === WRONG) { state.found = true; paint(); ui.say(say, t('mistake.m4.found'), true); }
-              else { state.fine = (state.fine || []).concat([i]); paint(); ui.say(say, t('mistake.m4.fine' + (i + 1)), true); }
-            }
-          }, [u.el('span', { class: 'num', text: String(i + 1) }), u.el('span', { text: t(key) })]));
-        });
+        for (var n = 0; n < e.data.steps; n++) list.appendChild(stepButton(n));
         u.clear(picture);
         u.clear(after);
         if (state.found) {
-          picture.appendChild(rooms(true));
-          after.appendChild(u.el('div', { class: 'eq', html: '200 + <span style="color:var(--kumkum)">30</span> + <span style="color:var(--kumkum)">80</span> + 12 = <span class="r">322</span>' }));
+          picture.appendChild(e.data.picture(true));
+          if (e.data.eq) after.appendChild(u.el('div', { class: 'eq', html: e.data.eq() }));
           after.appendChild(ui.next(t('common.explain'), 'explain'));
         }
       }
 
-      view.appendChild(u.el('p', { text: t('mistake.m4.intro') }));
+      function stepButton(i) {
+        var cls = state.found && i === e.data.wrong ? 'found' : state.fine && state.fine.indexOf(i) >= 0 ? 'fine' : '';
+        return u.el('button', {
+          class: cls, type: 'button',
+          onclick: function () {
+            if (state.found) return;
+            if (i === e.data.wrong) { state.found = true; paint(); ui.say(say, t(key('found')), true); }
+            else { state.fine = (state.fine || []).concat([i]); paint(); ui.say(say, t(key('fine' + (i + 1))), true); }
+          }
+        }, [u.el('span', { class: 'num', text: String(i + 1) }), u.el('span', { text: t(key('s' + (i + 1))) })]);
+      }
+
+      view.appendChild(u.el('p', { text: t(key('intro')) }));
       view.appendChild(list);
       view.appendChild(say);
       view.appendChild(picture);
       view.appendChild(after);
       paint();
-      if (state.found) ui.say(say, t('mistake.m4.found'), false);
+      if (state.found) ui.say(say, t(key('found')), false);
     }
   };
 })();

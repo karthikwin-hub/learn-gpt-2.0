@@ -47,7 +47,25 @@
       }
       return g;
     },
-    add: function (parent, kids) { kids.forEach(function (k) { if (k) parent.appendChild(k); }); return parent; }
+    /* Makes an SVG part a keyboard-reachable button; without onTap the node is returned unchanged. */
+    tappable: function (node, label, onTap) {
+      if (!onTap) return node;
+      node.setAttribute('role', 'button');
+      node.setAttribute('tabindex', '0');
+      node.setAttribute('aria-label', label);
+      node.setAttribute('class', 'tap');
+      node.addEventListener('click', onTap);
+      node.addEventListener('keydown', function (e) { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); onTap(); } });
+      return node;
+    },
+    add: function (parent, kids) { kids.forEach(function (k) { if (k) parent.appendChild(k); }); return parent; },
+    /* The six Bodha cards in their fixed order; figs maps a card key to fig(step, state). */
+    cards: function (ex, figs) {
+      return [
+        { key: 'what', fig: figs.what }, { key: 'idea', fig: figs.idea }, { key: 'why', fig: figs.why },
+        { key: 'example', steps: ex, fig: figs.example }, { key: 'where', fig: figs.where }, { key: 'sutra' }
+      ];
+    }
   };
 
   Sutra.fig = F;

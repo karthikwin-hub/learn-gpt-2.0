@@ -105,7 +105,13 @@
       case 'M5': kids = drumsThumb(m); break;
       case 'S2': case 'S3': kids = setsThumb(m); break;
       case 'L2': kids = logicThumb(m); break;
-      default: kids = [u.svg('circle', { cx: 24, cy: 24, r: 8, fill: 'var(--thread)' })];
+      default:
+        var L = Sutra.lessons[page.thread];
+        if (L && L.thumb) {
+          var pic = L.thumb(m);
+          pic.setAttribute('width', 48); pic.setAttribute('height', 48);
+          kids = [pic];
+        } else kids = [u.svg('circle', { cx: 24, cy: 24, r: 8, fill: 'var(--thread)' })];
     }
     return u.svg('svg', { viewBox: '0 0 48 48', width: '100%', height: '100%', 'aria-hidden': 'true' }, kids);
   };
@@ -155,7 +161,7 @@
         view.appendChild(u.el('button', {
           class: 'page', type: 'button',
           onclick: function () {
-            var key = Sutra.screens.explain.stateKey[p.thread];
+            var key = Sutra.screens.explain.stateKeyFor(p.thread);
             if (key) Sutra.state[key] = JSON.parse(JSON.stringify(p.model || {}));
             Sutra.router.go(p.route, p.params || undefined);
           }

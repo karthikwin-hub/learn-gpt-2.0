@@ -6,12 +6,7 @@
   var t = Sutra.ui.t;
   var IND = 'var(--indigo)', TEAL = 'var(--teal)', LEAF = 'var(--leaf)', THREAD = 'var(--thread)';
 
-  function cards(ex, figs) {
-    return [
-      { key: 'what', fig: figs.what }, { key: 'idea', fig: figs.idea }, { key: 'why', fig: figs.why },
-      { key: 'example', steps: ex, fig: figs.example }, { key: 'where', fig: figs.where }, { key: 'sutra' }
-    ];
-  }
+  var cards = F.cards;
 
   /* ---------- M2: multiplication is area ---------- */
   function tiles(cols, rows, filledRows, totals) {

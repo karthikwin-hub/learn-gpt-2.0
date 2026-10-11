@@ -21,7 +21,10 @@
 
   var STATE_KEY = { M4: 'rect', D1: 'share:share', D3: 'share:leftover', G2: 'rope', G4: 'kolam', M5: 'drums', S2: 'sets:sort', S3: 'sets:guess', L2: 'logic' };
 
-  function templateId(thread) { return ALIAS[thread] || (TEMPLATES[thread] ? thread : 'M4'); }
+  function lessonTemplate(thread) { var L = Sutra.lessons[thread]; return L && L.explain; }
+  function templateId(thread) { return ALIAS[thread] || (TEMPLATES[thread] || lessonTemplate(thread) ? thread : 'M4'); }
+  function templateFor(thread) { var id = templateId(thread); return TEMPLATES[id] || lessonTemplate(id); }
+  function stateKeyFor(thread) { var L = Sutra.lessons[thread]; return STATE_KEY[thread] || (L && L.stateKey); }
 
   /* Sentence parts: plain text and blanks, from a template like "I cut it into {0} and ones…". */
   function parts(thread) {
@@ -59,7 +62,7 @@
   function sentenceText(thread, fills) { return sentence(thread, fills).textContent; }
 
   function snapshot(thread) {
-    var s = Sutra.state[STATE_KEY[thread]] || {};
+    var s = Sutra.state[stateKeyFor(thread)] || {};
     var copy = JSON.parse(JSON.stringify(s));
     if (copy.strokes) copy.strokes = copy.strokes.slice(0, 6);
     return copy;
@@ -73,11 +76,11 @@
     note: 'Explain it back. Self-explanation is one of the strongest learning effects for this age, but typing is slow and spelling gets in the way, so the child assembles one sentence from word tiles. If it does not match the model, a gentle hint points back to the model, and the child can still keep their own sentence: it is theirs. An optional voice note stays in memory only and is never saved or sent.',
     sentence: sentence,
     sentenceText: sentenceText,
-    stateKey: STATE_KEY,
+    stateKeyFor: stateKeyFor,
     render: function (view, state) {
       var thread = Sutra.state.thread || 'M4';
       if (state.thread !== thread) { state.thread = thread; state.fills = []; state.active = 0; state.hinted = false; }
-      var tpl = TEMPLATES[templateId(thread)];
+      var tpl = templateFor(thread);
       var holder = u.el('div');
       var tiles = u.el('div', { class: 'tiles' });
       var hint = u.el('p', { class: 'pointer-note', hidden: true });
