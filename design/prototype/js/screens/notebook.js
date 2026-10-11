@@ -122,6 +122,23 @@
     render: function (view) {
       var pages = u.store.get('pages', []).slice().reverse();
       view.appendChild(u.el('p', { class: 'muted', text: t('notebook.intro') }));
+      var kept = u.store.get('sutras', []).filter(function (id) { return Sutra.lessons[id]; });
+      if (kept.length) {
+        view.appendChild(u.el('h2', { class: 'pane-title', text: t('notebook.sutras') }));
+        kept.forEach(function (id) {
+          var cid = Sutra.lessons[id].content || id;
+          view.appendChild(u.el('button', {
+            class: 'page', type: 'button',
+            onclick: function () { Sutra.router.go('bodha', { k: id }); }
+          }, [
+            u.el('span', {}, [
+              u.el('span', { class: 'meta', text: t('knot.' + id + '.t') }),
+              u.el('span', { class: 'sutra-line', text: t('bodha.' + cid + '.sutra') })
+            ])
+          ]));
+        });
+        if (pages.length) view.appendChild(u.el('h2', { class: 'pane-title', text: t('notebook.pages') }));
+      }
       if (!pages.length) {
         var sample = { thread: 'M4', fills: ['tens', 'room', 'add'], model: { cols: 23, rows: 14 } };
         view.appendChild(u.el('div', { class: 'page sample', 'aria-hidden': 'true' }, [

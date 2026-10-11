@@ -57,6 +57,37 @@
       return u.el('div', { class: 'btn-row' }, [Sutra.ui.btn(label, function () { Sutra.router.go(route, params); }, 'primary block')]);
     },
 
+    /* The three movements of a lesson. On a workbench it also offers "What am I learning?", which reopens Bodha. */
+    stageBar: function (stage, step, isBench) {
+      var stages = ['shravana', 'manana', 'nididhyasana'];
+      var at = stages.indexOf(stage);
+      var bar = u.el('nav', { class: 'stage-bar', 'aria-label': t('stage.label') }, [
+        u.el('ol', {}, stages.map(function (s, i) {
+          return u.el('li', { class: i < at ? 'past' : i === at ? 'now' : '', 'aria-current': i === at ? 'step' : null }, [
+            u.el('span', { class: 'bead', 'aria-hidden': 'true' }), u.el('span', { text: t('stage.' + s) })
+          ]);
+        }))
+      ]);
+      var row = u.el('div', { class: 'stage-step' }, [u.el('span', { text: t('step.' + step) })]);
+      var knot = Sutra.state.thread;
+      if (isBench && knot) {
+        row.appendChild(u.el('button', {
+          class: 'learn-link', type: 'button', text: t('stage.whatLearning'),
+          onclick: function () { Sutra.router.go('bodha', { k: knot }); }
+        }));
+      }
+      bar.appendChild(row);
+      return bar;
+    },
+
+    /* Goes to the first step of a knot, or explains that it is not in the prototype yet. */
+    openKnot: function (knot) {
+      var C = Sutra.model.curriculum;
+      if (!C.playable(knot)) { u.toast(t('home.notInProto')); return; }
+      var step = C.firstStep(knot);
+      Sutra.router.go(step.route, step.params);
+    },
+
     t: t
   };
 })();

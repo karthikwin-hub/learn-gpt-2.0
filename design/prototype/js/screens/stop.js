@@ -7,6 +7,7 @@
   var t = ui.t;
 
   Sutra.screens.stop = {
+    stage: 'nididhyasana', step: 'stop',
     title: 'stop.title',
     hideBack: true,
     note: 'A good place to stop. No score, no confetti, no "come back tomorrow or lose your streak". It names what the child now knows, in plain words, shows their own sentence and a picture of their model, and offers a calm way out. Ending on understanding, not on an urge to continue, is a deliberate choice against attention-capturing design.',
@@ -26,6 +27,12 @@
         var s = Sutra.screens.explain.sentence(page.thread, page.fills);
         s.classList.add('sutra');
         wrap.appendChild(s);
+        var lesson = Sutra.lessons[page.thread];
+        var cid = lesson && lesson.content || page.thread;
+        if (lesson) {
+          wrap.appendChild(u.el('p', { class: 'muted small', text: t('stop.sutra') }));
+          wrap.appendChild(u.el('p', { class: 'sutra-line', text: t('bodha.' + cid + '.sutra') }));
+        }
         if (Sutra.voiceNotes[page.id]) wrap.appendChild(u.el('audio', { controls: true, src: Sutra.voiceNotes[page.id], style: { width: '100%' } }));
       } else {
         wrap.appendChild(u.el('h2', { class: 'screen-title', text: t('stop.heading') }));

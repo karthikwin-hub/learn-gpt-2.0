@@ -68,6 +68,7 @@
   Sutra.voiceNotes = Sutra.voiceNotes || {};
 
   Sutra.screens.explain = {
+    stage: 'nididhyasana', step: 'explain',
     title: 'explain.title',
     note: 'Explain it back. Self-explanation is one of the strongest learning effects for this age, but typing is slow and spelling gets in the way, so the child assembles one sentence from word tiles. If it does not match the model, a gentle hint points back to the model, and the child can still keep their own sentence: it is theirs. An optional voice note stays in memory only and is never saved or sent.',
     sentence: sentence,
@@ -129,8 +130,8 @@
         var page = {
           id: Date.now(),
           thread: thread,
-          route: knot ? knot.route : 'rect',
-          params: knot ? knot.params || null : null,
+          route: knot && knot.bench ? knot.bench.route : 'rect',
+          params: knot && knot.bench ? knot.bench.params || null : null,
           fills: state.fills.slice(),
           model: snapshot(thread),
           date: new Date().toISOString()

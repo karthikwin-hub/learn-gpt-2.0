@@ -40,6 +40,7 @@
   }
 
   Sutra.screens.film = {
+    stage: 'shravana', step: 'darshana',
     title: 'film.title',
     note: 'Step 2: a Living Film, not a video file. Narrated, five short beats; it stops after each beat until the child taps play (segmenting). The scrubber runs both ways. Pause, then drag the turmeric corner: the film becomes a model you can hold, and the scripted floor stays as a ghost. Colour carries meaning: indigo is always the first factor, teal the second.',
     render: function (view, state) {

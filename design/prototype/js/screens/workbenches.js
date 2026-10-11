@@ -13,6 +13,7 @@
 
   /* ------------------------------------------------------------------ Rubber Rectangle (M4) */
   Sutra.screens.rect = {
+    stage: 'manana', step: 'abhyasa', bench: true,
     title: 'rect.title',
     note: 'Step 3: the workbench, with steps that fade from fully worked to independent. Step 1 the hand demonstrates; step 2 the child cuts at the tens and folds the four rooms into the written column method (the distributive law, seen rather than told); step 3 they do 17 × 12 alone. Steppers are the accessible alternative to dragging. Dashed outlines are ghosts of earlier sizes.',
     render: function (view, state) {
@@ -131,6 +132,7 @@
 
   /* ------------------------------------------------------------------ Fair Share Table (D1, D3) */
   Sutra.screens.share = {
+    stage: 'manana', step: 'abhyasa', bench: true,
     title: function (p) { return t(p.mode === 'leftover' ? 'share.titleLeft' : 'share.title'); },
     note: 'Division as fair sharing. Laddoos are dealt round and round, exactly as a child deals by hand. What cannot complete a round waits in the leftover tray; nothing is "thrown away". In the leftovers thread, cutting them gives each plate a fraction: the doorway to the fractions chapter. Three linked views: plates, a bar, and the written forms (division and the multiplication it undoes).',
     render: function (view, state, params) {
@@ -229,6 +231,7 @@
 
   /* ------------------------------------------------------------------ Rope and Pegs (G2) */
   Sutra.screens.rope = {
+    stage: 'manana', step: 'abhyasa', bench: true,
     title: 'rope.title',
     note: 'Perimeter versus area. The corner can only slide along the dashed diagonal, so the rope (perimeter) is always the same length. Each rectangle tried leaves a ghost, and the "area hill" fills in bar by bar until the child sees that the square holds the most. Rooted in the Sulba Sutras: geometry made with rope and pegs.',
     render: function (view, state) {
@@ -275,6 +278,7 @@
 
   /* ------------------------------------------------------------------ Kolam Mirror (G4) */
   Sutra.screens.kolam = {
+    stage: 'manana', step: 'abhyasa', bench: true,
     title: 'kolam.title',
     note: 'Symmetry as kolam: rice-white lines on dark ground, the way kolam is drawn at thresholds every morning. One stroke repeats through the chosen symmetry. Mirror mode shows mirror lines; turn mode has rotation only, so the child sees that the two are different. The first visit shows the demonstrating hand drawing one stroke. The challenge asks for quarter-turn symmetry without a mirror line.',
     render: function (view, state) {
@@ -317,6 +321,7 @@
 
   /* ------------------------------------------------------------------ Two Drummers (M5) */
   Sutra.screens.drums = {
+    stage: 'manana', step: 'abhyasa', bench: true,
     title: 'drums.title',
     note: 'Common multiples as rhythm. Two tala cycles play along one beat line; every hit stays marked, and beats where both drummers hit are ringed. The child predicts first. Then the prompt invites 4 and 6, which meet at 12, not 24: the misconception this thread targets. Sound is the content here, so every hit is also shown visually.',
     render: function (view, state) {
@@ -395,6 +400,7 @@
 
   /* ------------------------------------------------------------------ Sorting Courtyard (S2, S3) */
   Sutra.screens.sets = {
+    stage: 'manana', step: 'abhyasa', bench: true,
     title: function (p) { return t(p.mode === 'guess' ? 'sets.titleGuess' : 'sets.title'); },
     note: 'Sets as a courtyard. Blocks walk to the region their rules put them in; regions are counted and named with "and", "or" and "not". Pull the rings apart and blocks that belong to both have nowhere to stand (outlined in kumkum, the colour for attention, never for "wrong"). One ring inside the other shows a subset. The guess mode reverses the task: find the hidden rules.',
     render: function (view, state, params) {
@@ -495,6 +501,7 @@
 
   /* ------------------------------------------------------------------ Marble Machine (L2) */
   Sutra.screens.logic = {
+    stage: 'manana', step: 'abhyasa', bench: true,
     title: 'logic.title',
     note: 'Logic as visible cause and effect. Open or shut the doors and drop a marble: it follows the route the gate allows and lands in YES or NO, where it stays. Every try writes one row of the truth table, and rows remain (visual residue). Mystery mode covers the machine: the child fills the table, then names the gate. This bridges to "and / or / not" in the Sorting Courtyard.',
     render: function (view, state) {

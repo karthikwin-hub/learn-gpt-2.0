@@ -6,10 +6,11 @@
   var t = function (k, v) { return Sutra.i18n.t(k, v); };
 
   var REVIEW_NAV = [
-    { group: 'Start', items: [['opening', 'Opening thread'], ['language', 'Choose language'], ['home', 'The Loom (home)']] },
-    { group: 'One full thread (multiplication)', items: [['wonder', '1 · Wonder'], ['film', '2 · Living Film'], ['rect', '3 · Workbench: Rubber Rectangle'], ['mistake', '4 · Spot the mistake'], ['explain', '5 · Explain it back'], ['stop', '6 · A good place to stop']] },
-    { group: 'More workbenches', items: [['share?mode=share', 'Fair Share Table'], ['share?mode=leftover', 'Leftovers to fractions'], ['rope', 'Rope and Pegs'], ['kolam', 'Kolam Mirror'], ['drums', 'Two Drummers'], ['sets?mode=sort', 'Sorting Courtyard'], ['sets?mode=guess', 'Which rules made this?'], ['logic', 'Marble Machine']] },
-    { group: 'Child and parent', items: [['notebook', 'Notebook'], ['grownups', 'Grown-ups page']] }
+    { group: 'Start', items: [['opening', 'Opening thread'], ['language', 'Choose language'], ['home', 'Ashram (home)']] },
+    { group: 'Gurukul', items: [['shala?s=ganita', 'Ganita Shala (maths)'], ['shala?s=vijnana', 'Vijnana Shala (science)'], ['shala?s=loka', 'Loka Shala (social studies)'], ['jaal', 'Jaal: links across subjects']] },
+    { group: 'One full lesson (multiplication)', items: [['wonder', '1 · Prashna: a question'], ['bodha?k=M2', '2 · Bodha: understand'], ['film', '3 · Darshana: Living Film'], ['rect', '4 · Abhyasa: Rubber Rectangle'], ['mistake', '5 · Spot the mistake'], ['explain', '6 · Explain it back'], ['stop', '7 · A good place to stop']] },
+    { group: 'More workbenches (Ganita)', items: [['share?mode=share', 'Fair Share Table'], ['share?mode=leftover', 'Leftovers to fractions'], ['rope', 'Rope and Pegs'], ['kolam', 'Kolam Mirror'], ['drums', 'Two Drummers'], ['sets?mode=sort', 'Sorting Courtyard'], ['sets?mode=guess', 'Which rules made this?'], ['logic', 'Marble Machine']] },
+    { group: 'Child and parent', items: [['notebook', 'My Pothi (notebook)'], ['grownups', 'Acharya corner (grown-ups)']] }
   ];
 
   var SOUND_ON = '<path d="M4 9v6h4l5 4V5L8 9H4z"/><path d="M16.5 8.5a5 5 0 0 1 0 7"/><path d="M19 6a8.5 8.5 0 0 1 0 12"/>';

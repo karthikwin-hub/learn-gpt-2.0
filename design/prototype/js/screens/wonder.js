@@ -23,6 +23,7 @@
   }
 
   Sutra.screens.wonder = {
+    stage: 'shravana', step: 'prashna',
     title: 'wonder.title',
     note: 'Step 1 of a thread (under a minute). One real question and one picture. The tile is named before the film (pre-training). The child commits to a guess, which is never marked right or wrong; the film reveals it at the end. Evidence: brief prediction, then direct teaching, suits this age better than open discovery.',
     render: function (view, state) {
@@ -44,7 +45,7 @@
       ]));
       view.appendChild(u.el('div', { class: 'btn-row' }, [Sutra.ui.btn(t('wonder.go'), function () {
         u.store.set('m2guess', state.guess);
-        Sutra.router.go('film');
+        Sutra.router.go('bodha', { k: 'M2' });
       }, 'primary block')]));
       setTimeout(function () { Sutra.voice.say(t('wonder.m2.q')); }, 350);
     }

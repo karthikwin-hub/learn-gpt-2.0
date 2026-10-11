@@ -524,6 +524,80 @@ table.truth tr.latest td { background: var(--thread-soft); }
 /* ---------- kolam canvas ---------- */
 .kolam-canvas { display: block; width: 100%; aspect-ratio: 1 / 1; border-radius: 18px; background: var(--ground); touch-action: none; cursor: crosshair; }
 
+/* ---------- Gurukul: Ashram, Shala, Jaal ---------- */
+.ashram-art { margin: 0 -8px; }
+.ashram-art svg { width: 100%; height: auto; }
+.shala-list { display: grid; gap: 10px; margin: 12px 0; }
+.shala-card {
+  display: flex; gap: 14px; align-items: flex-start; width: 100%; text-align: left;
+  padding: 14px; border-radius: 18px; border: 2px solid var(--hair); background: var(--paper-raised); cursor: pointer;
+  box-shadow: 0 8px 18px -14px rgba(0,0,0,.35);
+}
+.shala-card:focus-visible { outline: 3px solid var(--thread); outline-offset: 2px; }
+.shala-card .motif { flex: none; width: 52px; height: 52px; border-radius: 14px; background: var(--paper); display: grid; place-items: center; }
+.shala-card .motif svg { width: 44px; height: 44px; }
+.shala-card .body { flex: 1; min-width: 0; display: flex; flex-direction: column; }
+.shala-card .name { font-family: var(--font-display); font-size: 24px; font-weight: 600; line-height: 1.3; }
+.shala-card .sub { color: var(--ink-soft); font-size: 15px; }
+.shala-card .meta { font-size: 13px; color: var(--ink-soft); margin-top: 4px; }
+.shala-card .thumbs { display: flex; gap: 6px; margin-top: 8px; }
+.shala-card .thumbs i { width: 34px; height: 34px; border-radius: 9px; border: 1.5px solid var(--thread); background: var(--paper); overflow: hidden; display: block; }
+.shala-card .thumbs svg { width: 100%; height: 100%; }
+.home-links.end { justify-content: flex-end; margin-top: 0; }
+.remember { border-left: 3px solid var(--thread); }
+.sutra-line { font-family: var(--font-display); font-size: 19px; line-height: var(--lh); margin: 4px 0 0; }
+.shala-sub { margin: 0; font-size: 14px; color: var(--ink-soft); }
+.knot .jaal-tag { display: inline-block; margin-top: 3px; font-size: 12px; color: var(--ink-soft); border: 1px dashed var(--thread); border-radius: 999px; padding: 0 8px; }
+.jaal-art svg { max-width: 360px; margin: 0 auto; }
+.jaal-curve { cursor: pointer; transition: stroke 200ms var(--ease); }
+.jaal-list { display: flex; flex-wrap: wrap; gap: 8px; margin: 6px 0 12px; }
+.jaal-knots { display: grid; gap: 8px; margin-top: 8px; }
+.jaal-knot { display: flex; flex-direction: column; align-items: flex-start; width: 100%; text-align: left; padding: 10px 12px; border-radius: 12px; border: 1.5px solid var(--hair); background: var(--paper); cursor: pointer; font-weight: 600; }
+.jaal-knot .sec { font-size: 12px; font-weight: 600; }
+.jaal-knot.later { border-style: dashed; color: var(--ink-soft); }
+
+/* ---------- Bodha and Prashna ---------- */
+.bodha { --bodha-scale: 1; }
+.bodha-top { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
+.bodha-dots { display: flex; gap: 6px; }
+.bodha-dots span { width: 9px; height: 9px; border-radius: 50%; background: var(--paper-sunk); }
+.bodha-dots span.past { background: var(--thread-soft); }
+.bodha-dots span.on { background: var(--thread); }
+.bodha-size { display: flex; gap: 6px; }
+.bodha-size .chip { min-height: 40px; min-width: 44px; justify-content: center; }
+.bodha-size .chip:disabled { opacity: .35; cursor: default; }
+.bodha-knot { margin: 8px 0 0; font-size: 14px; color: var(--ink-soft); }
+.bodha-text, .bodha-steps { font-size: calc(var(--fs-body) * var(--bodha-scale)); line-height: calc(var(--lh) + .05); }
+.bodha-steps { margin: 4px 0 8px; padding-left: 26px; }
+.bodha-steps li { margin: 6px 0; padding-left: 2px; }
+.bodha-steps li p { margin: 0; }
+.bodha-steps li.new { animation: fade-in 400ms var(--ease); }
+.bodha-steps li::marker { color: var(--thread); font-weight: 700; }
+.term { font: inherit; color: inherit; background: none; border: 0; padding: 0; cursor: pointer; text-decoration: underline; text-decoration-style: dotted; text-decoration-color: var(--thread); text-decoration-thickness: 2px; text-underline-offset: 4px; }
+.bridge { background: var(--paper-raised); border: 1.5px solid var(--thread); border-radius: 12px; padding: 10px 14px; margin: 6px 0 10px; }
+.bridge p { margin: 0 0 4px; }
+.bridge-word { font-weight: 600; }
+.bodha-fig { margin-top: 6px; background: var(--paper-raised); border-radius: 16px; padding: 8px; touch-action: auto; }
+.bodha-fig svg { max-width: 360px; margin: 0 auto; }
+.bodha-sutra { font-family: var(--font-display); font-size: calc(24px * var(--bodha-scale)); line-height: var(--lh); margin: 14px 0 18px; padding: 16px; border-left: 4px solid var(--thread); background: var(--paper-raised); border-radius: 0 14px 14px 0; }
+.bodha-nav .btn { flex: 1 1 40%; }
+.guess-reveal { background: var(--thread-soft); border-radius: 12px; padding: 10px 14px; margin: 6px 0 10px; }
+.guess-reveal p { margin: 0; }
+.prashna-choices { display: grid; gap: 10px; margin: 12px 0; }
+.choice { width: 100%; text-align: left; min-height: 56px; padding: 12px 16px; border-radius: 14px; border: 2px solid var(--hair); background: var(--paper-raised); cursor: pointer; font-size: 18px; line-height: 1.35; }
+.choice[aria-pressed="true"] { border-color: var(--thread); box-shadow: inset 0 0 0 1px var(--thread); background: var(--thread-soft); }
+
+/* ---------- stage bar (the three movements) ---------- */
+.stage-bar { margin: 2px 0 10px; }
+.stage-bar ol { list-style: none; margin: 0; padding: 0; display: flex; gap: 4px; }
+.stage-bar li { flex: 1; display: flex; flex-direction: column; gap: 4px; font-size: 12px; color: var(--ink-soft); min-width: 0; overflow-wrap: anywhere; }
+.stage-bar .bead { display: block; height: 4px; border-radius: 2px; background: var(--paper-sunk); }
+.stage-bar li.past .bead { background: var(--thread-soft); }
+.stage-bar li.now .bead { background: var(--thread); }
+.stage-bar li.now { color: var(--ink); font-weight: 600; }
+.stage-step { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 4px 10px; margin-top: 6px; font-size: 14px; color: var(--ink-soft); }
+.learn-link { border: 1.5px solid var(--thread); background: var(--thread-soft); color: var(--ink); border-radius: 999px; padding: 6px 12px; min-height: 40px; font-size: 14px; font-weight: 600; cursor: pointer; }
+
 /* ---------- reduced motion ---------- */
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation-duration: 1ms !important; transition-duration: 1ms !important; }

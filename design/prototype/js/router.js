@@ -46,7 +46,7 @@
     void view.offsetWidth;
     view.style.animation = '';
 
-    var key = route.id + (route.params.mode ? ':' + route.params.mode : '');
+    var key = route.id + (route.params.mode ? ':' + route.params.mode : '') + (route.params.k ? ':' + route.params.k : '');
     var state = (Sutra.state[key] = Sutra.state[key] || {});
     current = { id: route.id, params: route.params, screen: screen, state: state };
 
@@ -56,6 +56,8 @@
     document.getElementById('topbar').style.display = screen.hideTopbar ? 'none' : '';
 
     cleanup = screen.render(view, state, route.params) || null;
+    /* Lesson screens declare their movement; the bar goes in after render, once the screen has named its knot. */
+    if (screen.stage) view.insertBefore(Sutra.ui.stageBar(screen.stage, screen.step, screen.bench), view.firstChild);
     Sutra.app.onRoute(route.id, screen);
   }
 

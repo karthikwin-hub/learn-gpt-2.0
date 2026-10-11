@@ -42,6 +42,7 @@
   }
 
   Sutra.screens.mistake = {
+    stage: 'manana', step: 'mistake',
     title: 'mistake.title',
     note: 'Spot the mistake. Error-finding in someone else\'s worked example strengthens understanding without the sting of being wrong yourself. Tapping a correct step explains why it follows; tapping the wrong step reveals the four-room picture, with the two forgotten rooms outlined in kumkum. The mistake (multiplying only tens by tens and ones by ones) is the most common one for this idea.',
     render: function (view, state) {
