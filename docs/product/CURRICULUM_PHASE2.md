@@ -229,7 +229,7 @@ Each entry gives the Bodha cards in brief. The exact on-screen text is in the pr
 - **Goal:** a map is a drawing of a place from above, made smaller by the same amount everywhere; scale, direction (north at the top, east to the right) and symbols (legend).
 - **Misconception:** adding the scale instead of multiplying (3 squares at 10 m each = 13 m); maps always show things from the side.
 - **Prashna:** on most maps, which direction is at the top? (North.)
-- **Bodha:** what · idea (three keys: scale, direction, symbols) · why (everything shrinks by the same amount, so shapes and distances stay true) · example (gate to well: 4 squares × 5 m = 20 m) · where (phone maps, metro maps, the school atlas) · sutra: *"A map shrinks a place by the same amount everywhere; scale, direction and symbols let you read it."*
+- **Bodha:** what · idea (three keys: scale, direction, symbols) · why (everything shrinks by the same amount, so shapes and distances stay true) · example (gate to well: 9 squares × 5 m = 45 m) · where (phone maps, metro maps, the school atlas) · sutra: *"A map shrinks a place by the same amount everywhere; scale, direction and symbols let you read it."*
 - **Workbench:** (1) watch the courtyard fold flat into a map; (2) walk from the gate to the well with N, E, S and W; (3) with 1 square = 5 m, how far did you walk?
 - **Spot the mistake:** Sam measures 3 squares at 10 m each and says 13 m.
 - **Explain back:** "A map shows a place from ___. The scale tells me how much ___ each part of the map stands for."
