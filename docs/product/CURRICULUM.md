@@ -1,4 +1,4 @@
-# Sutra: phase 1 curriculum (mathematics, about age 10)
+# Gurukul: phase 1 curriculum (Ganita, mathematics, about age 10)
 
 > Status: draft for review by a primary maths teacher (2026-10-11).
 > **Translations in this document are drafts and need review by a native-speaking primary maths teacher for each language before use.**
@@ -8,7 +8,7 @@
 
 ## 1. How to read this
 
-- A **domain** is a thread on the Loom (Multiply, Divide, Shapes, Sets, Logic).
+- A **domain** was a thread on phase 1's home screen (Multiply, Divide, Shapes, Sets, Logic). In phase 2 these become threads of the Ganita Shala; [CURRICULUM_PHASE2.md](CURRICULUM_PHASE2.md) shows where each one now sits.
 - A **thread** (ID like `M2`) is one concept, one session of 10–15 minutes, with the anatomy in [EXPERIENCE.md §3](EXPERIENCE.md#3-lesson-anatomy-in-detail).
 - **Lenses** are the linked representations shown together (at least three per thread).
 - **Misconception** is the specific wrong idea the thread is designed to surface and fix. Hints and the Spot-the-mistake step are written against it.
@@ -41,7 +41,7 @@ flowchart LR
   G4 --> L4
 ```
 
-Recommended order inside a domain is left to right. Across domains the child chooses freely; the crossings above are where the Loom explains a connection.
+Recommended order inside a domain is left to right. Across domains the child chooses freely; the crossings above are where the Shala explains a connection.
 
 ---
 
@@ -280,6 +280,6 @@ Everyday-phrase example for **Area** ("how much space it covers"):
 
 ---
 
-## 9. Phase 2 candidates (not in scope)
+## 9. Phase 2
 
-Fractions in depth (from D3), decimals and money, measurement (weight, capacity, time: *Maths Mela* chapters Weight and Capacity, Racing Seconds), maps and coordinates (Maps and Locations), data handling, and Lilavati puzzle collections as cross-domain challenges.
+Phase 2 is specified in [CURRICULUM_PHASE2.md](CURRICULUM_PHASE2.md): the full Class 5 maths syllabus (numbers, fractions, decimals and money, measurement, data, patterns) plus science and social studies, with nine new playable lessons. Every phase 1 thread above also gains a Bodha explanation step ([EXPERIENCE.md §3.2](EXPERIENCE.md#32-bodha-anatomy)).

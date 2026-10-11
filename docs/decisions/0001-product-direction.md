@@ -35,3 +35,4 @@ We choose **option 3, the calm microworld**, with these commitments:
   - Indic translations are drafts. Mitigation: native-teacher review before any child sees them.
   - Device text-to-speech in Indic languages is uneven. Mitigation: recorded human narration is recommended.
 - Follow-ups: product owner accepts or amends this ADR; decide the name, the AI question and narration voices (SPECKIT_HANDOFF.md §4); add a banned-feedback-words check per language when feature 002 lands.
+- Update 2026-10-11: the product owner named the product **Gurukul**; "Sutra" now names threads and rules inside it. The frame, the Bodha step and the subject expansion are recorded in ADR-0002.

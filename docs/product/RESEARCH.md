@@ -63,7 +63,7 @@ Source: Sweller's transient information effect (context PDF §"Cognitive Load Th
 
 **C9. Mayer's multimedia principles, with median effect sizes** [S1][S2]:
 
-| Principle | d | How Sutra applies it |
+| Principle | d | How Gurukul applies it |
 |---|---|---|
 | Temporal contiguity: narration at the same time as the graphic | 1.30 | Narration lines are bound to film beats, not a separate audio track |
 | Redundancy: don't print what is being spoken | 0.87 | Key terms appear *on* the object, not as subtitles. Captions are on by default for now, because the prototype relies on device voices, which are unreliable in Indic languages; grown-ups can turn them off. Once recorded narration exists, test turning captions off by default while audio plays |
@@ -98,7 +98,7 @@ Source: context PDF §"Dark Patterns"; arXiv 2506.23017 on deceptive design awar
 
 **C12. Intrinsic motivation comes from agency, visible competence and curiosity.**
 Source: Papert's microworlds; Bret Victor's explorable explanations [S13]; Smart Interface Design Patterns on children [S9].
-→ We motivate with: **(a)** a model that *responds*, so correctness is visible; **(b)** things the child *makes* that they keep in a **Notebook**; **(c)** genuinely puzzling Wonder questions; and **(d)** beauty, from kolam and rangoli symmetry to Indian rhythm cycles.
+→ We motivate with: **(a)** a model that *responds*, so correctness is visible; **(b)** things the child *makes* that they keep in a **Notebook** (the Pothi); **(c)** genuinely puzzling Wonder questions; and **(d)** beauty, from kolam and rangoli symmetry to Indian rhythm cycles.
 
 ---
 
@@ -141,7 +141,7 @@ Source: context PDF §"Typographic Engineering"; UX4G.
 - **Lilavati** (Bhaskara II, c. 1150 CE): verse puzzles about bees, lotuses and peacocks, traditionally addressed to his daughter [S20].
 - **Tala**: rhythm cycles in Indian music. Two cycles realign at their least common multiple.
 
-→ These give Sutra its visual identity (one thread) and many of its Wonder questions. They are used respectfully and accurately, never as exotic decoration.
+→ These give Gurukul its visual identity (one thread) and many of its Wonder questions. They are used respectfully and accurately, never as exotic decoration.
 
 **C19. India's DPDP Act 2023 requires verifiable parental consent for processing children's data and bans tracking, behavioural monitoring and targeted advertising aimed at children.**
 Source: context PDF §"Regulatory Compliance".
@@ -151,7 +151,7 @@ Source: context PDF §"Regulatory Compliance".
 
 ## 9. Learning in an age of AI: our position
 
-AI can now produce an answer to almost any school maths question. What it cannot do is give a child an *intuition*: the felt sense of why 23 × 14 is four rectangles, or why a square fences the most ground. The skills that keep their value are reasoning, explaining, spotting a wrong argument, and transferring an idea to a new situation. So Sutra:
+AI can now produce an answer to almost any school maths question. What it cannot do is give a child an *intuition*: the felt sense of why 23 × 14 is four rectangles, or why a square fences the most ground. The skills that keep their value are reasoning, explaining, spotting a wrong argument, and transferring an idea to a new situation. So Gurukul:
 
 - trains **explanation** (Explain it back) and **error detection** (Spot the mistake) explicitly;
 - uses **no generative AI with children in phase 1**: no chat, no generated lessons. Diagnostic hints are deterministic and authored, based on what the child's action reveals;
@@ -165,7 +165,43 @@ AI can now produce an answer to almost any school maths question. What it cannot
 2. Whether three-register terms help or overload children in each language.
 3. Whether Return recall questions are welcome or feel like a test.
 4. Performance of physics-like manipulatives on the cheapest Android phones in use.
-5. Whether parents value the Notebook and Grown-ups page more than "progress metrics".
+5. Whether parents value the Pothi and the Acharya corner more than "progress metrics".
+6. (Phase 2) Whether Bodha's reading load suits children who read below grade level, and whether narration makes up for it.
+7. (Phase 2) Whether the Gurukul frame feels welcoming to families of every faith and language community.
+
+---
+
+## 11. Phase 2: explaining the concept before practice
+
+Product review of phase 1 found that children were asked to try before they were told what they were learning. These claims support the **Bodha** step ([EXPERIENCE.md §3.2](EXPERIENCE.md#32-bodha-anatomy)) and the choice of misconceptions in the nine new lessons.
+
+**C20. For novices, explicit explanation and worked examples beat minimal guidance; "discovery" helps only when it is guided.** A review of cognitive-load research argues that minimally guided instruction overloads novices [S21]. A meta-analysis of 164 studies found unassisted discovery did not help learners, while *enhanced* discovery (with feedback, worked examples, scaffolding and elicited explanations) did [S22].
+→ Every lesson explains first (Bodha), then lets the child build (the workbench), with fading worked steps. The Prashna guess stays because a short prediction activates prior knowledge without leaving the child to discover alone (C5, C6).
+
+**C21. Children arrive with strong, consistent everyday ideas in science, and these survive ordinary teaching unless they are addressed directly.** Studies of children's ideas find, for example: digestion imagined as a single tube or as ending in the stomach [S23]; shadows understood as a "copy" or reflection of the object rather than an absence of light [S24]; day and night and the seasons explained by the Sun moving or by distance from the Sun [S25]. In maths, children compare fractions and decimals as if they were whole numbers ("1/3 > 1/2 because 3 > 2"; "0.45 > 0.5 because 45 > 5") [S26][S27].
+→ Each new lesson names one of these misconceptions and builds its Spot the mistake around it: B3 (stomach), R1 (lower light, shorter shadow), E1 (summer from closeness), N3 (bigger denominator, bigger fraction), U1 (longer decimal, bigger number).
+
+**C22. Text that states a misconception and then explains why it is wrong ("refutation text") produces more conceptual change than plain explanation.** A review of two decades of studies found refutation text consistently effective in science, especially when combined with other support [S28].
+→ Bodha's "why it works" card and the Spot-the-mistake step together form a refutation: the wrong idea is stated in someone else's words, then shown to fail in the model.
+
+**C23. Children aged about 9–11 can learn to order events and use dates when the timeline is concrete and connected to things they know; historical time is not just a matter of age.** Interviews with elementary children found they sequence images of the past well before they handle dates, and that instruction with timelines and familiar anchors helps [S29].
+→ Loka I2 hangs real, recognisable events on one thread and teaches the BCE/CE join and "no year zero" explicitly, with years-between worked step by step.
+
+**C24. Map use develops spatial thinking, and children learn maps best when they connect a familiar space to its symbolic, from-above representation.** A review argues that maps help children think about space beyond direct experience and that understanding maps as representations is learned, not automatic [S30].
+→ Loka E4 starts from the Ashram courtyard the child already knows, flattens it into a top view, and makes scale and direction something the child walks.
+
+**C25. Children aged 7–10 can learn the "control of variables" strategy (a fair test) from explicit instruction with examples, and transfer it; they rarely discover it alone.** [S31]
+→ Vijnana K2 makes the fair test the explicit second step: if the child changes the ramp and the surface together, the model says the test can't tell which mattered.
+
+---
+
+## 12. Cultural grounding for the Gurukul frame
+
+- **The three movements.** *Shravana* (listening), *manana* (reflecting) and *nididhyasana* (deep contemplation) come from the Brihadaranyaka Upanishad (2.4.5) and later Vedanta teaching as the stages of learning. Gurukul uses them as plain names for listen, reflect, make it yours, without religious content.
+- **A modern precedent.** Rabindranath Tagore founded his school at Santiniketan in 1901, with open-air classes, a close teacher and a mix of Indian tradition and modern science; Santiniketan was inscribed as a UNESCO World Heritage Site in 2023 [S32]. (The UNESCO page could not be fetched while this document was drafted; confirm both dates before quoting them in the app.)
+- **Many traditions, not one.** Nalanda and Takshashila are named in India's National Education Policy 2020 as examples of the country's tradition of learning [S33]; verandah (*thinnai*) schools taught reading and arithmetic in Tamil-speaking villages. The frame draws on all of these.
+- **What we deliberately leave behind.** Historically, gurukul education was closed to many children by caste and gender. Gurukul says plainly that every child belongs and avoids religious imagery ([CONCEPT.md §4](CONCEPT.md#4-the-big-idea-a-modern-gurukul), [EXPERIENCE.md §6.4](EXPERIENCE.md#64-imagery)).
+- **Test it.** Whether the frame feels welcoming across faiths and the five language communities is an open question (§10, item 7) to test with families before building feature 009.
 
 ---
 
@@ -191,4 +227,17 @@ AI can now produce an answer to almost any school maths question. What it cannot
 - **[S18]** Making kolam accessible through representational restructuration. Bridges 2026. https://archive.bridgesmathart.org/2026/bridges2026-545.pdf
 - **[S19]** Bluebird newsletter 45: Kolam and circuits (AI Math Circles). https://aimathcircles.org/wp-content/uploads/2023/02/Bluebird-Newsletter-Issue-45_Kolam-and-Circuits.pdf
 - **[S20]** Problems and solutions from Bhaskaracharya's Lilavati. https://r2.gauravtiwari.org/wp-content/uploads/2026/02/bhaskaracharyas-lilavati.pdf
+- **[S21]** Kirschner, P. A., Sweller, J., & Clark, R. E. (2006). Why minimal guidance during instruction does not work. *Educational Psychologist*, 41(2), 75–86. https://doi.org/10.1207/s15326985ep4102_1
+- **[S22]** Alfieri, L., Brooks, P. J., Aldrich, N. J., & Tenenbaum, H. R. (2011). Does discovery-based instruction enhance learning? *Journal of Educational Psychology*, 103(1), 1–18. https://doi.org/10.1037/a0021017
+- **[S23]** Teixeira, F. M. (2000). What happens to the food we eat? Children's conceptions of the structure and function of the digestive system. *International Journal of Science Education*, 22(5), 507–520. https://doi.org/10.1080/095006900289750
+- **[S24]** Feher, E., & Rice, K. (1988). Shadows and anti-images: Children's conceptions of light and vision II. *Science Education*, 72(5), 637–649. https://doi.org/10.1002/sce.3730720509
+- **[S25]** Sharp, J. G. (1996). Children's astronomical beliefs: a preliminary study of Year 6 children in south-west England. *International Journal of Science Education*, 18(6), 685–712. https://doi.org/10.1080/0950069960180604
+- **[S26]** Ni, Y., & Zhou, Y.-D. (2005). Teaching and learning fraction and rational numbers: the origins and implications of whole number bias. *Educational Psychologist*, 40(1), 27–52. https://doi.org/10.1207/s15326985ep4001_3
+- **[S27]** Resnick, L. B., Nesher, P., Leonard, F., Magone, M., et al. (1989). Conceptual bases of arithmetic errors: the case of decimal fractions. *Journal for Research in Mathematics Education*, 20(1), 8–27. https://doi.org/10.2307/749095
+- **[S28]** Tippett, C. D. (2010). Refutation text in science education: a review of two decades of research. *International Journal of Science and Mathematics Education*, 8(6), 951–970. https://doi.org/10.1007/s10763-010-9203-x
+- **[S29]** Barton, K. C., & Levstik, L. S. (1996). "Back when God was around and everything": elementary children's understanding of historical time. *American Educational Research Journal*, 33(2), 419–454. https://doi.org/10.3102/00028312033002419
+- **[S30]** Uttal, D. H. (2000). Seeing the big picture: map use and the development of spatial cognition. *Developmental Science*, 3(3), 247–264. https://doi.org/10.1111/1467-7687.00119
+- **[S31]** Chen, Z., & Klahr, D. (1999). All other things being equal: acquisition and transfer of the control of variables strategy. *Child Development*, 70(5), 1098–1120. https://doi.org/10.1111/1467-8624.00081
+- **[S32]** UNESCO World Heritage Centre. Santiniketan. https://whc.unesco.org/en/list/1375/ (not fetched during drafting; verify)
+- **[S33]** Ministry of Education, Government of India (2020). National Education Policy 2020, Introduction. https://www.education.gov.in/sites/upload_files/mhrd/files/NEP_Final_English_0.pdf (not fetched during drafting; verify)
 - Context PDF: *Architecture of an Explorable Mathematics Microworld* (`context/Visual Math Learning Platform.pdf`), including its citations on Piaget, Bruner, Dienes, Skemp, Sweller, Mayer, Papert, Turing Tumble, Noto/UX4G typography, NEP 2020 and the DPDP Act 2023.
