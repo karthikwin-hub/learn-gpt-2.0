@@ -1,6 +1,5 @@
 /**
- * Domain module: Mathematical rules (Ganita)
- * See docs/rules/MATH_RULES.md
+ * Mathematics domain module for Gurukul.
  */
 
-export const DOMAIN_MATH = 'math';
+export * from './kolam';

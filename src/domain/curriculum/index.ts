@@ -1,6 +1,5 @@
 /**
- * Domain module: Curriculum, Shalas, Knots, and Jaal
- * See docs/rules/CURRICULUM_RULES.md
+ * Curriculum domain module for Gurukul.
  */
 
-export const DOMAIN_CURRICULUM = 'curriculum';
+export * from './curriculum';

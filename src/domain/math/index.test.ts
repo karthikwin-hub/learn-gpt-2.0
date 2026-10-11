@@ -1,8 +1,30 @@
 import { describe, it, expect } from 'vitest';
-import { DOMAIN_MATH } from './index';
+import { dots, mirrorCurve, softenBorder, toPath } from './index';
 
-describe('src/domain/math', () => {
-  it('exports math domain identifier', () => {
-    expect(DOMAIN_MATH).toBe('math');
+describe('src/domain/math/kolam', () => {
+  it('generates m x n grid of dots', () => {
+    const grid = dots(3, 4);
+    expect(grid.length).toBe(12);
+    expect(grid[0]).toEqual({ x: 1, y: 1 });
+  });
+
+  it('generates unbroken closed mirror curve points', () => {
+    const pts = mirrorCurve(3, 4);
+    expect(pts.length).toBeGreaterThan(0);
+    expect(pts[0]).toEqual({ x: 1, y: 0 });
+  });
+
+  it('softens border points outward', () => {
+    const pts = mirrorCurve(3, 4);
+    const softened = softenBorder(pts, 3, 4, 0.45);
+    expect(softened.length).toBe(pts.length);
+  });
+
+  it('generates valid SVG path data', () => {
+    const pts = softenBorder(mirrorCurve(3, 4), 3, 4, 0.45);
+    const pathStr = toPath(pts, 22, 0);
+    expect(pathStr.startsWith('M')).toBe(true);
+    expect(pathStr.endsWith('Z')).toBe(true);
+    expect(pathStr.includes('Q')).toBe(true);
   });
 });

@@ -1,6 +1,6 @@
 /**
- * Domain module: Multilingual dictionaries and i18n
- * See docs/rules/I18N_RULES.md
+ * Multilingual translation domain module for Gurukul.
  */
 
-export const DOMAIN_I18N = 'i18n';
+export * from './core';
+export * from './dictionaries/index';

@@ -3,4 +3,4 @@
  * Namespace prefix: 'gurukul:'
  */
 
-export const STORAGE_PREFIX = 'gurukul:';
+export { STORAGE_PREFIX, storage, type StorageAdapter } from './storage';

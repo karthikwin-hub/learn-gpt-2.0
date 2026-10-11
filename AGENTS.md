@@ -8,7 +8,7 @@ Precedence: the human's explicit instruction for this task > the nearest nested 
 The constitution (`.specify/memory/constitution.md`) governs *what* we build and *why*; this file governs *how you work*.
 
 ## 1. Project map
-- What this is: Learn GPT 2.0 — An interactive, visual, calm learning companion teaching 10-year-olds mathematics (geometry, set theory, multiplication, division, logic) through conceptual manipulatives, with English, Hindi, Telugu, Bengali, and Tamil localization.
+- What this is: Learn GPT 2.0 (Gurukul) — An interactive, visual, calm learning companion teaching 10-year-olds mathematics (Ganita), science (Vijnana), and social studies (Loka) through conceptual manipulatives, with English, Hindi, Telugu, Bengali, and Tamil localization.
 - Architecture and module ownership: `docs/ARCHITECTURE.md` — find the owning module before writing any business rule.
 - Project rules and glossary: `docs/PROJECT_RULES.md`
 - Specs: `specs/<###-feature>/` — spec.md (what/why) · plan.md (how) · tasks.md (steps) · progress.md (handoff) · checks.md (evidence)
