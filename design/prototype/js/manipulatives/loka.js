@@ -88,13 +88,7 @@
   };
 
   /* ---------- courtyard map ---------- */
-  var COLS = 8, ROWS = 6, CELL = 38;
-  var PLACES = { gate: [1, 5], well: [6, 1], tulsi: [3, 2], tree: [1, 1], house: [[4, 3], [5, 3], [4, 4], [5, 4]] };
-  function isBlocked(c, r) {
-    if (c < 0 || r < 0 || c >= COLS || r >= ROWS) return true;
-    return PLACES.house.some(function (h) { return h[0] === c && h[1] === r; });
-  }
-  Sutra.manip.mapGrid = { PLACES: PLACES, isBlocked: isBlocked };
+  var COLS = W.COURTYARD.cols, ROWS = W.COURTYARD.rows, PLACES = W.COURTYARD.places, CELL = 38;
   Sutra.manip.courtyardMap = function (opts) {
     opts = opts || {};
     var x0 = 20, y0 = 26, flat = opts.flat === undefined ? 1 : opts.flat;

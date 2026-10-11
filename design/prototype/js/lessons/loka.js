@@ -69,7 +69,7 @@
   };
 
   /* ---------- E4: courtyard from above ---------- */
-  var gate = M.mapGrid.PLACES.gate;
+  var gate = W.COURTYARD.places.gate;
   var SAMPLE = W.walk(gate, ['N', 'N', 'N', 'E', 'N', 'E', 'E', 'E', 'E']);
   Sutra.lessons.E4 = {
     stateKey: 'map',

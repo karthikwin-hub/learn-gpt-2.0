@@ -149,7 +149,7 @@
     note: 'A map as the courtyard seen from above. Step 1 tips the courtyard flat into a top view with north at the top, a legend and a scale. Step 2 walks from the gate to the well with N, E, S and W; walls and the house block the way. Step 3 turns the squares walked into metres by multiplying by the scale, against the common mistake of adding it. The answer uses the child\'s own path, so any route works.',
     render: function (view, state) {
       ui.enterThread('E4', 'map');
-      var gate = Sutra.manip.mapGrid.PLACES.gate, well = Sutra.manip.mapGrid.PLACES.well;
+      var gate = W.COURTYARD.places.gate, well = W.COURTYARD.places.well;
       if (!state.step) { state.step = 1; state.flat = 0.3; state.path = [gate]; }
       var holder = u.el('div', { class: 'model' });
       var action = u.el('div');
@@ -185,7 +185,7 @@
 
       function move(d) {
         var next = W.step(state.path[state.path.length - 1], d);
-        if (Sutra.manip.mapGrid.isBlocked(next[0], next[1])) { ui.say(say, t('map.blocked'), true); return; }
+        if (W.isBlocked(next[0], next[1])) { ui.say(say, t('map.blocked'), true); return; }
         state.path = state.path.concat([next]);
         if (next[0] === well[0] && next[1] === well[1]) { state.step = 3; ui.say(say, t('map.s2done'), true); }
         paint();

@@ -41,7 +41,6 @@
     if (month === 11 || month <= 1) return 'winter';
     return month <= 3 ? 'spring' : 'autumn';
   }
-  function northLeansToSun(month) { return Math.cos(((month - 5.5) / 12) * 2 * Math.PI) > 0; }
 
   /* ---------- maps (E4) ---------- */
   var DIRS = { N: [0, -1], E: [1, 0], S: [0, 1], W: [-1, 0] };
@@ -55,12 +54,18 @@
     moves.forEach(function (m) { path.push(step(path[path.length - 1], m)); });
     return path;
   }
+  /* The courtyard in E4: 8 columns by 6 rows, [column, row] from the top left. The house and the walls cannot be walked through. */
+  var COURTYARD = { cols: 8, rows: 6, places: { gate: [1, 5], well: [6, 1], tulsi: [3, 2], tree: [1, 1], house: [[4, 3], [5, 3], [4, 4], [5, 4]] } };
+  function isBlocked(c, r) {
+    if (c < 0 || r < 0 || c >= COURTYARD.cols || r >= COURTYARD.rows) return true;
+    return COURTYARD.places.house.some(function (h) { return h[0] === c && h[1] === r; });
+  }
   /* Real distance: map squares times the scale, never plus. */
   function realDistance(squares, metresPerSquare) { return squares * metresPerSquare; }
 
   window.Sutra.model.world = {
     signed: signed, yearsBetween: yearsBetween, isEarlier: isEarlier, centuryCE: centuryCE, EVENTS: EVENTS, chronological: chronological,
-    hourAt: hourAt, isDay: isDay, northernSeason: northernSeason, northLeansToSun: northLeansToSun,
-    DIRS: DIRS, step: step, walk: walk, realDistance: realDistance
+    hourAt: hourAt, isDay: isDay, northernSeason: northernSeason,
+    DIRS: DIRS, step: step, walk: walk, realDistance: realDistance, COURTYARD: COURTYARD, isBlocked: isBlocked
   };
 })();

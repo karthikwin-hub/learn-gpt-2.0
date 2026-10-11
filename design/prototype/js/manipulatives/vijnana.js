@@ -75,7 +75,7 @@
   /* ---------- lamp and stick ---------- */
   Sutra.manip.lampStick = function (opts) {
     var k = 36, ground = 230, stickX = 150;
-    var stickH = opts.stickH || 1.5, lampH = opts.lampH, dist = opts.dist || 3;
+    var stickH = opts.stickH || Sutra.model.science.STICK_HEIGHT, lampH = opts.lampH, dist = opts.dist || 3;
     var lampX = stickX - dist * k, lampY = ground - lampH * k, topY = ground - stickH * k;
     var len = S.shadowLength(stickH, lampH, dist);
     var s = F.svg(360, 250, t('light.art', { n: isFinite(len) ? Math.round(len * 10) / 10 : '∞' }));

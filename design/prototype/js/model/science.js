@@ -36,6 +36,7 @@
 
   /* ---------- light and shadow (R1) ---------- */
   /* Similar triangles: a lamp of height H at distance d from a stick of height h casts h·d / (H − h). */
+  var STICK_HEIGHT = 1.5;
   function shadowLength(stickH, lampH, dist) {
     if (lampH <= stickH) return Infinity;
     return (stickH * dist) / (lampH - stickH);
@@ -51,6 +52,6 @@
   window.Sutra.model.science = {
     ORGANS: ORGANS, organOrder: organOrder, isInOrder: isInOrder, absorbsMost: absorbsMost,
     SURFACES: SURFACES, SURFACE_ORDER: SURFACE_ORDER, rollDistance: rollDistance, changed: changed, isFair: isFair, byFriction: byFriction,
-    shadowLength: shadowLength, MATERIALS: MATERIALS, shadowDarkness: shadowDarkness
+    shadowLength: shadowLength, STICK_HEIGHT: STICK_HEIGHT, MATERIALS: MATERIALS, shadowDarkness: shadowDarkness
   };
 })();
