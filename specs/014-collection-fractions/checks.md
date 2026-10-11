@@ -1,12 +1,12 @@
-# Verification Checks: 014 Ganita Expansion Batch 1 (N4, N5, A1, A2)
+# Verification Checks: 014 Fractions of a Collection (Knot N4)
 
 ## Inner-Loop Checks
-- Unit tests: `npx vitest run src/domain/math/`
+- Unit tests: `npx vitest run src/domain/math/collection.test.ts`
 - Typecheck: `npm run typecheck`
 - Linter: `npm run lint`
 
 ## Acceptance Checks
-- `npx playwright test tests/acceptance/014-ganita-batch1.spec.ts`
+- `npx playwright test tests/acceptance/014-collection-fractions.spec.ts`
 
 ## Full 11-Sensor Verification
 - Command: `python3 scripts/harness/verify.py`
