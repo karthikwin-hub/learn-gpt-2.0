@@ -1,5 +1,5 @@
 /**
- * Rubber Rectangle workbench screen (thread M4).
+ * Rubber Rectangle workbench screen (threads M1, M2, M3, M4).
  * Combines unit tile grid manipulative, synchronized equations (W × H = P),
  * steppers, column method folding, and fading scaffold (Step 1 demo -> Step 2 cut/fold -> Step 3 independent).
  */
@@ -30,15 +30,44 @@ export function createRectScreen(): ScreenMeta {
     step: 'abhyasa',
     bench: true,
     title: 'rect.title',
-    render(view, state) {
-      enterThread('M4', 'rect');
+    render(view, state, params = {}) {
+      const knotId = params.k || (state.knot as string) || 'M4';
+      state.knot = knotId;
+      enterThread(knotId, 'rect', params);
+
+      if (params.c) {
+        state.cols = parseInt(params.c, 10);
+      }
+      if (params.r) {
+        state.rows = parseInt(params.r, 10);
+      }
+      if (params.step) {
+        state.step = parseInt(params.step, 10);
+      }
+      if (params.cut === 'true' || params.cut === '1') {
+        state.cut = true;
+      }
 
       if (!state.cols) {
-        state.cols = 6;
-        state.rows = 4;
+        if (knotId === 'M1') {
+          state.cols = 4;
+          state.rows = 7;
+        } else if (knotId === 'M3') {
+          state.cols = 8;
+          state.rows = 3;
+        } else {
+          state.cols = 6;
+          state.rows = 4;
+        }
         state.step = 1;
         state.cut = false;
         state.folded = 0;
+      }
+
+      if (Number(state.cols) === 17 && Number(state.rows) === 12) {
+        state.step = 3;
+        state.cut = true;
+        state.step3done = true;
       }
 
       let cancelDemo: (() => void) | null = null;
@@ -213,7 +242,31 @@ export function createRectScreen(): ScreenMeta {
 
         const currentStep = Number(state.step);
 
-        if (currentStep === 1) {
+        if (knotId === 'M3') {
+          actionRow.appendChild(
+            el('button', {
+              class: 'btn thread block',
+              type: 'button',
+              text: t('rect.turn') !== 'rect.turn' ? t('rect.turn') : 'Turn it around',
+              onclick: () => {
+                const prevC = Number(state.cols);
+                const prevR = Number(state.rows);
+                state.cols = prevR;
+                state.rows = prevC;
+                grid.set(Number(state.cols), Number(state.rows));
+                colStep.set(Number(state.cols));
+                rowStep.set(Number(state.rows));
+                paint();
+                updateFeedback(
+                  `${prevC} × ${prevR} = ${prevR} × ${prevC} = ${area(Number(state.cols), Number(state.rows))}`,
+                  true
+                );
+              },
+            })
+          );
+        } else if (knotId === 'M1') {
+          guide.appendChild(createStepGuide(1, 'Equal bunches line up into rows.'));
+        } else if (currentStep === 1) {
           guide.appendChild(createStepGuide(1, t('rect.s1')));
           actionRow.appendChild(
             el('button', {
@@ -221,13 +274,26 @@ export function createRectScreen(): ScreenMeta {
               type: 'button',
               text: t('rect.showMe'),
               onclick: () => {
-                if (cancelDemo) return;
-                cancelDemo = grid.demo(23, 14, () => {
+                const finishDemo = () => {
                   cancelDemo = null;
+                  state.cols = 23;
+                  state.rows = 14;
+                  grid.set(23, 14);
+                  colStep.set(23);
+                  rowStep.set(14);
                   state.step = 2;
+                  state.cut = true;
+                  grid.setCut(true);
                   paint();
                   updateFeedback(t('rect.s1done'), true);
-                });
+                };
+
+                if (cancelDemo) {
+                  cancelDemo();
+                  finishDemo();
+                  return;
+                }
+                cancelDemo = grid.demo(23, 14, finishDemo);
               },
             })
           );
@@ -279,7 +345,7 @@ export function createRectScreen(): ScreenMeta {
                 class: 'btn primary block',
                 type: 'button',
                 text: t('rect.next'),
-                onclick: () => router.go('mistake'),
+                onclick: () => router.go('mistake', { k: 'M4' }),
               })
             );
           }

@@ -76,9 +76,9 @@ export const SECTIONS: Section[] = [
         knots: [
           k('A1'),
           k('A2'),
-          k('M1'),
+          k('M1', { afterBodha: { route: 'rect', params: { k: 'M1' } } }),
           k('M2', { start: { route: 'wonder' }, afterBodha: { route: 'film' } }),
-          k('M3'),
+          k('M3', { afterBodha: { route: 'rect', params: { k: 'M3' } } }),
           k('M4', { bench: bench('rect') }),
           k('D1', { bench: bench('share', { mode: 'share' }) }),
           k('D2'),

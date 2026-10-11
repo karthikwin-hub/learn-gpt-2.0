@@ -13,20 +13,25 @@ import { el } from '../../util/dom';
 import { enterThread } from '../../util/thread';
 import { router, type ScreenMeta } from '../app/router';
 import { renderM2Tiles, renderM4Rooms } from '../../diagrams/tiles';
+import { renderM5Beats } from '../../diagrams/drums';
 import { voice } from '../voice/voice';
 
 function getCardFigure(knotId: string, cardKey: string, step: number): SVGSVGElement | null {
   if (knotId === 'M2') {
-    if (cardKey === 'idea') return renderM2Tiles(6, 4, 4, false);
+    if (cardKey === 'what' || cardKey === 'idea') return renderM2Tiles(6, 4, 4, false);
     if (cardKey === 'why') return renderM2Tiles(6, 4, 4, true);
     if (cardKey === 'example') {
       const filled = step >= 2 ? 3 : step >= 1 ? 1 : 0;
       return renderM2Tiles(5, 3, filled, step >= 2);
     }
   } else if (knotId === 'M4') {
-    if (cardKey === 'idea') return renderM4Rooms(23, 14, 2, '23 × 14');
+    if (cardKey === 'what' || cardKey === 'idea') return renderM4Rooms(23, 14, 2, '23 × 14');
     if (cardKey === 'why') return renderM4Rooms(23, 14, 3, '23 × 14 = 322');
     if (cardKey === 'example') return renderM4Rooms(17, 12, step, '17 × 12');
+  } else if (knotId === 'M5') {
+    if (cardKey === 'what' || cardKey === 'idea') return renderM5Beats(3, 4, 12, 2);
+    if (cardKey === 'why') return renderM5Beats(3, 4, 12, 3);
+    if (cardKey === 'example') return renderM5Beats(4, 6, 24, step);
   }
   return null;
 }
