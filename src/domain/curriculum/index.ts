@@ -3,3 +3,4 @@
  */
 
 export * from './curriculum';
+export * from './recall';
