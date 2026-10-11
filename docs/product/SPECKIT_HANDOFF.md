@@ -1,6 +1,6 @@
 # Spec Kit handoff: building Gurukul
 
-This document is for the agent (and the spec owner) who will build Gurukul in this repo using Spec Kit. It turns the concept into an ordered list of features, each with a ready-to-paste `/speckit.specify` brief. The product is called **Gurukul**; "Sutra" now names a subject thread and the one-line rule a child keeps (see [ADR 0002](../decisions/0002-gurukul-frame-and-subjects.md)). The internal `window.Sutra` namespace in the prototype keeps its old name.
+This document is for the agent (and the spec owner) who will build Gurukul in this repo using Spec Kit. **The step-by-step execution guide (phases, mockup fidelity, engine port, tests, integration gates) is [DEV_HANDOFF.md](DEV_HANDOFF.md); follow it.** It turns the concept into an ordered list of features, each with a ready-to-paste `/speckit.specify` brief. The product is called **Gurukul**; "Sutra" now names a subject thread and the one-line rule a child keeps (see [ADR 0002](../decisions/0002-gurukul-frame-and-subjects.md)). The internal `window.Sutra` namespace in the prototype keeps its old name.
 
 The briefs are **drafts**. Each `spec.md` belongs to the spec owner and must be approved at gate G1 before any plan or code (constitution, principle I). The user-story and scenario IDs below (`US1-AS1` and so on) are suggestions so traceability can start early; the spec owner may renumber them.
 
@@ -24,10 +24,10 @@ What *is* worth porting directly, after review:
 |---|---|---|
 | `js/model/*.js` | The pure maths (area and partial products, column method, fair dealing, leftover fractions, rope rectangles, symmetry transforms, set regions, logic gates, kolam curve). Each was checked by hand; port with unit tests. | `src/domain/math/` |
 | `js/model/number.js` | Place value with Indian and international grouping, equivalent fractions, rupees and paise. | `src/domain/math/` |
-| `js/model/science.js` | Digestion order, the ramp's pretend roll distances, shadow length and materials. The numbers are illustrative; a science teacher must sign off the facts. | `src/domain/science/` (proposed; see open decisions) |
-| `js/model/world.js` | BCE/CE arithmetic with no year zero, Earth's spin and seasons, map directions and scale. | `src/domain/world/` (proposed; see open decisions) |
-| `js/model/curriculum.js` | Shalas (sections), threads, knots and cross-subject crossings for the Ashram, Shala and Jaal screens. | `src/domain/curriculum/` (proposed; see open decisions) |
-| `js/lessons/*.js` | Each lesson's data: Bodha cards, Prashna art, the mistake worked example and the explain-back template. | `src/domain/curriculum/` content (proposed; see open decisions) |
+| `js/model/science.js` | Digestion order, the ramp's pretend roll distances, shadow length and materials. The numbers are illustrative; a science teacher must sign off the facts. | `src/domain/science/` |
+| `js/model/world.js` | BCE/CE arithmetic with no year zero, Earth's spin and seasons, map directions and scale. | `src/domain/world/` |
+| `js/model/curriculum.js` | Shalas (sections), threads, knots and cross-subject crossings for the Ashram, Shala and Jaal screens. | `src/domain/curriculum/` |
+| `js/lessons/*.js` | Each lesson's data: Bodha cards, Prashna art, the mistake worked example and the explain-back template. | `src/domain/curriculum/` content |
 | `js/i18n/` | Key names and English strings. Indic strings are drafts that need native-teacher review before use. | `src/domain/i18n/` |
 | `js/manipulatives/*.js` | Interaction behaviour: drag plus keyboard plus stepper for every handle, ghosts of earlier states, linked panes. Re-implement, do not copy. | `src/ui/manipulatives/` |
 | `js/screens/*.js` | Screen composition and the reviewer notes (the "why" of each screen). | `src/ui/components/` |
@@ -268,7 +268,7 @@ Out of scope: accounts, cloud sync, sharing pages outside the device.
 ### 009 · Gurukul shell: Ashram, Shalas and Jaal
 
 ```text
-Feature 009: Gurukul shell (see ADR 0002, CONCEPT.md, EXPERIENCE.md, CURRICULUM_PHASE2.md §1–§6; prototype screens #ashram, #shala?k=ganita, #shala?k=vijnana, #shala?k=loka, #jaal).
+Feature 009: Gurukul shell (see ADR 0002, CONCEPT.md, EXPERIENCE.md, CURRICULUM_PHASE2.md §1–§6; prototype screens #home (the Ashram), #shala?s=ganita, #shala?s=vijnana, #shala?s=loka, #jaal).
 
 Who and why: parents asked for more than maths, and children need to see how ideas connect. Gurukul is a calm, open-air school: one learner, one patient voice, understanding before marks. The shell must hold three subjects without becoming a busy menu.
 
@@ -375,7 +375,6 @@ Out of scope: political maps and borders, real GPS.
 | **Product name: trademark check** | Gurukul alone; Gurukul with a distinguishing subtitle; another name | The name is decided: Gurukul (ADR 0002). It is a common word that many schools and apps already use, so run a trademark and app-store search before release; a subtitle may be needed. |
 | **Board alignment** | CBSE/NCERT Class 5; a state board; both | The phase 2 map follows the books in `docs/topics/`. Confirm which board(s) the first schools use before features 010–012, because chapter order and some dates differ. |
 | **Science and history sign-off** | A primary science teacher and a social-studies teacher; a school partner | Required before G1 for features 011 and 012: every fact, number and date in the Bodha cards and lessons (the ramp distances are deliberately pretend). |
-| **Owning modules for science, world and curriculum** | Add `src/domain/science/`, `src/domain/world/`, `src/domain/curriculum/` to ARCHITECTURE.md; or fold them into `src/domain/math/` | Add the three modules with an ADR before feature 009, so a science rule never ends up in the maths module or the UI. |
 | **Generative AI for children** | None in phase 1; an on-device or server model for hints later; a grown-up-only assistant | None in phase 1 (RESEARCH.md §9). The constitution allows AI only behind server-side guardrails; revisit after children's testing, with a safety review. |
 | **Narration voices** | Device text-to-speech; one recorded human voice per language | Recorded human voices. Device text-to-speech for Telugu, Bengali and Tamil depends on which voices each phone has installed, so quality is unpredictable (check on the phones children actually use). Budget about 300 lines per language for phase 1. |
 | **Translation review** | Agency, freelance teachers, school partners | Native-speaking primary teachers per language (maths, science and social studies), using the key-term tables in CURRICULUM.md §8 and CURRICULUM_PHASE2.md §2. All prototype strings outside English are drafts. |
