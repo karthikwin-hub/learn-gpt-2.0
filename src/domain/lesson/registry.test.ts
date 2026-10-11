@@ -19,4 +19,22 @@ describe('Lesson registry', () => {
     expect(m4?.mistake?.wrong).toBe(1);
     expect(m4?.explain).toHaveLength(3);
   });
+
+  it('retrieves Loka lessons (I2, E1, E4)', () => {
+    const i2 = getLesson('I2');
+    expect(i2).not.toBeNull();
+    expect(i2?.cards).toHaveLength(6);
+    expect(i2?.explain).toHaveLength(2);
+    expect(i2?.mistake?.steps).toBe(4);
+
+    const e1 = getLesson('E1');
+    expect(e1).not.toBeNull();
+    expect(e1?.cards).toHaveLength(6);
+    expect(e1?.explain).toHaveLength(2);
+
+    const e4 = getLesson('E4');
+    expect(e4).not.toBeNull();
+    expect(e4?.cards).toHaveLength(6);
+    expect(e4?.explain).toHaveLength(2);
+  });
 });
