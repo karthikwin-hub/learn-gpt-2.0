@@ -23,7 +23,7 @@ What *is* worth porting directly, after review:
 |---|---|---|
 | `js/model/*.js` | The pure maths (area and partial products, column method, fair dealing, leftover fractions, rope rectangles, symmetry transforms, set regions, logic gates, kolam curve). Each was checked by hand; port with unit tests. | `src/domain/math/` |
 | `js/model/curriculum.js` | Domain and knot structure of the Loom. | `src/domain/math/` (curriculum) |
-| `js/i18n.js` | Key names and English strings. Indic strings are drafts that need native-teacher review before use. | `src/domain/i18n/` |
+| `js/i18n/` | Key names and English strings. Indic strings are drafts that need native-teacher review before use. | `src/domain/i18n/` |
 | `js/manipulatives/*.js` | Interaction behaviour: drag plus keyboard plus stepper for every handle, ghosts of earlier states, linked panes. Re-implement, do not copy. | `src/ui/manipulatives/` |
 | `js/screens/*.js` | Screen composition and the reviewer notes (the "why" of each screen). | `src/ui/components/` |
 | `styles.css` | Design tokens (colours, type scale, Indic line height, night theme). | `src/ui/components/` (theme) |
