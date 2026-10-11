@@ -21,5 +21,12 @@ How this file works
 - Status: candidate | promoted (where) | automated (which check) | rejected (why)
 -->
 
+### 2026-10-11 — Check the script of every translated string
+- Rule: When an agent or subagent writes Indic-language strings, run a script-purity and key-parity check before accepting them — because translation output can look complete while being romanised, in the wrong script, or half English.
+- Example: before `te-loka.js` accepted with "bodha.I2.can": "Nuvvu ghatanaalanu kramamlo…" and `ta-ganita.js` with "ஒரு pencil ₹4.5" → after each file passes a check that every value is mostly in its language's script (danda and digits allowed), has the same keys and `{placeholders}` as English, and keeps `[[id|…]]` glossary markup.
+- Applies to: `design/prototype/js/i18n/*` and future `src/domain/i18n/` dictionaries · Not to: glossary ids, placeholders, AND/OR/NOT gate names, BCE/CE in English files.
+- Proposed destination: lint/test (a parity and script check in `scripts/harness/verify.py`)
+- Status: candidate
+
 ## Promoted / automated (history)
 - (none yet)
