@@ -24,7 +24,7 @@ English is the baseline interface, but the application must natively support sea
 Each business domain has exactly one owning module (`docs/ARCHITECTURE.md`). Logic is never duplicated: a second use moves logic to its owner first. Presentation components display state and bind user interactions; they never compute mathematical domain logic. Domain code depends on contracts, not UI frameworks.
 
 ### VII. Child Privacy and Safety by Default
-Zero tracking, zero ads, zero user data harvesting, and zero third-party telemetry. Storage of learning state must be local or end-to-end privacy compliant. External AI calls must be sanitized and protected behind server-side safety guardrails.
+Zero tracking, zero ads, zero user data harvesting, and zero third-party telemetry. Storage of learning state must be local or end-to-end privacy compliant. All secrets and environment variables MUST be stored in Infisical under the project `learn_gpt`; never store, print, or commit raw secrets. External AI calls must be sanitized and protected behind server-side safety guardrails.
 
 ### VIII. Simplicity and Smallest Sufficient Change
 Prefer existing code, standard platform APIs, and minimal dependencies. No speculative abstractions, layers, or flags. New dependencies require written justification in `plan.md` and approval at Gate G2.

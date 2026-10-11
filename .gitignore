@@ -12,6 +12,7 @@ CLAUDE.local.md
 # Environment and secrets
 .env
 .env*.local
+.infisical/
 
 # Build artifacts
 dist/

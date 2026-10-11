@@ -103,7 +103,7 @@ acceptance_globs = ["tests/acceptance/**"]   # existing files here are protected
 [agent_policy]
 ask_on_dependency_add = true          # npm/pip/uv/dotnet/cargo/go adds need human approval
 protected_paths = []                  # extra globs agents may not edit without approval
-secret_paths = []                     # extra globs agents may never read (e.g. config exports with credentials)
+secret_paths = [".infisical/**"]      # extra globs agents may never read (e.g. config exports with credentials)
 extra_deny_patterns = []              # extra regexes for shell commands to block
 extra_ask_patterns = []               # extra regexes for shell commands needing approval
 

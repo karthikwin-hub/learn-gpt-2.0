@@ -38,7 +38,7 @@ A rule belongs to exactly one domain. If you cannot find the owner, stop and ask
 
 ## 6. Cross-cutting
 - Logging: Console logger with debug levels.
-- Security: Zero telemetry, zero analytics tracking, child privacy by default.
+- Security: Zero telemetry, zero analytics tracking, child privacy by default. All secrets and environment variables are strictly managed in **Infisical** under project **`learn_gpt`**. Never store secrets locally or in git.
 
 ## 7. Where does new code go? (quick decision guide)
 1. A mathematical rule or formula → `src/domain/math/`.
