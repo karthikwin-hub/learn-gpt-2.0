@@ -20,4 +20,6 @@ build/
 .cache/
 test-results/
 playwright-report/
+specs/mockups-proto/
+
 
