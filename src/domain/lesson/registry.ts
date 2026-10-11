@@ -11,6 +11,9 @@ import { G2_LESSON } from './g2';
 import { G3_LESSON } from './g3';
 import { G4_LESSON } from './g4';
 import { G5_LESSON } from './g5';
+import { S1_LESSON } from './s1';
+import { S2_LESSON } from './s2';
+import { S3_LESSON } from './s3';
 import { M1_LESSON } from './m1';
 import { M2_LESSON } from './m2';
 import { M3_LESSON } from './m3';
@@ -33,6 +36,9 @@ const LESSONS: Record<string, LessonData> = {
   G3: G3_LESSON,
   G4: G4_LESSON,
   G5: G5_LESSON,
+  S1: S1_LESSON,
+  S2: S2_LESSON,
+  S3: S3_LESSON,
 };
 
 export function getLesson(knotId: string): LessonData | null {

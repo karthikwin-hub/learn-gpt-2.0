@@ -16,6 +16,7 @@ import { renderM2Tiles, renderM4Rooms } from '../../diagrams/tiles';
 import { renderM5Beats } from '../../diagrams/drums';
 import { renderFairSharePlates } from '../../diagrams/share';
 import { renderG2Ropes, renderG4Flower } from '../../diagrams/geometry';
+import { renderS2Rings } from '../../diagrams/sets';
 import { voice } from '../voice/voice';
 
 function getCardFigure(knotId: string, cardKey: string, step: number): SVGSVGElement | null {
@@ -93,6 +94,16 @@ function getCardFigure(knotId: string, cardKey: string, step: number): SVGSVGEle
     }
     if (cardKey === 'example') {
       return renderG4Flower(false, false, step >= 2);
+    }
+  } else if (knotId === 'S2' || knotId === 'S3') {
+    if (cardKey === 'what' || cardKey === 'idea') {
+      return renderS2Rings(0, false);
+    }
+    if (cardKey === 'why') {
+      return renderS2Rings(0, true);
+    }
+    if (cardKey === 'example') {
+      return renderS2Rings(step, false);
     }
   }
   return null;
