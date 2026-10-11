@@ -19,6 +19,7 @@ import { createOpeningScreen } from './ui/components/screens/opening';
 import { createPrashnaScreen } from './ui/components/screens/prashna';
 import { createRectScreen } from './ui/components/screens/rect';
 import { createDrumsScreen } from './ui/components/screens/drums';
+import { createShareScreen } from './ui/components/screens/share';
 import { createShalaScreen } from './ui/components/screens/shala';
 import { createStopScreen } from './ui/components/screens/stop';
 import { createWonderScreen } from './ui/components/screens/wonder';
@@ -48,6 +49,7 @@ export function initApp(): void {
   router.register(createFilmScreen());
   router.register(createRectScreen());
   router.register(createDrumsScreen());
+  router.register(createShareScreen());
   router.register(createMistakeScreen());
   router.register(createExplainScreen());
   router.register(createStopScreen());
