@@ -17,13 +17,16 @@
     return d.reduce(function (sum, v, i) { return sum + v * Math.pow(10, i); }, 0);
   }
 
-  /* Adds one bead to the ones house; every house that reaches ten bundles into the next. */
-  function addOne(d) {
-    var next = d.slice(), bundled = [], i = 0;
-    next[0] += 1;
-    while (i < next.length - 1 && next[i] === 10) { next[i] = 0; next[i + 1] += 1; bundled.push(i); i++; }
-    return { digits: next, bundled: bundled };
+  /* Adds one bead to house `place`; every house that reaches ten bundles into the next.
+     `last` is the house that finally kept the bead. If the top house would reach ten, nothing changes and `full` is true. */
+  function addAt(d, place) {
+    var next = d.slice(), bundled = [], i = place;
+    next[i] += 1;
+    while (next[i] === 10 && i < next.length - 1) { next[i] = 0; next[i + 1] += 1; bundled.push(i); i++; }
+    if (next[i] === 10) return { digits: d.slice(), bundled: [], last: place, full: true };
+    return { digits: next, bundled: bundled, last: i, full: false };
   }
+  function addOne(d) { return addAt(d, 0); }
 
   /* India groups the last three digits, then pairs: 12,34,567. */
   function groupIndian(n) {
@@ -68,7 +71,7 @@
 
   window.Sutra.model.number = {
     PLACES: PLACES,
-    digits: digits, fromDigits: fromDigits, addOne: addOne,
+    digits: digits, fromDigits: fromDigits, addAt: addAt, addOne: addOne,
     groupIndian: groupIndian, groupInternational: groupInternational, expanded: expanded,
     simplify: simplify, equivalent: equivalent, compare: compare, fold: fold,
     paiseOf: paiseOf, splitPaise: splitPaise, rupeeText: rupeeText, parseRupees: parseRupees

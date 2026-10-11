@@ -40,7 +40,7 @@
       }
 
       function demo() {
-        var wait = u.reducedMotion() ? 600 : 2600;
+        var wait = 2600;
         order.forEach(function (id, i) {
           timers.push(setTimeout(function () { state.at = id; paint(); ui.say(say, t('dig.say.' + id), true); }, wait * i));
         });
@@ -178,7 +178,7 @@
     render: function (view, state) {
       ui.enterThread('R1', 'shadow');
       if (!state.step) { state.step = 1; state.lampH = 2.5; state.dist = 3; state.material = 'cardboard'; }
-      var STICK = 1.5;
+      var STICK = S.STICK_HEIGHT;
       var holder = u.el('div', { class: 'model' });
       var action = u.el('div');
       var say = u.el('p', { class: 'say', hidden: true });
@@ -201,14 +201,13 @@
           action.appendChild(ui.labelled(t('light.distance'), dStep.node));
         }
         if (state.step === 3) {
-          action.appendChild(ui.chips(Object.keys(S.MATERIALS).map(function (m) { return { value: m, label: t('light.m.' + m) }; }), state.material, function (m) { state.material = m; draw(); ui.say(say, t('light.kind.' + S.MATERIALS[m]), true); }, t('light.material')));
-          if (!state.done) {
-            action.appendChild(u.el('p', { class: 'muted small', text: t('light.darkestQ') }));
-            action.appendChild(ui.chips(Object.keys(S.MATERIALS).map(function (m) { return { value: m, label: t('light.m.' + m) }; }), null, function (m) {
-              if (S.shadowDarkness(m) === 1) { state.done = true; state.material = m; paint(); ui.say(say, t('light.s3done'), true); }
-              else ui.say(say, t('light.s3try'), true);
-            }, t('light.darkestQ')));
-          }
+          if (!state.done) action.appendChild(u.el('p', { class: 'muted small', text: t('light.darkestQ') }));
+          action.appendChild(ui.chips(Object.keys(S.MATERIALS).map(function (m) { return { value: m, label: t('light.m.' + m) }; }), state.material, function (m) {
+            state.material = m;
+            if (!state.done && S.shadowDarkness(m) === 1) { state.done = true; paint(); ui.say(say, t('light.s3done'), true); return; }
+            draw();
+            ui.say(say, t('light.kind.' + S.MATERIALS[m]) + (state.done ? '' : ' ' + t('light.s3try')), true);
+          }, t('light.material')));
         }
         if (state.done) action.appendChild(toMistake());
       }

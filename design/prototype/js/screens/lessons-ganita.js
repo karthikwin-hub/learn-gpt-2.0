@@ -43,7 +43,7 @@
 
       function addOne() {
         var r = N.addOne(state.digits);
-        state.digits = r.digits; state.highlight = r.bundled.concat([r.bundled.length]);
+        state.digits = r.digits; state.highlight = r.bundled.concat([r.last]);
         paint();
         ui.say(say, t('place.s1done'), true);
         state.step = 2; state.digits = N.digits(0, 7);
@@ -51,13 +51,11 @@
       }
 
       function tap(i) {
-        var d = state.digits.slice();
-        d[i] += 1;
-        state.highlight = [i];
-        while (d[i] === 10 && i < d.length - 1) { d[i] = 0; d[i + 1] += 1; i++; state.highlight.push(i); }
-        state.digits = d;
+        var r = N.addAt(state.digits, i);
+        if (r.full) return;
+        state.digits = r.digits; state.highlight = r.bundled.concat([r.last]);
         paint();
-        if (N.fromDigits(d) === 305200) { state.step = 3; paint(); ui.say(say, t('place.s2done'), true); }
+        if (N.fromDigits(r.digits) === 305200) { state.step = 3; paint(); ui.say(say, t('place.s2done'), true); }
       }
 
       view.appendChild(holder);
