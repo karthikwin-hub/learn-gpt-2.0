@@ -1,0 +1,783 @@
+/* Gurukul Lesson Engine and Manipulative Styles */
+
+/* ---------- caption banner ---------- */
+.caption {
+  position: absolute;
+  left: 12px;
+  right: 12px;
+  bottom: 16px;
+  background: rgba(31, 36, 48, 0.92);
+  color: #f6f1e7;
+  padding: 10px 14px;
+  border-radius: 12px;
+  font-size: 16px;
+  line-height: var(--lh);
+  pointer-events: none;
+  z-index: 5;
+}
+
+:root[data-theme='night'] .caption {
+  background: rgba(18, 20, 24, 0.94);
+  color: #eee8dc;
+  border: 1px solid var(--hair);
+}
+
+/* ---------- Prashna & Wonder ---------- */
+.wonder-art {
+  margin: 6px -8px 10px;
+  border-radius: 18px;
+  overflow: hidden;
+  background: var(--paper-sunk);
+}
+
+.wonder-art svg {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.guess-box {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin: 8px 0 4px;
+}
+
+.guess-box output {
+  font-size: 40px;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  min-width: 64px;
+  text-align: center;
+  color: var(--ink);
+}
+
+.prashna-choices {
+  display: grid;
+  gap: 10px;
+  margin: 12px 0;
+}
+
+.choice {
+  width: 100%;
+  text-align: left;
+  min-height: 56px;
+  padding: 12px 16px;
+  border-radius: 14px;
+  border: 2px solid var(--hair);
+  background: var(--paper-raised);
+  color: var(--ink);
+  cursor: pointer;
+  font-size: 18px;
+  line-height: 1.35;
+  font-family: inherit;
+}
+
+.choice[aria-pressed='true'] {
+  border-color: var(--thread);
+  box-shadow: inset 0 0 0 1px var(--thread);
+  background: var(--thread-soft);
+}
+
+/* Range input styling */
+input[type='range'] {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 44px;
+  background: transparent;
+  touch-action: none;
+}
+
+input[type='range']::-webkit-slider-runnable-track {
+  height: 6px;
+  border-radius: 3px;
+  background: var(--paper-sunk);
+}
+
+:root[data-theme='night'] input[type='range']::-webkit-slider-runnable-track {
+  background: var(--hair);
+  border: 1px solid var(--ghost);
+}
+
+input[type='range']::-moz-range-track {
+  height: 6px;
+  border-radius: 3px;
+  background: var(--paper-sunk);
+}
+
+:root[data-theme='night'] input[type='range']::-moz-range-track {
+  background: var(--hair);
+  border: 1px solid var(--ghost);
+}
+
+input[type='range']::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: var(--thread);
+  border: 3px solid var(--paper);
+  margin-top: -13px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.25);
+  cursor: grab;
+}
+
+input[type='range']::-moz-range-thumb {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: var(--thread);
+  border: 3px solid var(--paper);
+  cursor: grab;
+}
+
+/* ---------- Bodha Concept Cards ---------- */
+.bodha {
+  --bodha-scale: 1;
+}
+
+.bodha-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.bodha-dots {
+  display: flex;
+  gap: 6px;
+}
+
+.bodha-dots span {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: var(--paper-sunk);
+}
+
+.bodha-dots span.past {
+  background: var(--thread-soft);
+}
+
+.bodha-dots span.on {
+  background: var(--thread);
+}
+
+:root[data-theme='night'] .bodha-dots span:not(.on):not(.past) {
+  background: var(--ghost);
+}
+
+.bodha-size {
+  display: flex;
+  gap: 6px;
+}
+
+.bodha-size .chip {
+  min-height: 40px;
+  min-width: 44px;
+  justify-content: center;
+  font-family: inherit;
+  color: var(--ink);
+}
+
+.bodha-size .chip:disabled {
+  opacity: 0.35;
+  cursor: default;
+}
+
+.bodha-knot {
+  margin: 8px 0 0;
+  font-size: 14px;
+  color: var(--ink-soft);
+}
+
+.bodha-text,
+.bodha-steps {
+  font-size: calc(var(--fs-body) * var(--bodha-scale));
+  line-height: calc(var(--lh) + 0.05);
+}
+
+.bodha-steps {
+  margin: 4px 0 8px;
+  padding-left: 26px;
+}
+
+.bodha-steps li {
+  margin: 6px 0;
+  padding-left: 2px;
+}
+
+.bodha-steps li p {
+  margin: 0;
+}
+
+.bodha-steps li.new {
+  animation: fade-in 400ms var(--ease);
+}
+
+.bodha-steps li::marker {
+  color: var(--thread);
+  font-weight: 700;
+}
+
+.term {
+  font: inherit;
+  color: inherit;
+  background: none;
+  border: 0;
+  padding: 0;
+  cursor: pointer;
+  text-decoration: underline;
+  text-decoration-style: dotted;
+  text-decoration-color: var(--thread);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 4px;
+}
+
+.bridge {
+  background: var(--paper-raised);
+  border: 1.5px solid var(--thread);
+  border-radius: 12px;
+  padding: 10px 14px;
+  margin: 6px 0 10px;
+}
+
+.bridge p {
+  margin: 0 0 4px;
+}
+
+.bridge-word {
+  font-weight: 600;
+}
+
+.bodha-fig {
+  margin-top: 6px;
+  background: var(--paper-raised);
+  border-radius: 16px;
+  padding: 8px;
+  touch-action: auto;
+}
+
+.bodha-fig svg {
+  max-width: 360px;
+  margin: 0 auto;
+  display: block;
+}
+
+.bodha-sutra {
+  font-family: var(--font-display);
+  font-size: calc(24px * var(--bodha-scale));
+  line-height: var(--lh);
+  margin: 14px 0 18px;
+  padding: 16px;
+  border-left: 4px solid var(--thread);
+  background: var(--paper-raised);
+  border-radius: 0 14px 14px 0;
+}
+
+.bodha-nav .btn {
+  flex: 1 1 40%;
+}
+
+.guess-reveal {
+  background: var(--thread-soft);
+  border-radius: 12px;
+  padding: 10px 14px;
+  margin: 6px 0 10px;
+}
+
+.guess-reveal p {
+  margin: 0;
+}
+
+/* ---------- Living Film Player ---------- */
+.film-stage {
+  position: relative;
+  margin: 2px -8px 0;
+  background: var(--paper-raised);
+  border-radius: 18px;
+  overflow: hidden;
+  touch-action: none;
+}
+
+.film-stage svg {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.film-hint {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  right: 10px;
+  text-align: center;
+  font-size: 14px;
+  color: var(--ink-soft);
+  pointer-events: none;
+}
+
+.film-bar {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 10px 0 2px;
+}
+
+.play-btn {
+  width: 56px;
+  height: 56px;
+  flex: none;
+  border-radius: 50%;
+  border: 0;
+  background: var(--ink);
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+}
+
+.play-btn svg {
+  width: 24px;
+  height: 24px;
+  fill: var(--paper);
+}
+
+.scrub {
+  flex: 1;
+  position: relative;
+}
+
+.beat-dots {
+  display: flex;
+  justify-content: space-between;
+  padding: 0 6px;
+  margin-top: -6px;
+}
+
+.beat-dots span {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--paper-sunk);
+}
+
+.beat-dots span.on {
+  background: var(--thread);
+}
+
+:root[data-theme='night'] .beat-dots span:not(.on) {
+  background: var(--ghost);
+}
+
+.film-line {
+  min-height: 4.6em;
+  margin: 10px 0 4px;
+  font-size: var(--fs-lead);
+  line-height: var(--lh);
+}
+
+.film-line .beat-no {
+  display: block;
+  font-size: 13px;
+  color: var(--ink-soft);
+  margin-bottom: 2px;
+}
+
+/* ---------- Steppers & Controls ---------- */
+.stepper {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.stepper-label {
+  font-size: 15px;
+  color: var(--ink-soft);
+  margin-right: 6px;
+}
+
+.stepper button {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: 1.5px solid var(--hair);
+  background: var(--paper-raised);
+  color: var(--ink);
+  font-size: 22px;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.stepper output {
+  min-width: 40px;
+  text-align: center;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  color: var(--ink);
+}
+
+.control-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px 16px;
+  margin: 8px 0;
+}
+
+.control-row label {
+  font-size: 15px;
+  color: var(--ink-soft);
+}
+
+/* ---------- Models & Handles ---------- */
+.model {
+  position: relative;
+  margin: 4px -8px 6px;
+  touch-action: none;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.model svg {
+  width: 100%;
+  height: auto;
+  overflow: visible;
+}
+
+.handle {
+  cursor: grab;
+}
+
+.handle:active {
+  cursor: grabbing;
+}
+
+.handle .ring {
+  fill: var(--thread);
+  stroke: var(--paper);
+  stroke-width: 3;
+  transition: r 160ms var(--ease);
+}
+
+.handle .hit {
+  fill: transparent;
+}
+
+.handle.held .ring {
+  r: 17;
+}
+
+/* ---------- Equations & Scaffold ---------- */
+.eq {
+  font-size: 26px;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  line-height: 1.35;
+}
+
+.eq .a {
+  color: var(--indigo);
+}
+.eq .b {
+  color: var(--teal);
+}
+.eq .r {
+  color: var(--leaf);
+}
+.eq .t {
+  color: var(--thread);
+}
+
+.a-txt {
+  color: var(--indigo);
+  font-weight: 600;
+}
+.b-txt {
+  color: var(--teal);
+  font-weight: 600;
+}
+.r-txt {
+  color: var(--leaf);
+  font-weight: 600;
+}
+
+.step-guide {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  padding: 10px 12px;
+  border-radius: 12px;
+  background: var(--thread-soft);
+  margin: 6px 0 10px;
+}
+
+.step-guide .num {
+  flex: none;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: var(--thread);
+  color: #1f2430;
+  display: grid;
+  place-items: center;
+  font-weight: 600;
+  font-size: 15px;
+}
+
+.step-guide p {
+  margin: 0;
+}
+
+.say {
+  border-left: 3px solid var(--thread);
+  padding: 4px 0 4px 12px;
+  margin: 10px 0;
+}
+
+.pointer-note {
+  color: var(--kumkum);
+  font-weight: 600;
+}
+
+/* ---------- Column Method & Parts ---------- */
+.column {
+  font-variant-numeric: tabular-nums;
+  font-size: 24px;
+  font-weight: 600;
+  line-height: 1.5;
+  display: inline-grid;
+  justify-items: end;
+  padding: 4px 8px;
+}
+
+.column .rule {
+  width: 100%;
+  border-top: 2px solid var(--ink);
+  height: 0;
+  margin: 2px 0;
+}
+
+.column .row {
+  opacity: 0.15;
+  transition: opacity 500ms var(--ease);
+}
+
+.column .row.on {
+  opacity: 1;
+}
+
+.column .note {
+  font-size: 13px;
+  font-weight: 400;
+  color: var(--ink-soft);
+  margin-left: 10px;
+}
+
+.column-wrap {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.parts {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6px 12px;
+  font-variant-numeric: tabular-nums;
+}
+
+.parts div {
+  padding: 6px 10px;
+  border-radius: 10px;
+  background: var(--paper-sunk);
+  font-weight: 500;
+}
+
+.parts div.on {
+  outline: 2px solid var(--thread);
+}
+
+/* ---------- Spot the Mistake ---------- */
+.work-steps {
+  list-style: none;
+  padding: 0;
+  margin: 10px 0;
+  display: grid;
+  gap: 8px;
+}
+
+.work-steps button {
+  width: 100%;
+  text-align: left;
+  min-height: 56px;
+  padding: 10px 14px;
+  border-radius: 12px;
+  border: 2px solid var(--hair);
+  background: var(--paper-raised);
+  color: var(--ink);
+  cursor: pointer;
+  font-size: 19px;
+  font-variant-numeric: tabular-nums;
+  display: flex;
+  gap: 12px;
+  align-items: baseline;
+  font-family: inherit;
+}
+
+.work-steps .num {
+  font-size: 14px;
+  color: var(--ink-soft);
+  flex: none;
+}
+
+.work-steps button.fine {
+  border-color: var(--leaf);
+}
+
+.work-steps button.found {
+  border-color: var(--kumkum);
+}
+
+/* ---------- Explain It Back ---------- */
+.sentence {
+  font-size: var(--fs-lead);
+  line-height: 2.2;
+  margin: 10px 0 14px;
+}
+
+.blank {
+  display: inline-block;
+  min-width: 88px;
+  min-height: 40px;
+  padding: 0 12px;
+  margin: 0 2px;
+  border-bottom: 2.5px solid var(--thread);
+  border-radius: 8px 8px 0 0;
+  background: var(--thread-soft);
+  vertical-align: baseline;
+  line-height: 1.6;
+  cursor: pointer;
+  border-top: 0;
+  border-left: 0;
+  border-right: 0;
+  font: inherit;
+  color: var(--ink);
+}
+
+.blank.filled {
+  background: transparent;
+  font-weight: 600;
+}
+
+.blank.active {
+  box-shadow: 0 0 0 2px var(--thread);
+}
+
+.tiles {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.tiles .chip {
+  font-size: 16px;
+}
+
+.tiles .chip.used {
+  opacity: 0.3;
+}
+
+/* ---------- Stop Screen ---------- */
+.stop {
+  text-align: center;
+  padding-top: 24px;
+}
+
+.stop .thumb {
+  width: 160px;
+  height: 160px;
+  margin: 8px auto 16px;
+  border-radius: 20px;
+  background: var(--paper-raised);
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+}
+
+.stop .sutra {
+  font-family: var(--font-display);
+  font-size: 22px;
+  line-height: var(--lh);
+  margin: 8px 0 18px;
+}
+
+/* ---------- Stage Bar (Three Movements) ---------- */
+.stage-bar {
+  margin: 2px 0 10px;
+}
+
+.stage-bar ol {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  gap: 4px;
+}
+
+.stage-bar li {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font-size: 12px;
+  color: var(--ink-soft);
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+.stage-bar .bead {
+  display: block;
+  height: 4px;
+  border-radius: 2px;
+  background: var(--paper-sunk);
+}
+
+.stage-bar li.past .bead {
+  background: var(--thread-soft);
+}
+
+.stage-bar li.now .bead {
+  background: var(--thread);
+}
+
+.stage-bar li.now {
+  color: var(--ink);
+  font-weight: 600;
+}
+
+.stage-step {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 4px 10px;
+  margin-top: 6px;
+  font-size: 14px;
+  color: var(--ink-soft);
+}
+
+.learn-link {
+  border: 1.5px solid var(--thread);
+  background: var(--thread-soft);
+  color: var(--ink);
+  border-radius: 999px;
+  padding: 6px 12px;
+  min-height: 40px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  font-family: inherit;
+}

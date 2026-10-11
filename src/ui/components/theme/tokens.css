@@ -92,6 +92,9 @@
   --leaf: #7dbe6a;
   --leaf-soft: rgba(125, 190, 106, 0.2);
   --kumkum: #e8664f;
+  --thread-soft: rgba(224, 160, 48, 0.25);
+  --ground: #101217;
+  --rice: #eee8dc;
 }
 
 :lang(hi),

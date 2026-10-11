@@ -507,18 +507,33 @@ p {
 }
 
 .continue-card {
+  width: 100%;
+  border-radius: 16px;
+  border: 0;
+  background: var(--ink);
+  color: var(--paper);
+  margin: 6px 0 4px;
+  overflow: hidden;
+  box-shadow: 0 4px 14px -6px rgba(0, 0, 0, 0.25);
+}
+
+.continue-card-btn {
   display: flex;
   align-items: center;
   gap: 14px;
   width: 100%;
   padding: 14px;
-  border-radius: 16px;
   border: 0;
-  background: var(--ink);
-  color: var(--paper);
+  background: transparent;
+  color: inherit;
+  font: inherit;
   text-align: left;
   cursor: pointer;
-  margin: 6px 0 4px;
+}
+
+.continue-card-btn:focus-visible {
+  outline: 3px solid var(--thread);
+  outline-offset: -3px;
 }
 
 .continue-card .thumb {
@@ -540,6 +555,18 @@ p {
   font-size: 18px;
   font-weight: 600;
   line-height: 1.35;
+}
+
+:root[data-theme='night'] .continue-card {
+  background: var(--paper-raised);
+  color: var(--ink);
+  border: 2px solid var(--hair);
+  box-shadow: 0 8px 18px -14px rgba(0, 0, 0, 0.5);
+}
+
+:root[data-theme='night'] .continue-card .thumb {
+  background: var(--paper-sunk);
+  color: var(--thread);
 }
 
 .home-links {

@@ -76,7 +76,7 @@ export const dictionary: Record<string, string> = {
   'wonder.m2.q': 'How many tiles cover the whole courtyard floor?',
   'wonder.m2.sub': 'Just guess. The film will show you.',
   'wonder.guessLabel': 'My guess',
-  'wonder.go': 'Watch the film',
+  'wonder.go': "Let's see",
   'film.title': 'Living film',
   'film.m2.b1': 'This is one tile. Each side is one step long.',
   'film.m2.b2':
@@ -96,7 +96,7 @@ export const dictionary: Record<string, string> = {
   'film.pause': 'Pause',
   'film.replay': 'Watch again',
   'film.play': 'Play',
-  'film.scrub': 'Move through the film',
+  'film.scrub': 'Move or scrub through the film',
   'film.build': 'Now build one yourself',
   'film.skip': 'Skip to the workbench',
   'rule.yellow': 'yellow',

@@ -3,3 +3,4 @@
  */
 
 export * from './kolam';
+export * from './multiply';

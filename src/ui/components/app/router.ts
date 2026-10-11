@@ -3,7 +3,10 @@
  */
 
 import { t, getLang, LANGS } from '../../../domain/i18n/core';
+import type { LessonStage } from '../../../domain/lesson/types';
 import { clear } from '../../util/dom';
+import { createStageBar } from '../chrome/stage-bar';
+import { voice } from '../voice/voice';
 
 export interface ScreenMeta {
   id: string;
@@ -11,6 +14,9 @@ export interface ScreenMeta {
   hideBack?: boolean;
   hideTopbar?: boolean;
   full?: boolean;
+  stage?: LessonStage;
+  step?: string;
+  bench?: boolean;
   render(
     view: HTMLElement,
     state: Record<string, unknown>,
@@ -85,6 +91,9 @@ export function renderCurrentRoute(fallbackRoute = 'home'): void {
     currentCleanup = null;
   }
 
+  // Stop previous narration and tone playback
+  voice.stop();
+
   const view = document.getElementById('view');
   if (!view) return;
 
@@ -125,6 +134,12 @@ export function renderCurrentRoute(fallbackRoute = 'home'): void {
 
   const cleanupResult = screen.render(view, state, route.params);
   currentCleanup = typeof cleanupResult === 'function' ? cleanupResult : null;
+
+  // Insert stage movements bar at the top of the lesson view if screen declares a stage
+  if (screen.stage) {
+    const stageBar = createStageBar(screen.stage, screen.step || '', !!screen.bench);
+    view.insertBefore(stageBar, view.firstChild);
+  }
 }
 
 export const router = {
@@ -143,15 +158,13 @@ export const router = {
     }
   },
 
-  back(fallback = 'home'): void {
-    if (navigationDepth > 0) {
+  back(): void {
+    if (navigationDepth > 0 && typeof history !== 'undefined') {
       navigationDepth--;
-      if (typeof history !== 'undefined') {
-        history.back();
-        return;
-      }
+      history.back();
+    } else {
+      this.go('home');
     }
-    router.go(fallback);
   },
 
   rerender(): void {
@@ -162,10 +175,12 @@ export const router = {
     return currentInfo;
   },
 
-  start(fallbackRoute = 'home'): void {
+  start(initialRoute = 'home'): void {
     if (typeof window !== 'undefined') {
-      window.addEventListener('hashchange', () => renderCurrentRoute(fallbackRoute));
-      renderCurrentRoute(fallbackRoute);
+      window.addEventListener('hashchange', () => {
+        renderCurrentRoute(initialRoute);
+      });
+      renderCurrentRoute(initialRoute);
     }
   },
 };
