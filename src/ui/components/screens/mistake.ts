@@ -18,8 +18,8 @@ export function createMistakeScreen(): ScreenMeta {
     stage: 'manana',
     step: 'mistake',
     title: 'mistake.title',
-    render(view, state) {
-      const threadKnot = getCurrentThread() || 'M4';
+    render(view, state, params: Record<string, string> = {}) {
+      const threadKnot = params.knot || params.k || getCurrentThread() || 'M4';
       const threadLesson = getLesson(threadKnot);
       const knotId = threadLesson?.mistake ? threadKnot : 'M4';
       const lesson = getLesson(knotId) || getLesson('M4');
@@ -33,8 +33,11 @@ export function createMistakeScreen(): ScreenMeta {
         state.fine = [];
       }
 
-      const prefix = knotId.toLowerCase();
-      const key = (k: string) => `mistake.${prefix}.${k}`;
+      const key = (k: string) => {
+        const upper = `mistake.${knotId}.${k}`;
+        const lower = `mistake.${knotId.toLowerCase()}.${k}`;
+        return t(upper) !== upper ? upper : lower;
+      };
 
       const say = el('p', { class: 'say', hidden: true });
       const picture = el('div', { class: 'model' });

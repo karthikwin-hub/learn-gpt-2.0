@@ -19,3 +19,4 @@ export {
   type FractionStripRow,
 } from './fractions';
 export * from './money';
+export * from './roman';

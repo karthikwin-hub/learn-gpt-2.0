@@ -37,4 +37,13 @@ describe('Lesson registry', () => {
     expect(e4?.cards).toHaveLength(6);
     expect(e4?.explain).toHaveLength(2);
   });
+
+  it('retrieves N2 Roman Numerals lesson', () => {
+    const n2 = getLesson('N2');
+    expect(n2).not.toBeNull();
+    expect(n2?.cards).toHaveLength(6);
+    expect(n2?.explain).toHaveLength(2);
+    expect(n2?.mistake?.steps).toBe(4);
+    expect(n2?.mistake?.wrong).toBe(2);
+  });
 });

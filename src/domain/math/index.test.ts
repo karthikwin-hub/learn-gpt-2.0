@@ -35,5 +35,7 @@ describe('src/domain/math/index exports', () => {
     expect(typeof math.formatIndianNumeral).toBe('function');
     expect(typeof math.areFractionsEquivalent).toBe('function');
     expect(typeof math.calculateTotalPaise).toBe('function');
+    expect(typeof math.toRoman).toBe('function');
+    expect(typeof math.fromRoman).toBe('function');
   });
 });
