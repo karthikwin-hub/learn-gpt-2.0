@@ -233,8 +233,8 @@ export const dictionary: Record<string, string> = {
   'bodha.hear': 'Hear it again',
   'bodha.keep': 'Keep this sutra in my Pothi',
   'bodha.kept': 'Kept in my Pothi',
-  'bodha.toFilm': 'Watch it move',
-  'bodha.toBench': 'Try it with my hands',
+  'bodha.toFilm': 'Watch it move · to the film',
+  'bodha.toBench': 'To the workbench · try with my hands',
 
   'notebook.sutras': 'Sutras I keep',
   'notebook.pages': 'My pages',

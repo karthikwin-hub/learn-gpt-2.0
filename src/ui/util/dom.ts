@@ -90,6 +90,117 @@ export function clear(node: Element): void {
   }
 }
 
+export function clamp(v: number, min: number, max: number): number {
+  return Math.max(min, Math.min(max, v));
+}
+
+export function svgPoint(
+  svgEl: SVGSVGElement,
+  evt: PointerEvent | MouseEvent
+): { x: number; y: number } {
+  const pt = svgEl.createSVGPoint();
+  pt.x = evt.clientX;
+  pt.y = evt.clientY;
+  const m = svgEl.getScreenCTM();
+  return m ? pt.matrixTransform(m.inverse()) : { x: 0, y: 0 };
+}
+
+export interface DragHandlers {
+  start?: (e: PointerEvent) => void;
+  move?: (e: PointerEvent) => void;
+  end?: (e: PointerEvent) => void;
+}
+
+export function drag(target: Element, handlers: DragHandlers): () => void {
+  let activeId: number | null = null;
+
+  function down(e: PointerEvent) {
+    if (activeId !== null) return;
+    activeId = e.pointerId;
+    try {
+      target.setPointerCapture(e.pointerId);
+    } catch {
+      // capture unsupported
+    }
+    e.preventDefault();
+    if (handlers.start) handlers.start(e);
+  }
+
+  function move(e: PointerEvent) {
+    if (e.pointerId !== activeId) return;
+    e.preventDefault();
+    if (handlers.move) handlers.move(e);
+  }
+
+  function up(e: PointerEvent) {
+    if (e.pointerId !== activeId) return;
+    activeId = null;
+    if (handlers.end) handlers.end(e);
+  }
+
+  target.addEventListener('pointerdown', down as EventListener);
+  target.addEventListener('pointermove', move as EventListener);
+  target.addEventListener('pointerup', up as EventListener);
+  target.addEventListener('pointercancel', up as EventListener);
+
+  return function off() {
+    target.removeEventListener('pointerdown', down as EventListener);
+    target.removeEventListener('pointermove', move as EventListener);
+    target.removeEventListener('pointerup', up as EventListener);
+    target.removeEventListener('pointercancel', up as EventListener);
+  };
+}
+
+export interface StepperOptions {
+  value: number;
+  min: number;
+  max: number;
+  label: string;
+  minusLabel?: string;
+  plusLabel?: string;
+  onChange?: (v: number) => void;
+}
+
+export interface StepperResult {
+  node: HTMLElement;
+  set: (v: number, silent?: boolean) => void;
+}
+
+export function createStepper(opts: StepperOptions): StepperResult {
+  let value = opts.value;
+  const out = el('output', { 'aria-live': 'polite', text: String(value) });
+
+  function set(v: number, silent = false) {
+    value = clamp(v, opts.min, opts.max);
+    out.textContent = String(value);
+    if (!silent && opts.onChange) {
+      opts.onChange(value);
+    }
+  }
+
+  const node = el('div', { class: 'stepper', role: 'group', 'aria-label': opts.label }, [
+    el('span', { class: 'stepper-label', text: opts.label }),
+    el('button', {
+      type: 'button',
+      'aria-label': opts.minusLabel || '−',
+      text: '−',
+      onclick: () => set(value - 1),
+    }),
+    out,
+    el('button', {
+      type: 'button',
+      'aria-label': opts.plusLabel || '+',
+      text: '+',
+      onclick: () => set(value + 1),
+    }),
+  ]);
+
+  return {
+    node,
+    set: (v: number) => set(v, true),
+  };
+}
+
 export function reducedMotion(): boolean {
   return (
     typeof window !== 'undefined' &&

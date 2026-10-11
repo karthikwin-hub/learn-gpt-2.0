@@ -30,28 +30,30 @@ export function createAshramScreen(): ScreenMeta {
       // Continue card (if in-progress knot exists)
       if (cont && findKnot(cont.knot)) {
         const knotTitle = t(`knot.${cont.knot}.t`);
-        const continueBtn = el(
-          'button',
-          {
-            class: 'continue-card',
-            type: 'button',
-            onclick: () => {
-              router.go(cont.route, cont.params);
+        const continueCard = el('div', { class: 'continue-card ashram-continue' }, [
+          el(
+            'button',
+            {
+              class: 'continue-card-btn',
+              type: 'button',
+              onclick: () => {
+                router.go(cont.route, cont.params);
+              },
             },
-          },
-          [
-            el('span', {
-              class: 'thumb',
-              html: '<svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M8 5l8 7-8 7"/></svg>',
-            }),
-            el('span', {}, [
-              el('span', { class: 'label', text: t('home.continue') }),
-              el('br'),
-              el('span', { class: 'name', text: knotTitle }),
-            ]),
-          ]
-        );
-        view.appendChild(continueBtn);
+            [
+              el('span', {
+                class: 'thumb',
+                html: '<svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M8 5l8 7-8 7"/></svg>',
+              }),
+              el('span', {}, [
+                el('span', { class: 'label', text: t('home.continue') }),
+                el('br'),
+                el('span', { class: 'name', text: knotTitle }),
+              ]),
+            ]
+          ),
+        ]);
+        view.appendChild(continueCard);
       }
 
       // Remember card (retrieval practice for kept sutras)
@@ -137,7 +139,7 @@ export function createAshramScreen(): ScreenMeta {
           class: 'link-btn',
           type: 'button',
           text: t('home.grownups'),
-          onclick: () => toast(t('home.notInProto')),
+          onclick: () => router.go('grownups'),
         }),
       ]);
       view.appendChild(grownupsRow);

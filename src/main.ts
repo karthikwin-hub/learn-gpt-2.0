@@ -8,10 +8,19 @@ import { router } from './ui/components/app/router';
 import { initLanguageSheet } from './ui/components/chrome/language-sheet';
 import { initTopbar } from './ui/components/chrome/topbar';
 import { createAshramScreen } from './ui/components/screens/ashram';
+import { createBodhaScreen } from './ui/components/screens/bodha';
+import { createExplainScreen } from './ui/components/screens/explain';
+import { createFilmScreen } from './ui/components/screens/film';
 import { createJaalScreen } from './ui/components/screens/jaal';
+import { createGrownupsScreen } from './ui/components/screens/grownups';
 import { createLanguageScreen } from './ui/components/screens/language';
+import { createMistakeScreen } from './ui/components/screens/mistake';
 import { createOpeningScreen } from './ui/components/screens/opening';
+import { createPrashnaScreen } from './ui/components/screens/prashna';
+import { createRectScreen } from './ui/components/screens/rect';
 import { createShalaScreen } from './ui/components/screens/shala';
+import { createStopScreen } from './ui/components/screens/stop';
+import { createWonderScreen } from './ui/components/screens/wonder';
 import { registerServiceWorker } from './ui/util/register-sw';
 
 export function initApp(): void {
@@ -29,6 +38,17 @@ export function initApp(): void {
   router.register(createAshramScreen());
   router.register(createShalaScreen());
   router.register(createJaalScreen());
+  router.register(createGrownupsScreen());
+
+  // Lesson engine & 7-stage rhythm screens
+  router.register(createWonderScreen());
+  router.register(createPrashnaScreen());
+  router.register(createBodhaScreen());
+  router.register(createFilmScreen());
+  router.register(createRectScreen());
+  router.register(createMistakeScreen());
+  router.register(createExplainScreen());
+  router.register(createStopScreen());
 
   // 4. Register service worker for offline shell
   registerServiceWorker();
