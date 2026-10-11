@@ -21,6 +21,13 @@ How this file works
 - Status: candidate | promoted (where) | automated (which check) | rejected (why)
 -->
 
+### 2026-10-12 — Pause for explicit human approval on spec and plan before coding features
+- Rule: When receiving a prompt to build a new feature or lesson, pause and present `spec.md` and `plan.md` for human approval before writing production or UI code — because running the entire pipeline autonomously turns SDD into post-hoc compliance paperwork rather than a collaborative steering wheel ("vibe coding with docs").
+- Example: before on "create a lesson for Roman Numerals", agent drafted `spec.md`, `plan.md`, `roman.ts`, UI screens, and tests in a single autonomous burst without stopping → after agent drafts `spec.md` and `plan.md`, presents them to the user with "Here are the requirements and architectural plan. Do you approve before I begin implementation?", and only writes code upon approval.
+- Applies to: `specs/` feature lane tasks · Not to: chores, bug reproductions, or explicitly approved implementation phases.
+- Proposed destination: AGENTS.md §3 & §10
+- Status: candidate
+
 ### 2026-10-11 — Check the script of every translated string
 - Rule: When an agent or subagent writes Indic-language strings, run a script-purity and key-parity check before accepting them — because translation output can look complete while being romanised, in the wrong script, or half English.
 - Example: before `te-loka.js` accepted with "bodha.I2.can": "Nuvvu ghatanaalanu kramamlo…" and `ta-ganita.js` with "ஒரு pencil ₹4.5" → after each file passes a check that every value is mostly in its language's script (danda and digits allowed), has the same keys and `{placeholders}` as English, and keeps `[[id|…]]` glossary markup.
