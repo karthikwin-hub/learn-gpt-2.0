@@ -1,0 +1,111 @@
+/* Self-hosted Noto Fonts (SIL Open Font License) */
+@font-face {
+  font-family: 'Noto Sans';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('/fonts/NotoSans-Regular.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Noto Sans Devanagari';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('/fonts/NotoSansDevanagari-Regular.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Noto Sans Telugu';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('/fonts/NotoSansTelugu-Regular.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Noto Sans Bengali';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('/fonts/NotoSansBengali-Regular.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Noto Sans Tamil';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('/fonts/NotoSansTamil-Regular.ttf') format('truetype');
+}
+
+:root {
+  /* Core colour palette (day) */
+  --bg: #f6f1e7;
+  --surface: #ffffff;
+  --surface-alt: #f0e9dc;
+  --ink: #1c1a17;
+  --ink-secondary: #5c554b;
+  --ink-tertiary: #877f72;
+  --border: #e2dacb;
+  --border-subtle: #eee7db;
+
+  /* Accent colours */
+  --accent-kumkum: #b33927;
+  --accent-haldi: #d97706;
+  --accent-neel: #2563eb;
+  --accent-vanam: #15803d;
+
+  /* Typography */
+  --font-sans: 'Noto Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-serif: 'Noto Serif', serif;
+  --font-devanagari: 'Noto Sans Devanagari', var(--font-sans);
+  --font-telugu: 'Noto Sans Telugu', var(--font-sans);
+  --font-bengali: 'Noto Sans Bengali', var(--font-sans);
+  --font-tamil: 'Noto Sans Tamil', var(--font-sans);
+
+  /* Indic line-height invariant: >= 1.7 */
+  --line-height-indic: 1.7;
+}
+
+[data-theme='night'] {
+  --bg: #1c1a17;
+  --surface: #262320;
+  --surface-alt: #302c28;
+  --ink: #f6f1e7;
+  --ink-secondary: #c5bdae;
+  --ink-tertiary: #968e80;
+  --border: #3d3832;
+  --border-subtle: #2d2925;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: var(--bg);
+  color: var(--ink);
+  font-family: var(--font-sans);
+  line-height: var(--line-height-indic);
+}
+
+:lang(hi) {
+  font-family: var(--font-devanagari);
+}
+
+:lang(te) {
+  font-family: var(--font-telugu);
+}
+
+:lang(bn) {
+  font-family: var(--font-bengali);
+}
+
+:lang(ta) {
+  font-family: var(--font-tamil);
+}
+
+#app {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
