@@ -17,6 +17,12 @@ import { renderM5Beats } from '../../diagrams/drums';
 import { renderFairSharePlates } from '../../diagrams/share';
 import { renderG2Ropes, renderG4Flower } from '../../diagrams/geometry';
 import { renderS2Rings } from '../../diagrams/sets';
+import {
+  renderL1Negation,
+  renderL2Gate,
+  renderL3Quantifiers,
+  renderL4Implication,
+} from '../../diagrams/logic';
 import { voice } from '../voice/voice';
 
 function getCardFigure(knotId: string, cardKey: string, step: number): SVGSVGElement | null {
@@ -105,6 +111,19 @@ function getCardFigure(knotId: string, cardKey: string, step: number): SVGSVGEle
     if (cardKey === 'example') {
       return renderS2Rings(step, false);
     }
+  } else if (knotId === 'L1') {
+    return renderL1Negation();
+  } else if (knotId === 'L2') {
+    if (cardKey === 'what' || cardKey === 'idea' || cardKey === 'why') {
+      return renderL2Gate(0, 'and');
+    }
+    if (cardKey === 'example') {
+      return renderL2Gate(step, 'and');
+    }
+  } else if (knotId === 'L3') {
+    return renderL3Quantifiers();
+  } else if (knotId === 'L4') {
+    return renderL4Implication();
   }
   return null;
 }

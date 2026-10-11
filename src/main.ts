@@ -23,6 +23,7 @@ import { createShareScreen } from './ui/components/screens/share';
 import { createRopeScreen } from './ui/components/screens/rope';
 import { createKolamScreen } from './ui/components/screens/kolam';
 import { createSetsScreen } from './ui/components/screens/sets';
+import { createLogicScreen } from './ui/components/screens/logic';
 import { createShalaScreen } from './ui/components/screens/shala';
 import { createStopScreen } from './ui/components/screens/stop';
 import { createWonderScreen } from './ui/components/screens/wonder';
@@ -56,6 +57,7 @@ export function initApp(): void {
   router.register(createRopeScreen());
   router.register(createKolamScreen());
   router.register(createSetsScreen());
+  router.register(createLogicScreen());
   router.register(createMistakeScreen());
   router.register(createExplainScreen());
   router.register(createStopScreen());
