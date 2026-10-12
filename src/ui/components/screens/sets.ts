@@ -12,6 +12,7 @@ import {
   type SetRule,
 } from '../../../domain/math/sets';
 import { clear, el } from '../../util/dom';
+import { createStepGuide, toMistakeButton } from '../../util/bench';
 import {
   createCourtyard,
   type CourtyardManipulative,
@@ -20,13 +21,6 @@ import {
 } from '../../manipulatives/courtyard';
 import { enterThread } from '../../util/thread';
 import { router, type ScreenMeta } from '../app/router';
-
-function createStepGuide(num: number, text: string): HTMLElement {
-  return el('div', { class: 'step-guide' }, [
-    el('span', { class: 'num', text: String(num) }),
-    el('p', { text }),
-  ]);
-}
 
 function createChips<T extends string | number>(
   items: { value: T; label: string }[],
@@ -134,16 +128,15 @@ export function createSetsScreen(): ScreenMeta {
 
         clear(countsCard);
         countsCard.appendChild(el('h3', { class: 'pane-title', text: t('sets.counts') }));
+        function countLine(labelEl: HTMLElement, n: number): HTMLElement {
+          return el('div', {}, [labelEl, el('b', { text: String(n) })]);
+        }
         countsCard.appendChild(
           el('div', { class: 'parts' }, [
-            el('div', { html: `${t('sets.cBoth')}: <b>${c.both}</b>` }),
-            el('div', {
-              html: `<span class="a-txt">${t('sets.cA')}</span>: <b>${c.a}</b>`,
-            }),
-            el('div', {
-              html: `<span class="b-txt">${t('sets.cB')}</span>: <b>${c.b}</b>`,
-            }),
-            el('div', { html: `${t('sets.cNone')}: <b>${c.none}</b>` }),
+            countLine(el('span', { text: `${t('sets.cBoth')}: ` }), c.both),
+            countLine(el('span', { class: 'a-txt', text: `${t('sets.cA')}: ` }), c.a),
+            countLine(el('span', { class: 'b-txt', text: `${t('sets.cB')}: ` }), c.b),
+            countLine(el('span', { text: `${t('sets.cNone')}: ` }), c.none),
           ])
         );
 
@@ -256,16 +249,7 @@ export function createSetsScreen(): ScreenMeta {
         style: { display: 'flex', gap: '8px', justifyContent: 'center', flexWrap: 'wrap' },
       });
       if (knotId === 'S2' || knotId === 'S3') {
-        const mistakeBtn = el('button', {
-          type: 'button',
-          class: 'btn primary',
-          text: 'Spot the Mistake →',
-          style: { minHeight: '44px' },
-          onclick: () => {
-            router.go('mistake', { k: knotId });
-          },
-        });
-        btnRow.appendChild(mistakeBtn);
+        btnRow.appendChild(toMistakeButton(knotId));
       }
       const explainBtn = el('button', {
         type: 'button',

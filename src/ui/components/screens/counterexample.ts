@@ -15,8 +15,13 @@ import {
 } from '../../../domain/math/counterexample';
 import { t } from '../../../domain/i18n/core';
 import { clear, el } from '../../util/dom';
+import { toMistakeButton } from '../../util/bench';
 import { enterThread } from '../../util/thread';
-import { router, type ScreenMeta } from '../app/router';
+import { type ScreenMeta } from '../app/router';
+
+function claimField(id: string, field: 'statement' | 'explanation'): string {
+  return t(`counterexample.claim.${id}.${field}`);
+}
 
 export function createCounterexampleScreen(): ScreenMeta {
   return {
@@ -60,9 +65,9 @@ export function createCounterexampleScreen(): ScreenMeta {
       });
 
       const presetsConfig = [
-        { id: 'ends-in-4-div-4', label: '1. Divisible by 4 Claim' },
-        { id: 'primes-are-odd', label: '2. All Primes Odd Claim' },
-        { id: 'mult-makes-bigger', label: "3. Multiply Bigger (Rahul's Trap)" },
+        { id: 'ends-in-4-div-4', label: t('counterexample.preset.ends-in-4-div-4') },
+        { id: 'primes-are-odd', label: t('counterexample.preset.primes-are-odd') },
+        { id: 'mult-makes-bigger', label: t('counterexample.preset.mult-makes-bigger') },
       ];
 
       presetsConfig.forEach((cfg) => {
@@ -126,9 +131,13 @@ export function createCounterexampleScreen(): ScreenMeta {
 
         const result = findCounterexample(currentClaim, itemsToTest);
 
+        const claimText = claimField(activeClaimId, 'statement');
         feedbackEl.textContent = result.holds
-          ? `Testing Claim: "${currentClaim.statement}". All tested items satisfy the condition so far.`
-          : `DISPROVED: Counterexample found at ${result.counterexample}! "${currentClaim.statement}" is FALSE.`;
+          ? t('counterexample.feedback.holds', { claim: claimText })
+          : t('counterexample.feedback.disproved', {
+              n: result.counterexample ?? '',
+              claim: claimText,
+            });
 
         // Card container
         const claimCard = el('div', {
@@ -162,14 +171,16 @@ export function createCounterexampleScreen(): ScreenMeta {
         });
         statementBanner.appendChild(
           el('span', {
-            text: `Universal Claim: "${currentClaim.statement}"`,
+            text: t('counterexample.claimLabel', { claim: claimField(activeClaimId, 'statement') }),
             style: { fontWeight: 'bold', fontSize: '1.05rem', color: '#1e40af' },
           })
         );
         statementBanner.appendChild(
           el('span', {
             class: 'stat-pill claim-status-pill',
-            text: result.holds ? 'Status: Testing Holds' : 'Status: Conclusively Disproved',
+            text: result.holds
+              ? t('counterexample.statusHolds')
+              : t('counterexample.statusDisproved'),
             style: {
               fontSize: '0.85rem',
               color: result.holds ? '#15803d' : '#b91c1c',
@@ -198,7 +209,7 @@ export function createCounterexampleScreen(): ScreenMeta {
 
         courtyard.appendChild(
           el('span', {
-            text: 'Tested Domain Elements & Outcomes:',
+            text: t('counterexample.testedHeading'),
             style: { fontSize: '0.9rem', color: '#64748b', fontWeight: '600' },
           })
         );
@@ -218,7 +229,9 @@ export function createCounterexampleScreen(): ScreenMeta {
           const satisfies = currentClaim.predicate(val);
           const chip = el('div', {
             class: `evidence-chip ${satisfies ? 'pass-chip' : 'counterexample-chip'}`,
-            text: `${val} ${satisfies ? '✓' : '✗'}`,
+            text: satisfies
+              ? t('counterexample.chipOk', { n: val })
+              : t('counterexample.chipFail', { n: val }),
             style: {
               minWidth: '44px',
               minHeight: '44px',
@@ -254,13 +267,13 @@ export function createCounterexampleScreen(): ScreenMeta {
           callout.appendChild(
             el('p', {
               style: { margin: '0 0 4px', fontWeight: 'bold', color: '#991b1b' },
-              text: `Counterexample Found: ${result.counterexample}!`,
+              text: t('counterexample.found', { n: result.counterexample ?? '' }),
             })
           );
           callout.appendChild(
             el('p', {
               style: { margin: '0', fontSize: '0.9rem', color: '#7f1d1d' },
-              text: currentClaim.explanation,
+              text: claimField(activeClaimId, 'explanation'),
             })
           );
           courtyard.appendChild(callout);
@@ -283,7 +296,7 @@ export function createCounterexampleScreen(): ScreenMeta {
           rahulBox.appendChild(
             el('p', {
               style: { margin: '0', fontSize: '0.95rem', color: '#92400e' },
-              text: `Rahul's Mistake Trap: Rahul checked 3 × 4 = 12 and 5 × 6 = 30 and claimed multiplication ALWAYS makes a number bigger. But 5 × 1 = 5 (equal) and 5 × 0 = 0 (smaller)! A single counterexample destroys the claim that it is always true.`,
+              text: t('counterexample.rahulTrap'),
             })
           );
           claimCard.appendChild(rahulBox);
@@ -301,7 +314,10 @@ export function createCounterexampleScreen(): ScreenMeta {
           },
         });
         testBar.appendChild(
-          el('span', { text: 'Test counterexample candidate: ', style: { fontWeight: '600' } })
+          el('span', {
+            text: t('counterexample.testCandidate'),
+            style: { fontWeight: '600' },
+          })
         );
 
         const sampleTestValues =
@@ -314,7 +330,7 @@ export function createCounterexampleScreen(): ScreenMeta {
         sampleTestValues.forEach((candidate) => {
           const testBtn = el('button', {
             class: 'btn test-candidate-btn',
-            text: `Test ${candidate}`,
+            text: t('counterexample.testButton', { n: candidate }),
             style: { minHeight: '44px', padding: '6px 14px' },
             onClick() {
               if (!itemsToTest.includes(candidate)) {
@@ -357,24 +373,8 @@ export function createCounterexampleScreen(): ScreenMeta {
         },
       });
 
-      const nextBtn = el('button', {
-        class: 'btn btn-primary',
-        text: 'Spot the Mistake →',
-        style: {
-          minHeight: '44px',
-          padding: '10px 20px',
-          borderRadius: '6px',
-          background: 'var(--ink, #1f2937)',
-          color: '#fff',
-          fontWeight: 'bold',
-        },
-        onClick() {
-          router.go('mistake', { k: 'L1' });
-        },
-      });
-
       actionRow.appendChild(resetBtn);
-      actionRow.appendChild(nextBtn);
+      actionRow.appendChild(toMistakeButton('L1'));
 
       // Render root view
       clear(view);
