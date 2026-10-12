@@ -31,3 +31,4 @@ export {
 } from './collection';
 export * from './decimals';
 export * from './regroup';
+export * from './estimate';

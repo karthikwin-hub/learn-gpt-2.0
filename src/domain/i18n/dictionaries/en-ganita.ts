@@ -452,4 +452,59 @@ export const dictionary: Record<string, string> = {
   'explain.A1.hint': 'Remember: does 1 bead from the left turn into 1 or 10 beads in your house?',
   'know.A1':
     'Regrouping unbundles 1 from the higher place into 10 in the lower place, making big subtraction and addition smooth without inverting digits.',
+
+  /* A2 Estimate First & Mental Benchmarks */
+  'prashna.A2.q': 'Buying 48 notebooks at ₹98 each costs approximately how much?',
+  'prashna.A2.c1': 'About ₹500',
+  'prashna.A2.c2': 'About ₹5,000',
+  'prashna.A2.c3': 'About ₹50,000',
+  'prashna.A2.a': 'About ₹5,000. Round 48 to 50, and round ₹98 to ₹100: 50 × 100 = 5,000.',
+  'bodha.A2.what':
+    '[[estimation|Estimation]] means replacing prickly numbers with friendly round neighbors to get quick mental guardrails.',
+  'bodha.A2.can':
+    'You will be able to round numbers to friendly benchmarks and catch wild order-of-magnitude calculation errors before making mistakes.',
+  'bodha.A2.idea':
+    'Instead of calculating exact figures first, round to the nearest ten or hundred: 48 becomes 50, 98 becomes 100.',
+  'bodha.A2.why':
+    'Friendly estimation catches tenfold slip-ups: 50 × 100 = 5,000 immediately exposes 47,040 or 470 as wild mistakes.',
+  'bodha.A2.example': 'Estimate 392 + 514 before finding the exact sum.',
+  'bodha.A2.example1': 'Step 1: Round 392 to the nearest hundred: 400.',
+  'bodha.A2.example2': 'Step 2: Round 514 to the nearest hundred: 500.',
+  'bodha.A2.example3':
+    'Step 3: Friendly sum is 400 + 500 = 900. Exact sum is 906, very close to 900!',
+  'bodha.A2.where':
+    'Estimating bus travel fuel, market grocery bills before reaching the billing counter, and godown storage space.',
+  'bodha.A2.sutra': 'Round to friendly numbers before you calculate to catch the wild mistake.',
+  'gloss.estimation':
+    'Finding a value close enough to the right answer using friendly round numbers.',
+  'gloss.estimation.en': 'estimation',
+  'estimate.title': 'Estimate first & benchmarks',
+  'estimate.art': 'A magnetic number line with friendly benchmark snap points.',
+  'estimate.s1': 'Snap prickly numbers to friendly benchmarks.',
+  'estimate.s1done': '48 snaps to 50, and 392 snaps to 400.',
+  'estimate.s2': 'Build a Safe Zone for 29 × 41.',
+  'estimate.s2done': 'Safe zone: 30 × 40 = 1200.',
+  'estimate.s3': 'Test proposed answers against the Safe Zone.',
+  'estimate.s3done': '8190 is a wild error: it is outside the safe zone for 20 × 40 = 800.',
+  'mistake.A2.intro': 'Meera calculated 21 × 39. One step went wrong. Which one?',
+  'mistake.A2.s1': 'We want to multiply 21 and 39.',
+  'mistake.A2.s2': 'Round 21 to 20, and round 39 to 40.',
+  'mistake.A2.s3': 'Multiplying gives 20 × 40 = 800 as our estimate.',
+  'mistake.A2.s4': 'Her written calculation gave 8190, and she accepted it as the final answer.',
+  'mistake.A2.fine1': 'That is sound: stating the multiplication problem is clear.',
+  'mistake.A2.fine2': 'Rounding to 20 and 40 is sound.',
+  'mistake.A2.fine3': 'Estimating 800 is sound.',
+  'mistake.A2.found':
+    'Here. An answer of 8190 is more than 10 times larger than the estimate of 800! Always check against your estimate to catch wild errors.',
+  'explain.A2.s': 'Rounding gives a quick {0} that helps us check answers {1} we calculate.',
+  'explain.A2.estimate': 'estimate',
+  'explain.A2.exact': 'exact',
+  'explain.A2.zero': 'zero',
+  'explain.A2.before': 'before',
+  'explain.A2.after': 'after',
+  'explain.A2.never': 'never',
+  'explain.A2.hint':
+    'Do we use friendly rounding before or after calculating to set our safety zone?',
+  'know.A2':
+    'Estimating with friendly benchmarks creates a safe zone to catch wild calculation mistakes before accepting answers.',
 };
