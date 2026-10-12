@@ -1989,4 +1989,48 @@ export const dictionary: Record<string, string> = {
   'explain.L3.certainly': 'certainly',
   'explain.L3.hint': 'Recall why nested rings allow one direction but not always the reverse.',
   'know.L3': 'If A then B tells the forward direction; turning it backwards is not always true.',
+  /* M1 Multiplication Foundations: Equal Groups & Commutative Rotation */
+  'prashna.M1.q':
+    'You have 3 baskets with 8 apples each, and your friend has 8 baskets with 3 apples each. Who has more apples?',
+  'prashna.M1.c1': 'You have more',
+  'prashna.M1.c2': 'Your friend has more',
+  'prashna.M1.c3': 'Both have the exact same total (24 apples)',
+  'prashna.M1.a':
+    'Both have 24 apples! 3 groups of 8 and 8 groups of 3 contain the exact same total: 3 × 8 = 8 × 3 = 24.',
+  'bodha.M1.what':
+    'Multiplication means putting together [[mult|equal groups]]: 4 bunches of 5 coconuts each.',
+  'bodha.M1.can':
+    'You will be able to arrange equal bunches into arrays and see that turning them around keeps the total unchanged.',
+  'bodha.M1.idea':
+    'Line the bunches up into straight rows and columns: an array forms! 4 rows of 5 is written 4 × 5.',
+  'bodha.M1.why':
+    'Now [[turn|spin the rectangle]] 90°: 4 rows of 5 turns into 5 rows of 4! No squares were added or removed.',
+  'bodha.M1.example': 'Building and rotating an array of apples:',
+  'bodha.M1.example1': 'Step 1: Build 3 rows of 8: 3 × 8 = 24 apples in total.',
+  'bodha.M1.example2': 'Step 2: Rotate the array by 90°: it becomes 8 rows of 3.',
+  'bodha.M1.example3': 'Step 3: 8 × 3 = 24 apples. Commutative symmetry preserves the product!',
+  'bodha.M1.where': 'Egg cartons, pill blister packs, window panes, and planting orchard trees.',
+  'bodha.M1.sutra':
+    "Turning the rectangle doesn't change the squares: rows times columns is the same both ways.",
+  'rect.rotate': 'Rotate Array (90°)',
+  'mistake.M1.intro': 'Varun is calculating apple totals and makes a multiplication claim:',
+  'mistake.M1.s1': 'He writes: 8 baskets of 3 apples gives 8 × 3 = 24.',
+  'mistake.M1.s2': 'He claims that knowing 8 × 3 does not help with 3 × 8, calculating 3 × 8 = 38.',
+  'mistake.M1.s3': 'He concludes that changing group order completely changes the calculation.',
+  'mistake.M1.fine1': 'Sound step: 8 × 3 = 24 is calculated correctly.',
+  'mistake.M1.fine3': 'Step 3 fails because of the mistake made in Step 2.',
+  'mistake.M1.found':
+    'Here! Rotating 8 × 3 by a quarter turn creates 3 × 8 with the exact same 24 squares! a × b always equals b × a. Commutativity makes 3 × 8 = 24!',
+  'explain.M1.s':
+    'Multiplication means combining equal groups into rows and {0}. Rotating a rectangular array by ninety degrees proves that a × b is {1} b × a.',
+  'explain.M1.columns': 'columns',
+  'explain.M1.diagonals': 'diagonals',
+  'explain.M1.circles': 'circles',
+  'explain.M1.equal to': 'equal to',
+  'explain.M1.greater than': 'greater than',
+  'explain.M1.less than': 'less than',
+  'explain.M1.hint':
+    'Think about how turning a rectangle swaps rows and columns without losing any squares.',
+  'know.M1':
+    "Turning the rectangle doesn't change the squares: rows times columns is the same both ways.",
 };
