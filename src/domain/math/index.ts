@@ -42,3 +42,4 @@ export * from './hcf';
 export * from './angles';
 export * from './shear';
 export * from './cubenet';
+export * from './circle';
