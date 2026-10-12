@@ -127,4 +127,13 @@ describe('Lesson registry', () => {
     expect(f2?.mistake?.steps).toBe(3);
     expect(f2?.mistake?.wrong).toBe(1);
   });
+
+  it('retrieves F3 Divisibility Tests lesson', () => {
+    const f3 = getLesson('F3');
+    expect(f3).not.toBeNull();
+    expect(f3?.cards).toHaveLength(6);
+    expect(f3?.explain).toHaveLength(2);
+    expect(f3?.mistake?.steps).toBe(3);
+    expect(f3?.mistake?.wrong).toBe(1);
+  });
 });

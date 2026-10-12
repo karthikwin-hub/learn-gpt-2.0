@@ -1,6 +1,6 @@
 # Feature Specification: 023 Divisibility Tests (Knot F3)
 
-<!-- Spec Kit standard. Status: Draft (Ready for Review) · Priority: P1 · Lane: Feature · Branch: feat/014-collection-fractions -->
+<!-- Spec Kit standard. Status: Draft (Ready for Review) · Priority: P1 · Lane: Feature · Branch: feat/023-divisibility -->
 
 ## 1. Problem & Pedagogical Intent
 

@@ -1,6 +1,6 @@
 # Implementation Plan: 023 Divisibility Tests (Knot F3)
 
-Feature Branch: `feat/014-collection-fractions`
+Feature Branch: `feat/023-divisibility`
 
 ## Architecture & Module Ownership
 
