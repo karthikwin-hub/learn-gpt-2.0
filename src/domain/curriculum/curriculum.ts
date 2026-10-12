@@ -74,7 +74,7 @@ export const SECTIONS: Section[] = [
         id: 'ganana',
         crossing: 'cross.divide',
         knots: [
-          k('A1'),
+          k('A1', { prashna: true, bench: bench('regroup') }),
           k('A2'),
           k('M1', { afterBodha: { route: 'rect', params: { k: 'M1' } } }),
           k('M2', { start: { route: 'wonder' }, afterBodha: { route: 'film' } }),

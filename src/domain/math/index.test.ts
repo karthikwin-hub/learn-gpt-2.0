@@ -42,5 +42,7 @@ describe('src/domain/math/index exports', () => {
     expect(typeof math.addLikeFractions).toBe('function');
     expect(typeof math.decomposeDecimal).toBe('function');
     expect(typeof math.decimalToHundredths).toBe('function');
+    expect(typeof math.subtractWithRegrouping).toBe('function');
+    expect(typeof math.addWithRegrouping).toBe('function');
   });
 });

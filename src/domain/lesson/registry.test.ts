@@ -64,4 +64,13 @@ describe('Lesson registry', () => {
     expect(n5?.mistake?.steps).toBe(4);
     expect(n5?.mistake?.wrong).toBe(1);
   });
+
+  it('retrieves A1 Big Sums and Regrouping lesson', () => {
+    const a1 = getLesson('A1');
+    expect(a1).not.toBeNull();
+    expect(a1?.cards).toHaveLength(6);
+    expect(a1?.explain).toHaveLength(2);
+    expect(a1?.mistake?.steps).toBe(4);
+    expect(a1?.mistake?.wrong).toBe(1);
+  });
 });

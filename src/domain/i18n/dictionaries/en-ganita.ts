@@ -393,4 +393,63 @@ export const dictionary: Record<string, string> = {
     'Look at the houses after the dot: what does the first house count? Does having more digits make a decimal bigger?',
   'know.N5':
     'In decimals, each place after the dot is ten times smaller: 0.5 has 5 tenths (50 hundredths), which is larger than 0.15.',
+
+  /* A1 Big Sums and Regrouping */
+  'prashna.A1.q': 'To solve 500 - 247, what must you do first?',
+  'prashna.A1.c1': 'Subtract 0 from 7 to get 7',
+  'prashna.A1.c2': 'Exchange 1 hundred for 10 tens',
+  'prashna.A1.c3': 'Subtract 2 from 5 directly',
+  'prashna.A1.a':
+    'Exchange 1 hundred for 10 tens. You cannot take 7 from 0, and the tens house is empty, so you unbundle 1 hundred first.',
+  'bodha.A1.what':
+    '[[regrouping|Regrouping]] is unbundling or bundling numbers between place value houses when operating on large amounts.',
+  'bodha.A1.can':
+    'You will be able to subtract across zeroes without inverting digits and add multi-digit numbers with clear columnar carrying.',
+  'bodha.A1.idea':
+    'Each place value house is worth ten times the house to its right. 1 hundred is 10 tens; 1 ten is 10 ones.',
+  'bodha.A1.why':
+    'Unbundling changes the appearance of a number without changing its value: 500 = 400 + 90 + 10.',
+  'bodha.A1.example': 'Calculate 40,005 - 18,347 step by step.',
+  'bodha.A1.example1':
+    'Step 1: Unbundle 1 ten-thousand from 40,000 all the way to the ones house: 40,005 becomes 30,000 + 9,000 + 900 + 90 + 15.',
+  'bodha.A1.example2':
+    'Step 2: Subtract column by column: 15 - 7 = 8 ones, 90 - 40 = 50 tens, 900 - 300 = 600 hundreds.',
+  'bodha.A1.example3':
+    'Step 3: 9,000 - 8,000 = 1,000 thousands, and 30,000 - 10,000 = 20,000: result is 21,658.',
+  'bodha.A1.where':
+    'Counting changes in city census populations, library book collections, and bank treasury deposits.',
+  'bodha.A1.sutra':
+    'When a house does not have enough, take one from the left and make ten in your house.',
+  'gloss.regrouping': 'Rearranging place value amounts into tens or ones to add or subtract.',
+  'gloss.regrouping.en': 'regrouping',
+  'regroup.title': 'Big sums & regrouping',
+  'regroup.art': 'A columnar bead board showing place value houses with unbundling arrows.',
+  'regroup.s1': 'Unbundle 500 across zeroes into 4 hundreds, 9 tens, and 10 ones.',
+  'regroup.s1done': '500 = 400 + 90 + 10: The value is conserved.',
+  'regroup.s2': 'Subtract 247 from 500 column by column.',
+  'regroup.s2done': '500 - 247 = 253.',
+  'regroup.s3': 'Add 678 + 456 by bundling columns of ten.',
+  'regroup.s3done': '678 + 456 = 1134.',
+  'mistake.A1.intro': 'Dev solved 704 - 358. One step went wrong. Which one?',
+  'mistake.A1.s1': 'We want to subtract 358 from 704.',
+  'mistake.A1.s2': 'In the ones column: 4 is smaller than 8, so subtract 4 from 8 to get 4.',
+  'mistake.A1.s3': 'In the tens column: subtract 0 from 5 to get 5.',
+  'mistake.A1.s4': 'In the hundreds column: 7 - 3 = 4, so the answer is 454.',
+  'mistake.A1.fine1': 'That is sound: stating the problem is clear.',
+  'mistake.A1.fine3':
+    'This step repeated the same inverted subtraction. Look earlier where it started.',
+  'mistake.A1.fine4': 'This just wrote down the result from earlier errors. Look earlier.',
+  'mistake.A1.found':
+    'Here. You cannot flip subtraction when the top digit is smaller! 4 cannot give 8, so you must unbundle from the hundreds house: 14 - 8 = 6.',
+  'explain.A1.s':
+    'When the top digit is smaller, we {0} from the left house which gives {1} to our house.',
+  'explain.A1.unbundle': 'unbundle',
+  'explain.A1.add': 'add',
+  'explain.A1.multiply': 'multiply',
+  'explain.A1.ten': 'ten',
+  'explain.A1.one': 'one',
+  'explain.A1.hundred': 'hundred',
+  'explain.A1.hint': 'Remember: does 1 bead from the left turn into 1 or 10 beads in your house?',
+  'know.A1':
+    'Regrouping unbundles 1 from the higher place into 10 in the lower place, making big subtraction and addition smooth without inverting digits.',
 };
