@@ -12,6 +12,7 @@ import { G3_LESSON } from './g3';
 import { G4_LESSON } from './g4';
 import { G5_LESSON } from './g5';
 import { G6_LESSON } from './g6';
+import { G7_LESSON } from './g7';
 import { S1_LESSON } from './s1';
 import { S2_LESSON } from './s2';
 import { S3_LESSON } from './s3';
@@ -55,6 +56,7 @@ const LESSONS: Record<string, LessonData> = {
   G4: G4_LESSON,
   G5: G5_LESSON,
   G6: G6_LESSON,
+  G7: G7_LESSON,
   S1: S1_LESSON,
   S2: S2_LESSON,
   S3: S3_LESSON,

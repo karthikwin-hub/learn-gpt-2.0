@@ -1195,4 +1195,71 @@ export const dictionary: Record<string, string> = {
     'What is the name for centre-to-rim, and how many times the radius is the diameter?',
   'know.G6':
     'Every point on the rim is one radius away; through the centre, diameter is twice the radius.',
+
+  /* G7 */
+  'prashna.G7.q':
+    'You rearrange all 7 wooden tangram pieces from a square into a tall candle. Does the total wood area change?',
+  'prashna.G7.c1': 'Yes, the candle is taller so it has more area',
+  'prashna.G7.c2': 'No, rearranging pieces leaves total area exactly unchanged',
+  'prashna.G7.c3': 'Yes, the candle has less area because it is narrower',
+  'prashna.G7.a':
+    'No, rearranging pieces leaves total area exactly unchanged! Dissection preserves area: the 7 pieces occupy the exact same surface whether arranged as a square, candle, boat, or swan.',
+  'bodha.G7.what':
+    'A [[tangram|tangram]] is an ancient 7-piece puzzle created by cutting a single large square into geometric tiles.',
+  'bodha.G7.can':
+    'You will be able to rearrange shapes and see why total area remains conserved regardless of the outline.',
+  'bodha.G7.idea':
+    'The 7 pieces: 2 large triangles, 1 medium triangle, 2 small triangles, 1 square, and 1 parallelogram.',
+  'bodha.G7.why':
+    'Pieces can combine into other pieces: two small triangles make the square, the parallelogram, or the medium triangle!',
+  'bodha.G7.example': 'A square of area 100 square units:',
+  'bodha.G7.example1': 'All 7 pieces fit inside the original 10×10 square (Total Area = 100).',
+  'bodha.G7.example2': 'Rearranging the 7 pieces forms a sailing boat silhouette.',
+  'bodha.G7.example3':
+    'Because no pieces were added or removed, the boat still has an area of exactly 100 square units.',
+  'bodha.G7.where': 'Floor tile layouts, carpentry joints, origami, and mosaic paving.',
+  'bodha.G7.sutra':
+    'Rearranging shapes changes the outline, but the total area stays exactly the same.',
+  'gloss.tangram':
+    'A dissection puzzle consisting of seven flat shapes that can form various silhouettes without overlapping.',
+  'gloss.tangram.en': 'tangram',
+  'tangram.title': 'Tangrams: Dissection & Area Conservation',
+  'tangram.art':
+    'Interactive 7-piece tangram mat with silhouette guides and area balance inspector.',
+  'tangram.units': 'Total Pieces: 7 | Total Area: {area} units ({pct}%)',
+  'tangram.silhouette': 'Silhouette: {name}',
+  'tangram.presetSquare': 'Square (Base)',
+  'tangram.presetCandle': 'Candle (Tall)',
+  'tangram.presetBoat': 'Boat',
+  'tangram.presetSwan': 'Swan (Tall Neck)',
+  'tangram.s1': 'Explore the 7 pieces arranged as the base square.',
+  'tangram.s1done':
+    'All 7 pieces fit the square: 2 large triangles, 1 medium, 2 small, 1 square, 1 parallelogram (Total = 16 units).',
+  'tangram.s2': 'Switch silhouettes to see shapes reassembled into a candle, boat, or swan.',
+  'tangram.s2done': 'Silhouette changed to {name}: total area remains exactly 16 units (100%)!',
+  'tangram.s3': 'Compare two small triangles with the square, parallelogram, or medium triangle.',
+  'tangram.s3done':
+    'Area conservation proved: 2 small triangles (1 + 1) equal the medium triangle (2), square (2), and parallelogram (2)!',
+  'mistake.G7.intro':
+    'Meera was comparing the tangram square and the tangram swan. One step went wrong. Which one?',
+  'mistake.G7.s1':
+    'Meera used all 7 tangram pieces to build a square, measuring an area of 100 cm².',
+  'mistake.G7.s2':
+    'She rearranged all 7 pieces into a swan and claimed the swan has greater area because its neck reaches much higher.',
+  'mistake.G7.s3': 'She concluded that tall shapes always have more area than compact squares.',
+  'mistake.G7.fine1': 'Sound step: the original square uses all 7 pieces with area 100 cm².',
+  'mistake.G7.fine3': 'Step 3 relies on her mistaken reasoning in Step 2.',
+  'mistake.G7.found':
+    'Here! Height does not determine area. Both silhouettes use the exact same 7 pieces without overlap, so their total surface areas are strictly equal!',
+  'explain.G7.s':
+    'When pieces are rearranged into a new silhouette, the total area remains {0}. Two small tangram triangles can be joined to form the medium triangle, the parallelogram, or the {1}.',
+  'explain.G7.unchanged': 'unchanged',
+  'explain.G7.larger': 'larger',
+  'explain.G7.smaller': 'smaller',
+  'explain.G7.square': 'square',
+  'explain.G7.circle': 'circle',
+  'explain.G7.hexagon': 'hexagon',
+  'explain.G7.hint':
+    'Does rearranging change total surface area, and what 2-unit shape can two small triangles make?',
+  'know.G7': 'Rearranging shapes changes the outline, but the total area stays exactly the same.',
 };
