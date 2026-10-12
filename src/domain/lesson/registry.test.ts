@@ -100,4 +100,13 @@ describe('Lesson registry', () => {
     expect(d4?.mistake?.steps).toBe(3);
     expect(d4?.mistake?.wrong).toBe(1);
   });
+
+  it('retrieves A3 Which Operation lesson', () => {
+    const a3 = getLesson('A3');
+    expect(a3).not.toBeNull();
+    expect(a3?.cards).toHaveLength(6);
+    expect(a3?.explain).toHaveLength(2);
+    expect(a3?.mistake?.steps).toBe(3);
+    expect(a3?.mistake?.wrong).toBe(1);
+  });
 });

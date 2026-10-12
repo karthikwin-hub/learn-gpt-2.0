@@ -34,6 +34,7 @@ import { createRegroupScreen } from './ui/components/screens/regroup';
 import { createEstimateScreen } from './ui/components/screens/estimate';
 import { createQuotitionScreen } from './ui/components/screens/quotition';
 import { createLongdivScreen } from './ui/components/screens/longdiv';
+import { createWordprobScreen } from './ui/components/screens/wordprob';
 import { createMoneyScreen } from './ui/components/screens/money';
 import { createDigestScreen } from './ui/components/screens/digest';
 import { createRampScreen } from './ui/components/screens/ramp';
@@ -87,6 +88,7 @@ export function initApp(): void {
   router.register(createEstimateScreen());
   router.register(createQuotitionScreen());
   router.register(createLongdivScreen());
+  router.register(createWordprobScreen());
   router.register(createMoneyScreen());
   router.register(createDigestScreen());
   router.register(createRampScreen());
