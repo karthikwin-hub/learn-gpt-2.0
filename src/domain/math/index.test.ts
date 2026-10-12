@@ -121,5 +121,8 @@ describe('src/domain/math/index exports', () => {
     expect(typeof math.validateSetRule).toBe('function');
     expect(typeof math.classifyVennRegion).toBe('function');
     expect(typeof math.verifyVennSum).toBe('function');
+    expect(typeof math.evaluateRuleHypothesis).toBe('function');
+    expect(typeof math.generateMysteryVennPuzzle).toBe('function');
+    expect(typeof math.checkAllPuzzleRegions).toBe('function');
   });
 });

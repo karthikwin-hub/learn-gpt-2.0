@@ -1785,4 +1785,49 @@ export const dictionary: Record<string, string> = {
   'explain.S2.hint':
     'Think about what the intersection zone means for two rules, and where items that fail both rules stay.',
   'know.S2': 'Where two rings overlap, a thing belongs to both sets at once.',
+
+  /* S3 */
+  'prashna.S3.q':
+    'All items in Ring A are green shapes; all in Ring B are circles. The middle overlap has green circles. Can the rule for Ring A be "All shapes"?',
+  'prashna.S3.c1': 'Yes, because green shapes are shapes',
+  'prashna.S3.c2': 'No, because non-green shapes are left outside Ring A',
+  'prashna.S3.c3': "It doesn't matter",
+  'prashna.S3.a':
+    'A rule must explain what is excluded too! If the rule were "All shapes", non-green shapes could not be left outside Ring A.',
+  'bodha.S3.what':
+    'Sometimes you see objects already sorted into rings, but the labels are hidden: you must guess the rules!',
+  'bodha.S3.can':
+    'Inspect items inside and outside each ring, test hypothesis rules against every block, and discover the hidden criteria.',
+  'bodha.S3.idea':
+    'Inspect all objects in a region: find what they share in common AND check that nothing outside shares it.',
+  'bodha.S3.why':
+    'Scientific reasoning works this way: look at the evidence, form a hypothesis, and test it against all items.',
+  'bodha.S3.example': 'Guessing the rule from clues:',
+  'bodha.S3.example1':
+    'Step 1: Ring A contains red triangle, red square, and red star. Hypothesis: "Red".',
+  'bodha.S3.example2': 'Step 2: Check outside: no red things outside.',
+  'bodha.S3.example3': 'Step 3: Rule A is confirmed: "Red"!',
+  'bodha.S3.where':
+    'Detective work, medical diagnosis from symptoms, debugging computer programs, and scientific discovery.',
+  'bodha.S3.sutra': 'Look at what is inside and what was left out: the rule must fit all of them.',
+  'mistake.S3.intro':
+    'Aman looks at Ring A containing 3 triangles and 2 circles and guesses the rule is "Triangles":',
+  'mistake.S3.s1': 'He counts 3 triangles inside Ring A.',
+  'mistake.S3.s2': 'He concludes that the rule for Ring A must be "Triangles".',
+  'mistake.S3.s3': 'He ignores the 2 circles that are also sitting inside Ring A.',
+  'mistake.S3.fine1': 'Accurate observation: there are indeed 3 triangles inside.',
+  'mistake.S3.fine3': 'Step 3 fails because every object in the ring must follow the rule.',
+  'mistake.S3.found':
+    'Here! A rule must fit ALL items in the ring. Since circles are also inside, the rule cannot be "Triangles"!',
+  'explain.S3.s':
+    'To discover a hidden rule, you must find a property shared by {0} item inside the ring. If an item inside violates your guess, your hypothesis must be {1}.',
+  'explain.S3.every': 'every',
+  'explain.S3.one': 'one',
+  'explain.S3.some': 'some',
+  'explain.S3.revised': 'revised',
+  'explain.S3.accepted': 'accepted',
+  'explain.S3.ignored': 'ignored',
+  'explain.S3.hint':
+    'Think about whether rules can have exceptions in a set, and what you must do when a counter-example is found.',
+  'know.S3': 'Look at what is inside and what was left out: the rule must fit all of them.',
 };

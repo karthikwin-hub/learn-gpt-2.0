@@ -6,6 +6,9 @@ import {
   classifyVennRegion,
   verifyVennSum,
   sameSort,
+  evaluateRuleHypothesis,
+  generateMysteryVennPuzzle,
+  checkAllPuzzleRegions,
   SET_RULES,
   type AttributeBlock,
 } from './sets';
@@ -77,5 +80,39 @@ describe('sets domain math', () => {
     const counts = { both: 2, a: 2, b: 2, none: 6 };
     expect(verifyVennSum(counts, 12)).toBe(true);
     expect(verifyVennSum(counts, 10)).toBe(false);
+  });
+
+  it('evaluates rule hypothesis and finds violations', () => {
+    const blocks = createBlocks();
+    const greenBlocks = blocks.filter((b) => b.colour === 'green');
+    const nonGreenBlocks = blocks.filter((b) => b.colour !== 'green');
+
+    // Correct hypothesis: 'green'
+    const match = evaluateRuleHypothesis(greenBlocks, nonGreenBlocks, 'green');
+    expect(match.matches).toBe(true);
+    expect(match.violations).toHaveLength(0);
+
+    // Flawed hypothesis: 'triangle' (fails because circles and squares are also in greenBlocks)
+    const mismatch = evaluateRuleHypothesis(greenBlocks, nonGreenBlocks, 'triangle');
+    expect(mismatch.matches).toBe(false);
+    expect(mismatch.violations.length).toBeGreaterThan(0);
+  });
+
+  it('generates mystery Venn puzzles and checks solutions', () => {
+    const puzzle = generateMysteryVennPuzzle(1);
+    expect(puzzle.ruleA).toBe('green');
+    expect(puzzle.ruleB).toBe('big');
+    expect(puzzle.blocks).toHaveLength(12);
+
+    expect(checkAllPuzzleRegions(puzzle, 'green', 'big')).toBe(true);
+    expect(checkAllPuzzleRegions(puzzle, 'yellow', 'small')).toBe(false);
+
+    const puzzle2 = generateMysteryVennPuzzle(2);
+    expect(puzzle2.ruleA).toBe('yellow');
+    expect(puzzle2.ruleB).toBe('triangle');
+
+    const puzzle3 = generateMysteryVennPuzzle(3);
+    expect(puzzle3.ruleA).toBe('circle');
+    expect(puzzle3.ruleB).toBe('small');
   });
 });

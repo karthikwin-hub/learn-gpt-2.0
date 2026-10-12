@@ -127,3 +127,61 @@ export function sameSort(
 ): boolean {
   return blocks.every((it) => getRegion(it, a1, b1) === getRegion(it, a2, b2));
 }
+
+/**
+ * Evaluates whether candidateRule fits all items in a region while excluding items outside.
+ */
+export function evaluateRuleHypothesis(
+  itemsInRegion: AttributeBlock[],
+  itemsOutside: AttributeBlock[],
+  candidateRule: SetRule
+): { matches: boolean; violations: AttributeBlock[] } {
+  const ruleFn = SET_RULES[candidateRule];
+  const violations: AttributeBlock[] = [];
+
+  for (const block of itemsInRegion) {
+    if (!ruleFn(block)) {
+      violations.push(block);
+    }
+  }
+
+  for (const block of itemsOutside) {
+    if (ruleFn(block)) {
+      violations.push(block);
+    }
+  }
+
+  return {
+    matches: violations.length === 0,
+    violations,
+  };
+}
+
+/**
+ * Generates a mystery Venn puzzle specification.
+ */
+export function generateMysteryVennPuzzle(preset: 1 | 2 | 3 = 1): {
+  ruleA: SetRule;
+  ruleB: SetRule;
+  blocks: AttributeBlock[];
+} {
+  const blocks = createBlocks();
+  if (preset === 2) {
+    return { ruleA: 'yellow', ruleB: 'triangle', blocks };
+  }
+  if (preset === 3) {
+    return { ruleA: 'circle', ruleB: 'small', blocks };
+  }
+  return { ruleA: 'green', ruleB: 'big', blocks };
+}
+
+/**
+ * Checks whether user guesses match the mystery puzzle partition.
+ */
+export function checkAllPuzzleRegions(
+  puzzle: { ruleA: SetRule; ruleB: SetRule; blocks: AttributeBlock[] },
+  guessA: SetRule,
+  guessB: SetRule
+): boolean {
+  return sameSort(puzzle.blocks, puzzle.ruleA, puzzle.ruleB, guessA, guessB);
+}
