@@ -1039,4 +1039,23 @@ export const dictionary: Record<string, string> = {
     'Which quantity is conserved under shear, and which height line is used for the area formula?',
   'know.G3':
     'Slide the top along the rail: the cut piece fills the gap, and the area never changes.',
+
+  /* G4 */
+  'prashna.G4.q':
+    'A four-blade pinwheel turns and looks identical every quarter turn (90°). Can you fold it in half so both sides match?',
+  'prashna.G4.c1': 'Yes, along 4 lines',
+  'prashna.G4.c2': 'Yes, along 2 lines',
+  'prashna.G4.c3': 'No, it has no mirror fold lines even though it looks symmetrical',
+  'prashna.G4.a':
+    'No! A pinwheel matches after a quarter turn (90°), but folding flips the blades backwards so the halves never match. Rotational symmetry does not require mirror lines.',
+  'mistake.G4.intro':
+    'Arun was analyzing a four-blade pinwheel kolam. One step went wrong. Which one?',
+  'mistake.G4.s1': 'He noticed the pinwheel looks identical when rotated by 90° (quarter turn).',
+  'mistake.G4.s2':
+    'He claimed that having 4-fold rotational symmetry means it must have 4 mirror fold lines.',
+  'mistake.G4.s3': 'He folded it across the diagonal and claimed both halves matched.',
+  'mistake.G4.fine1': 'Sound observation: the pinwheel has 4-fold rotational symmetry.',
+  'mistake.G4.fine3': 'Step 3 is based on the false claim in Step 2.',
+  'mistake.G4.found':
+    'Here! A shape can have rotational symmetry without ANY mirror lines. Folding flips the curved blades in the wrong direction!',
 };

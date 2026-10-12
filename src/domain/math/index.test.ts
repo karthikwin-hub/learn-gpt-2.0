@@ -72,5 +72,8 @@ describe('src/domain/math/index exports', () => {
     expect(typeof math.slantLength).toBe('function');
     expect(typeof math.parallelogramPerimeter).toBe('function');
     expect(typeof math.shearDecomposition).toBe('function');
+    expect(typeof math.calculateSymmetryAxes).toBe('function');
+    expect(typeof math.minimumTurnDegree).toBe('function');
+    expect(typeof math.transformPoint).toBe('function');
   });
 });
