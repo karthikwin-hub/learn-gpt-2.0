@@ -315,4 +315,14 @@ describe('Lesson registry', () => {
     expect(s3?.mistake?.wrong).toBe(1);
     expect(s3?.stateKey).toBe('sets');
   });
+
+  it('retrieves L1 True for All lesson', () => {
+    const l1 = getLesson('L1');
+    expect(l1).not.toBeNull();
+    expect(l1?.cards).toHaveLength(6);
+    expect(l1?.explain).toHaveLength(2);
+    expect(l1?.mistake?.steps).toBe(3);
+    expect(l1?.mistake?.wrong).toBe(1);
+    expect(l1?.stateKey).toBe('counterexample');
+  });
 });

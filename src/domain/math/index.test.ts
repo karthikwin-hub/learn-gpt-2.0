@@ -124,5 +124,8 @@ describe('src/domain/math/index exports', () => {
     expect(typeof math.evaluateRuleHypothesis).toBe('function');
     expect(typeof math.generateMysteryVennPuzzle).toBe('function');
     expect(typeof math.checkAllPuzzleRegions).toBe('function');
+    expect(typeof math.findCounterexample).toBe('function');
+    expect(typeof math.verifyUniversalStatement).toBe('function');
+    expect(typeof math.formatDisproof).toBe('function');
   });
 });
