@@ -1,6 +1,6 @@
 # Feature Specification: 018 Division as Repeated Subtraction (Knot D2)
 
-<!-- Spec Kit standard. Status: Draft (Ready for Review) · Priority: P1 · Lane: Feature · Branch: feat/014-collection-fractions -->
+<!-- Spec Kit standard. Status: Approved · Priority: P1 · Lane: Feature · Branch: feat/018-quotition -->
 
 ## 1. Problem & Pedagogical Intent
 

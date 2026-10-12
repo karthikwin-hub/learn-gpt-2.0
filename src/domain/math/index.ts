@@ -32,3 +32,4 @@ export {
 export * from './decimals';
 export * from './regroup';
 export * from './estimate';
+export * from './quotition';

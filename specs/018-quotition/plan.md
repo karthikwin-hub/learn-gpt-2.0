@@ -1,6 +1,6 @@
 # Implementation Plan: 018 Division as Repeated Subtraction (Knot D2)
 
-Feature Branch: `feat/014-collection-fractions`
+Feature Branch: `feat/018-quotition`
 
 ## Architecture & Module Ownership
 

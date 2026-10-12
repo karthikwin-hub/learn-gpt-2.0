@@ -1,11 +1,12 @@
 /**
- * Lesson D2 definition: "How many groups" (quotative division).
+ * Lesson D2 definition: "Division as Repeated Subtraction / Equal Jumps" (quotitive grouping, backward number line hops, remainders).
  */
 
 import type { LessonData } from './types';
 
 export const D2_LESSON: LessonData = {
   knotId: 'D2',
+  stateKey: 'quotition',
   cards: [
     { key: 'what' },
     { key: 'idea' },
@@ -14,8 +15,13 @@ export const D2_LESSON: LessonData = {
     { key: 'where' },
     { key: 'sutra' },
   ],
+  mistake: {
+    steps: 3,
+    wrong: 2,
+    eq: () => '15 ÷ 3 = 5 (not <span class="r-txt">12</span> after 1 hop)',
+  },
   explain: [
-    { tiles: ['groups', 'numbers', 'shares'], expect: 'groups' },
-    { tiles: ['subtract', 'add', 'double'], expect: 'subtract' },
+    { tiles: ['groups', 'plates', 'adds'], expect: 'groups' },
+    { tiles: ['subtracting', 'multiplying', 'halving'], expect: 'subtracting' },
   ],
 };

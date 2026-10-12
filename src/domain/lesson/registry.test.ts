@@ -82,4 +82,13 @@ describe('Lesson registry', () => {
     expect(a2?.mistake?.steps).toBe(4);
     expect(a2?.mistake?.wrong).toBe(3);
   });
+
+  it('retrieves D2 Repeated Subtraction lesson', () => {
+    const d2 = getLesson('D2');
+    expect(d2).not.toBeNull();
+    expect(d2?.cards).toHaveLength(6);
+    expect(d2?.explain).toHaveLength(2);
+    expect(d2?.mistake?.steps).toBe(3);
+    expect(d2?.mistake?.wrong).toBe(2);
+  });
 });
