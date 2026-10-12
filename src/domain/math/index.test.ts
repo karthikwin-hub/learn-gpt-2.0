@@ -52,5 +52,8 @@ describe('src/domain/math/index exports', () => {
     expect(typeof math.verifyLongDivision).toBe('function');
     expect(typeof math.classifyRootAction).toBe('function');
     expect(typeof math.evaluateProblemModel).toBe('function');
+    expect(typeof math.findAllFactors).toBe('function');
+    expect(typeof math.findFactorPairs).toBe('function');
+    expect(typeof math.isValidRectangle).toBe('function');
   });
 });

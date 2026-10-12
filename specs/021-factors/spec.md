@@ -1,6 +1,6 @@
 # Feature Specification: 021 Factors Make Rectangles (Knot F1)
 
-<!-- Spec Kit standard. Status: Draft (Ready for Review) · Priority: P1 · Lane: Feature · Branch: feat/014-collection-fractions -->
+<!-- Spec Kit standard. Status: Draft (Ready for Review) · Priority: P1 · Lane: Feature · Branch: feat/021-factors -->
 
 ## 1. Problem & Pedagogical Intent
 

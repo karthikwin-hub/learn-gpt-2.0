@@ -678,4 +678,58 @@ export const dictionary: Record<string, string> = {
     'Does comparing two heights find their sum by adding or their difference by subtracting?',
   'know.A3':
     'Word problems reflect physical actions: joining is plus, comparing is minus, repeating is multiply, and sharing is divide.',
+
+  /* F1 Factors Make Rectangles */
+  'prashna.F1.q': 'How many different rectangles can you build using 12 square tiles?',
+  'prashna.F1.c1': '1',
+  'prashna.F1.c2': '3',
+  'prashna.F1.c3': '6',
+  'prashna.F1.a':
+    '3. 12 tiles can form 1×12, 2×6, and 3×4 rectangles! Each side gives a factor pair.',
+  'bodha.F1.what':
+    '[[factors|Factors]] are whole numbers that multiply together to make a product, like the side lengths of a rectangular tile mat.',
+  'bodha.F1.can':
+    'You will be able to arrange tiles into neat rectangles, discover factor pairs, and uncover square number symmetries.',
+  'bodha.F1.idea':
+    'Every solid rectangle with area N gives a factor pair: its length and width. No gaps and no loose tiles allowed!',
+  'bodha.F1.why':
+    'Factors always travel in pairs: if 3 divides 18 cleanly, its partner 6 comes along automatically because 3 × 6 = 18.',
+  'bodha.F1.example': 'Find all factors of 20 by testing rectangular sides.',
+  'bodha.F1.example1': '1 row of 20 tiles makes a long strip: 1 × 20 = 20.',
+  'bodha.F1.example2': '2 rows of 10 tiles make a rectangle: 2 × 10 = 20.',
+  'bodha.F1.example3':
+    '4 rows of 5 tiles make a rectangle: 4 × 5 = 20. All factors: 1, 2, 4, 5, 10, 20.',
+  'bodha.F1.where':
+    'Arranging prayer hall seating mats, tiling bathroom floors, and packing chocolate trays.',
+  'bodha.F1.sutra':
+    'A factor divides with no leftover: the sides of every neat rectangle are factors.',
+  'gloss.factors': 'Numbers that divide a given number completely without leaving any remainder.',
+  'gloss.factors.en': 'factors',
+  'factors.title': 'Factors make rectangles',
+  'factors.art': 'A grid of tiles snapping into clean rectangles with rainbow factor pair arcs.',
+  'factors.s1': 'Change row count to build solid rectangles from 12 tiles.',
+  'factors.s1done': 'Discovered rectangle 3 × 4: 3 and 4 are factors of 12.',
+  'factors.s2': 'Connect partner factors using rainbow pair arcs for 12.',
+  'factors.s2done': 'All 6 factors discovered: (1, 12), (2, 6), (3, 4).',
+  'factors.s3': 'Examine square number 16: notice the unique partner-shared factor.',
+  'factors.s3done':
+    'Square number 16 has an odd number of factors because 4 × 4 pairs with itself.',
+  'mistake.F1.intro': 'Raju was asked to list all factors of 18. One step went wrong. Which one?',
+  'mistake.F1.s1': 'He tried 1 and 2: 1 × 18 = 18, 2 × 9 = 18.',
+  'mistake.F1.s2': 'He wrote the factor list: 1, 2, 3, 6.',
+  'mistake.F1.s3': 'He concluded that 18 has exactly 4 factors.',
+  'mistake.F1.fine1': 'That is sound: testing 1 and 2 produces valid rectangular factors.',
+  'mistake.F1.found':
+    'Here. Raju forgot the partner factors! 18 ÷ 2 is 9, and 18 ÷ 1 is 18. The full list is 1, 2, 3, 6, 9, 18.',
+  'mistake.F1.fine3': 'Concluding 4 factors is wrong because 9 and 18 are missing from the list.',
+  'explain.F1.s': 'Factors of a number always come in {0}: dividing by one factor reveals its {1}.',
+  'explain.F1.pairs': 'pairs',
+  'explain.F1.single': 'single',
+  'explain.F1.multiples': 'multiples',
+  'explain.F1.partner': 'partner',
+  'explain.F1.remainder': 'remainder',
+  'explain.F1.product': 'product',
+  'explain.F1.hint': 'Do factors travel in pairs with a partner, or alone as single multiples?',
+  'know.F1':
+    'A factor divides a number with no leftover; factors come in pairs formed by the sides of neat rectangular arrangements.',
 };

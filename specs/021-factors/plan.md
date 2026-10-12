@@ -1,6 +1,6 @@
 # Implementation Plan: 021 Factors Make Rectangles (Knot F1)
 
-Feature Branch: `feat/014-collection-fractions`
+Feature Branch: `feat/021-factors`
 
 ## Architecture & Module Ownership
 
