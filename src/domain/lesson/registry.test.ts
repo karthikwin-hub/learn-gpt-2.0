@@ -145,4 +145,14 @@ describe('Lesson registry', () => {
     expect(f4?.mistake?.steps).toBe(3);
     expect(f4?.mistake?.wrong).toBe(1);
   });
+
+  it('retrieves G1 Angles as turns lesson', () => {
+    const g1 = getLesson('G1');
+    expect(g1).not.toBeNull();
+    expect(g1?.cards).toHaveLength(6);
+    expect(g1?.explain).toHaveLength(2);
+    expect(g1?.mistake?.steps).toBe(3);
+    expect(g1?.mistake?.wrong).toBe(2);
+    expect(g1?.stateKey).toBe('angles');
+  });
 });

@@ -899,4 +899,58 @@ export const dictionary: Record<string, string> = {
   'explain.F4.hint': 'Is HCF the largest common factor or smallest, and does it leave a remainder?',
   'know.F4':
     'The Highest Common Factor is the largest shared divisor that fits both numbers with zero remainder.',
+
+  /* G1 */
+  'prashna.G1.q':
+    'Two clocks show 3 o’clock: a giant tower clock and a tiny wristwatch. Which clock’s hands make a bigger angle?',
+  'prashna.G1.c1': 'The giant tower clock',
+  'prashna.G1.c2': 'The tiny wristwatch',
+  'prashna.G1.c3': 'Both angles are exactly the same',
+  'prashna.G1.a':
+    'Both angles are exactly the same! An angle measures how far the hands turn (a quarter turn, 90°), not how long the hands are.',
+  'bodha.G1.what':
+    'An [[angle|angle]] measures the amount of turn between two lines meeting at a point called the vertex.',
+  'bodha.G1.can':
+    'You will be able to measure turns, recognize right angles and straight angles, and see that arm length never changes an angle.',
+  'bodha.G1.idea':
+    'Imagine an arm fixed at one end, turning like the hand of a clock. As it sweeps around, it traces out an angle.',
+  'bodha.G1.why':
+    'The length of the arms does not change how far you turned. A door opening a crack turns the same amount whether the door is giant or tiny!',
+  'bodha.G1.example': 'Three turns on a clock face:',
+  'bodha.G1.example1': 'Quarter turn from 12 to 3: 90° (a square corner or right angle).',
+  'bodha.G1.example2': 'Half turn from 12 to 6: 180° (a straight line or straight angle).',
+  'bodha.G1.example3': 'Full turn from 12 all the way around back to 12: 360° (a full circle).',
+  'bodha.G1.where': 'Opening doors, scissors blades, sun shadows, roof slopes, and clock hands.',
+  'bodha.G1.sutra': 'An angle is how far you turn, not how long the arms are.',
+  'gloss.angle': 'The measure of turn between two rays sharing a common vertex.',
+  'gloss.angle.en': 'angle',
+  'angles.title': 'Angles as turns',
+  'angles.art':
+    'A rotating ray sweeping an arc from a vertex, with adjustable arm length and angle readout.',
+  'angles.s1': 'Turn the ray to 90° to make a quarter turn (right angle).',
+  'angles.s1done': 'Quarter turn made: 90° creates a crisp square corner.',
+  'angles.s2': 'Stretch the arm length from short to long. Notice the angle does not change.',
+  'angles.s2done': 'The angle stayed at 90°! Longer arms do not make a bigger angle.',
+  'angles.s3': 'Compare the giant clock and the tiny watch at 3 o’clock side by side.',
+  'angles.s3done': 'Both hands turn exactly 1/4 of a full circle: both are 90°.',
+  'mistake.G1.intro': 'Tarun was comparing two angles. One step went wrong. Which one?',
+  'mistake.G1.s1': 'He saw a giant door open a small crack of 15°.',
+  'mistake.G1.s2': 'He saw a small pencil box lid open wide at 60°.',
+  'mistake.G1.s3':
+    'He declared that the giant door made a larger angle because the door was bigger.',
+  'mistake.G1.fine1': 'Sound observation: the door opened by 15°.',
+  'mistake.G1.fine2': 'Sound observation: the box lid opened by 60°.',
+  'mistake.G1.found':
+    'Here! The pencil box lid opened 60°, which is four times wider than 15°. Angle is amount of turn, not the size of the object.',
+  'explain.G1.s':
+    'An angle measures the amount of {0}, not how long the arms are. A quarter turn is a {1} angle.',
+  'explain.G1.turn': 'turn',
+  'explain.G1.length': 'length',
+  'explain.G1.weight': 'weight',
+  'explain.G1.right': 'right',
+  'explain.G1.straight': 'straight',
+  'explain.G1.zero': 'zero',
+  'explain.G1.hint':
+    'Does an angle measure turn or length, and what kind of angle is a quarter turn?',
+  'know.G1': 'An angle is how far you turn, not how long the arms are.',
 };

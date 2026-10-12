@@ -101,7 +101,7 @@ export const SECTIONS: Section[] = [
         id: 'rekha',
         crossing: 'cross.shapes',
         knots: [
-          k('G1'),
+          k('G1', { prashna: true, bench: bench('angles') }),
           k('G2', { bench: bench('rope') }),
           k('G3'),
           k('G4', { bench: bench('kolam') }),

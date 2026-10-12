@@ -1,0 +1,39 @@
+# Implementation Plan: 036 Bar Graphs (Axes, Scale Intervals & Jaal B1 ↔ H2) (Knot H2)
+
+Feature Branch: `feat/036-bar-graphs`
+
+## Architecture & Module Ownership
+
+### 1. Domain Layer (`src/domain/math/`)
+- Module: Pure functions for Bar Graphs (Axes, Scale Intervals & Jaal B1 ↔ H2) logic:
+  - `readBarValue(heightUnits: number, stepInterval: number): number`
+  - `generateAxisTicks(maxValue: number, stepInterval: number): number[]`
+  - `interpolateBarHeight(value: number, stepInterval: number): number`
+- Unit tests: `src/domain/math/bargraph.test.ts`.
+- Export through domain aggregator `src/domain/math/index.ts`.
+
+### 2. Lesson Engine (`src/domain/lesson/`)
+- Lesson definition: `src/domain/lesson/h2.ts`:
+  - 6 Bodha cards (what, idea, why, example, where, sutra).
+  - Mistake configuration for Vikram.
+  - Explain cloze configuration.
+- Register in `src/domain/lesson/registry.ts`.
+
+### 3. Curriculum Binding (`src/domain/curriculum/curriculum.ts`)
+- Bind Knot `H2`: `k('H2', { prashna: true, bench: bench('bargraph') })`.
+
+### 4. Presentation Layer (`src/ui/components/screens/`)
+- Screen: `src/ui/components/screens/bargraph.ts`:
+  - Interactive manipulative workbench mounted at `#bargraph`.
+  - Reversible physics, accessible numeric steppers, mobile responsive layout.
+- Router registration in `src/main.ts`.
+
+### 5. Localization (`src/domain/i18n/dictionaries/en-ganita.ts`)
+- Populate localized English strings for Knot `H2`:
+  - Prashna prompt, choices, explanation.
+  - Bodha cards and Sutra.
+  - Mistake dialogue and correction.
+  - Workbench labels and instructions.
+
+### 6. Acceptance Testing (`tests/acceptance/036-bargraph.spec.ts`)
+- Complete Playwright test suite verifying US1-AS1 through US5-AS1 across 360px and 390px viewports.
