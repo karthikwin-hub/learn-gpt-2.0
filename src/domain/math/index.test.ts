@@ -59,5 +59,7 @@ describe('src/domain/math/index exports', () => {
     expect(typeof math.isComposite).toBe('function');
     expect(typeof math.sievePrimesUpTo).toBe('function');
     expect(typeof math.primeFactorize).toBe('function');
+    expect(typeof math.testDivisibility).toBe('function');
+    expect(typeof math.sumOfDigits).toBe('function');
   });
 });

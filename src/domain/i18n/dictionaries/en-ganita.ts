@@ -787,4 +787,60 @@ export const dictionary: Record<string, string> = {
   'explain.F2.hint': 'Does a prime have two factors or three, and what is 1 called?',
   'know.F2':
     'A prime number has exactly two factors (1 and itself); composite numbers have more than two, and 1 is neither.',
+
+  /* F3 Divisibility Tests */
+  'prashna.F3.q': 'Is 5,232 divisible by 3 without performing long division?',
+  'prashna.F3.c1': 'Yes',
+  'prashna.F3.c2': 'No',
+  'prashna.F3.c3': 'Only if ending in 3',
+  'prashna.F3.a':
+    'Yes. 5 + 2 + 3 + 2 = 12. Since 12 is divisible by 3 (12 ÷ 3 = 4), 5,232 divides by 3 cleanly!',
+  'bodha.F3.what':
+    '[[divisibility|Divisibility tests]] are mental math shortcuts that reveal whether a huge number divides cleanly without doing long division.',
+  'bodha.F3.can':
+    'You will be able to test divisibility for 2, 3, 5, 6, 9, and 10 and understand the secret place-value logic behind them.',
+  'bodha.F3.idea':
+    'Two rule families: Last-digit checks (2, 5, 10 inspect the units place) and Digit-sum checks (3 and 9 sum all digits).',
+  'bodha.F3.why':
+    'Why the 3-rule works: Every ten is 9+1, every hundred is 99+1. The 9s and 99s already divide by 3; you only need to sum the leftover 1s from each house!',
+  'bodha.F3.example': 'Test 5,232 for divisibility by 3, 9, and 6.',
+  'bodha.F3.example1': 'Digit sum: 5 + 2 + 3 + 2 = 12. 12 ÷ 3 = 4, so it divides by 3!',
+  'bodha.F3.example2': 'Test for 9: 12 ÷ 9 leaves remainder 3, so it does NOT divide by 9.',
+  'bodha.F3.example3':
+    'Test for 6: It is even (ends in 2) AND divides by 3, so it passes both gates for 6!',
+  'bodha.F3.where':
+    'Verifying ISBN book barcodes, checking computer bank account checksums, and splitting warehouse shipments.',
+  'bodha.F3.sutra': 'For 2, 5, 10 check the last digit; for 3 and 9 add all digits together.',
+  'gloss.divisibility':
+    'The property of an integer dividing cleanly into another with zero remainder.',
+  'gloss.divisibility.en': 'divisibility',
+  'divisibility.title': 'Divisibility test scanner',
+  'divisibility.art':
+    'A multi-digit scanner highlighting units place and balancing digit sums on a scale.',
+  'divisibility.s1': 'Scan last digits to test divisibility by 2, 5, and 10.',
+  'divisibility.s1done': 'Last digit inspected: 5,232 ends in 2 (divisible by 2, but not 5 or 10).',
+  'divisibility.s2': 'Unfold and sum digits to test divisibility by 3 and 9.',
+  'divisibility.s2done': 'Digit sum 5 + 2 + 3 + 2 = 12: divides by 3, but not by 9.',
+  'divisibility.s3': 'Test composite divisor 6 through the dual-gate filter.',
+  'divisibility.s3done':
+    'Passes both gates (even + digit sum divides by 3): 5,232 is divisible by 6.',
+  'mistake.F3.intro':
+    'Mona claims 43 is divisible by 3 because it ends in 3. One step went wrong. Which one?',
+  'mistake.F3.s1': 'She inspected the units digit of 43 and saw 3.',
+  'mistake.F3.s2': 'She concluded that ending in 3 means 43 divides by 3.',
+  'mistake.F3.s3': 'She wrote that 43 ÷ 3 has no remainder.',
+  'mistake.F3.fine1': 'That is sound: 43 does indeed have 3 in the units place.',
+  'mistake.F3.found':
+    'Here. Ending in 3 is a trap! Divisibility by 3 requires adding the digits: 4 + 3 = 7. 7 is not divisible by 3, so 43 is not divisible by 3.',
+  'mistake.F3.fine3': 'Writing zero remainder is false because 43 ÷ 3 = 14 with remainder 1.',
+  'explain.F3.s': 'For 3 and 9, we must add all the {0} together to test their {1}.',
+  'explain.F3.digits': 'digits',
+  'explain.F3.factors': 'factors',
+  'explain.F3.ends': 'ends',
+  'explain.F3.sum': 'sum',
+  'explain.F3.remainder': 'remainder',
+  'explain.F3.product': 'product',
+  'explain.F3.hint': 'Do 3 and 9 inspect the last digit or do they add all digits to test the sum?',
+  'know.F3':
+    'For 2, 5, and 10, inspect the last digit; for 3 and 9, sum all digits; for 6, pass both 2 and 3.',
 };
