@@ -20,3 +20,12 @@ export {
 } from './fractions';
 export * from './money';
 export * from './roman';
+export {
+  partitionSet,
+  fractionOfSet,
+  addLikeFractions,
+  isLikeFractionSum,
+  formatFraction,
+  type CollectionFraction,
+  type SetPartition,
+} from './collection';

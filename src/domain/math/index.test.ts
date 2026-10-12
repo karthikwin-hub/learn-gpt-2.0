@@ -37,5 +37,8 @@ describe('src/domain/math/index exports', () => {
     expect(typeof math.calculateTotalPaise).toBe('function');
     expect(typeof math.toRoman).toBe('function');
     expect(typeof math.fromRoman).toBe('function');
+    expect(typeof math.partitionSet).toBe('function');
+    expect(typeof math.fractionOfSet).toBe('function');
+    expect(typeof math.addLikeFractions).toBe('function');
   });
 });
