@@ -12,8 +12,9 @@ import {
 } from '../../../domain/math/collection';
 import { t } from '../../../domain/i18n/core';
 import { clear, el, svg } from '../../util/dom';
+import { readStep, toMistakeButton } from '../../util/bench';
 import { enterThread } from '../../util/thread';
-import { router, type ScreenMeta } from '../app/router';
+import { type ScreenMeta } from '../app/router';
 
 export function createCollectionScreen(): ScreenMeta {
   return {
@@ -25,11 +26,7 @@ export function createCollectionScreen(): ScreenMeta {
     render(view, state, params = {}) {
       enterThread('N4', 'collection', params);
 
-      let stepNum = params.step
-        ? Number(params.step)
-        : typeof state.step === 'number'
-          ? state.step
-          : 1;
+      let stepNum = readStep(params.step, state.step, 3);
       let ringCount = typeof state.ringCount === 'number' ? state.ringCount : 3;
       let selectedRings: number[] = Array.isArray(state.selectedRings)
         ? [...state.selectedRings]
@@ -53,7 +50,7 @@ export function createCollectionScreen(): ScreenMeta {
       [1, 2, 3].forEach((s) => {
         const tabBtn = el('button', {
           class: `btn-choice ${stepNum === s ? 'active' : ''}`,
-          text: `Step ${s}`,
+          text: t('collection.stepTab', { n: String(s) }),
           style: { minHeight: '44px', minWidth: '44px', padding: '6px 14px' },
           onClick: () => {
             stepNum = s;
@@ -156,7 +153,7 @@ export function createCollectionScreen(): ScreenMeta {
             'font-size': '12',
             fill: 'var(--ink, #2d261e)',
           });
-          text.textContent = `Ring ${r + 1}`;
+          text.textContent = t('collection.ringLabel', { n: String(r + 1) });
           s.appendChild(text);
         }
 
@@ -198,7 +195,12 @@ export function createCollectionScreen(): ScreenMeta {
             style: 'cursor:pointer;',
             tabindex: 0,
             role: 'button',
-            'aria-label': `Ring ${r + 1} of 4, contains 4 items. ${isSelected ? 'Selected' : 'Unselected'}`,
+            'aria-label': t('collection.ringAria', {
+              n: String(r + 1),
+              total: '4',
+              count: '4',
+              state: isSelected ? t('collection.ringSelected') : t('collection.ringUnselected'),
+            }),
           });
 
           ringGroup.onclick = () => {
@@ -247,7 +249,7 @@ export function createCollectionScreen(): ScreenMeta {
             fill: 'var(--ink, #2d261e)',
             'font-weight': isSelected ? 'bold' : 'normal',
           });
-          ringLabel.textContent = `1/4 (4 items)`;
+          ringLabel.textContent = t('collection.ringFraction', { den: '4', count: '4' });
           ringGroup.appendChild(ringLabel);
 
           s.appendChild(ringGroup);
@@ -351,7 +353,11 @@ export function createCollectionScreen(): ScreenMeta {
         if (stepNum === 1) {
           modelCard.appendChild(renderStep1Svg());
           const res = partitionSet(12, ringCount);
-          equationCard.textContent = `12 ÷ ${ringCount} = ${res.itemsPerPart} items per group = 1/${ringCount} of 12`;
+          equationCard.textContent = t('collection.partitionEq', {
+            total: '12',
+            rings: String(ringCount),
+            per: String(res.itemsPerPart),
+          });
           say.textContent = t('collection.s1done');
 
           const selectorRow = el('div', {
@@ -362,7 +368,7 @@ export function createCollectionScreen(): ScreenMeta {
           [2, 3, 4, 6].forEach((n) => {
             const btn = el('button', {
               class: `btn-choice ${ringCount === n ? 'active' : ''}`,
-              text: `${n} rings`,
+              text: t('collection.ringsChoice', { n: String(n) }),
               style: { minHeight: '44px', minWidth: '44px', padding: '8px 16px' },
               onClick: () => {
                 ringCount = n;
@@ -377,7 +383,7 @@ export function createCollectionScreen(): ScreenMeta {
 
           const nextStepBtn = el('button', {
             class: 'btn-action btn-primary',
-            text: 'Next: Select groups',
+            text: t('collection.nextSelect'),
             style: { marginTop: '16px', minHeight: '44px', padding: '10px 20px' },
             onClick: () => {
               stepNum = 2;
@@ -391,9 +397,15 @@ export function createCollectionScreen(): ScreenMeta {
           const k = selectedRings.length;
           const totalTaken = fractionOfSet(16, k, 4);
 
-          equationCard.textContent = `${k}/4 of 16 = ${k} × 4 = ${totalTaken} tokens`;
+          equationCard.textContent = t('collection.fractionEq', {
+            num: String(k),
+            den: '4',
+            total: '16',
+            per: '4',
+            taken: String(totalTaken),
+          });
           if (k === 3) {
-            say.textContent = '3 out of 4 equal baskets taken: 12 tokens in all.';
+            say.textContent = t('collection.threeFourthsDone');
           } else {
             say.textContent = t('collection.s2done', {
               num: String(k),
@@ -404,13 +416,13 @@ export function createCollectionScreen(): ScreenMeta {
 
           const hint = el('p', {
             style: { fontSize: '13px', color: 'var(--muted, #6f675b)', margin: '8px 0' },
-            text: 'Tap rings to select or unselect them.',
+            text: t('collection.tapRings'),
           });
           actionsCard.appendChild(hint);
 
           const nextStepBtn = el('button', {
             class: 'btn-action btn-primary',
-            text: 'Next: Adding like fractions',
+            text: t('collection.nextAdd'),
             style: { marginTop: '12px', minHeight: '44px', padding: '10px 20px' },
             onClick: () => {
               stepNum = 3;
@@ -422,7 +434,11 @@ export function createCollectionScreen(): ScreenMeta {
         } else if (stepNum === 3) {
           modelCard.appendChild(renderStep3Svg());
           const sum = addLikeFractions({ num: 1, den: 5 }, { num: 2, den: 5 });
-          equationCard.textContent = `1/5 + 2/5 = ${formatFraction(sum)}`;
+          equationCard.textContent = t('collection.likeSumEq', {
+            a: '1/5',
+            b: '2/5',
+            sum: formatFraction(sum),
+          });
 
           const choicesRow = el('div', {
             class: 'choices-row',
@@ -456,13 +472,7 @@ export function createCollectionScreen(): ScreenMeta {
 
           if (done) {
             say.textContent = t('collection.s3done');
-            const toMistakeBtn = el('button', {
-              class: 'btn-action btn-primary',
-              text: t('bench.toMistake') || 'Next: Spot the mistake',
-              style: { marginTop: '16px', minHeight: '44px', padding: '10px 20px' },
-              onClick: () => router.go('mistake', { knot: 'N4' }),
-            });
-            actionsCard.appendChild(toMistakeBtn);
+            actionsCard.appendChild(toMistakeButton('N4'));
           }
         }
       }

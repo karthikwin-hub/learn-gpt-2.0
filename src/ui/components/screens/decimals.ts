@@ -7,14 +7,13 @@
 import {
   decomposeDecimal,
   decimalToHundredths,
-  compareDecimals,
   areEquivalentDecimals,
 } from '../../../domain/math/decimals';
 import { t } from '../../../domain/i18n/core';
 import { clear, el, svg } from '../../util/dom';
-import { readStep } from '../../util/bench';
+import { readStep, toMistakeButton } from '../../util/bench';
 import { enterThread } from '../../util/thread';
-import { router, type ScreenMeta } from '../app/router';
+import { type ScreenMeta } from '../app/router';
 
 export function createDecimalsScreen(): ScreenMeta {
   return {
@@ -48,7 +47,7 @@ export function createDecimalsScreen(): ScreenMeta {
       [1, 2, 3].forEach((s) => {
         const tabBtn = el('button', {
           class: `btn-choice ${stepNum === s ? 'active' : ''}`,
-          text: `Step ${s}`,
+          text: t('decimals.stepTab', { n: String(s) }),
           style: { minHeight: '44px', minWidth: '44px', padding: '6px 14px' },
           onClick: () => {
             stepNum = s;
@@ -87,7 +86,10 @@ export function createDecimalsScreen(): ScreenMeta {
           height: String(size + 10),
           style: 'display:inline-block; margin: 4px;',
           role: 'img',
-          'aria-label': `${label || 'Hundred grid'}: ${shaded} hundredths shaded`,
+          'aria-label': t('decimals.gridAria', {
+            label: label || t('decimals.gridDefault'),
+            shaded: String(shaded),
+          }),
         });
 
         // Grid border
@@ -157,7 +159,12 @@ export function createDecimalsScreen(): ScreenMeta {
 
           const val = (hundredthsCount / 100).toFixed(2);
           const decomp = decomposeDecimal(hundredthsCount / 100);
-          equationCard.textContent = `${val} = ${hundredthsCount}/100 = ${decomp.tenths} tenths + ${decomp.hundredths} hundredths`;
+          equationCard.textContent = t('decimals.decompEq', {
+            val,
+            hundredths: String(hundredthsCount),
+            tenths: String(decomp.tenths),
+            h: String(decomp.hundredths),
+          });
           say.textContent = t('decimals.s1done', {
             val,
             hundredths: String(hundredthsCount),
@@ -194,7 +201,7 @@ export function createDecimalsScreen(): ScreenMeta {
 
           const resetBtn = el('button', {
             class: 'btn-choice',
-            text: 'Reset',
+            text: t('common.reset'),
             style: { minHeight: '44px', minWidth: '60px', padding: '8px 16px' },
             onClick: () => {
               hundredthsCount = 0;
@@ -210,7 +217,7 @@ export function createDecimalsScreen(): ScreenMeta {
 
           const nextStepBtn = el('button', {
             class: 'btn-action btn-primary',
-            text: 'Next: Compare decimals',
+            text: t('decimals.nextCompare'),
             style: { marginTop: '16px', minHeight: '44px', padding: '10px 20px' },
             onClick: () => {
               stepNum = 2;
@@ -226,18 +233,16 @@ export function createDecimalsScreen(): ScreenMeta {
           });
           const hA = decimalToHundredths(0.5);
           const hB = decimalToHundredths(0.15);
-          const cmp = compareDecimals(0.5, 0.15);
-
-          gridWrapper.appendChild(renderGrid(hA, 160, '0.5 (50 hundredths)'));
-          gridWrapper.appendChild(renderGrid(hB, 160, '0.15 (15 hundredths)'));
+          gridWrapper.appendChild(renderGrid(hA, 160, t('decimals.gridLabelTenths')));
+          gridWrapper.appendChild(renderGrid(hB, 160, t('decimals.gridLabelHundredths')));
           modelCard.appendChild(gridWrapper);
 
-          equationCard.textContent = cmp > 0 ? '0.5 > 0.15' : '0.5 < 0.15';
+          equationCard.textContent = t('decimals.compareEq');
           say.textContent = t('decimals.s2done');
 
           const nextStepBtn = el('button', {
             class: 'btn-action btn-primary',
-            text: 'Next: Trailing zeroes',
+            text: t('decimals.nextTrailing'),
             style: { marginTop: '16px', minHeight: '44px', padding: '10px 20px' },
             onClick: () => {
               stepNum = 3;
@@ -251,12 +256,14 @@ export function createDecimalsScreen(): ScreenMeta {
           const h = decimalToHundredths(0.5);
           const displayStr = showTrailingZero ? '0.50' : '0.5';
 
-          modelCard.appendChild(renderGrid(h, 200, `${displayStr} (50 hundredths)`));
-          equationCard.textContent = `${displayStr} = 5/10 = 50/100`;
+          modelCard.appendChild(
+            renderGrid(h, 200, t('decimals.gridLabelTrailing', { val: displayStr }))
+          );
+          equationCard.textContent = t('decimals.trailingEq', { val: displayStr });
 
           const toggleBtn = el('button', {
             class: 'btn-choice active',
-            text: showTrailingZero ? 'Show 0.5' : 'Add trailing zero (0.50)',
+            text: showTrailingZero ? t('decimals.showHalf') : t('decimals.addTrailing'),
             style: { minHeight: '44px', padding: '8px 18px' },
             onClick: () => {
               showTrailingZero = !showTrailingZero;
@@ -271,13 +278,7 @@ export function createDecimalsScreen(): ScreenMeta {
           if (showTrailingZero || done) {
             areEquivalentDecimals('0.5', '0.50');
             say.textContent = t('decimals.s3done');
-            const toMistakeBtn = el('button', {
-              class: 'btn-action btn-primary',
-              text: t('bench.toMistake') || 'Next: Spot the mistake',
-              style: { marginTop: '16px', minHeight: '44px', padding: '10px 20px' },
-              onClick: () => router.go('mistake', { knot: 'N5' }),
-            });
-            actionsCard.appendChild(toMistakeBtn);
+            actionsCard.appendChild(toMistakeButton('N5'));
           }
         }
       }

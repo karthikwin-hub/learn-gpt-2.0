@@ -11,8 +11,9 @@ import {
 } from '../../../domain/math/regroup';
 import { t } from '../../../domain/i18n/core';
 import { clear, el, svg } from '../../util/dom';
+import { readStep, toMistakeButton } from '../../util/bench';
 import { enterThread } from '../../util/thread';
-import { router, type ScreenMeta } from '../app/router';
+import { type ScreenMeta } from '../app/router';
 
 export function createRegroupScreen(): ScreenMeta {
   return {
@@ -24,11 +25,7 @@ export function createRegroupScreen(): ScreenMeta {
     render(view, state, params = {}) {
       enterThread('A1', 'regroup', params);
 
-      let stepNum = params.step
-        ? Number(params.step)
-        : typeof state.step === 'number'
-          ? state.step
-          : 1;
+      let stepNum = readStep(params.step, state.step, 3);
 
       // Houses for unbundling step 1
       let hundreds = typeof state.hundreds === 'number' ? state.hundreds : 5;
@@ -54,7 +51,7 @@ export function createRegroupScreen(): ScreenMeta {
       [1, 2, 3].forEach((s) => {
         const tabBtn = el('button', {
           class: `btn-choice ${stepNum === s ? 'active' : ''}`,
-          text: `Step ${s}`,
+          text: t('regroup.stepTab', { n: String(s) }),
           style: { minHeight: '44px', minWidth: '44px', padding: '6px 14px' },
           onClick: () => {
             stepNum = s;
@@ -110,9 +107,9 @@ export function createRegroupScreen(): ScreenMeta {
         );
 
         const cols = [
-          { name: 'Hundreds', count: h, x: 70 },
-          { name: 'Tens', count: tCount, x: 170 },
-          { name: 'Ones', count: oCount, x: 270 },
+          { name: t('regroup.colH'), count: h, x: 70 },
+          { name: t('regroup.colT'), count: tCount, x: 170 },
+          { name: t('regroup.colO'), count: oCount, x: 270 },
         ];
 
         cols.forEach((col) => {
@@ -182,7 +179,12 @@ export function createRegroupScreen(): ScreenMeta {
         if (stepNum === 1) {
           modelCard.appendChild(renderAbacusSvg(hundreds, tens, ones));
           const totalVal = verifyConservation({ hundreds, tens, ones });
-          equationCard.textContent = `${hundreds * 100} + ${tens * 10} + ${ones} = ${totalVal}`;
+          equationCard.textContent = t('regroup.conservationEq', {
+            h: String(hundreds * 100),
+            t: String(tens * 10),
+            o: String(ones),
+            total: String(totalVal),
+          });
 
           if (hundreds === 4 && tens === 9 && ones === 10) {
             say.textContent = t('regroup.s1done');
@@ -197,7 +199,7 @@ export function createRegroupScreen(): ScreenMeta {
 
           const unbundleHundredBtn = el('button', {
             class: 'btn-choice',
-            text: 'Unbundle 1 hundred → 10 tens',
+            text: t('regroup.unbundleH'),
             style: { minHeight: '44px', padding: '8px 14px' },
             onClick: () => {
               if (hundreds > 0) {
@@ -212,7 +214,7 @@ export function createRegroupScreen(): ScreenMeta {
 
           const unbundleTenBtn = el('button', {
             class: 'btn-choice',
-            text: 'Unbundle 1 ten → 10 ones',
+            text: t('regroup.unbundleT'),
             style: { minHeight: '44px', padding: '8px 14px' },
             onClick: () => {
               if (tens > 0) {
@@ -227,7 +229,7 @@ export function createRegroupScreen(): ScreenMeta {
 
           const resetBtn = el('button', {
             class: 'btn-choice',
-            text: 'Reset 500',
+            text: t('regroup.reset500'),
             style: { minHeight: '44px', padding: '8px 14px' },
             onClick: () => {
               hundreds = 5;
@@ -247,7 +249,7 @@ export function createRegroupScreen(): ScreenMeta {
 
           const nextStepBtn = el('button', {
             class: 'btn-action btn-primary',
-            text: 'Next: Subtract 500 - 247',
+            text: t('regroup.nextSubtract'),
             style: { marginTop: '16px', minHeight: '44px', padding: '10px 20px' },
             onClick: () => {
               stepNum = 2;
@@ -259,7 +261,7 @@ export function createRegroupScreen(): ScreenMeta {
         } else if (stepNum === 2) {
           const res = subtractWithRegrouping(500, 247);
           modelCard.appendChild(renderAbacusSvg(2, 5, 3));
-          equationCard.textContent = `500 - 247 = ${res.difference}`;
+          equationCard.textContent = t('regroup.subtractEq', { result: String(res.difference) });
           say.textContent = t('regroup.s2done');
 
           const explanationBox = el('div', {
@@ -276,7 +278,13 @@ export function createRegroupScreen(): ScreenMeta {
 
           res.steps.forEach((st) => {
             const line = el('div', {
-              text: `${st.placeName.toUpperCase()}: ${st.topDigit} - ${st.bottomDigit} = ${st.resultDigit} ${st.unbundled ? '(unbundled)' : ''}`,
+              text: t('regroup.columnStep', {
+                place: st.placeName.toUpperCase(),
+                top: String(st.topDigit),
+                bottom: String(st.bottomDigit),
+                result: String(st.resultDigit),
+                extra: st.unbundled ? t('regroup.unbundledTag') : '',
+              }),
             });
             explanationBox.appendChild(line);
           });
@@ -284,7 +292,7 @@ export function createRegroupScreen(): ScreenMeta {
 
           const nextStepBtn = el('button', {
             class: 'btn-action btn-primary',
-            text: 'Next: Adding with bundling',
+            text: t('regroup.nextAdd'),
             style: { marginTop: '16px', minHeight: '44px', padding: '10px 20px' },
             onClick: () => {
               stepNum = 3;
@@ -296,18 +304,12 @@ export function createRegroupScreen(): ScreenMeta {
         } else if (stepNum === 3) {
           const res = addWithRegrouping(678, 456);
           modelCard.appendChild(renderAbacusSvg(1, 3, 4));
-          equationCard.textContent = `678 + 456 = ${res.sum}`;
+          equationCard.textContent = t('regroup.addEq', { sum: String(res.sum) });
           say.textContent = t('regroup.s3done');
           done = true;
           state.done = true;
 
-          const toMistakeBtn = el('button', {
-            class: 'btn-action btn-primary',
-            text: t('bench.toMistake') || 'Next: Spot the mistake',
-            style: { marginTop: '16px', minHeight: '44px', padding: '10px 20px' },
-            onClick: () => router.go('mistake', { knot: 'A1' }),
-          });
-          actionsCard.appendChild(toMistakeBtn);
+          actionsCard.appendChild(toMistakeButton('A1'));
         }
       }
 

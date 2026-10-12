@@ -12,9 +12,9 @@ import {
 } from '../../../domain/math/estimate';
 import { t } from '../../../domain/i18n/core';
 import { clear, el, svg } from '../../util/dom';
-import { readStep } from '../../util/bench';
+import { readStep, toMistakeButton } from '../../util/bench';
 import { enterThread } from '../../util/thread';
-import { router, type ScreenMeta } from '../app/router';
+import { type ScreenMeta } from '../app/router';
 
 export function createEstimateScreen(): ScreenMeta {
   return {
@@ -49,7 +49,7 @@ export function createEstimateScreen(): ScreenMeta {
       [1, 2, 3].forEach((s) => {
         const tabBtn = el('button', {
           class: `btn-choice ${stepNum === s ? 'active' : ''}`,
-          text: `Step ${s}`,
+          text: t('estimate.stepTab', { n: String(s) }),
           style: { minHeight: '44px', minWidth: '44px', padding: '6px 14px' },
           onClick: () => {
             stepNum = s;
@@ -160,7 +160,7 @@ export function createEstimateScreen(): ScreenMeta {
           'font-weight': 'bold',
           fill: 'var(--accent, #a66a38)',
         });
-        mText.textContent = snapped48 ? '48 → 50' : '48';
+        mText.textContent = snapped48 ? t('estimate.snapArrow') : '48';
         s.appendChild(mText);
 
         return s;
@@ -172,7 +172,7 @@ export function createEstimateScreen(): ScreenMeta {
           width: '100%',
           style: 'max-width:440px; display:inline-block; height:auto;',
           role: 'img',
-          'aria-label': 'Safe zone range',
+          'aria-label': t('estimate.safeZoneAria'),
         });
 
         s.appendChild(
@@ -210,7 +210,7 @@ export function createEstimateScreen(): ScreenMeta {
           'font-weight': 'bold',
           fill: '#2e6b38',
         });
-        safeTxt.textContent = 'Safe Zone: 1000 – 1400';
+        safeTxt.textContent = t('estimate.safeZoneLabel');
         s.appendChild(safeTxt);
 
         // Center 1200 marker
@@ -245,10 +245,13 @@ export function createEstimateScreen(): ScreenMeta {
           const r392 = roundToNearest(392, 100);
 
           if (snapped48 && snapped392) {
-            equationCard.textContent = `48 → ${r48} (nearest 10) · 392 → ${r392} (nearest 100)`;
+            equationCard.textContent = t('estimate.snapLine', {
+              r48: String(r48),
+              r392: String(r392),
+            });
             say.textContent = t('estimate.s1done');
           } else {
-            equationCard.textContent = 'Tap to snap prickly numbers to friendly benchmarks';
+            equationCard.textContent = t('estimate.snapPrompt');
             say.textContent = t('estimate.s1');
           }
 
@@ -259,7 +262,7 @@ export function createEstimateScreen(): ScreenMeta {
 
           const snap48Btn = el('button', {
             class: `btn-choice ${snapped48 ? 'active' : ''}`,
-            text: 'Snap 48 → 50',
+            text: t('estimate.snap48'),
             style: { minHeight: '44px', padding: '8px 16px' },
             onClick: () => {
               snapped48 = true;
@@ -270,7 +273,7 @@ export function createEstimateScreen(): ScreenMeta {
 
           const snap392Btn = el('button', {
             class: `btn-choice ${snapped392 ? 'active' : ''}`,
-            text: 'Snap 392 → 400',
+            text: t('estimate.snap392'),
             style: { minHeight: '44px', padding: '8px 16px' },
             onClick: () => {
               snapped392 = true;
@@ -285,7 +288,7 @@ export function createEstimateScreen(): ScreenMeta {
 
           const nextStepBtn = el('button', {
             class: 'btn-action btn-primary',
-            text: 'Next: Safe Zone builder',
+            text: t('estimate.nextSafe'),
             style: { marginTop: '16px', minHeight: '44px', padding: '10px 20px' },
             onClick: () => {
               stepNum = 2;
@@ -297,12 +300,16 @@ export function createEstimateScreen(): ScreenMeta {
         } else if (stepNum === 2) {
           const res = estimateProduct(29, 41, 10);
           modelCard.appendChild(renderStep2Svg());
-          equationCard.textContent = `29 × 41 ≈ ${res.roundA} × ${res.roundB} = ${res.estimate} (Safe zone: 1000 – 1400)`;
+          equationCard.textContent = t('estimate.productEq', {
+            a: String(res.roundA),
+            b: String(res.roundB),
+            est: String(res.estimate),
+          });
           say.textContent = t('estimate.s2done');
 
           const nextStepBtn = el('button', {
             class: 'btn-action btn-primary',
-            text: 'Next: Wild error radar',
+            text: t('estimate.nextWild'),
             style: { marginTop: '16px', minHeight: '44px', padding: '10px 20px' },
             onClick: () => {
               stepNum = 3;
@@ -315,7 +322,7 @@ export function createEstimateScreen(): ScreenMeta {
           modelCard.appendChild(renderStep2Svg());
           const est = estimateSum(392, 514, 100);
           estimateProduct(21, 39, 10);
-          equationCard.textContent = '21 × 39 (Estimate: 20 × 40 = 800)';
+          equationCard.textContent = t('estimate.checkPrompt');
 
           const choicesRow = el('div', {
             class: 'choices-row',
@@ -339,7 +346,7 @@ export function createEstimateScreen(): ScreenMeta {
             onClick: () => {
               done = true;
               state.done = true;
-              say.textContent = `819 is in the safe zone around 800 (exact: 21 × 39 = 819). Difference from sum check: ${est.diff}.`;
+              say.textContent = t('estimate.inZone', { diff: String(est.diff) });
               paint();
             },
           });
@@ -349,13 +356,7 @@ export function createEstimateScreen(): ScreenMeta {
           actionsCard.appendChild(choicesRow);
 
           if (done) {
-            const toMistakeBtn = el('button', {
-              class: 'btn-action btn-primary',
-              text: t('bench.toMistake') || 'Next: Spot the mistake',
-              style: { marginTop: '16px', minHeight: '44px', padding: '10px 20px' },
-              onClick: () => router.go('mistake', { knot: 'A2' }),
-            });
-            actionsCard.appendChild(toMistakeBtn);
+            actionsCard.appendChild(toMistakeButton('A2'));
           }
         }
       }

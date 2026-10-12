@@ -12,6 +12,7 @@ import {
 } from '../../../domain/math/wordprob';
 import { t } from '../../../domain/i18n/core';
 import { clear, el } from '../../util/dom';
+import { readStep } from '../../util/bench';
 import { enterThread } from '../../util/thread';
 import { router, type ScreenMeta } from '../app/router';
 
@@ -25,11 +26,7 @@ export function createWordprobScreen(): ScreenMeta {
     render(view, state, params = {}) {
       enterThread('A3', 'wordprob', params);
 
-      let stepNum = params.step
-        ? Number(params.step)
-        : typeof state.step === 'number'
-          ? state.step
-          : 1;
+      let stepNum = readStep(params.step, state.step, 3);
 
       let selectedAction = state.selectedAction ? String(state.selectedAction) : '';
       let comparisonRevealed = Boolean(state.comparisonRevealed);
@@ -51,17 +48,17 @@ export function createWordprobScreen(): ScreenMeta {
 
       const tab1 = el('button', {
         class: `step-tab ${stepNum === 1 ? 'active' : ''}`,
-        text: '1. Action Detective',
+        text: t('wordprob.tab1'),
         style: { minHeight: '44px', padding: '8px 12px' },
       });
       const tab2 = el('button', {
         class: `step-tab ${stepNum === 2 ? 'active' : ''}`,
-        text: '2. Comparison Gap',
+        text: t('wordprob.tab2'),
         style: { minHeight: '44px', padding: '8px 12px' },
       });
       const tab3 = el('button', {
         class: `step-tab ${stepNum === 3 ? 'active' : ''}`,
-        text: '3. Equation Assembler',
+        text: t('wordprob.tab3'),
         style: { minHeight: '44px', padding: '8px 12px' },
       });
 
@@ -136,18 +133,28 @@ export function createWordprobScreen(): ScreenMeta {
           },
         });
 
-        storyCard.innerHTML = `
-          <div style="font-weight: bold; margin-bottom: 6px; color: var(--color-accent, #c2410c);">Story Situation:</div>
-          <div style="font-size: 1.1rem; line-height: 1.5;">
-            "Radha buys <strong>6 boxes</strong> of colored pencils. Each box contains <strong>24 pencils</strong>. How many pencils does she have in total?"
-          </div>
-        `;
+        storyCard.appendChild(
+          el('div', {
+            style: {
+              fontWeight: 'bold',
+              marginBottom: '6px',
+              color: 'var(--color-accent, #c2410c)',
+            },
+            text: t('wordprob.story1Title'),
+          })
+        );
+        storyCard.appendChild(
+          el('div', {
+            style: { fontSize: '1.1rem', lineHeight: '1.5' },
+            text: t('wordprob.story1'),
+          })
+        );
         card.appendChild(storyCard);
 
         // Action badge choices
         const badgeTitle = el('div', {
           style: { fontWeight: 'bold', marginBottom: '8px' },
-          text: 'What physical action is happening in this scene?',
+          text: t('wordprob.actionPrompt'),
         });
         card.appendChild(badgeTitle);
 
@@ -161,11 +168,11 @@ export function createWordprobScreen(): ScreenMeta {
           },
         });
 
-        const actions: { id: RootAction; label: string; op: string }[] = [
-          { id: 'combine', label: 'Join Collections', op: '(+)' },
-          { id: 'compare', label: 'Compare Heights', op: '(−)' },
-          { id: 'replicate', label: 'Replicate Equal Groups', op: '(×)' },
-          { id: 'partition', label: 'Partition Shares', op: '(÷)' },
+        const actions: { id: RootAction; label: string }[] = [
+          { id: 'combine', label: t('wordprob.actionJoin') },
+          { id: 'compare', label: t('wordprob.actionCompare') },
+          { id: 'replicate', label: t('wordprob.actionReplicate') },
+          { id: 'partition', label: t('wordprob.actionPartition') },
         ];
 
         actions.forEach((act) => {
@@ -202,7 +209,7 @@ export function createWordprobScreen(): ScreenMeta {
 
           const diagTitle = el('div', {
             style: { fontWeight: 'bold', color: '#16a34a', marginBottom: '8px' },
-            text: 'Tape Diagram: 6 equal boxes of 24 = 24 × 6 = 144 pencils',
+            text: t('wordprob.tapeReplicate'),
           });
           diagramBox.appendChild(diagTitle);
 
@@ -256,12 +263,18 @@ export function createWordprobScreen(): ScreenMeta {
           },
         });
 
-        storyCard.innerHTML = `
-          <div style="font-weight: bold; margin-bottom: 6px; color: #b45309;">Comparison Situation (Keyword Trap!):</div>
-          <div style="font-size: 1.1rem; line-height: 1.5;">
-            "A temple flagpole is <strong>40 m</strong> tall. A garden lamp post is <strong>15 m</strong> tall. How much <em>more</em> (taller) is the flagpole?"
-          </div>
-        `;
+        storyCard.appendChild(
+          el('div', {
+            style: { fontWeight: 'bold', marginBottom: '6px', color: '#b45309' },
+            text: t('wordprob.story2Title'),
+          })
+        );
+        storyCard.appendChild(
+          el('div', {
+            style: { fontSize: '1.1rem', lineHeight: '1.5' },
+            text: t('wordprob.story2'),
+          })
+        );
         card.appendChild(storyCard);
 
         const gapData = buildComparisonGap(40, 15);
@@ -287,7 +300,7 @@ export function createWordprobScreen(): ScreenMeta {
             borderRadius: '6px',
             fontWeight: 'bold',
           },
-          text: 'Temple Flagpole: 40 m',
+          text: t('wordprob.flagpole'),
         });
 
         const bar2Wrap = el('div', {
@@ -304,7 +317,7 @@ export function createWordprobScreen(): ScreenMeta {
             fontWeight: 'bold',
             whiteSpace: 'nowrap',
           },
-          text: 'Lamp Post: 15 m',
+          text: t('wordprob.lamppost'),
         });
 
         const gapBar = el('div', {
@@ -319,7 +332,9 @@ export function createWordprobScreen(): ScreenMeta {
             fontWeight: 'bold',
             textAlign: 'center',
           },
-          text: comparisonRevealed ? `Difference Gap: 25 m (${gapData.equation})` : '? Gap',
+          text: comparisonRevealed
+            ? t('wordprob.gapReveal', { eq: gapData.equation })
+            : t('wordprob.gapHidden'),
         });
 
         bar2Wrap.appendChild(bar2);
@@ -331,7 +346,7 @@ export function createWordprobScreen(): ScreenMeta {
 
         const btnReveal = el('button', {
           class: 'btn btn-primary',
-          text: comparisonRevealed ? 'Gap Modeled: 40 - 15 = 25' : 'Find Comparison Gap (Subtract)',
+          text: comparisonRevealed ? t('wordprob.gapDone') : t('wordprob.gapBtn'),
           style: { minHeight: '44px', padding: '10px 18px' },
         });
 
@@ -368,12 +383,18 @@ export function createWordprobScreen(): ScreenMeta {
           },
         });
 
-        storyCard.innerHTML = `
-          <div style="font-weight: bold; margin-bottom: 6px; color: #16a34a;">Partition Story:</div>
-          <div style="font-size: 1.1rem; line-height: 1.5;">
-            "5 children share 30 laddoos equally. How many laddoos does each child get?"
-          </div>
-        `;
+        storyCard.appendChild(
+          el('div', {
+            style: { fontWeight: 'bold', marginBottom: '6px', color: '#16a34a' },
+            text: t('wordprob.story3Title'),
+          })
+        );
+        storyCard.appendChild(
+          el('div', {
+            style: { fontSize: '1.1rem', lineHeight: '1.5' },
+            text: t('wordprob.story3'),
+          })
+        );
         card.appendChild(storyCard);
 
         const resultVal = evaluateProblemModel(30, 5, '÷');
@@ -388,15 +409,15 @@ export function createWordprobScreen(): ScreenMeta {
             borderRadius: '8px',
             margin: '16px 0',
           },
-          text: equationAssembled ? `30 ÷ 5 = ${resultVal} laddoos each` : 'Equation: [ ? ]',
+          text: equationAssembled
+            ? t('wordprob.equationDone', { n: String(resultVal) })
+            : t('wordprob.equationPending'),
         });
         card.appendChild(assembledEquation);
 
         const assembleBtn = el('button', {
           class: 'btn btn-primary',
-          text: equationAssembled
-            ? 'Assembled: 30 ÷ 5 = 6'
-            : 'Assemble Partition Equation (30 ÷ 5)',
+          text: equationAssembled ? t('wordprob.assembleDone') : t('wordprob.assembleBtn'),
           style: { minHeight: '44px', padding: '10px 18px' },
         });
 
@@ -427,7 +448,7 @@ export function createWordprobScreen(): ScreenMeta {
 
       const bodhaBtn = el('button', {
         class: 'btn btn-subtle',
-        text: '← Back to Bodha',
+        text: t('number.backBodha'),
         style: { minHeight: '44px', padding: '10px 16px' },
       });
       bodhaBtn.addEventListener('click', () => {
@@ -436,7 +457,7 @@ export function createWordprobScreen(): ScreenMeta {
 
       const mistakeBtn = el('button', {
         class: 'btn btn-primary',
-        text: 'Spot the Mistake →',
+        text: t('number.forwardMistake'),
         style: { minHeight: '44px', padding: '10px 16px' },
       });
       mistakeBtn.addEventListener('click', () => {
