@@ -335,4 +335,14 @@ describe('Lesson registry', () => {
     expect(l2?.mistake?.wrong).toBe(1);
     expect(l2?.stateKey).toBe('logic');
   });
+
+  it('retrieves L3 Conditionals lesson', () => {
+    const l3 = getLesson('L3');
+    expect(l3).not.toBeNull();
+    expect(l3?.cards).toHaveLength(6);
+    expect(l3?.explain).toHaveLength(2);
+    expect(l3?.mistake?.steps).toBe(3);
+    expect(l3?.mistake?.wrong).toBe(1);
+    expect(l3?.stateKey).toBe('conditional');
+  });
 });

@@ -1928,4 +1928,65 @@ export const dictionary: Record<string, string> = {
   'explain.L2.hint':
     'Recall how series (AND) and parallel (OR) tracks behave when switches are open.',
   'know.L2': 'AND needs both; OR needs at least one; NOT flips the answer.',
+
+  /* L3 */
+  'prashna.L3.q':
+    'Statement: "If an animal is a dog, it has 4 legs." If you see an animal with 4 legs, is it definitely a dog?',
+  'prashna.L3.c1': 'Yes, all 4-legged animals are dogs',
+  'prashna.L3.c2': 'No, it could be a cat, cow, or tiger',
+  'prashna.L3.c3': 'Only if it barks',
+  'prashna.L3.a':
+    'Many animals have 4 legs (cats, cows, tigers)! The rule "If dog then 4 legs" does NOT mean that every 4-legged animal is a dog (the converse fallacy).',
+  'bodha.L3.what':
+    'A conditional statement connects a cause to an effect: "IF this happens, THEN that follows." (P ⟹ Q).',
+  'bodha.L3.can':
+    'Test conditional statements, visualize nested subset rings, and spot the converse fallacy.',
+  'bodha.L3.idea':
+    'Direction matters! If A happens, B is guaranteed. But B can happen for completely different reasons!',
+  'bodha.L3.why':
+    'Think of nested rings: "Dogs" is a small ring inside the giant ring of "Four-legged animals."',
+  'bodha.L3.example': 'Forward truth vs Reverse fallacy:',
+  'bodha.L3.example1':
+    'Step 1: Statement: "If a number is divisible by 10, it ends in 0." (Always true!).',
+  'bodha.L3.example2':
+    'Step 2: Reverse: "If a number ends in 0, it divides by 100." (False! 70 ends in 0 but does not divide by 100).',
+  'bodha.L3.example3':
+    'Step 3: Turning an implication backwards creates a new statement that might be false!',
+  'bodha.L3.where':
+    'Game rules ("If you roll a 6, you roll again"), doctor advice, and science experiments.',
+  'bodha.L3.sutra':
+    'If A then B tells the forward direction; turning it backwards is not always true.',
+  'conditional.title': 'If This, Then That (Conditionals & Converse Fallacy)',
+  'conditional.lead':
+    'Explore implication rules (P ⟹ Q), test whether reversing the statement holds, and discover nested subsets.',
+  'conditional.forward_statement': 'Forward Statement (P ⟹ Q):',
+  'conditional.reverse_statement': 'Reverse Statement / Converse (Q ⟹ P):',
+  'conditional.reverse_button': 'Test Reverse Statement',
+  'conditional.forward_button': 'Test Forward Statement',
+  'conditional.valid_forward': 'Forward statement is ALWAYS TRUE',
+  'conditional.invalid_converse': 'Converse is FALSE (Converse Fallacy!)',
+  'conditional.valid_biconditional': 'Converse is also TRUE (Biconditional)',
+  'conditional.counterexamples': 'Counterexamples Disproving Converse:',
+  'conditional.nested_subsets': 'Nested Subset Visualizer (P ⊆ Q)',
+  'conditional.inner_ring': 'Inner Set P (Premise)',
+  'conditional.outer_ring': 'Outer Set Q (Conclusion)',
+  'conditional.reset': 'Reset',
+  'mistake.L3.intro': 'Farhan is discussing 4-sided shapes and makes a geometric argument:',
+  'mistake.L3.s1': 'He states: "If a shape is a square, it has 4 sides."',
+  'mistake.L3.s2': 'He reverses the rule: "Therefore, any shape with 4 sides must be a square."',
+  'mistake.L3.s3': 'He concludes that a rectangle must also be called a square.',
+  'mistake.L3.fine1': 'Sound rule: all squares do have 4 sides.',
+  'mistake.L3.fine3': 'Step 3 fails because of the converse fallacy committed in Step 2.',
+  'mistake.L3.found':
+    'Here! Having 4 sides does not guarantee being a square! Rectangles, kites, and trapezoids also have 4 sides without being squares. Reversing an implication is not valid!',
+  'explain.L3.s':
+    'A conditional statement tells what happens in the {0} direction. Reversing an "If A then B" statement is {1} automatically true.',
+  'explain.L3.forward': 'forward',
+  'explain.L3.reverse': 'reverse',
+  'explain.L3.opposite': 'opposite',
+  'explain.L3.not': 'not',
+  'explain.L3.always': 'always',
+  'explain.L3.certainly': 'certainly',
+  'explain.L3.hint': 'Recall why nested rings allow one direction but not always the reverse.',
+  'know.L3': 'If A then B tells the forward direction; turning it backwards is not always true.',
 };

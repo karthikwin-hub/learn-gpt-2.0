@@ -142,7 +142,7 @@ export const SECTIONS: Section[] = [
           k('S3', { prashna: true, bench: bench('sets', { mode: 'guess' }) }),
           k('L1', { prashna: true, bench: bench('counterexample') }),
           k('L2', { prashna: true, bench: bench('logic') }),
-          k('L3'),
+          k('L3', { prashna: true, bench: bench('conditional') }),
         ],
       },
     ],

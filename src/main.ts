@@ -53,6 +53,7 @@ import { createSequencesScreen } from './ui/components/screens/sequences';
 import { createGrowingScreen } from './ui/components/screens/growing';
 import { createSinglesetScreen } from './ui/components/screens/singleset';
 import { createCounterexampleScreen } from './ui/components/screens/counterexample';
+import { createConditionalScreen } from './ui/components/screens/conditional';
 import { createMoneyScreen } from './ui/components/screens/money';
 import { createDigestScreen } from './ui/components/screens/digest';
 import { createRampScreen } from './ui/components/screens/ramp';
@@ -125,6 +126,7 @@ export function initApp(): void {
   router.register(createGrowingScreen());
   router.register(createSinglesetScreen());
   router.register(createCounterexampleScreen());
+  router.register(createConditionalScreen());
   router.register(createMoneyScreen());
   router.register(createDigestScreen());
   router.register(createRampScreen());
