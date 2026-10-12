@@ -1630,4 +1630,62 @@ export const dictionary: Record<string, string> = {
   'explain.L4.hint':
     'Think about what invariant connects every term, and how much is added from 5 to 10 to 15.',
   'know.L4': 'Find what connects one step to the next: the rule tells you what comes next.',
+
+  /* P1 */
+  'prashna.P1.q':
+    'In a dot triangle, row 1 has 1 dot, row 2 has 2 dots, row 3 has 3 dots. How many total dots are in a 4-row triangle?',
+  'prashna.P1.c1': '7 dots',
+  'prashna.P1.c2': '10 dots',
+  'prashna.P1.c3': '12 dots',
+  'prashna.P1.a':
+    'Add every row layer: 1 + 2 + 3 + 4 = 10 dots! Each new row adds its row number of dots.',
+  'bodha.P1.what':
+    'Growing patterns are shapes made of dots or tiles that expand stage by stage according to a geometric rule.',
+  'bodha.P1.can':
+    'Build triangular dot stacks, expand square tile grids, and track layer-by-layer growth.',
+  'bodha.P1.idea':
+    'In a dot triangle, each new stage adds a whole new bottom row: stage 1 has 1; stage 2 adds 2 (total 3); stage 3 adds 3 (total 6).',
+  'bodha.P1.why':
+    'Square patterns grow by adding an L-shaped border around the previous square: 1, 4, 9, 16, 25 (each stage n has n × n dots).',
+  'bodha.P1.example': 'Building growing shapes:',
+  'bodha.P1.example1': 'Step 1: Stage 1 = 1 dot.',
+  'bodha.P1.example2': 'Step 2: Stage 2 = 1 + 2 = 3 dots; Stage 3 = 1 + 2 + 3 = 6 dots.',
+  'bodha.P1.example3': 'Step 3: Stage 4 = 1 + 2 + 3 + 4 = 10 dots.',
+  'bodha.P1.where':
+    'Kolam border expansions, staircases, brick pyramid construction, and pinecones.',
+  'bodha.P1.sutra': 'Each new stage adds a new layer; see how the shape grows to find the count.',
+  'growing.title': 'Growing Patterns (Figurate & Triangular Numbers)',
+  'growing.lead':
+    'Step through stages, watch new layers glow, and contrast triangular sums with square grids.',
+  'growing.pattern_type': 'Pattern Type',
+  'growing.triangular': 'Dot Triangle',
+  'growing.square': 'Square Grid',
+  'growing.stage': 'Stage:',
+  'growing.new_layer': 'New Layer Added:',
+  'growing.total_dots': 'Total Count:',
+  'growing.step1': '1. Dot Triangle Layers (1, 3, 6, 10)',
+  'growing.step2': '2. Square Gnomon Grid (1, 4, 9, 16, 25)',
+  'growing.step3': '3. Growth Table & Misconception Lab',
+  'growing.reset': 'Reset',
+  'mistake.P1.intro':
+    'Amit is looking at a square tile pattern growing stage by stage (1, 4, 9, 16...):',
+  'mistake.P1.s1':
+    'He counts that Stage 1 has 1 tile, Stage 2 has 4 tiles, and Stage 3 has 9 tiles.',
+  'mistake.P1.s2': 'To predict Stage 5, he multiplies the stage number by 2 (5 × 2 = 10).',
+  'mistake.P1.s3': 'He claims that Stage 5 will have 10 tiles.',
+  'mistake.P1.fine1': 'Accurate observation: counting the earlier stages is sound.',
+  'mistake.P1.fine3':
+    'Step 3 fails because square tile growth is quadratic (n × n), not linear multiplication (n × 2).',
+  'mistake.P1.found': 'Here! A square of side 5 has 5 rows of 5 tiles = 5 × 5 = 25 tiles, not 10!',
+  'explain.P1.s':
+    'In a growing pattern, each stage adds a new {0} of tiles or dots. A square pattern of side length four contains {1} total tiles.',
+  'explain.P1.layer': 'layer',
+  'explain.P1.border': 'border',
+  'explain.P1.corner': 'corner',
+  'explain.P1.sixteen': 'sixteen',
+  'explain.P1.eight': 'eight',
+  'explain.P1.twelve': 'twelve',
+  'explain.P1.hint':
+    'Think about what geometric element expands each stage, and compute 4 × 4 for the square.',
+  'know.P1': 'Each new stage adds a new layer; see how the shape grows to find the count.',
 };
