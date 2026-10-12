@@ -110,5 +110,11 @@ describe('src/domain/math/index exports', () => {
     expect(typeof math.isGeometricSequence).toBe('function');
     expect(typeof math.predictNextTerm).toBe('function');
     expect(typeof math.predictNthTerm).toBe('function');
+    expect(typeof math.triangularNumber).toBe('function');
+    expect(typeof math.squareNumber).toBe('function');
+    expect(typeof math.gnomonSize).toBe('function');
+    expect(typeof math.triangularLayerSize).toBe('function');
+    expect(typeof math.generateTriangularDots).toBe('function');
+    expect(typeof math.generateSquareGrid).toBe('function');
   });
 });

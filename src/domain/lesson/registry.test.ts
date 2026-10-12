@@ -275,4 +275,14 @@ describe('Lesson registry', () => {
     expect(l4?.mistake?.wrong).toBe(1);
     expect(l4?.stateKey).toBe('sequences');
   });
+
+  it('retrieves P1 Growing Patterns lesson', () => {
+    const p1 = getLesson('P1');
+    expect(p1).not.toBeNull();
+    expect(p1?.cards).toHaveLength(6);
+    expect(p1?.explain).toHaveLength(2);
+    expect(p1?.mistake?.steps).toBe(3);
+    expect(p1?.mistake?.wrong).toBe(1);
+    expect(p1?.stateKey).toBe('growing');
+  });
 });
