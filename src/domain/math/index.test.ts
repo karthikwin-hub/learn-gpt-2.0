@@ -64,5 +64,9 @@ describe('src/domain/math/index exports', () => {
     expect(typeof math.calculateHCF).toBe('function');
     expect(typeof math.findCommonFactors).toBe('function');
     expect(typeof math.simplifyFractionByHCF).toBe('function');
+    expect(typeof math.classifyAngle).toBe('function');
+    expect(typeof math.turnFraction).toBe('function');
+    expect(typeof math.getAngleInfo).toBe('function');
+    expect(typeof math.isArmLengthInvariant).toBe('function');
   });
 });
