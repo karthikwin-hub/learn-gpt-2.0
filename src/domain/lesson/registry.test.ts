@@ -175,4 +175,14 @@ describe('Lesson registry', () => {
     expect(g3?.mistake?.wrong).toBe(1);
     expect(g3?.stateKey).toBe('shear');
   });
+
+  it('retrieves G4 Kolam Mirror lesson', () => {
+    const g4 = getLesson('G4');
+    expect(g4).not.toBeNull();
+    expect(g4?.cards).toHaveLength(6);
+    expect(g4?.explain).toHaveLength(2);
+    expect(g4?.mistake?.steps).toBe(3);
+    expect(g4?.mistake?.wrong).toBe(1);
+    expect(g4?.stateKey).toBe('kolam');
+  });
 });

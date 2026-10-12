@@ -1,6 +1,6 @@
 # Tasks: 028 Kolam Mirror (Line vs Rotational Symmetry) (Knot G4)
 
-Status: Pending Approval (Spec Kit Phase Complete)
+Status: Complete
 
 ---
 
@@ -9,35 +9,35 @@ Status: Pending Approval (Spec Kit Phase Complete)
 - [x] **Task 1: Spec Kit Documentation**
   - Author `specs/028-kolam-symmetry/spec.md`, `specs/028-kolam-symmetry/plan.md`, `specs/028-kolam-symmetry/tasks.md`.
 
-- [ ] **Task 2 [US2]: Domain Module & Unit Tests**
+- [x] **Task 2 [US2]: Domain Module & Unit Tests**
   - Implement pure domain logic in `src/domain/math/kolam.ts`.
   - Author unit tests in `src/domain/math/kolam.test.ts` (100% coverage).
 
-- [ ] **Task 3: Domain Aggregator**
+- [x] **Task 3: Domain Aggregator**
   - Export functions in `src/domain/math/index.ts` and assert in `index.test.ts`.
 
-- [ ] **Task 4 [US2] [US4]: Lesson Definition & Registry**
+- [x] **Task 4 [US2] [US4]: Lesson Definition & Registry**
   - Create/update `src/domain/lesson/g4.ts` with full 7-stage metadata.
   - Register in `src/domain/lesson/registry.ts` and test in `registry.test.ts`.
 
-- [ ] **Task 5 [US1]: Curriculum Playable Binding**
+- [x] **Task 5 [US1]: Curriculum Playable Binding**
   - Bind Knot `G4` in `src/domain/curriculum/curriculum.ts`.
   - Update playable knot count in `src/domain/curriculum/index.test.ts`.
 
-- [ ] **Task 6: Localization Dictionaries**
+- [x] **Task 6: Localization Dictionaries**
   - Populate English strings in `src/domain/i18n/dictionaries/en-ganita.ts` for Knot `G4`.
 
-- [ ] **Task 7 [US3]: Interactive Workbench Screen (`#kolam`)**
-  - Implement `src/ui/components/screens/kolam.ts`.
+- [x] **Task 7 [US3]: Interactive Workbench Screen (`#kolam`)**
+  - Implement/update `src/ui/components/screens/kolam.ts`.
 
-- [ ] **Task 8: Router Registration**
-  - Mount route `#kolam` in `src/main.ts`.
+- [x] **Task 8: Router Registration**
+  - Route `#kolam` mounted in `src/main.ts`.
 
-- [ ] **Task 9 [US1] [US2] [US3] [US4] [US5]: Acceptance Test Suite**
-  - Author Playwright acceptance tests in `tests/acceptance/028-kolam.spec.ts`.
+- [x] **Task 9 [US1] [US2] [US3] [US4] [US5]: Acceptance Test Suite**
+  - Author Playwright acceptance tests in `tests/acceptance/028-kolam-symmetry.spec.ts`.
 
-- [ ] **Task 10: Traceability & Full 11-Sensor Verification**
+- [x] **Task 10: Traceability & Full 11-Sensor Verification**
   - Generate `traceability.md`, run `python3 scripts/harness/verify.py`.
 
-- [ ] **Task 11: Pull Request & Merge**
+- [x] **Task 11: Pull Request & Merge**
   - Commit, push branch `feat/028-kolam-symmetry`, open PR, and merge into `main`.

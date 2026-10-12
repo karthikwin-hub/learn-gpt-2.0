@@ -25,6 +25,8 @@ function createChips<T extends string | number>(
   ariaLabel: string
 ): HTMLElement {
   const group = el('div', { class: 'chip-group', role: 'group', 'aria-label': ariaLabel });
+  const buttons: { btn: HTMLElement; value: T }[] = [];
+
   items.forEach((it) => {
     const isSelected = it.value === selected;
     const btn = el('button', {
@@ -32,8 +34,17 @@ function createChips<T extends string | number>(
       class: `chip${isSelected ? ' on' : ''}`,
       'aria-pressed': isSelected ? 'true' : 'false',
       text: it.label,
-      onclick: () => onChange(it.value),
+      style: { minHeight: '44px', minWidth: '44px' },
+      onclick: () => {
+        buttons.forEach((b) => {
+          const active = b.value === it.value;
+          b.btn.classList.toggle('on', active);
+          b.btn.setAttribute('aria-pressed', String(active));
+        });
+        onChange(it.value);
+      },
     });
+    buttons.push({ btn, value: it.value });
     group.appendChild(btn);
   });
   return group;
@@ -148,12 +159,14 @@ export function createKolamScreen(): ScreenMeta {
         type: 'button',
         class: 'btn quiet',
         text: t('common.undo'),
+        style: { minHeight: '44px' },
         onclick: () => km.undo(),
       });
       const clearBtn = el('button', {
         type: 'button',
         class: 'btn quiet',
         text: t('common.clear'),
+        style: { minHeight: '44px' },
         onclick: () => km.clear(),
       });
       view.appendChild(el('div', { class: 'btn-row' }, [undoBtn, clearBtn]));
@@ -164,16 +177,18 @@ export function createKolamScreen(): ScreenMeta {
       const challengeCard = el('section', { class: 'card' }, [challengeTitle, challengeText]);
       view.appendChild(challengeCard);
 
-      // Next / Explain button
-      const explainBtn = el('button', {
+      // Next: Spot the Mistake button
+      const mistakeBtn = el('button', {
+        id: 'btn-to-mistake',
         type: 'button',
         class: 'btn primary block',
-        text: t('common.explain'),
+        text: 'Next: Spot the Mistake →',
+        style: { minHeight: '44px' },
         onclick: () => {
-          router.go('explain', { k: 'G4' });
+          router.go('mistake', { k: 'G4' });
         },
       });
-      view.appendChild(el('div', { class: 'btn-row' }, [explainBtn]));
+      view.appendChild(el('div', { class: 'btn-row' }, [mistakeBtn]));
 
       paintRead();
 
