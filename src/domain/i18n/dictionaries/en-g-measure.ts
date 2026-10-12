@@ -9,7 +9,7 @@ export const dictionary: Record<string, string> = {
     '250 cm equals 2.5 m (or 2 m 50 cm), which is strictly longer than 2 metres (200 cm) by 50 cm!',
   'bodha.U2.what':
     'We measure length in metres, mass in grams, and liquid capacity in litres using standard metric units.',
-  'bodha.U2.can': 'Explore the metric ladder and convert between units smoothly.',
+  'bodha.U2.can': 'Use the metric ladder to convert length, mass and capacity.',
   'bodha.U2.idea':
     'Prefixes tell the power of 10: Kilo means 1000 times bigger; Centi means 100 times smaller; Milli means 1000 times smaller.',
   'bodha.U2.why':
@@ -140,11 +140,11 @@ export const dictionary: Record<string, string> = {
     'The key tells what one picture is worth: 1 tree icon might stand for 10 real trees.',
   'bodha.H1.why':
     'Drawing 50 trees is too slow; drawing 5 tree icons with a key of 10 is fast, neat, and clear!',
-  'bodha.H1.example': 'Key: 1 star = 4 students.',
-  'bodha.H1.example1': 'Step 1: Notice the key: 1 star stands for 4 students.',
-  'bodha.H1.example2': 'Step 2: 3 full stars = 3 × 4 = 12 students.',
+  'bodha.H1.example': 'Key: 1 book icon = 4 students.',
+  'bodha.H1.example1': 'Step 1: Notice the key: 1 book icon stands for 4 students.',
+  'bodha.H1.example2': 'Step 2: 3 full book icons = 3 × 4 = 12 students.',
   'bodha.H1.example3':
-    'Step 3: Half a star = half of 4 = 2 students. Total for 3½ stars = 12 + 2 = 14 students.',
+    'Step 3: Half a book icon = half of 4 = 2 students. Total for 3½ icons = 12 + 2 = 14 students.',
   'bodha.H1.where':
     'Newspaper charts, museum displays, crop harvest reports, and traffic survey posters.',
   'bodha.H1.sutra': 'The key tells what one picture is worth; multiply the pictures by the key.',
@@ -364,4 +364,219 @@ export const dictionary: Record<string, string> = {
     '1 metre has 100 cm, so 5 cm is 0.05 m; 4 m 5 cm is <r>4.05 m</r>, not 4.5 m (which is 4 m 50 cm)',
   'mistake.U3.eq':
     'Minutes roll at 60 (50 min + 10 min = 60 min -> 15:00); remaining 15 min gives <r>15:15</r>, not 14:75',
+
+  /* Bench UI (U2 metric) */
+  'metric.tab1': '1. Length Ladder',
+  'metric.tab2': '2. Mass & Capacity',
+  'metric.tab3': '3. Dual Balance',
+  'metric.lengthFeedback':
+    'Converting {val} {unit}. Notice how decimal places shift by powers of 10!',
+  'metric.massCapacityFeedback':
+    'Explore mass (grams) and capacity (litres). Both scale by powers of 10!',
+  'metric.valueLabel': 'Value: {val}',
+  'metric.baseUnit': 'Base Unit:',
+  'metric.ladderRule':
+    'Rule: Moving down the ladder (larger to smaller unit) shifts the decimal dot right (multiply). Moving up (smaller to larger) shifts the dot left (divide).',
+  'metric.ladder_km_mult': '1000 m',
+  'metric.ladder_m_mult': '1 m (Base)',
+  'metric.ladder_cm_mult': '1/100 m',
+  'metric.ladder_mm_mult': '1/1000 m',
+  'metric.massToggle': 'Mass (g, kg, mg)',
+  'metric.capacityToggle': 'Capacity (L, mL, kL)',
+  'metric.massLabel': 'Mass: {val} {unit}',
+  'metric.capacityLabel': 'Capacity: {val} {unit}',
+  'metric.preset_cm_m': '250 cm vs 2 m',
+  'metric.preset_m_decimal': '4 m 5 cm vs 4.05 m',
+  'metric.preset_kg_g': '1.5 kg vs 1500 g',
+  'metric.preset_mL_L': '750 mL vs 0.75 L',
+  'metric.base_metres': 'metres',
+  'metric.base_grams': 'grams',
+  'metric.base_litres': 'litres',
+  'metric.compareBalanced':
+    'Balanced! {leftVal} {leftUnit} equals {rightVal} {rightUnit} ({leftBase} {base}).',
+  'metric.compareLeftGreater':
+    '{leftVal} {leftUnit} ({leftBase} {base}) is larger than {rightVal} {rightUnit} ({rightBase} {base})!',
+  'metric.compareRightGreater':
+    '{rightVal} {rightUnit} ({rightBase} {base}) is larger than {leftVal} {leftUnit} ({leftBase} {base})!',
+  'metric.decimalTrap':
+    'Careful with decimals: 4 m 5 cm is 4.05 m (5 hundredths). 4.5 m means 4 m 50 cm (5 tenths)!',
+  'metric.convReadout': '{conv} {unit}',
+  'metric.deltaPlus': '+{d}',
+  'metric.deltaMinus': '{d}',
+
+  /* Bench UI (U3 timeclock) */
+  'timeclock.tab1': '1. Dual Clock Dial',
+  'timeclock.tab2': '2. Base-60 Minute Roll',
+  'timeclock.tab3': '3. Hour Bridging Timeline',
+  'timeclock.dualFeedback': '24-Hour Railway Time: {t24} is equivalent to Standard Clock: {t12}.',
+  'timeclock.railwayPill': 'Railway Time (24h)',
+  'timeclock.standardPill': '12-Hour Clock',
+  'timeclock.hourLabel': 'Hour (0-23): {h}',
+  'timeclock.minuteLabel': 'Minute (0-59): {m}',
+  'timeclock.deltaHourPlus': '+{h}h',
+  'timeclock.deltaHourMinus': '{h}h',
+  'timeclock.deltaMinPlus': '+{m}m',
+  'timeclock.deltaMinMinus': '{m}m',
+  'timeclock.presetTrain': 'Train Ticket (21:30)',
+  'timeclock.presetSchool': 'Morning School (08:30)',
+  'timeclock.presetNoon': 'Noon (12:00)',
+  'timeclock.presetMidnight': 'Midnight (00:00)',
+  'timeclock.rollFeedback': 'Adding {add} minutes to {start}: Time rolls in base 60!',
+  'timeclock.rollStep1': '1. Direct minute addition:',
+  'timeclock.rollStep1eq': '{a} min + {b} min = {sum} min',
+  'timeclock.rollStep2': '2. Roll at 60 (Base 60):',
+  'timeclock.rollStep2eq': '{sum} min = +{hrs} hr and {rem} min remaining',
+  'timeclock.rollStep3': '3. Correct Clock Time:',
+  'timeclock.rohanTrap':
+    "Rohan's Mistake Trap: Adding digits base-10 gives 14:75. But minutes stop at 59! There is NO such time as 14:75. The true time is {correct}.",
+  'timeclock.rohanTrapBtn': 'Rohan Trap (+25 min)',
+  'timeclock.addMin': '+{m} min',
+  'timeclock.bridgeFeedback': 'Elapsed duration from {start} to {end} is {dur}.',
+  'timeclock.hopLine': 'Hop {n}: {from} ➔ {to}',
+  'timeclock.hopMinutes': '+{m} min',
+  'timeclock.presetsTitle': 'Journey Timetable Presets:',
+  'timeclock.presetMorning': '09:45 to 12:15 (Morning Intercity)',
+  'timeclock.presetExpress': '14:50 to 18:20 (Express)',
+  'timeclock.presetOvernight': '21:30 to 06:15 (Overnight Sleeper)',
+
+  /* Bench UI (H1 pictograph) */
+  'pictograph.tab1': '1. Fruit Survey Chart',
+  'pictograph.tab2': '2. Scale Multiplier Explorer',
+  'pictograph.tab3': '3. Half-Icon Fractional Tally',
+  'pictograph.keyFeedback': 'Key: 1 symbol represents {key} items. Multiply symbols by the key!',
+  'pictograph.keyBanner': 'Key: 1 Symbol = {key} Fruits',
+  'pictograph.scaleBtn': 'Scale: {sc}',
+  'pictograph.rowTotal': '{total} fruits',
+  'pictograph.noSymbols': 'No symbols stamped yet',
+  'pictograph.clear': 'Clear',
+  'pictograph.grandTotal': 'Survey Grand Total:',
+  'pictograph.grandTotalVal': '{total} Fruits',
+  'pictograph.scaleFeedback': '{icons} symbols with key {key} represents {total} items total.',
+  'pictograph.scaleEq': '{icons} icons × Key {key} =',
+  'pictograph.scaleResult': '{total} Items',
+  'pictograph.anitaTrap':
+    "Anita's Mistake Trap: Anita counted 3 bicycle icons where 1 icon = 10 bicycles. She wrote 3 instead of 30!",
+  'pictograph.halfFeedback':
+    '{full} full and {half} half icons with key {key}: total = {total} items.',
+  'pictograph.addFull': '+ Full',
+  'pictograph.addHalf': '+ Half',
+  'pictograph.fruitMango': 'Mangoes',
+  'pictograph.fruitApple': 'Apples',
+  'pictograph.fruitBanana': 'Bananas',
+  'pictograph.iconsLabel': 'Icons:',
+  'pictograph.keyShort': 'Key:',
+  'pictograph.keyOneEquals': '1 = {sc}',
+  'pictograph.rowName': '{name} ({symbol})',
+  'pictograph.addFullSymbol': '+ 1 {symbol} (+{key})',
+  'pictograph.addHalfSymbol': '+ ½ {symbol} (+{half})',
+  'pictograph.halfKeyFeedback':
+    'Key: 1 book icon = {key} students. A half icon = {half} students. Total = {total} students.',
+  'pictograph.halfStep1': 'Step 1: Key: 1 book icon = {key} students. Half icon = {half} students.',
+  'pictograph.halfStep2': 'Step 2: {full} full icons = {full} × {key} = {fullTotal} students.',
+  'pictograph.halfStep3': 'Step 3: {halfCount} half icon = {halfTotal} students.',
+  'pictograph.halfStepTotal':
+    'Total for {full}½ icons = {fullTotal} + {halfTotal} = {total} students',
+  'pictograph.presetHalf1': '3½ icons (Key 4) → 14',
+  'pictograph.presetHalf2': '2½ icons (Key 10) → 25',
+  'pictograph.presetHalf3': '4 icons (Key 5) → 20',
+  'pictograph.fullIconChar': '📚',
+  'pictograph.halfIconChar': '½📚',
+
+  /* Bench UI (H2 bargraph) */
+  'bargraph.tab1': '1. Standard Bar Graph',
+  'bargraph.tab2': '2. Scale Multipliers',
+  'bargraph.tab3': '3. Jaal B1 Food Intake',
+  'bargraph.axisFeedback':
+    'Axis step interval is {step}. Each grid mark increases by {step} units.',
+  'bargraph.axisStepLabel': 'Axis Step: {step} units / mark',
+  'bargraph.stepBtn': 'Step {st}',
+  'bargraph.barLabel': '{category}: {value} ({grid} grid marks)',
+  'bargraph.lineDown': '-1 line',
+  'bargraph.lineUp': '+1 line',
+  'bargraph.readFeedback':
+    'A bar reaching grid mark {mark} on an axis with step {step} represents {value} units.',
+  'bargraph.lineMark': 'Line Mark {mark} × Step {step} =',
+  'bargraph.unitsVal': '{val} Units',
+  'bargraph.vikramTrap':
+    "Vikram's Mistake Trap: Vikram looked at footballs on line mark 3 with step 5 and wrote 3 instead of 15!",
+  'bargraph.lineMarkLabel': 'Line Mark:',
+  'bargraph.lineN': 'Line {m}',
+  'bargraph.axisStepShort': 'Axis Step:',
+  'bargraph.jaalLink':
+    'Jaal Link (Vijnana B1 Digestion ↔ Ganita H2 Bar Graphs): Daily food intake by nutrient group.',
+  'bargraph.verticalBars': 'Vertical Bars',
+  'bargraph.horizontalBars': 'Horizontal Bars',
+  'bargraph.jaalNote':
+    'Vijnana B1 Connection: A balanced diet requires proteins, carbohydrates, vitamins and minerals.',
+  'bargraph.foodRice': 'Rice & Roti',
+  'bargraph.foodDal': 'Dal & Pulses',
+  'bargraph.foodGreens': 'Greens & Veggies',
+  'bargraph.foodMilk': 'Milk & Curd',
+  'bargraph.readFeedbackEq':
+    'A bar reaching grid mark {mark} on an axis with step {step} represents {mark} × {step} = {val}!',
+  'bargraph.vikramTrapLong':
+    "Vikram's Mistake Trap: Vikram looked at footballs on line mark 3 with axis step 5, and thought there were only 3 footballs! But 3 grid marks × 5 units = 15 footballs! Always read the side axis scale.",
+  'bargraph.jaalFeedbackShort':
+    'Jaal Link (Vijnana B1 Digestion ↔ Ganita H2 Bar Graphs): Daily nutrient intake comparison.',
+  'bargraph.foodRow': '{category} ({nutrient})',
+  'bargraph.foodCount': '{count}g',
+  'bargraph.jaalNoteLong':
+    'Vijnana B1 Connection: A balanced diet requires proteins, carbs, and vitamins in proportion. Bar graphs help dieticians visualize whether food intake is balanced!',
+
+  /* Bench UI (L4 sequences) */
+  'sequences.tab1': '1. Arithmetic Ladders (+4, +5, -3)',
+  'sequences.tab2': '2. Doubling Tree vs Adding Trap',
+  'sequences.tab3': '3. Distant Term Predictor (10th Term)',
+  'sequences.arithFeedback':
+    'The difference between every term is constant ({diff}). The next term is {last} + {diff} = {next}!',
+  'sequences.nonArithFeedback': 'Differences are not uniform. Check the steps carefully.',
+  'sequences.diffJumps': 'Difference Ladder Jumps: [{jumps}]',
+  'sequences.nextLabel': 'Next = {next}',
+  'sequences.appendStep': '+ Append Next Step',
+  'sequences.removeStep': '- Remove Last Step',
+  'sequences.doublingFeedback':
+    'Differences change (+2, +4, +8), but the multiplier is constant (×2)! The next term is 16 × 2 = {next}!',
+  'sequences.diffLadderNotArith':
+    'Difference Ladder: +{d1}, +{d2}, +{d3} (Not an arithmetic jump!)',
+  'sequences.multLadderInvariant':
+    'Multiplier Ladder: 2 × 2 = 4, 4 × 2 = 8, 8 × 2 = 16 (Invariant Rule: ×2)',
+  'sequences.gitaTrapLong':
+    "Gita's Mistake Trap: Gita noticed 16 and added 8 to guess 24! But 8 was just the previous jump. The invariant rule is multiplying by 2 at every step: 16 × 2 = 32!",
+  'sequences.diffLadderSample': 'Difference Ladder: +{d1}, +{d2}, +{d3}…',
+  'sequences.multLadderSample':
+    'Multiplier Ladder: 2 × 2 = 4, 4 × 2 = 8, 8 × 2 = 16 (Invariant ×2)',
+  'sequences.distantFeedback': 'Predicting term #{n} without writing every step: {formula}',
+  'sequences.baseSequence': 'Base Sequence: 3, 7, 11, 15... (Starts at 3, jump is +4)',
+  'sequences.termDown': '-1 Term',
+  'sequences.termUp': '+1 Term',
+  'sequences.termLabel': 'Term #{n}',
+  'sequences.formulaLine': 'Formula: 3 + ({n} - 1) × 4 = 3 + {nm1} × 4',
+  'sequences.termResult': 'Term #{n} = {val}',
+
+  /* Bench UI (P1 growing) */
+  'growing.tab1': '1. Dot Triangle Layers',
+  'growing.tab2': '2. Square Gnomon Grid',
+  'growing.tab3': '3. Growth Table & Lab',
+  'growing.triFeedbackLong':
+    'Stage {stage} adds a bottom row of {added} dots! Total dots = {sum} = {total}!',
+  'growing.stageDown': '-1 Stage',
+  'growing.stageTitle': 'Stage {stage} Triangle',
+  'growing.stageUp': '+1 Stage',
+  'growing.bottomRow': 'Bottom Row Added: +{added} dots',
+  'growing.totalDotsLabel': 'Total: {total} Dots',
+  'growing.sqFeedbackBorder':
+    'A square of side {side} has {side} × {side} = {total} tiles! The added outer L-shaped border has {gnomon} tiles!',
+  'growing.sideDown': '-1 Side',
+  'growing.sideTitle': 'Side {side} Square ({side} × {side})',
+  'growing.sideUp': '+1 Side',
+  'growing.gnomonLabel': 'Added L-Gnomon: +{gnomon} tiles',
+  'growing.totalTilesLabel': 'Total: {total} Tiles',
+  'growing.contrastNote': 'Contrast: Triangular numbers grow by +n; Square numbers grow by n × n.',
+  'growing.amitTrapLong':
+    "Amit's Mistake Trap: Amit looked at Stage 5 and computed 5 × 2 = 10! But a square is a 2D shape with 5 rows and 5 columns: 5 × 5 = 25 tiles, not 10!",
+  'growing.tableStage': 'Stage (n)',
+  'growing.tableTri': 'Triangle T_n',
+  'growing.tableSq': 'Square n²',
+  'growing.tableAmit': "Amit's Guess (2n)",
+  'growing.tableRowStage': 'Stage {n}',
 };

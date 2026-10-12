@@ -44,9 +44,27 @@ export function createPictographScreen(): ScreenMeta {
       let rows: SurveyRow[] = Array.isArray(state.rows)
         ? (state.rows as SurveyRow[])
         : [
-            { id: 'mango', name: 'Mangoes', symbol: '🥭', fullCount: 3, halfCount: 0 },
-            { id: 'apple', name: 'Apples', symbol: '🍎', fullCount: 4, halfCount: 1 },
-            { id: 'banana', name: 'Bananas', symbol: '🍌', fullCount: 2, halfCount: 0 },
+            {
+              id: 'mango',
+              name: t('pictograph.fruitMango'),
+              symbol: '🥭',
+              fullCount: 3,
+              halfCount: 0,
+            },
+            {
+              id: 'apple',
+              name: t('pictograph.fruitApple'),
+              symbol: '🍎',
+              fullCount: 4,
+              halfCount: 1,
+            },
+            {
+              id: 'banana',
+              name: t('pictograph.fruitBanana'),
+              symbol: '🍌',
+              fullCount: 2,
+              halfCount: 0,
+            },
           ];
 
       let expIcons = typeof state.expIcons === 'number' ? state.expIcons : 4;
@@ -88,9 +106,9 @@ export function createPictographScreen(): ScreenMeta {
       });
 
       const stepsConfig = [
-        { num: 1, label: '1. Fruit Survey Chart' },
-        { num: 2, label: '2. Scale Multiplier Explorer' },
-        { num: 3, label: '3. Half-Icon Fractional Tally' },
+        { num: 1, label: t('pictograph.tab1') },
+        { num: 2, label: t('pictograph.tab2') },
+        { num: 3, label: t('pictograph.tab3') },
       ];
 
       stepsConfig.forEach((cfg) => {
@@ -154,7 +172,7 @@ export function createPictographScreen(): ScreenMeta {
       }
 
       function renderSurveyChart() {
-        feedbackEl.textContent = `Key: 1 symbol represents ${keyScale} items. Multiply the symbols by ${keyScale} to find the true count!`;
+        feedbackEl.textContent = t('pictograph.keyFeedback', { key: String(keyScale) });
 
         // Key Scale Header Bar
         const keyBar = el('div', {
@@ -174,7 +192,7 @@ export function createPictographScreen(): ScreenMeta {
         });
 
         const keyLabel = el('span', {
-          text: `Key: 1 Symbol = ${keyScale} Fruits`,
+          text: t('pictograph.keyBanner', { key: String(keyScale) }),
           style: { fontWeight: 'bold', fontSize: '1.1rem', color: '#1d4ed8' },
         });
 
@@ -182,7 +200,7 @@ export function createPictographScreen(): ScreenMeta {
         [2, 5, 10].forEach((sc) => {
           const scBtn = el('button', {
             class: `btn scale-btn ${keyScale === sc ? 'active' : ''}`,
-            text: `Scale: ${sc}`,
+            text: t('pictograph.scaleBtn', { sc: String(sc) }),
             style: {
               minHeight: '44px',
               padding: '6px 12px',
@@ -254,7 +272,7 @@ export function createPictographScreen(): ScreenMeta {
           rowHeader.appendChild(
             el('span', {
               class: 'stat-pill row-total-pill',
-              text: `${rowTotal} fruits`,
+              text: t('pictograph.rowTotal', { total: String(rowTotal) }),
               style: {
                 fontWeight: 'bold',
                 padding: '4px 10px',
@@ -285,7 +303,7 @@ export function createPictographScreen(): ScreenMeta {
           if (row.fullCount === 0 && row.halfCount === 0) {
             symbolsBox.appendChild(
               el('span', {
-                text: 'No symbols stamped yet',
+                text: t('pictograph.noSymbols'),
                 style: { color: 'var(--muted, #94a3b8)', fontStyle: 'italic' },
               })
             );
@@ -352,7 +370,7 @@ export function createPictographScreen(): ScreenMeta {
 
           const clearBtn = el('button', {
             class: 'btn',
-            text: 'Clear',
+            text: t('pictograph.clear'),
             style: { minHeight: '44px', padding: '6px 10px', borderRadius: '6px' },
             onClick() {
               row.fullCount = 0;
@@ -386,12 +404,12 @@ export function createPictographScreen(): ScreenMeta {
           },
         });
         totalBar.appendChild(
-          el('span', { text: 'Survey Grand Total:', style: { fontWeight: 'bold' } })
+          el('span', { text: t('pictograph.grandTotal'), style: { fontWeight: 'bold' } })
         );
         totalBar.appendChild(
           el('span', {
             class: 'stat-pill grand-total-pill',
-            text: `${grandTotal} Fruits`,
+            text: t('pictograph.grandTotalVal', { total: String(grandTotal) }),
             style: { fontWeight: 'bold', fontSize: '1.25rem' },
           })
         );
@@ -401,7 +419,11 @@ export function createPictographScreen(): ScreenMeta {
       function renderScaleExplorer() {
         const total = calculateTotalFromIcons(expIcons, 0, expScale);
 
-        feedbackEl.textContent = `${expIcons} symbols with key ${expScale} represents ${expIcons} × ${expScale} = ${total}!`;
+        feedbackEl.textContent = t('pictograph.scaleFeedback', {
+          icons: String(expIcons),
+          key: String(expScale),
+          total: String(total),
+        });
 
         const expCard = el('div', {
           class: 'scale-explorer-card',
@@ -455,14 +477,14 @@ export function createPictographScreen(): ScreenMeta {
         });
         mathRow.appendChild(
           el('span', {
-            text: `${expIcons} icons × Key ${expScale} =`,
+            text: t('pictograph.scaleEq', { icons: String(expIcons), key: String(expScale) }),
             style: { fontWeight: '600', fontSize: '1.1rem', color: '#1d4ed8' },
           })
         );
         mathRow.appendChild(
           el('span', {
             class: 'stat-pill explorer-total-pill',
-            text: `${total} Items`,
+            text: t('pictograph.scaleResult', { total: String(total) }),
             style: {
               fontWeight: 'bold',
               fontSize: '1.3rem',
@@ -487,7 +509,7 @@ export function createPictographScreen(): ScreenMeta {
         anitaBox.appendChild(
           el('p', {
             style: { margin: '0', fontSize: '0.95rem' },
-            text: `Anita's Mistake Trap: Anita counted 3 bicycle icons where 1 icon = 10, and claimed only 3 bicycles were sold. But 3 icons × 10 = 30 bicycles! Never forget the key multiplier!`,
+            text: t('pictograph.anitaTrap'),
           })
         );
         expCard.appendChild(anitaBox);
@@ -507,7 +529,9 @@ export function createPictographScreen(): ScreenMeta {
         const iconGrp = el('div', {
           style: { display: 'flex', gap: '6px', alignItems: 'center' },
         });
-        iconGrp.appendChild(el('span', { text: 'Icons: ', style: { fontWeight: '600' } }));
+        iconGrp.appendChild(
+          el('span', { text: t('pictograph.iconsLabel'), style: { fontWeight: '600' } })
+        );
         [1, 2, 3, 4, 5].forEach((n) => {
           const b = el('button', {
             class: `btn ${expIcons === n ? 'active' : ''}`,
@@ -526,11 +550,13 @@ export function createPictographScreen(): ScreenMeta {
         const scaleGrp = el('div', {
           style: { display: 'flex', gap: '6px', alignItems: 'center' },
         });
-        scaleGrp.appendChild(el('span', { text: 'Key: ', style: { fontWeight: '600' } }));
+        scaleGrp.appendChild(
+          el('span', { text: t('pictograph.keyShort'), style: { fontWeight: '600' } })
+        );
         [2, 5, 10].forEach((sc) => {
           const b = el('button', {
             class: `btn ${expScale === sc ? 'active' : ''}`,
-            text: `1 = ${sc}`,
+            text: t('pictograph.keyOneEquals', { sc: String(sc) }),
             style: { minHeight: '44px', padding: '6px 10px' },
             onClick() {
               expScale = sc;
@@ -554,7 +580,11 @@ export function createPictographScreen(): ScreenMeta {
         const halfTotal = halfHalf * halfVal;
         const total = fullTotal + halfTotal;
 
-        feedbackEl.textContent = `Key: 1 star = ${halfKey} students. A half star represents half of ${halfKey} (${halfVal} students). Total = ${total} students.`;
+        feedbackEl.textContent = t('pictograph.halfKeyFeedback', {
+          key: String(halfKey),
+          half: String(halfVal),
+          total: String(total),
+        });
 
         const halfCard = el('div', {
           class: 'half-icon-card',
@@ -586,8 +616,8 @@ export function createPictographScreen(): ScreenMeta {
         for (let i = 0; i < halfFull; i++) {
           starBox.appendChild(
             el('span', {
-              text: '★',
-              class: 'star-icon full-star',
+              text: t('pictograph.fullIconChar'),
+              class: 'book-icon full-star',
               style: { fontSize: '2.2rem', color: '#f59e0b', lineHeight: '1' },
             })
           );
@@ -596,8 +626,8 @@ export function createPictographScreen(): ScreenMeta {
         if (halfHalf > 0) {
           starBox.appendChild(
             el('span', {
-              text: '½★',
-              class: 'star-icon half-star',
+              text: t('pictograph.halfIconChar'),
+              class: 'book-icon half-star',
               style: {
                 fontSize: '1.8rem',
                 color: '#f59e0b',
@@ -624,24 +654,36 @@ export function createPictographScreen(): ScreenMeta {
 
         breakdownBox.appendChild(
           el('div', {
-            text: `Step 1: Key: 1 star = ${halfKey} students. Half star = ${halfVal} students.`,
+            text: t('pictograph.halfStep1', { key: String(halfKey), half: String(halfVal) }),
             style: { fontWeight: '600' },
           })
         );
         breakdownBox.appendChild(
           el('div', {
-            text: `Step 2: ${halfFull} full stars = ${halfFull} × ${halfKey} = ${fullTotal} students.`,
+            text: t('pictograph.halfStep2', {
+              full: String(halfFull),
+              key: String(halfKey),
+              fullTotal: String(fullTotal),
+            }),
           })
         );
         breakdownBox.appendChild(
           el('div', {
-            text: `Step 3: ${halfHalf} half star = ${halfTotal} students.`,
+            text: t('pictograph.halfStep3', {
+              halfCount: String(halfHalf),
+              halfTotal: String(halfTotal),
+            }),
           })
         );
         breakdownBox.appendChild(
           el('div', {
             class: 'stat-pill half-tally-pill',
-            text: `Total for ${halfFull}½ stars = ${fullTotal} + ${halfTotal} = ${total} students`,
+            text: t('pictograph.halfStepTotal', {
+              full: String(halfFull),
+              fullTotal: String(fullTotal),
+              halfTotal: String(halfTotal),
+              total: String(total),
+            }),
             style: {
               fontWeight: 'bold',
               fontSize: '1.1rem',
@@ -662,9 +704,9 @@ export function createPictographScreen(): ScreenMeta {
         });
 
         [
-          { label: '3½ Stars (Key 4) -> 14', f: 3, h: 1, k: 4 },
-          { label: '2½ Stars (Key 10) -> 25', f: 2, h: 1, k: 10 },
-          { label: '4 Stars (Key 5) -> 20', f: 4, h: 0, k: 5 },
+          { label: t('pictograph.presetHalf1'), f: 3, h: 1, k: 4 },
+          { label: t('pictograph.presetHalf2'), f: 2, h: 1, k: 10 },
+          { label: t('pictograph.presetHalf3'), f: 4, h: 0, k: 5 },
         ].forEach((pr) => {
           const prBtn = el('button', {
             class: 'btn preset-tally-btn',
@@ -708,9 +750,27 @@ export function createPictographScreen(): ScreenMeta {
         onClick() {
           keyScale = 5;
           rows = [
-            { id: 'mango', name: 'Mangoes', symbol: '🥭', fullCount: 3, halfCount: 0 },
-            { id: 'apple', name: 'Apples', symbol: '🍎', fullCount: 4, halfCount: 1 },
-            { id: 'banana', name: 'Bananas', symbol: '🍌', fullCount: 2, halfCount: 0 },
+            {
+              id: 'mango',
+              name: t('pictograph.fruitMango'),
+              symbol: '🥭',
+              fullCount: 3,
+              halfCount: 0,
+            },
+            {
+              id: 'apple',
+              name: t('pictograph.fruitApple'),
+              symbol: '🍎',
+              fullCount: 4,
+              halfCount: 1,
+            },
+            {
+              id: 'banana',
+              name: t('pictograph.fruitBanana'),
+              symbol: '🍌',
+              fullCount: 2,
+              halfCount: 0,
+            },
           ];
           expIcons = 4;
           expScale = 5;
@@ -730,7 +790,7 @@ export function createPictographScreen(): ScreenMeta {
 
       const nextBtn = el('button', {
         class: 'btn btn-primary',
-        text: 'Spot the Mistake →',
+        text: t('bench.toMistake'),
         style: {
           minHeight: '44px',
           padding: '10px 20px',

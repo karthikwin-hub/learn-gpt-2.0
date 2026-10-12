@@ -17,10 +17,10 @@ import {
   type CapacityUnit,
 } from '../../../domain/math/metric';
 import { t } from '../../../domain/i18n/core';
-import { clear, el } from '../../util/dom';
-import { readStep } from '../../util/bench';
+import { clear, el, svg } from '../../util/dom';
+import { readStep, toMistakeButton } from '../../util/bench';
 import { enterThread } from '../../util/thread';
-import { router, type ScreenMeta } from '../app/router';
+import type { ScreenMeta } from '../app/router';
 
 export function createMetricScreen(): ScreenMeta {
   return {
@@ -87,9 +87,9 @@ export function createMetricScreen(): ScreenMeta {
       });
 
       const stepsConfig = [
-        { num: 1, label: '1. Length Ladder' },
-        { num: 2, label: '2. Mass & Capacity' },
-        { num: 3, label: '3. Dual Balance' },
+        { num: 1, label: t('metric.tab1') },
+        { num: 2, label: t('metric.tab2') },
+        { num: 3, label: t('metric.tab3') },
       ];
 
       stepsConfig.forEach((cfg) => {
@@ -153,7 +153,10 @@ export function createMetricScreen(): ScreenMeta {
       }
 
       function renderLengthLadder() {
-        feedbackEl.textContent = `Converting ${lengthVal} ${lengthUnit}. Notice how decimal places shift by powers of 10!`;
+        feedbackEl.textContent = t('metric.lengthFeedback', {
+          val: String(lengthVal),
+          unit: lengthUnit,
+        });
 
         // Controls
         const controlPanel = el('div', {
@@ -181,7 +184,7 @@ export function createMetricScreen(): ScreenMeta {
         });
 
         const valLabel = el('span', {
-          text: `Value: ${lengthVal}`,
+          text: t('metric.valueLabel', { val: String(lengthVal) }),
           style: { fontWeight: '600', fontSize: '1.1rem' },
         });
 
@@ -217,7 +220,9 @@ export function createMetricScreen(): ScreenMeta {
             flexWrap: 'wrap',
           },
         });
-        rowUnit.appendChild(el('span', { text: 'Base Unit: ', style: { fontWeight: '500' } }));
+        rowUnit.appendChild(
+          el('span', { text: t('metric.baseUnit'), style: { fontWeight: '500' } })
+        );
 
         const units: LengthUnit[] = ['km', 'm', 'cm', 'mm'];
         units.forEach((u) => {
@@ -255,11 +260,11 @@ export function createMetricScreen(): ScreenMeta {
           },
         });
 
-        const ladderSteps: { unit: LengthUnit; name: string; multiplier: string }[] = [
-          { unit: 'km', name: 'Kilometre (km)', multiplier: '1000 m' },
-          { unit: 'm', name: 'Metre (m)', multiplier: '1 m (Base)' },
-          { unit: 'cm', name: 'Centimetre (cm)', multiplier: '1/100 m' },
-          { unit: 'mm', name: 'Millimetre (mm)', multiplier: '1/1000 m' },
+        const ladderSteps: { unit: LengthUnit; nameKey: string; multKey: string }[] = [
+          { unit: 'km', nameKey: 'metric.unit_km', multKey: 'metric.ladder_km_mult' },
+          { unit: 'm', nameKey: 'metric.unit_m', multKey: 'metric.ladder_m_mult' },
+          { unit: 'cm', nameKey: 'metric.unit_cm', multKey: 'metric.ladder_cm_mult' },
+          { unit: 'mm', nameKey: 'metric.unit_mm', multKey: 'metric.ladder_mm_mult' },
         ];
 
         ladderSteps.forEach((st) => {
@@ -284,20 +289,20 @@ export function createMetricScreen(): ScreenMeta {
           const leftInfo = el('div', { style: { display: 'flex', flexDirection: 'column' } });
           leftInfo.appendChild(
             el('span', {
-              text: st.name,
+              text: t(st.nameKey),
               style: { fontWeight: isCurrent ? 'bold' : '600' },
             })
           );
           leftInfo.appendChild(
             el('small', {
-              text: st.multiplier,
+              text: t(st.multKey),
               style: { color: 'var(--muted, #6b7280)' },
             })
           );
 
           const rightInfo = el('div', {
             class: 'stat-pill',
-            text: `${conv} ${st.unit}`,
+            text: t('metric.convReadout', { conv: String(conv), unit: st.unit }),
             style: {
               fontWeight: '700',
               fontSize: '1.1rem',
@@ -329,14 +334,14 @@ export function createMetricScreen(): ScreenMeta {
         insight.appendChild(
           el('p', {
             style: { margin: '0' },
-            text: `Rule: Moving down the ladder (larger to smaller unit) shifts the decimal dot right (multiply). Moving up (smaller to larger) shifts the dot left (divide).`,
+            text: t('metric.ladderRule'),
           })
         );
         workspaceContainer.appendChild(insight);
       }
 
       function renderMassCapacity() {
-        feedbackEl.textContent = `Explore mass (grams) and capacity (litres). Both scale by powers of 10!`;
+        feedbackEl.textContent = t('metric.massCapacityFeedback');
 
         // Toggle submode
         const modeRow = el('div', {
@@ -345,7 +350,7 @@ export function createMetricScreen(): ScreenMeta {
 
         const massToggle = el('button', {
           class: `btn ${subMode === 'mass' ? 'active' : ''}`,
-          text: 'Mass (g, kg, mg)',
+          text: t('metric.massToggle'),
           style: {
             padding: '8px 14px',
             minHeight: '44px',
@@ -365,7 +370,7 @@ export function createMetricScreen(): ScreenMeta {
 
         const capToggle = el('button', {
           class: `btn ${subMode === 'capacity' ? 'active' : ''}`,
-          text: 'Capacity (L, mL, kL)',
+          text: t('metric.capacityToggle'),
           style: {
             padding: '8px 14px',
             minHeight: '44px',
@@ -413,7 +418,10 @@ export function createMetricScreen(): ScreenMeta {
           });
 
           massControls.appendChild(
-            el('span', { text: `Mass: ${massVal} ${massUnit}`, style: { fontWeight: '600' } })
+            el('span', {
+              text: t('metric.massLabel', { val: String(massVal), unit: massUnit }),
+              style: { fontWeight: '600' },
+            })
           );
 
           const massBtns = el('div', { style: { display: 'flex', gap: '6px' } });
@@ -434,10 +442,10 @@ export function createMetricScreen(): ScreenMeta {
           massControls.appendChild(massBtns);
           workspaceContainer.appendChild(massControls);
 
-          const massSteps: { unit: MassUnit; name: string }[] = [
-            { unit: 'kg', name: 'Kilograms (kg)' },
-            { unit: 'g', name: 'Grams (g)' },
-            { unit: 'mg', name: 'Milligrams (mg)' },
+          const massSteps: { unit: MassUnit; nameKey: string }[] = [
+            { unit: 'kg', nameKey: 'metric.unit_kg' },
+            { unit: 'g', nameKey: 'metric.unit_g' },
+            { unit: 'mg', nameKey: 'metric.unit_mg' },
           ];
 
           massSteps.forEach((st) => {
@@ -456,11 +464,11 @@ export function createMetricScreen(): ScreenMeta {
                 background: isCurr ? 'rgba(59, 130, 246, 0.08)' : 'var(--card-bg, #fff)',
               },
             });
-            r.appendChild(el('span', { text: st.name, style: { fontWeight: '600' } }));
+            r.appendChild(el('span', { text: t(st.nameKey), style: { fontWeight: '600' } }));
             r.appendChild(
               el('span', {
                 class: 'stat-pill',
-                text: `${conv} ${st.unit}`,
+                text: t('metric.convReadout', { conv: String(conv), unit: st.unit }),
                 style: { fontWeight: '700', fontSize: '1.1rem' },
               })
             );
@@ -483,7 +491,10 @@ export function createMetricScreen(): ScreenMeta {
           });
 
           capControls.appendChild(
-            el('span', { text: `Capacity: ${capVal} ${capUnit}`, style: { fontWeight: '600' } })
+            el('span', {
+              text: t('metric.capacityLabel', { val: String(capVal), unit: capUnit }),
+              style: { fontWeight: '600' },
+            })
           );
 
           const capBtns = el('div', { style: { display: 'flex', gap: '6px' } });
@@ -513,10 +524,10 @@ export function createMetricScreen(): ScreenMeta {
             },
           });
 
-          const capSteps: { unit: CapacityUnit; name: string }[] = [
-            { unit: 'kL', name: 'Kilolitres (kL)' },
-            { unit: 'L', name: 'Litres (L)' },
-            { unit: 'mL', name: 'Millilitres (mL)' },
+          const capSteps: { unit: CapacityUnit; nameKey: string }[] = [
+            { unit: 'kL', nameKey: 'metric.unit_kL' },
+            { unit: 'L', nameKey: 'metric.unit_L' },
+            { unit: 'mL', nameKey: 'metric.unit_mL' },
           ];
 
           capSteps.forEach((st) => {
@@ -535,11 +546,11 @@ export function createMetricScreen(): ScreenMeta {
                 background: isCurr ? 'rgba(59, 130, 246, 0.08)' : 'var(--card-bg, #fff)',
               },
             });
-            r.appendChild(el('span', { text: st.name, style: { fontWeight: '600' } }));
+            r.appendChild(el('span', { text: t(st.nameKey), style: { fontWeight: '600' } }));
             r.appendChild(
               el('span', {
                 class: 'stat-pill',
-                text: `${conv} ${st.unit}`,
+                text: t('metric.convReadout', { conv: String(conv), unit: st.unit }),
                 style: { fontWeight: '700', fontSize: '1.1rem' },
               })
             );
@@ -563,7 +574,7 @@ export function createMetricScreen(): ScreenMeta {
 
         const presets = [
           {
-            label: '250 cm vs 2 m',
+            label: t('metric.preset_cm_m'),
             mode: 'length' as const,
             lv: 250,
             lu: 'cm',
@@ -571,7 +582,7 @@ export function createMetricScreen(): ScreenMeta {
             ru: 'm',
           },
           {
-            label: '4 m 5 cm vs 4.05 m',
+            label: t('metric.preset_m_decimal'),
             mode: 'length' as const,
             lv: 4.05,
             lu: 'm',
@@ -579,7 +590,7 @@ export function createMetricScreen(): ScreenMeta {
             ru: 'm',
           },
           {
-            label: '1.5 kg vs 1500 g',
+            label: t('metric.preset_kg_g'),
             mode: 'mass' as const,
             lv: 1.5,
             lu: 'kg',
@@ -587,7 +598,7 @@ export function createMetricScreen(): ScreenMeta {
             ru: 'g',
           },
           {
-            label: '750 mL vs 0.75 L',
+            label: t('metric.preset_mL_L'),
             mode: 'capacity' as const,
             lv: 750,
             lu: 'mL',
@@ -634,15 +645,15 @@ export function createMetricScreen(): ScreenMeta {
         if (compMode === 'length') {
           leftBase = convertLength(leftVal, leftUnit as LengthUnit, 'm');
           rightBase = convertLength(rightVal, rightUnit as LengthUnit, 'm');
-          baseUnitName = 'metres';
+          baseUnitName = t('metric.base_metres');
         } else if (compMode === 'mass') {
           leftBase = convertMass(leftVal, leftUnit as MassUnit, 'g');
           rightBase = convertMass(rightVal, rightUnit as MassUnit, 'g');
-          baseUnitName = 'grams';
+          baseUnitName = t('metric.base_grams');
         } else {
           leftBase = convertCapacity(leftVal, leftUnit as CapacityUnit, 'L');
           rightBase = convertCapacity(rightVal, rightUnit as CapacityUnit, 'L');
-          baseUnitName = 'litres';
+          baseUnitName = t('metric.base_litres');
         }
 
         const diff = Math.round((leftBase - rightBase) * 10000) / 10000;
@@ -650,11 +661,34 @@ export function createMetricScreen(): ScreenMeta {
         const isLeftGreater = diff > 0.0001;
 
         if (isEqual) {
-          feedbackEl.textContent = `Balanced! ${leftVal} ${leftUnit} equals ${rightVal} ${rightUnit} (${leftBase} ${baseUnitName}).`;
+          feedbackEl.textContent = t('metric.compareBalanced', {
+            leftVal: String(leftVal),
+            leftUnit,
+            rightVal: String(rightVal),
+            rightUnit,
+            leftBase: String(leftBase),
+            base: baseUnitName,
+          });
         } else if (isLeftGreater) {
-          feedbackEl.textContent = `${leftVal} ${leftUnit} (${leftBase} ${baseUnitName}) is larger than ${rightVal} ${rightUnit} (${rightBase} ${baseUnitName})!`;
+          feedbackEl.textContent = t('metric.compareLeftGreater', {
+            leftVal: String(leftVal),
+            leftUnit,
+            rightVal: String(rightVal),
+            rightUnit,
+            leftBase: String(leftBase),
+            rightBase: String(rightBase),
+            base: baseUnitName,
+          });
         } else {
-          feedbackEl.textContent = `${rightVal} ${rightUnit} (${rightBase} ${baseUnitName}) is larger than ${leftVal} ${leftUnit} (${leftBase} ${baseUnitName})!`;
+          feedbackEl.textContent = t('metric.compareRightGreater', {
+            leftVal: String(leftVal),
+            leftUnit,
+            rightVal: String(rightVal),
+            rightUnit,
+            leftBase: String(leftBase),
+            rightBase: String(rightBase),
+            base: baseUnitName,
+          });
         }
 
         // Dual balance visual representation
@@ -675,26 +709,68 @@ export function createMetricScreen(): ScreenMeta {
 
         // Scales representation
         const tilt = isEqual ? 0 : isLeftGreater ? -12 : 12;
-        const beamSvg = `<svg width="240" height="90" viewBox="0 0 240 90" aria-hidden="true">
-          <!-- Fulcrum -->
-          <polygon points="120,40 105,75 135,75" fill="#64748b" />
-          <line x1="90" y1="75" x2="150" y2="75" stroke="#475569" stroke-width="3" />
-          <!-- Beam with tilt -->
-          <g transform="rotate(${tilt} 120 40)">
-            <line x1="20" y1="40" x2="220" y2="40" stroke="#334155" stroke-width="4" stroke-linecap="round" />
-            <!-- Left Pan strings and pan -->
-            <line x1="30" y1="40" x2="30" y2="65" stroke="#94a3b8" stroke-width="1.5" />
-            <path d="M 15 65 Q 30 75 45 65 Z" fill="#cbd5e1" stroke="#64748b" />
-            <!-- Right Pan strings and pan -->
-            <line x1="210" y1="40" x2="210" y2="65" stroke="#94a3b8" stroke-width="1.5" />
-            <path d="M 195 65 Q 210 75 225 65 Z" fill="#cbd5e1" stroke="#64748b" />
-          </g>
-        </svg>`;
+        const beamSvg = svg(
+          'svg',
+          {
+            width: '240',
+            height: '90',
+            viewBox: '0 0 240 90',
+            'aria-hidden': 'true',
+          },
+          [
+            svg('polygon', { points: '120,40 105,75 135,75', fill: '#64748b' }),
+            svg('line', {
+              x1: '90',
+              y1: '75',
+              x2: '150',
+              y2: '75',
+              stroke: '#475569',
+              'stroke-width': '3',
+            }),
+            svg('g', { transform: `rotate(${tilt} 120 40)` }, [
+              svg('line', {
+                x1: '20',
+                y1: '40',
+                x2: '220',
+                y2: '40',
+                stroke: '#334155',
+                'stroke-width': '4',
+                'stroke-linecap': 'round',
+              }),
+              svg('line', {
+                x1: '30',
+                y1: '40',
+                x2: '30',
+                y2: '65',
+                stroke: '#94a3b8',
+                'stroke-width': '1.5',
+              }),
+              svg('path', {
+                d: 'M 15 65 Q 30 75 45 65 Z',
+                fill: '#cbd5e1',
+                stroke: '#64748b',
+              }),
+              svg('line', {
+                x1: '210',
+                y1: '40',
+                x2: '210',
+                y2: '65',
+                stroke: '#94a3b8',
+                'stroke-width': '1.5',
+              }),
+              svg('path', {
+                d: 'M 195 65 Q 210 75 225 65 Z',
+                fill: '#cbd5e1',
+                stroke: '#64748b',
+              }),
+            ]),
+          ]
+        );
 
         const svgWrapper = el('div', {
           style: { display: 'flex', justifyContent: 'center' },
         });
-        svgWrapper.innerHTML = beamSvg;
+        svgWrapper.appendChild(beamSvg);
         balanceCard.appendChild(svgWrapper);
 
         // Pans readout
@@ -726,7 +802,7 @@ export function createMetricScreen(): ScreenMeta {
         );
         leftPan.appendChild(
           el('small', {
-            text: `= ${leftBase} ${baseUnitName}`,
+            text: t('metric.convReadout', { conv: String(leftBase), unit: baseUnitName }),
             style: { color: 'var(--muted, #6b7280)' },
           })
         );
@@ -765,7 +841,7 @@ export function createMetricScreen(): ScreenMeta {
         );
         rightPan.appendChild(
           el('small', {
-            text: `= ${rightBase} ${baseUnitName}`,
+            text: t('metric.convReadout', { conv: String(rightBase), unit: baseUnitName }),
             style: { color: 'var(--muted, #6b7280)' },
           })
         );
@@ -789,7 +865,7 @@ export function createMetricScreen(): ScreenMeta {
         soniaBox.appendChild(
           el('p', {
             style: { margin: '0', fontSize: '0.95rem' },
-            text: `Careful with decimals: 4 m 5 cm is 4.05 m (5 hundredths). 4.5 m means 4 m 50 cm (5 tenths)!`,
+            text: t('metric.decimalTrap'),
           })
         );
         workspaceContainer.appendChild(soniaBox);
@@ -836,21 +912,10 @@ export function createMetricScreen(): ScreenMeta {
         },
       });
 
-      const nextBtn = el('button', {
-        class: 'btn btn-primary',
-        text: 'Spot the Mistake →',
-        style: {
-          minHeight: '44px',
-          padding: '10px 20px',
-          borderRadius: '6px',
-          background: 'var(--ink, #1f2937)',
-          color: '#fff',
-          fontWeight: 'bold',
-        },
-        onClick() {
-          router.go('mistake', { k: 'U2' });
-        },
-      });
+      const nextBtn = toMistakeButton('U2');
+      nextBtn.classList.add('btn-primary');
+      nextBtn.style.minHeight = '44px';
+      nextBtn.style.padding = '10px 20px';
 
       actionRow.appendChild(resetBtn);
       actionRow.appendChild(nextBtn);

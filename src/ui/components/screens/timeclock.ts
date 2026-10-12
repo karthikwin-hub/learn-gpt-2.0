@@ -15,9 +15,10 @@ import {
   formatTime24,
 } from '../../../domain/math/timeclock';
 import { t } from '../../../domain/i18n/core';
-import { clear, el } from '../../util/dom';
+import { clear, el, svg } from '../../util/dom';
+import { readStep, toMistakeButton } from '../../util/bench';
 import { enterThread } from '../../util/thread';
-import { router, type ScreenMeta } from '../app/router';
+import type { ScreenMeta } from '../app/router';
 
 export function createTimeclockScreen(): ScreenMeta {
   return {
@@ -29,11 +30,7 @@ export function createTimeclockScreen(): ScreenMeta {
     render(view, state, params = {}) {
       enterThread('U3', 'timeclock', params);
 
-      let stepNum = params.step
-        ? Number(params.step)
-        : typeof state.step === 'number'
-          ? state.step
-          : 1;
+      let stepNum = readStep(params.step, state.step, 3);
 
       let hour24 = typeof state.hour24 === 'number' ? state.hour24 : 21;
       let minute24 = typeof state.minute24 === 'number' ? state.minute24 : 30;
@@ -81,9 +78,9 @@ export function createTimeclockScreen(): ScreenMeta {
       });
 
       const stepsConfig = [
-        { num: 1, label: '1. Dual Clock Dial' },
-        { num: 2, label: '2. Base-60 Minute Roll' },
-        { num: 3, label: '3. Hour Bridging Timeline' },
+        { num: 1, label: t('timeclock.tab1') },
+        { num: 2, label: t('timeclock.tab2') },
+        { num: 3, label: t('timeclock.tab3') },
       ];
 
       stepsConfig.forEach((cfg) => {
@@ -150,51 +147,102 @@ export function createTimeclockScreen(): ScreenMeta {
         const radius = size / 2;
         const cx = radius;
         const cy = radius;
+        const minuteAngle = m * 6;
+        const hourAngle = (h24 % 12) * 30 + m * 0.5;
+        const rad = (deg: number) => (deg * Math.PI) / 180;
 
-        // Angles
-        const minuteAngle = m * 6; // 360 / 60
-        const hourAngle = (h24 % 12) * 30 + m * 0.5; // 360 / 12
+        const clock = svg(
+          'svg',
+          {
+            width: String(size),
+            height: String(size),
+            viewBox: `0 0 ${size} ${size}`,
+            role: 'img',
+            'aria-label': t('timeclock.tab1'),
+          },
+          [
+            svg('circle', {
+              cx: String(cx),
+              cy: String(cy),
+              r: String(radius - 6),
+              fill: '#f8fafc',
+              stroke: '#cbd5e1',
+              'stroke-width': '2',
+            }),
+            svg('circle', {
+              cx: String(cx),
+              cy: String(cy),
+              r: String(radius - 34),
+              fill: '#ffffff',
+              stroke: '#e2e8f0',
+              'stroke-width': '1.5',
+              'stroke-dasharray': '3,3',
+            }),
+          ]
+        );
 
-        // Inner 12-hour ring & outer 24-hour ring
-        let numbersSvg = '';
         for (let i = 1; i <= 12; i++) {
-          const angleRad = ((i * 30 - 90) * Math.PI) / 180;
-          // Inner 12-hr number
+          const angleRad = rad(i * 30 - 90);
           const ix = cx + (radius - 48) * Math.cos(angleRad);
           const iy = cy + (radius - 48) * Math.sin(angleRad);
-          numbersSvg += `<text x="${ix}" y="${iy + 4}" font-size="11" font-weight="600" text-anchor="middle" fill="#1e293b">${i}</text>`;
-
-          // Outer 24-hr number
+          clock.appendChild(
+            svg('text', {
+              x: String(ix),
+              y: String(iy + 4),
+              'font-size': '11',
+              'font-weight': '600',
+              'text-anchor': 'middle',
+              fill: '#1e293b',
+              text: String(i),
+            })
+          );
           const h24Num = i === 12 ? (h24 >= 12 ? 24 : 12) : i + 12;
           const ox = cx + (radius - 20) * Math.cos(angleRad);
           const oy = cy + (radius - 20) * Math.sin(angleRad);
-          numbersSvg += `<text x="${ox}" y="${oy + 3}" font-size="9" font-weight="500" text-anchor="middle" fill="#64748b">${h24Num === 24 ? '00' : h24Num}</text>`;
+          clock.appendChild(
+            svg('text', {
+              x: String(ox),
+              y: String(oy + 3),
+              'font-size': '9',
+              'font-weight': '500',
+              'text-anchor': 'middle',
+              fill: '#64748b',
+              text: h24Num === 24 ? '00' : String(h24Num),
+            })
+          );
         }
 
-        const svgHtml = `<svg width="${size}" height="${size}" viewBox="0 0 ${size} ${size}" aria-label="Dual Dial Clock">
-          <!-- Outer dial circle -->
-          <circle cx="${cx}" cy="${cy}" r="${radius - 6}" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
-          <!-- Inner dial separator -->
-          <circle cx="${cx}" cy="${cy}" r="${radius - 34}" fill="#ffffff" stroke="#e2e8f0" stroke-width="1.5" stroke-dasharray="3,3"/>
-          
-          <!-- Number markings -->
-          ${numbersSvg}
-
-          <!-- Hour hand -->
-          <line x1="${cx}" y1="${cy}" x2="${cx + (radius - 58) * Math.cos(((hourAngle - 90) * Math.PI) / 180)}" y2="${cy + (radius - 58) * Math.sin(((hourAngle - 90) * Math.PI) / 180)}" stroke="#0f172a" stroke-width="4.5" stroke-linecap="round"/>
-          
-          <!-- Minute hand -->
-          <line x1="${cx}" y1="${cy}" x2="${cx + (radius - 30) * Math.cos(((minuteAngle - 90) * Math.PI) / 180)}" y2="${cy + (radius - 30) * Math.sin(((minuteAngle - 90) * Math.PI) / 180)}" stroke="#2563eb" stroke-width="3" stroke-linecap="round"/>
-          
-          <!-- Centre pin -->
-          <circle cx="${cx}" cy="${cy}" r="5" fill="#0f172a"/>
-        </svg>`;
+        clock.appendChild(
+          svg('line', {
+            x1: String(cx),
+            y1: String(cy),
+            x2: String(cx + (radius - 58) * Math.cos(rad(hourAngle - 90))),
+            y2: String(cy + (radius - 58) * Math.sin(rad(hourAngle - 90))),
+            stroke: '#0f172a',
+            'stroke-width': '4.5',
+            'stroke-linecap': 'round',
+          })
+        );
+        clock.appendChild(
+          svg('line', {
+            x1: String(cx),
+            y1: String(cy),
+            x2: String(cx + (radius - 30) * Math.cos(rad(minuteAngle - 90))),
+            y2: String(cy + (radius - 30) * Math.sin(rad(minuteAngle - 90))),
+            stroke: '#2563eb',
+            'stroke-width': '3',
+            'stroke-linecap': 'round',
+          })
+        );
+        clock.appendChild(
+          svg('circle', { cx: String(cx), cy: String(cy), r: '5', fill: '#0f172a' })
+        );
 
         const wrapper = el('div', {
           class: 'clock-dial-wrapper',
           style: { display: 'flex', justifyContent: 'center' },
         });
-        wrapper.innerHTML = svgHtml;
+        wrapper.appendChild(clock);
         return wrapper;
       }
 
@@ -202,7 +250,7 @@ export function createTimeclockScreen(): ScreenMeta {
         const t12 = to12Hour(hour24, minute24);
         const t24Str = formatTime24(hour24, minute24);
 
-        feedbackEl.textContent = `24-Hour Railway Time: ${t24Str} is equivalent to Standard Clock: ${t12.formatted}.`;
+        feedbackEl.textContent = t('timeclock.dualFeedback', { t24: t24Str, t12: t12.formatted });
 
         const clockCard = el('div', {
           class: 'clock-card',
@@ -244,7 +292,7 @@ export function createTimeclockScreen(): ScreenMeta {
           },
         });
         pill24.appendChild(
-          el('div', { text: 'Railway Time (24h)', style: { fontSize: '0.8rem' } })
+          el('div', { text: t('timeclock.railwayPill'), style: { fontSize: '0.8rem' } })
         );
         pill24.appendChild(
           el('div', { text: t24Str, style: { fontWeight: 'bold', fontSize: '1.3rem' } })
@@ -260,7 +308,9 @@ export function createTimeclockScreen(): ScreenMeta {
             textAlign: 'center',
           },
         });
-        pill12.appendChild(el('div', { text: '12-Hour Clock', style: { fontSize: '0.8rem' } }));
+        pill12.appendChild(
+          el('div', { text: t('timeclock.standardPill'), style: { fontSize: '0.8rem' } })
+        );
         pill12.appendChild(
           el('div', { text: t12.formatted, style: { fontWeight: 'bold', fontSize: '1.3rem' } })
         );
@@ -295,7 +345,10 @@ export function createTimeclockScreen(): ScreenMeta {
           },
         });
         hourRow.appendChild(
-          el('span', { text: `Hour (0-23): ${hour24}`, style: { fontWeight: '600' } })
+          el('span', {
+            text: t('timeclock.hourLabel', { h: String(hour24) }),
+            style: { fontWeight: '600' },
+          })
         );
         const hBtnGroup = el('div', { style: { display: 'flex', gap: '6px' } });
         [-6, -1, 1, 6].forEach((dh) => {
@@ -325,7 +378,10 @@ export function createTimeclockScreen(): ScreenMeta {
           },
         });
         minRow.appendChild(
-          el('span', { text: `Minute (0-59): ${minute24}`, style: { fontWeight: '600' } })
+          el('span', {
+            text: t('timeclock.minuteLabel', { m: String(minute24) }),
+            style: { fontWeight: '600' },
+          })
         );
         const mBtnGroup = el('div', { style: { display: 'flex', gap: '6px' } });
         [-15, -5, 5, 15].forEach((dm) => {
@@ -349,10 +405,10 @@ export function createTimeclockScreen(): ScreenMeta {
           style: { display: 'flex', gap: '8px', flexWrap: 'wrap', marginTop: '6px' },
         });
         [
-          { label: 'Train Ticket (21:30)', h: 21, m: 30 },
-          { label: 'Morning School (08:30)', h: 8, m: 30 },
-          { label: 'Noon (12:00)', h: 12, m: 0 },
-          { label: 'Midnight (00:00)', h: 0, m: 0 },
+          { label: t('timeclock.presetTrain'), h: 21, m: 30 },
+          { label: t('timeclock.presetSchool'), h: 8, m: 30 },
+          { label: t('timeclock.presetNoon'), h: 12, m: 0 },
+          { label: t('timeclock.presetMidnight'), h: 0, m: 0 },
         ].forEach((pr) => {
           const pBtn = el('button', {
             class: 'btn',
@@ -376,7 +432,10 @@ export function createTimeclockScreen(): ScreenMeta {
         const added = addMinutes(rollStartH, rollStartM, rollAddM);
         const rawMins = rollStartM + rollAddM;
 
-        feedbackEl.textContent = `Adding ${rollAddM} minutes to ${formatTime24(rollStartH, rollStartM)}: Time rolls in base 60!`;
+        feedbackEl.textContent = t('timeclock.rollFeedback', {
+          add: String(rollAddM),
+          start: formatTime24(rollStartH, rollStartM),
+        });
 
         const rollCard = el('div', {
           class: 'minute-roll-card',
@@ -404,11 +463,15 @@ export function createTimeclockScreen(): ScreenMeta {
           },
         });
         step1.appendChild(
-          el('span', { text: '1. Direct minute addition:', style: { fontWeight: '600' } })
+          el('span', { text: t('timeclock.rollStep1'), style: { fontWeight: '600' } })
         );
         step1.appendChild(
           el('span', {
-            text: `${rollStartM} min + ${rollAddM} min = ${rawMins} min`,
+            text: t('timeclock.rollStep1eq', {
+              a: String(rollStartM),
+              b: String(rollAddM),
+              sum: String(rawMins),
+            }),
             class: 'stat-pill',
             style: { fontWeight: 'bold' },
           })
@@ -429,7 +492,7 @@ export function createTimeclockScreen(): ScreenMeta {
         });
         step2.appendChild(
           el('span', {
-            text: '2. Roll at 60 (Base 60):',
+            text: t('timeclock.rollStep2'),
             style: { fontWeight: '600', color: '#1d4ed8' },
           })
         );
@@ -437,7 +500,11 @@ export function createTimeclockScreen(): ScreenMeta {
         const remM = rawMins % 60;
         step2.appendChild(
           el('span', {
-            text: `${rawMins} min = +${rollH} hr and ${remM} min remaining`,
+            text: t('timeclock.rollStep2eq', {
+              sum: String(rawMins),
+              hrs: String(rollH),
+              rem: String(remM),
+            }),
             class: 'stat-pill',
             style: { fontWeight: 'bold', color: '#1d4ed8' },
           })
@@ -457,7 +524,7 @@ export function createTimeclockScreen(): ScreenMeta {
           },
         });
         step3.appendChild(
-          el('span', { text: '3. Correct Clock Time:', style: { fontWeight: 'bold' } })
+          el('span', { text: t('timeclock.rollStep3'), style: { fontWeight: 'bold' } })
         );
         step3.appendChild(
           el('span', {
@@ -485,7 +552,7 @@ export function createTimeclockScreen(): ScreenMeta {
         trapWarning.appendChild(
           el('p', {
             style: { margin: '0', fontSize: '0.95rem' },
-            text: `Rohan's Mistake Trap: Adding digits base-10 gives 14:75. But minutes stop at 59! There is NO such time as 14:75. The true time is ${added.formatted}.`,
+            text: t('timeclock.rohanTrap', { correct: added.formatted }),
           })
         );
         rollCard.appendChild(trapWarning);
@@ -501,11 +568,11 @@ export function createTimeclockScreen(): ScreenMeta {
           },
         });
         [
-          { label: 'Rohan Trap (+25 min)', m: 25 },
-          { label: '+10 min', m: 10 },
-          { label: '+30 min', m: 30 },
-          { label: '+45 min', m: 45 },
-          { label: '+60 min', m: 60 },
+          { label: t('timeclock.rohanTrapBtn'), m: 25 },
+          { label: t('timeclock.addMin', { m: '10' }), m: 10 },
+          { label: t('timeclock.addMin', { m: '30' }), m: 30 },
+          { label: t('timeclock.addMin', { m: '45' }), m: 45 },
+          { label: t('timeclock.addMin', { m: '60' }), m: 60 },
         ].forEach((bCfg) => {
           const btn = el('button', {
             class: 'btn',
@@ -527,7 +594,11 @@ export function createTimeclockScreen(): ScreenMeta {
       function renderHourBridging() {
         const dur = calculateDuration(bridgeStartH, bridgeStartM, bridgeEndH, bridgeEndM);
 
-        feedbackEl.textContent = `Elapsed duration from ${formatTime24(bridgeStartH, bridgeStartM)} to ${formatTime24(bridgeEndH, bridgeEndM)} is ${dur.formatted}.`;
+        feedbackEl.textContent = t('timeclock.bridgeFeedback', {
+          start: formatTime24(bridgeStartH, bridgeStartM),
+          end: formatTime24(bridgeEndH, bridgeEndM),
+          dur: dur.formatted,
+        });
 
         const bridgeCard = el('div', {
           class: 'hour-bridging-card',
@@ -598,7 +669,11 @@ export function createTimeclockScreen(): ScreenMeta {
           const leftText = el('div', { style: { display: 'flex', flexDirection: 'column' } });
           leftText.appendChild(
             el('span', {
-              text: `Hop ${idx + 1}: ${hop.from} ➔ ${hop.to}`,
+              text: t('timeclock.hopLine', {
+                n: String(idx + 1),
+                from: hop.from,
+                to: hop.to,
+              }),
               style: { fontWeight: '600' },
             })
           );
@@ -608,7 +683,7 @@ export function createTimeclockScreen(): ScreenMeta {
 
           const rightTime = el('span', {
             class: 'stat-pill',
-            text: `+${hop.minutes} min`,
+            text: t('timeclock.hopMinutes', { m: String(hop.minutes) }),
             style: { fontWeight: 'bold' },
           });
 
@@ -621,7 +696,7 @@ export function createTimeclockScreen(): ScreenMeta {
 
         // Presets
         const presetsTitle = el('span', {
-          text: 'Journey Timetable Presets:',
+          text: t('timeclock.presetsTitle'),
           style: { fontWeight: '600', fontSize: '0.9rem', color: 'var(--muted, #64748b)' },
         });
         bridgeCard.appendChild(presetsTitle);
@@ -630,9 +705,9 @@ export function createTimeclockScreen(): ScreenMeta {
           style: { display: 'flex', gap: '8px', flexWrap: 'wrap' },
         });
         [
-          { label: '09:45 to 12:15 (Morning Intercity)', sh: 9, sm: 45, eh: 12, em: 15 },
-          { label: '14:50 to 18:20 (Express)', sh: 14, sm: 50, eh: 18, em: 20 },
-          { label: '21:30 to 06:15 (Overnight Sleeper)', sh: 21, sm: 30, eh: 6, em: 15 },
+          { label: t('timeclock.presetMorning'), sh: 9, sm: 45, eh: 12, em: 15 },
+          { label: t('timeclock.presetExpress'), sh: 14, sm: 50, eh: 18, em: 20 },
+          { label: t('timeclock.presetOvernight'), sh: 21, sm: 30, eh: 6, em: 15 },
         ].forEach((p) => {
           const pBtn = el('button', {
             class: 'btn timetable-preset-btn',
@@ -698,21 +773,10 @@ export function createTimeclockScreen(): ScreenMeta {
         },
       });
 
-      const nextBtn = el('button', {
-        class: 'btn btn-primary',
-        text: 'Spot the Mistake →',
-        style: {
-          minHeight: '44px',
-          padding: '10px 20px',
-          borderRadius: '6px',
-          background: 'var(--ink, #1f2937)',
-          color: '#fff',
-          fontWeight: 'bold',
-        },
-        onClick() {
-          router.go('mistake', { k: 'U3' });
-        },
-      });
+      const nextBtn = toMistakeButton('U3');
+      nextBtn.classList.add('btn-primary');
+      nextBtn.style.minHeight = '44px';
+      nextBtn.style.padding = '10px 20px';
 
       actionRow.appendChild(resetBtn);
       actionRow.appendChild(nextBtn);
