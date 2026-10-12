@@ -9,6 +9,43 @@ export type RouteCheckpoint = 'A' | 'B' | RouteOutcome;
 
 export const GATE_TYPES: readonly GateType[] = ['and', 'or', 'not'] as const;
 
+export function evaluateAndGate(a: boolean, b: boolean): boolean {
+  return a && b;
+}
+
+export function evaluateOrGate(a: boolean, b: boolean): boolean {
+  return a || b;
+}
+
+export function evaluateNotGate(a: boolean): boolean {
+  return !a;
+}
+
+export interface TruthTableRow {
+  inputs: boolean[];
+  output: boolean;
+}
+
+export function generateTruthTable(gateType: 'AND' | 'OR' | 'NOT' | GateType): TruthTableRow[] {
+  const norm = gateType.toLowerCase() as GateType;
+  if (norm === 'not') {
+    return [
+      { inputs: [false], output: true },
+      { inputs: [true], output: false },
+    ];
+  }
+  const combinations: [boolean, boolean][] = [
+    [false, false],
+    [false, true],
+    [true, false],
+    [true, true],
+  ];
+  return combinations.map(([a, b]) => ({
+    inputs: [a, b],
+    output: norm === 'and' ? evaluateAndGate(a, b) : evaluateOrGate(a, b),
+  }));
+}
+
 /**
  * Evaluate the logical output of a gate given boolean inputs.
  */

@@ -127,5 +127,9 @@ describe('src/domain/math/index exports', () => {
     expect(typeof math.findCounterexample).toBe('function');
     expect(typeof math.verifyUniversalStatement).toBe('function');
     expect(typeof math.formatDisproof).toBe('function');
+    expect(typeof math.evaluateAndGate).toBe('function');
+    expect(typeof math.evaluateOrGate).toBe('function');
+    expect(typeof math.evaluateNotGate).toBe('function');
+    expect(typeof math.generateTruthTable).toBe('function');
   });
 });

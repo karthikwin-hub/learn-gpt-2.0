@@ -1,7 +1,52 @@
 import { describe, it, expect } from 'vitest';
-import { evalGate, getGateInputs, getMarbleRoute, getRowKey, isTableComplete } from './logic';
+import {
+  evalGate,
+  evaluateAndGate,
+  evaluateOrGate,
+  evaluateNotGate,
+  generateTruthTable,
+  getGateInputs,
+  getMarbleRoute,
+  getRowKey,
+  isTableComplete,
+} from './logic';
 
 describe('domain/math/logic: Logic Gates and Marble Routing', () => {
+  describe('pure gate evaluators', () => {
+    it('evaluates evaluateAndGate', () => {
+      expect(evaluateAndGate(false, false)).toBe(false);
+      expect(evaluateAndGate(true, false)).toBe(false);
+      expect(evaluateAndGate(false, true)).toBe(false);
+      expect(evaluateAndGate(true, true)).toBe(true);
+    });
+
+    it('evaluates evaluateOrGate', () => {
+      expect(evaluateOrGate(false, false)).toBe(false);
+      expect(evaluateOrGate(true, false)).toBe(true);
+      expect(evaluateOrGate(false, true)).toBe(true);
+      expect(evaluateOrGate(true, true)).toBe(true);
+    });
+
+    it('evaluates evaluateNotGate', () => {
+      expect(evaluateNotGate(false)).toBe(true);
+      expect(evaluateNotGate(true)).toBe(false);
+    });
+
+    it('generates full truth tables', () => {
+      const andTable = generateTruthTable('AND');
+      expect(andTable).toHaveLength(4);
+      expect(andTable[3]).toEqual({ inputs: [true, true], output: true });
+
+      const orTable = generateTruthTable('or');
+      expect(orTable).toHaveLength(4);
+      expect(orTable[1]).toEqual({ inputs: [false, true], output: true });
+
+      const notTable = generateTruthTable('NOT');
+      expect(notTable).toHaveLength(2);
+      expect(notTable[0]).toEqual({ inputs: [false], output: true });
+      expect(notTable[1]).toEqual({ inputs: [true], output: false });
+    });
+  });
   describe('evalGate', () => {
     it('correctly evaluates AND gate truth table', () => {
       expect(evalGate('and', false, false)).toBe(false);
