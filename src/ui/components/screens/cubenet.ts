@@ -210,7 +210,7 @@ export function createCubenetScreen(): ScreenMeta {
             viewBox: `0 0 ${svgW} ${svgH}`,
             width: '100%',
             height: '220',
-            role: 'img',
+            role: 'group',
             'aria-label': t('cubenet.title'),
           });
           const g = svg('g', { transform: `translate(${xOffset}, ${yOffset})` });
@@ -239,14 +239,28 @@ export function createCubenetScreen(): ScreenMeta {
                   : 'var(--ink-soft)',
                 'stroke-width': isSelected ? '2.5' : '1',
                 rx: '4',
+                role: 'button',
+                tabindex: 0,
+                'aria-pressed': String(isSelected),
+                'aria-label': `${c + 1}, ${r + 1}`,
               });
               rect.style.cursor = 'pointer';
-              rect.addEventListener('click', () => {
+              const toggle = () => {
                 const foundIdx = squares.findIndex((s) => s.x === c && s.y === r);
                 if (foundIdx !== -1) squares.splice(foundIdx, 1);
                 else if (squares.length < 6) squares.push({ x: c, y: r });
                 state.squares = squares;
                 renderContent();
+                contentBox
+                  .querySelector<SVGRectElement>(`.grid-cell[data-col="${c}"][data-row="${r}"]`)
+                  ?.focus();
+              };
+              rect.addEventListener('click', toggle);
+              rect.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                  e.preventDefault();
+                  toggle();
+                }
               });
               g.appendChild(rect);
             }

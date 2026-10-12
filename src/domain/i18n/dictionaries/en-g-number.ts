@@ -11,6 +11,8 @@ export const dictionary: Record<string, string> = {
     '[[roman|Roman numerals]] are an ancient system of writing numbers using seven letters: I (1), V (5), X (10), L (50), C (100), D (500), and M (1000).',
   'bodha.N2.can':
     'You will be able to read and write Roman numerals, use additive and subtractive rules, and avoid repeating symbols.',
+  'gloss.add': 'Put two amounts together to find how many there are in all.',
+  'gloss.subtract': 'Take one amount away from another to find how many are left.',
   'bodha.N2.idea':
     'Roman numerals do not use place value. Putting a smaller symbol to the right [[add|adds]] it (VI = 5 + 1 = 6); putting it to the left [[subtract|subtracts]] it (IV = 5 - 1 = 4).',
   'bodha.N2.why':

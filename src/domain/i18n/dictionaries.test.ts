@@ -95,6 +95,22 @@ describe('046 dictionaries: every English string exists in hi, te, bn, ta (US1-A
   }
 });
 
+describe('046 dictionaries: every glossary term is well formed and defined (US1-AS2)', () => {
+  for (const lang of ['en', ...OTHER] as LanguageCode[]) {
+    it(`${lang}: every [[id|word]] parses and gloss.<id> exists`, () => {
+      const bad: string[] = [];
+      for (const [k, v] of Object.entries(DICTIONARIES[lang])) {
+        const left = v.replace(/\[\[([\w.-]+)\|([^\]]+)\]\]/g, (_m, id: string) => {
+          if (DICTIONARIES.en[`gloss.${id}`] === undefined) bad.push(`${k}: unknown term ${id}`);
+          return '';
+        });
+        if (left.includes('[[') || left.includes(']]')) bad.push(`${k}: malformed term markup`);
+      }
+      expect(bad).toEqual([]);
+    });
+  }
+});
+
 describe('046 dictionaries: no praise, score or streak words (US1-AS3)', () => {
   for (const lang of ['en', ...OTHER] as LanguageCode[]) {
     it(`${lang}: no banned word in any value`, () => {

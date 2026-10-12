@@ -372,7 +372,7 @@ export const dictionary: Record<string, string> = {
   'prashna.G8.a':
     "A circle! Looking straight down from the ceiling gives a bird's eye (top) view: you see only the circular rim and base, not the vertical wall height.",
   'bodha.G8.what':
-    'Every 3D object projects different 2D shapes when viewed from different angles: [[top view|top view]], Front view, and Side view.',
+    'A solid looks different from each side. Looking down from above you see its top view; from in front, its front view; from the side, its side view.',
   'bodha.G8.can':
     'You will be able to reconstruct 3D structures from top, front, and side views and connect top views to maps.',
   'bodha.G8.idea':
