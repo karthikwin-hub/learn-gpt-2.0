@@ -1575,4 +1575,59 @@ export const dictionary: Record<string, string> = {
   'explain.H2.hint':
     'Check what sets the value of grid marks, and what property must remain identical across all bars.',
   'know.H2': 'The height of the bar tells the count; always read the scale on the side.',
+
+  /* L4 */
+  'prashna.L4.q': 'What comes next in the sequence: 3, 7, 11, 15, ___?',
+  'prashna.L4.c1': '18',
+  'prashna.L4.c2': '19',
+  'prashna.L4.c3': '20',
+  'prashna.L4.a':
+    'The difference between terms is always +4 (7-3=4, 11-7=4, 15-11=4). So the next term is 15 + 4 = 19!',
+  'bodha.L4.what':
+    'A sequence is a train of numbers where every step follows the exact same mathematical rule.',
+  'bodha.L4.can':
+    'Find difference ladders, test pattern operations, and predict future terms without guessing.',
+  'bodha.L4.idea':
+    'Build a difference ladder: subtract each number from the next to uncover the hidden jump between steps.',
+  'bodha.L4.why':
+    'Once you know the jump (e.g. add 4 each time), you can predict any future number without guessing!',
+  'bodha.L4.example': 'Finding what comes next:',
+  'bodha.L4.example1': 'Step 1: Write terms: 3, 7, 11, 15.',
+  'bodha.L4.example2': 'Step 2: Difference ladder: 7 - 3 = 4, 11 - 7 = 4, 15 - 11 = 4 (Rule: +4).',
+  'bodha.L4.example3': 'Step 3: Next term is 15 + 4 = 19.',
+  'bodha.L4.where':
+    'Calendar days (add 7 for next Monday), bus schedules, tile borders, and spiral shells.',
+  'bodha.L4.sutra': 'Find what connects one step to the next: the rule tells you what comes next.',
+  'sequences.title': 'What Comes Next? (Sequence Rules & Difference Ladders)',
+  'sequences.lead':
+    'Inspect difference ladders, test pattern operations (+, -, ×), and calculate distant sequence terms.',
+  'sequences.difference_ladder': 'Difference Ladder',
+  'sequences.terms': 'Sequence Terms',
+  'sequences.rule': 'Rule:',
+  'sequences.next_term': 'Next Term:',
+  'sequences.distant_predictor': 'Distant Term Predictor',
+  'sequences.step1': '1. Arithmetic Ladders (+4, +5, -3)',
+  'sequences.step2': '2. Doubling Tree vs Adding Trap',
+  'sequences.step3': '3. Distant Term Predictor (10th Term)',
+  'sequences.reset': 'Reset',
+  'mistake.L4.intro': 'Gita is looking at the doubling sequence: 2, 4, 8, 16, ___:',
+  'mistake.L4.s1': 'She notices that 4 is 2 × 2, 8 is 4 × 2, and 16 is 8 × 2.',
+  'mistake.L4.s2': 'She forgets the doubling rule and adds the previous difference (16 + 8 = 24).',
+  'mistake.L4.s3': 'She concludes that the next number in the train must be 24.',
+  'mistake.L4.fine1': 'Sound observation: the sequence doubles at every step.',
+  'mistake.L4.fine3':
+    'Step 3 fails because she switched operations from multiplying by 2 to adding 8.',
+  'mistake.L4.found':
+    'Here! The sequence multiplies by 2 at each step. The next term is 16 × 2 = 32, not 24!',
+  'explain.L4.s':
+    'To find what comes next in a sequence, we discover the unchanging {0} between steps. In the sequence 5, 10, 15, 20, the rule is to add {1} at every step.',
+  'explain.L4.rule': 'rule',
+  'explain.L4.guess': 'guess',
+  'explain.L4.color': 'color',
+  'explain.L4.five': 'five',
+  'explain.L4.ten': 'ten',
+  'explain.L4.two': 'two',
+  'explain.L4.hint':
+    'Think about what invariant connects every term, and how much is added from 5 to 10 to 15.',
+  'know.L4': 'Find what connects one step to the next: the rule tells you what comes next.',
 };

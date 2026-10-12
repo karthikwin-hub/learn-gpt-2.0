@@ -128,7 +128,7 @@ export const SECTIONS: Section[] = [
       },
       {
         id: 'krama',
-        knots: [k('L4'), k('P1')],
+        knots: [k('L4', { prashna: true, bench: bench('sequences') }), k('P1')],
       },
       {
         id: 'tarka',

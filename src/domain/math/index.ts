@@ -49,3 +49,4 @@ export * from './metric';
 export * from './timeclock';
 export * from './pictograph';
 export * from './bargraph';
+export * from './sequences';
