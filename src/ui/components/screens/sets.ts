@@ -255,14 +255,14 @@ export function createSetsScreen(): ScreenMeta {
         class: 'btn-row',
         style: { display: 'flex', gap: '8px', justifyContent: 'center', flexWrap: 'wrap' },
       });
-      if (knotId === 'S2') {
+      if (knotId === 'S2' || knotId === 'S3') {
         const mistakeBtn = el('button', {
           type: 'button',
           class: 'btn primary',
           text: 'Spot the Mistake →',
           style: { minHeight: '44px' },
           onclick: () => {
-            router.go('mistake', { k: 'S2' });
+            router.go('mistake', { k: knotId });
           },
         });
         btnRow.appendChild(mistakeBtn);

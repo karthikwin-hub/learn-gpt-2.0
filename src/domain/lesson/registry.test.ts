@@ -305,4 +305,14 @@ describe('Lesson registry', () => {
     expect(s2?.mistake?.wrong).toBe(1);
     expect(s2?.stateKey).toBe('sets');
   });
+
+  it('retrieves S3 Guess the Rules lesson', () => {
+    const s3 = getLesson('S3');
+    expect(s3).not.toBeNull();
+    expect(s3?.cards).toHaveLength(6);
+    expect(s3?.explain).toHaveLength(2);
+    expect(s3?.mistake?.steps).toBe(3);
+    expect(s3?.mistake?.wrong).toBe(1);
+    expect(s3?.stateKey).toBe('sets');
+  });
 });
