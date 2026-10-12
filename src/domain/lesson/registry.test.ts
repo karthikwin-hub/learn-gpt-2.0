@@ -215,4 +215,14 @@ describe('Lesson registry', () => {
     expect(g7?.mistake?.wrong).toBe(1);
     expect(g7?.stateKey).toBe('tangram');
   });
+
+  it('retrieves G8 Views from Above lesson', () => {
+    const g8 = getLesson('G8');
+    expect(g8).not.toBeNull();
+    expect(g8?.cards).toHaveLength(6);
+    expect(g8?.explain).toHaveLength(2);
+    expect(g8?.mistake?.steps).toBe(3);
+    expect(g8?.mistake?.wrong).toBe(1);
+    expect(g8?.stateKey).toBe('views');
+  });
 });

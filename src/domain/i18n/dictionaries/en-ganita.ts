@@ -1262,4 +1262,77 @@ export const dictionary: Record<string, string> = {
   'explain.G7.hint':
     'Does rearranging change total surface area, and what 2-unit shape can two small triangles make?',
   'know.G7': 'Rearranging shapes changes the outline, but the total area stays exactly the same.',
+
+  /* G8 */
+  'prashna.G8.q':
+    'Looking straight down from the ceiling at a round water cup, what 2D shape do you see?',
+  'prashna.G8.c1': 'A rectangle',
+  'prashna.G8.c2': 'A circle',
+  'prashna.G8.c3': 'A triangle',
+  'prashna.G8.a':
+    "A circle! Looking straight down from the ceiling gives a bird's eye (top) view: you see only the circular rim and base, not the vertical wall height.",
+  'bodha.G8.what':
+    'Every 3D object projects different 2D shapes when viewed from different angles: [[top view|top view]], Front view, and Side view.',
+  'bodha.G8.can':
+    'You will be able to reconstruct 3D structures from top, front, and side views and connect top views to maps.',
+  'bodha.G8.idea':
+    'A top view looks straight down from above: it shows ground layout and width/depth, like a map!',
+  'bodha.G8.why':
+    'A front view shows width and height, but hides what lies behind. We need multiple views to describe a 3D structure.',
+  'bodha.G8.example': 'A 3-step staircase:',
+  'bodha.G8.example1': 'Step 1: Front view shows ascending steps (heights 1, 2, and 3).',
+  'bodha.G8.example2': 'Step 2: Side view shows a solid wall rising to height 3.',
+  'bodha.G8.example3':
+    'Step 3: Top view collapses the vertical drops — it looks like 3 flat rectangles side by side!',
+  'bodha.G8.where':
+    'Architectural blueprints, floor plans, shadows cast by sunlight, and aerial maps.',
+  'bodha.G8.sutra':
+    'A top view sees the ground; a front view sees the height; together they describe the whole 3D shape.',
+  'gloss.topview':
+    'An orthographic projection looking straight down from above, showing width and depth without height.',
+  'gloss.topview.en': 'top view',
+  'views.title': 'Views from Above: Top, Front, Side',
+  'views.art':
+    'Interactive 3D block courtyard with synchronized top, front, and side orthographic viewports.',
+  'views.top': 'Top View (Plan / Map)',
+  'views.front': 'Front View (Elevation)',
+  'views.side': 'Side View (Profile)',
+  'views.blocks': 'Total Blocks: {count}',
+  'views.presetStair': 'Staircase',
+  'views.presetTower': 'Tower',
+  'views.presetCorner': 'L-Corner',
+  'views.presetBridge': 'Bridge Arch',
+  'views.jaalToggle': 'Jaal Link: E4 Map Connection',
+  'views.s1': 'Explore the 3 orthographic views of the staircase.',
+  'views.s1done':
+    'Staircase views: Front shows ascending steps (1, 2, 3), but Top view looks like a flat row of 3 squares!',
+  'views.s2': 'Switch between different 3D structures to compare their views.',
+  'views.s2done':
+    'Structure changed to {name}: notice how each vantage point reveals different dimensions.',
+  'views.s3': 'Examine how Top View connects to Map Reading (Jaal E4).',
+  'views.s3done':
+    "Bird's eye perspective: overhead projections are exactly how maps, floor plans, and blueprints work!",
+  'mistake.G8.intro':
+    'Kabir was drawing the top view of a 3-step block staircase. One step went wrong. Which one?',
+  'mistake.G8.s1':
+    'Kabir observed the 3-step staircase from the front, noting step heights 1, 2, and 3.',
+  'mistake.G8.s2': 'He drew the top view showing step drops and vertical faces between each step.',
+  'mistake.G8.s3':
+    'He claimed that overhead drawings always display the vertical drops between steps.',
+  'mistake.G8.fine1': 'Sound step: observing front step heights 1, 2, and 3 is accurate.',
+  'mistake.G8.fine3': 'Step 3 is based on his misprojection in Step 2.',
+  'mistake.G8.found':
+    'Here! Looking straight down from above collapses vertical height completely. You cannot see vertical drops — the top view is simply 3 flat adjacent squares, like a map!',
+  'explain.G8.s':
+    'A top view looks straight down from above and shows the shape like a {0}. A front view shows width and {1}, but hides the depth behind.',
+  'explain.G8.map': 'map',
+  'explain.G8.shadow': 'shadow',
+  'explain.G8.mirror': 'mirror',
+  'explain.G8.height': 'height',
+  'explain.G8.perimeter': 'perimeter',
+  'explain.G8.weight': 'weight',
+  'explain.G8.hint':
+    'What overhead document resembles a top view, and what vertical dimension does a front view show?',
+  'know.G8':
+    'A top view sees the ground; a front view sees the height; together they describe the whole 3D shape.',
 };
