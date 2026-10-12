@@ -843,4 +843,60 @@ export const dictionary: Record<string, string> = {
   'explain.F3.hint': 'Do 3 and 9 inspect the last digit or do they add all digits to test the sum?',
   'know.F3':
     'For 2, 5, and 10, inspect the last digit; for 3 and 9, sum all digits; for 6, pass both 2 and 3.',
+
+  /* F4 Common Factors & HCF */
+  'prashna.F4.q':
+    'What is the largest measuring cup that can measure both 12 L and 18 L of milk exactly?',
+  'prashna.F4.c1': '2 L',
+  'prashna.F4.c2': '6 L',
+  'prashna.F4.c3': '12 L',
+  'prashna.F4.a':
+    '6 L. 6 divides both 12 (2 cups) and 18 (3 cups) with zero leftover! It is their Highest Common Factor (HCF).',
+  'bodha.F4.what':
+    'The [[hcf|Highest Common Factor (HCF)]] is the greatest number that divides two or more numbers completely without leaving any remainder.',
+  'bodha.F4.can':
+    'You will be able to find common factors using Venn diagrams, measure lengths with shared tile units, and reduce fractions in one step.',
+  'bodha.F4.idea':
+    'List the factors of both numbers. The intersection contains their common factors; the largest number in the intersection is their HCF.',
+  'bodha.F4.why':
+    'The HCF is the largest tile size that fits both beams without cutting. A 6 m piece fits twice into 12 m and 3 times into 18 m!',
+  'bodha.F4.example': 'Find the HCF of 16 and 24.',
+  'bodha.F4.example1': 'Factors of 16: 1, 2, 4, 8, 16.',
+  'bodha.F4.example2': 'Factors of 24: 1, 2, 3, 4, 6, 8, 12, 24.',
+  'bodha.F4.example3':
+    'Shared factors: 1, 2, 4, 8. The greatest shared factor is 8: HCF(16, 24) = 8.',
+  'bodha.F4.where':
+    'Cutting fabric or wood without waste, tiling floor grids, and simplifying fractions.',
+  'bodha.F4.sutra':
+    'The highest common factor is the greatest shared divisor that fits both without leftover.',
+  'gloss.hcf': 'The largest positive integer that divides two or more numbers without a remainder.',
+  'gloss.hcf.en': 'highest common factor',
+  'hcf.title': 'Common factors & HCF',
+  'hcf.art': 'A two-ring Venn diagram showing overlapping factors and dual-beam tile alignment.',
+  'hcf.s1': 'Sort factors of 12 and 18 into the overlapping Venn rings.',
+  'hcf.s1done': 'Shared intersection: 1, 2, 3, 6. The largest shared factor is 6.',
+  'hcf.s2': 'Fit measuring tile lengths (2, 3, 6) across beams of length 12 and 18.',
+  'hcf.s2done': 'Tile size 6 fits both 12 and 18 with zero gap: 6 is the HCF.',
+  'hcf.s3': 'Simplify the fraction 12/18 in one step by dividing numerator and denominator by 6.',
+  'hcf.s3done': '12/18 simplified by HCF(6) yields 2/3.',
+  'mistake.F4.intro':
+    'Tarun was asked to find the HCF of 8 and 12. One step went wrong. Which one?',
+  'mistake.F4.s1': 'He tested 2 and found that 2 divides both 8 and 12.',
+  'mistake.F4.s2': 'He stopped here and declared that HCF(8, 12) = 2.',
+  'mistake.F4.s3': 'He wrote the answer as 2.',
+  'mistake.F4.fine1': 'That is sound: 2 is indeed a common factor of 8 and 12.',
+  'mistake.F4.found':
+    'Here. 2 is a common factor, but it is NOT the highest! 4 also divides both 8 and 12 (8 ÷ 4 = 2, 12 ÷ 4 = 3). The true HCF is 4.',
+  'mistake.F4.fine3': 'Writing 2 as the final answer is wrong because 4 is larger.',
+  'explain.F4.s':
+    'The HCF is the {0} factor that divides both numbers evenly without leaving any {1}.',
+  'explain.F4.largest': 'largest',
+  'explain.F4.smallest': 'smallest',
+  'explain.F4.equal': 'equal',
+  'explain.F4.remainder': 'remainder',
+  'explain.F4.multiple': 'multiple',
+  'explain.F4.factor': 'factor',
+  'explain.F4.hint': 'Is HCF the largest common factor or smallest, and does it leave a remainder?',
+  'know.F4':
+    'The Highest Common Factor is the largest shared divisor that fits both numbers with zero remainder.',
 };

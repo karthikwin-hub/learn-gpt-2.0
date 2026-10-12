@@ -1,6 +1,6 @@
 # Feature Specification: 024 Common Factors & HCF (Knot F4)
 
-<!-- Spec Kit standard. Status: Draft (Ready for Review) · Priority: P1 · Lane: Feature · Branch: feat/014-collection-fractions -->
+<!-- Spec Kit standard. Status: Draft (Ready for Review) · Priority: P1 · Lane: Feature · Branch: feat/024-hcf -->
 
 ## 1. Problem & Pedagogical Intent
 

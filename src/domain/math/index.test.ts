@@ -61,5 +61,8 @@ describe('src/domain/math/index exports', () => {
     expect(typeof math.primeFactorize).toBe('function');
     expect(typeof math.testDivisibility).toBe('function');
     expect(typeof math.sumOfDigits).toBe('function');
+    expect(typeof math.calculateHCF).toBe('function');
+    expect(typeof math.findCommonFactors).toBe('function');
+    expect(typeof math.simplifyFractionByHCF).toBe('function');
   });
 });

@@ -1,6 +1,6 @@
 # Implementation Plan: 024 Common Factors & HCF (Knot F4)
 
-Feature Branch: `feat/014-collection-fractions`
+Feature Branch: `feat/024-hcf`
 
 ## Architecture & Module Ownership
 
