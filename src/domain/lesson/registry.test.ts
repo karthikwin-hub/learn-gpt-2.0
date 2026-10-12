@@ -91,4 +91,13 @@ describe('Lesson registry', () => {
     expect(d2?.mistake?.steps).toBe(3);
     expect(d2?.mistake?.wrong).toBe(2);
   });
+
+  it('retrieves D4 Long Division Algorithm lesson', () => {
+    const d4 = getLesson('D4');
+    expect(d4).not.toBeNull();
+    expect(d4?.cards).toHaveLength(6);
+    expect(d4?.explain).toHaveLength(2);
+    expect(d4?.mistake?.steps).toBe(3);
+    expect(d4?.mistake?.wrong).toBe(1);
+  });
 });

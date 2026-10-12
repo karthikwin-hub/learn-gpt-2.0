@@ -1,11 +1,13 @@
 /**
- * Lesson D4 definition: "Missing side and factor pairs".
+ * Lesson D4 definition: "The Long Division Algorithm & The Zero Gate"
+ * (House-by-house sharing, four-beat rhythm: divide, multiply, subtract, bring down, mandatory quotient zeroes).
  */
 
 import type { LessonData } from './types';
 
 export const D4_LESSON: LessonData = {
   knotId: 'D4',
+  stateKey: 'longdiv',
   cards: [
     { key: 'what' },
     { key: 'idea' },
@@ -14,8 +16,13 @@ export const D4_LESSON: LessonData = {
     { key: 'where' },
     { key: 'sutra' },
   ],
+  mistake: {
+    steps: 3,
+    wrong: 1,
+    eq: () => '824 ÷ 4 = 206 (not <span class="r-txt">26</span>)',
+  },
   explain: [
-    { tiles: ['side', 'corner', 'line'], expect: 'side' },
-    { tiles: ['area', 'perimeter', 'volume'], expect: 'area' },
+    { tiles: ['zero', 'one', 'ten'], expect: 'zero' },
+    { tiles: ['door', 'wall', 'roof'], expect: 'door' },
   ],
 };

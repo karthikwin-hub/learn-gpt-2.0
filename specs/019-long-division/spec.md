@@ -1,6 +1,6 @@
 # Feature Specification: 019 Long Division Algorithm (Knot D4)
 
-<!-- Spec Kit standard. Status: Draft (Ready for Review) · Priority: P1 · Lane: Feature · Branch: feat/014-collection-fractions -->
+<!-- Spec Kit standard. Status: Approved · Priority: P1 · Lane: Feature · Branch: feat/019-long-division -->
 
 ## 1. Problem & Pedagogical Intent
 
