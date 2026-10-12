@@ -53,3 +53,4 @@ export * from './sequences';
 export * from './growing';
 export * from './singleset';
 export * from './counterexample';
+export * from './conditional';

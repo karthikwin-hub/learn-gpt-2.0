@@ -131,5 +131,10 @@ describe('src/domain/math/index exports', () => {
     expect(typeof math.evaluateOrGate).toBe('function');
     expect(typeof math.evaluateNotGate).toBe('function');
     expect(typeof math.generateTruthTable).toBe('function');
+    expect(typeof math.evaluateConditional).toBe('function');
+    expect(typeof math.isConverseValid).toBe('function');
+    expect(typeof math.testImplicationSubset).toBe('function');
+    expect(typeof math.findConverseCounterexamples).toBe('function');
+    expect(typeof math.getConditionalStatement).toBe('function');
   });
 });
