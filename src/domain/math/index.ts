@@ -30,3 +30,4 @@ export {
   type SetPartition,
 } from './collection';
 export * from './decimals';
+export * from './regroup';
