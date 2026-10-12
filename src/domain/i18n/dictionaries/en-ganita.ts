@@ -334,4 +334,63 @@ export const dictionary: Record<string, string> = {
     'Look at the baskets: does combining two groups change the total size of each basket? Or do you just count how many baskets you took?',
   'know.N4':
     'A fraction of a collection divides the total items into equal baskets; when adding fractions with the same denominator, the denominator stays the same.',
+
+  /* N5 Tenths and Hundredths */
+  'prashna.N5.q': 'Which is longer: 0.4 cm or 0.09 cm?',
+  'prashna.N5.c1': '0.09 cm (because 9 is greater than 4)',
+  'prashna.N5.c2': '0.4 cm (4 tenths is 40 hundredths)',
+  'prashna.N5.c3': 'They are the same length',
+  'prashna.N5.a':
+    '0.4 cm. 4 tenths equals 40 hundredths, which is much longer than 9 hundredths (0.09 cm).',
+  'bodha.N5.what':
+    '[[decimals|Decimals]] zoom into the space between whole numbers using steps of ten, like millimeter marks between centimeters.',
+  'bodha.N5.can':
+    'You will be able to read and compare tenths and hundredths, understand place value after the dot, and see why trailing zeroes do not change the size.',
+  'bodha.N5.idea':
+    'The decimal point separates wholes from parts. The first house counts tenths (strips of 10); the second house counts hundredths (single tiles).',
+  'bodha.N5.why':
+    'Each house to the right is ten times smaller. 5 tenths equals 50 hundredths, so 0.5 is much larger than 0.15.',
+  'bodha.N5.example': 'Decompose 1.35 meters into its parts.',
+  'bodha.N5.example1': 'Step 1: The whole number before the dot is 1 full meter.',
+  'bodha.N5.example2': 'Step 2: The first digit after the dot is 3 tenths of a meter (30 cm).',
+  'bodha.N5.example3':
+    'Step 3: The second digit is 5 hundredths of a meter (5 cm): 1 m + 30 cm + 5 cm = 1.35 m.',
+  'bodha.N5.where':
+    'Clinical digital thermometers (37.2°C), Olympic sprint finish timers (9.58 s), and price tags in rupees and paise.',
+  'bodha.N5.sutra':
+    'Each step past the dot is ten times smaller: compare the tenths house first, not how many digits you see.',
+  'gloss.decimals':
+    'Numbers with a decimal point that represents fractions with denominators of 10, 100, or other powers of ten.',
+  'gloss.decimals.en': 'decimals',
+  'decimals.title': 'Tenths and hundredths',
+  'decimals.art': 'A 10 by 10 base-ten grid showing shaded strips and tiles.',
+  'decimals.s1': 'Shade strips of tenths and single hundredths.',
+  'decimals.s1done': '{val} = {hundredths}/100: {tenths} tenths and {h} hundredths.',
+  'decimals.s2': 'Compare two decimals side by side.',
+  'decimals.s2done': '5 tenths is 50 hundredths; 50 is more than 15: 0.5 > 0.15.',
+  'decimals.s3': 'Notice trailing zero conservation.',
+  'decimals.s3done': '5 tenths and 50 hundredths cover the exact same space: 0.5 = 0.50.',
+  'mistake.N5.intro': 'Priya compared 0.7 and 0.15. One step went wrong. Which one?',
+  'mistake.N5.s1': 'We want to compare 0.7 and 0.15.',
+  'mistake.N5.s2': 'Look at the numbers after the dot: 7 and 15.',
+  'mistake.N5.s3': '15 is bigger than 7.',
+  'mistake.N5.s4': 'So 0.15 is greater than 0.7.',
+  'mistake.N5.fine1': 'That is sound: stating the two decimals to compare is clear.',
+  'mistake.N5.fine3':
+    '15 is indeed greater than 7 in whole numbers, but look at how she read the decimals.',
+  'mistake.N5.fine4': 'This conclusion came from the wrong reading earlier. Look earlier.',
+  'mistake.N5.found':
+    '0.7 has 7 tenths (70 hundredths), while 0.15 has only 1 tenth. Compare the tenths house first.',
+  'explain.N5.s':
+    'The first digit after the dot counts {0}, and decimal size is decided by {1} not digit length.',
+  'explain.N5.tenths': 'tenths',
+  'explain.N5.hundredths': 'hundredths',
+  'explain.N5.wholes': 'wholes',
+  'explain.N5.place': 'place',
+  'explain.N5.length': 'length',
+  'explain.N5.zeros': 'zeros',
+  'explain.N5.hint':
+    'Look at the houses after the dot: what does the first house count? Does having more digits make a decimal bigger?',
+  'know.N5':
+    'In decimals, each place after the dot is ten times smaller: 0.5 has 5 tenths (50 hundredths), which is larger than 0.15.',
 };

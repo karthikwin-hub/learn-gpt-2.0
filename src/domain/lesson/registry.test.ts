@@ -55,4 +55,13 @@ describe('Lesson registry', () => {
     expect(n4?.mistake?.steps).toBe(4);
     expect(n4?.mistake?.wrong).toBe(2);
   });
+
+  it('retrieves N5 Tenths and Hundredths lesson', () => {
+    const n5 = getLesson('N5');
+    expect(n5).not.toBeNull();
+    expect(n5?.cards).toHaveLength(6);
+    expect(n5?.explain).toHaveLength(2);
+    expect(n5?.mistake?.steps).toBe(4);
+    expect(n5?.mistake?.wrong).toBe(1);
+  });
 });
