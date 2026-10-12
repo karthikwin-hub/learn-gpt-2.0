@@ -138,7 +138,7 @@ export const SECTIONS: Section[] = [
         crossing: 'cross.logic',
         knots: [
           k('S1', { prashna: true, bench: bench('singleset') }),
-          k('S2', { bench: bench('sets', { mode: 'sort' }) }),
+          k('S2', { prashna: true, bench: bench('sets', { mode: 'sort' }) }),
           k('S3', { bench: bench('sets', { mode: 'guess' }) }),
           k('L1'),
           k('L2', { bench: bench('logic') }),
