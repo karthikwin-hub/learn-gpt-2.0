@@ -185,4 +185,14 @@ describe('Lesson registry', () => {
     expect(g4?.mistake?.wrong).toBe(1);
     expect(g4?.stateKey).toBe('kolam');
   });
+
+  it('retrieves G5 Fold a Box lesson', () => {
+    const g5 = getLesson('G5');
+    expect(g5).not.toBeNull();
+    expect(g5?.cards).toHaveLength(6);
+    expect(g5?.explain).toHaveLength(2);
+    expect(g5?.mistake?.steps).toBe(3);
+    expect(g5?.mistake?.wrong).toBe(0);
+    expect(g5?.stateKey).toBe('cubenet');
+  });
 });

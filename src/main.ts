@@ -41,6 +41,7 @@ import { createDivisibilityScreen } from './ui/components/screens/divisibility';
 import { createHcfScreen } from './ui/components/screens/hcf';
 import { createAnglesScreen } from './ui/components/screens/angles';
 import { createShearScreen } from './ui/components/screens/shear';
+import { createCubenetScreen } from './ui/components/screens/cubenet';
 import { createMoneyScreen } from './ui/components/screens/money';
 import { createDigestScreen } from './ui/components/screens/digest';
 import { createRampScreen } from './ui/components/screens/ramp';
@@ -101,6 +102,7 @@ export function initApp(): void {
   router.register(createHcfScreen());
   router.register(createAnglesScreen());
   router.register(createShearScreen());
+  router.register(createCubenetScreen());
   router.register(createMoneyScreen());
   router.register(createDigestScreen());
   router.register(createRampScreen());

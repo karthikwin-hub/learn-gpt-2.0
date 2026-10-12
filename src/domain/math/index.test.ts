@@ -75,5 +75,8 @@ describe('src/domain/math/index exports', () => {
     expect(typeof math.calculateSymmetryAxes).toBe('function');
     expect(typeof math.minimumTurnDegree).toBe('function');
     expect(typeof math.transformPoint).toBe('function');
+    expect(typeof math.detectFaceCollisions).toBe('function');
+    expect(typeof math.isValidCubeNet).toBe('function');
+    expect(typeof math.getOppositeFacePairs).toBe('function');
   });
 });

@@ -1058,4 +1058,70 @@ export const dictionary: Record<string, string> = {
   'mistake.G4.fine3': 'Step 3 is based on the false claim in Step 2.',
   'mistake.G4.found':
     'Here! A shape can have rotational symmetry without ANY mirror lines. Folding flips the curved blades in the wrong direction!',
+
+  /* G5 */
+  'prashna.G5.q':
+    'If you connect 6 squares in a 2 by 3 solid rectangle, will it fold into a closed cube box?',
+  'prashna.G5.c1': 'Yes, because it has 6 square faces',
+  'prashna.G5.c2': 'No, because faces will overlap and leave holes',
+  'prashna.G5.c3': 'Only if you cut some squares',
+  'prashna.G5.a':
+    'No, because faces will overlap and leave holes! Even though a cube has 6 faces, a 2 × 3 block folds squares on top of each other, leaving two opposite faces completely open.',
+  'bodha.G5.what':
+    'A [[net|net]] is a flat pattern of connected faces that can be folded along its edges into a 3D solid box.',
+  'bodha.G5.can':
+    'You will be able to test whether 6 connected squares fold into a closed cube or collide and overlap.',
+  'bodha.G5.idea':
+    'A cube has 6 identical square faces. When laid flat, they must stay joined edge-to-edge.',
+  'bodha.G5.why':
+    'Not all 6-square shapes work! If two faces land on the same side during folding, they overlap and leave opposite sides open.',
+  'bodha.G5.example': 'The classic Latin Cross or T net:',
+  'bodha.G5.example1': 'Four squares in a row make the bottom, front, top, and back.',
+  'bodha.G5.example2': 'Two side wings fold up to close the left and right faces.',
+  'bodha.G5.example3': 'All 6 faces close with zero collisions. Exactly 11 nets fold into a cube!',
+  'bodha.G5.where': 'Cardboard packing boxes, sweet boxes, dice, and origami packaging.',
+  'bodha.G5.sutra': 'Six squares must fold without collision to close all six faces of a cube.',
+  'gloss.net': 'A flat 2D shape that can be folded along edges to form a 3D solid.',
+  'gloss.net.en': 'net',
+  'cubenet.title': 'Fold a box',
+  'cubenet.art':
+    'An interactive grid editor to arrange 6 squares, with 3D folding animation and collision detector.',
+  'cubenet.squares': 'Squares selected: {count} of 6',
+  'cubenet.foldSlider': 'Fold 3D',
+  'cubenet.foldAngle': 'Fold angle',
+  'cubenet.foldTest': 'Fold 3D Box',
+  'cubenet.presetT': 'T-Net (Valid)',
+  'cubenet.preset2x3': '2×3 Block (Overlap)',
+  'cubenet.presetStairs': 'Stair Net (Valid)',
+  'cubenet.clear': 'Clear',
+  'cubenet.valid': 'Valid cube net! All 6 faces meet at 90° with zero overlaps.',
+  'cubenet.invalid': 'Faces collide! Two or more squares fold onto the same face, leaving holes.',
+  'cubenet.need6': 'Select exactly 6 connected squares on the grid to fold a cube.',
+  'cubenet.s1': 'Select or arrange 6 squares on the grid.',
+  'cubenet.s1done': '6 squares connected. Use the fold slider to test if it closes into a cube!',
+  'cubenet.s2': 'Fold the net into a 3D box.',
+  'cubenet.s2done': 'Box folded: observe whether faces close cleanly or collide.',
+  'cubenet.s3': 'Try different net shapes to find all 11 valid patterns.',
+  'cubenet.s3done': 'There are exactly 11 unique nets that fold into a cube!',
+  'mistake.G5.intro':
+    'Priya drew a pattern of 6 squares to fold a cube box. One step went wrong. Which one?',
+  'mistake.G5.s1': 'She drew a solid 2 by 3 rectangle of 6 connected squares.',
+  'mistake.G5.s2':
+    'She folded the squares and noticed two squares were trying to cover the exact same face.',
+  'mistake.G5.s3': 'She declared that having 6 squares guarantees it will always make a cube.',
+  'mistake.G5.fine2': 'Sound observation: the squares in a 2x3 block overlap during folding.',
+  'mistake.G5.fine3': 'Step 3 is her false claim that any 6 squares form a cube.',
+  'mistake.G5.found':
+    'Here! A 2 by 3 solid block cannot fold into a cube. The faces collide and overlap, leaving two sides completely unclosed!',
+  'explain.G5.s':
+    'A cube has {0} square faces that must meet at right angles. For a flat net to close into a cube, no two faces can {1} during folding.',
+  'explain.G5.six': 'six',
+  'explain.G5.eight': 'eight',
+  'explain.G5.four': 'four',
+  'explain.G5.overlap': 'overlap',
+  'explain.G5.touch': 'touch',
+  'explain.G5.separate': 'separate',
+  'explain.G5.hint':
+    'How many faces does a cube have, and what collision must a folding net avoid?',
+  'know.G5': 'Six squares must fold without collision to close all six faces of a cube.',
 };
