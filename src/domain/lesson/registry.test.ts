@@ -235,4 +235,14 @@ describe('Lesson registry', () => {
     expect(u2?.mistake?.wrong).toBe(1);
     expect(u2?.stateKey).toBe('metric');
   });
+
+  it('retrieves U3 Timeclock lesson', () => {
+    const u3 = getLesson('U3');
+    expect(u3).not.toBeNull();
+    expect(u3?.cards).toHaveLength(6);
+    expect(u3?.explain).toHaveLength(2);
+    expect(u3?.mistake?.steps).toBe(3);
+    expect(u3?.mistake?.wrong).toBe(1);
+    expect(u3?.stateKey).toBe('timeclock');
+  });
 });

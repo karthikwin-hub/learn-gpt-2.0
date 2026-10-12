@@ -95,5 +95,9 @@ describe('src/domain/math/index exports', () => {
     expect(typeof math.convertCapacity).toBe('function');
     expect(typeof math.parseMetersAndCentimeters).toBe('function');
     expect(typeof math.areMetricQuantitiesEqual).toBe('function');
+    expect(typeof math.to24Hour).toBe('function');
+    expect(typeof math.to12Hour).toBe('function');
+    expect(typeof math.addMinutes).toBe('function');
+    expect(typeof math.calculateDuration).toBe('function');
   });
 });

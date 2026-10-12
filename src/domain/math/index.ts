@@ -46,3 +46,4 @@ export * from './circle';
 export * from './tangram';
 export * from './views';
 export * from './metric';
+export * from './timeclock';
