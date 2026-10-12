@@ -51,6 +51,7 @@ import { createPictographScreen } from './ui/components/screens/pictograph';
 import { createBargraphScreen } from './ui/components/screens/bargraph';
 import { createSequencesScreen } from './ui/components/screens/sequences';
 import { createGrowingScreen } from './ui/components/screens/growing';
+import { createSinglesetScreen } from './ui/components/screens/singleset';
 import { createMoneyScreen } from './ui/components/screens/money';
 import { createDigestScreen } from './ui/components/screens/digest';
 import { createRampScreen } from './ui/components/screens/ramp';
@@ -121,6 +122,7 @@ export function initApp(): void {
   router.register(createBargraphScreen());
   router.register(createSequencesScreen());
   router.register(createGrowingScreen());
+  router.register(createSinglesetScreen());
   router.register(createMoneyScreen());
   router.register(createDigestScreen());
   router.register(createRampScreen());

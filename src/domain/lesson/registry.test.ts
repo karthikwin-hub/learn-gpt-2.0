@@ -285,4 +285,14 @@ describe('Lesson registry', () => {
     expect(p1?.mistake?.wrong).toBe(1);
     expect(p1?.stateKey).toBe('growing');
   });
+
+  it('retrieves S1 Single Set lesson', () => {
+    const s1 = getLesson('S1');
+    expect(s1).not.toBeNull();
+    expect(s1?.cards).toHaveLength(6);
+    expect(s1?.explain).toHaveLength(2);
+    expect(s1?.mistake?.steps).toBe(3);
+    expect(s1?.mistake?.wrong).toBe(1);
+    expect(s1?.stateKey).toBe('singleset');
+  });
 });

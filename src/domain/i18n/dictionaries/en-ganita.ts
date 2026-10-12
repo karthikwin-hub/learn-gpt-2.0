@@ -1688,4 +1688,57 @@ export const dictionary: Record<string, string> = {
   'explain.P1.hint':
     'Think about what geometric element expands each stage, and compute 4 × 4 for the square.',
   'know.P1': 'Each new stage adds a new layer; see how the shape grows to find the count.',
+
+  /* S1 */
+  'prashna.S1.q': 'If the sorting ring rule is "Multiples of 5", where does the number 34 belong?',
+  'prashna.S1.c1': 'Inside the ring',
+  'prashna.S1.c2': 'Outside the ring',
+  'prashna.S1.c3': 'On the line',
+  'prashna.S1.a':
+    '34 is not a multiple of 5 (34 ÷ 5 leaves a remainder of 4). Every item must either fit the rule or stay outside!',
+  'bodha.S1.what':
+    'A set is a collection of objects that all obey a clear, exact rule (like "even numbers" or "yellow shapes").',
+  'bodha.S1.can':
+    'Test items against set rules, sort objects inside or outside a boundary ring, and eliminate in-between guessing.',
+  'bodha.S1.idea':
+    'A single ring on the floor splits the whole world into two: things that fit go INSIDE; everything else stays OUTSIDE.',
+  'bodha.S1.why':
+    'Every object must be tested against the rule: it either fits or it does not. There is no in-between!',
+  'bodha.S1.example': 'Sorting by a rule:',
+  'bodha.S1.example1':
+    'Step 1: Rule: "Shapes with 4 sides". Square has 4 sides -> Inside the ring.',
+  'bodha.S1.example2': 'Step 2: Triangle has 3 sides -> Outside the ring.',
+  'bodha.S1.example3': 'Step 3: Circle has 0 straight sides -> Outside the ring.',
+  'bodha.S1.where':
+    'Library book categories, kitchen spice organization, recycling bins, and animal classification.',
+  'bodha.S1.sutra': 'A rule divides everything: it belongs inside or it stays outside.',
+  'singleset.title': 'Sort by a Rule (Single Set & Universe of Discourse)',
+  'singleset.lead':
+    'Choose a sorting rule, test items against it, and observe the clean partition into inside and outside.',
+  'singleset.active_rule': 'Active Rule:',
+  'singleset.inside_ring': 'Inside the Ring (Rule Matches)',
+  'singleset.outside_ring': 'Outside the Ring (Universe U)',
+  'singleset.step1': '1. Multiples of 5 Ring',
+  'singleset.step2': "2. Numbers Ending in 5 (Kunal's Trap)",
+  'singleset.step3': '3. Four-Sided Shapes Ring',
+  'singleset.reset': 'Reset',
+  'mistake.S1.intro': 'Kunal is testing numbers with the ring rule: "Numbers ending in 5":',
+  'mistake.S1.s1': 'He tests 25 and puts it inside the ring because 25 ends in 5.',
+  'mistake.S1.s2': 'He looks at 15 and leaves it outside because 15 is also divisible by 3.',
+  'mistake.S1.s3': 'He claims that 15 does not belong inside the ring.',
+  'mistake.S1.fine1': 'Accurate step: 25 ends in 5 and belongs inside.',
+  'mistake.S1.fine3': 'Step 3 fails because he invented an extra condition not in the rule.',
+  'mistake.S1.found':
+    'Here! The rule only asks if the number ends in 5. 15 ends in 5, so it belongs inside the ring regardless of other properties!',
+  'explain.S1.s':
+    'A set is a collection of objects defined by an exact {0}. Every object tested against the rule must be either inside the ring or {1} it.',
+  'explain.S1.rule': 'rule',
+  'explain.S1.guess': 'guess',
+  'explain.S1.color': 'color',
+  'explain.S1.outside': 'outside',
+  'explain.S1.halfway': 'halfway',
+  'explain.S1.above': 'above',
+  'explain.S1.hint':
+    'Think about what mathematical condition defines a set, and where objects go if they fail the test.',
+  'know.S1': 'A rule divides everything: it belongs inside or it stays outside.',
 };
