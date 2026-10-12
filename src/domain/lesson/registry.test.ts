@@ -265,4 +265,14 @@ describe('Lesson registry', () => {
     expect(h2?.mistake?.wrong).toBe(1);
     expect(h2?.stateKey).toBe('bargraph');
   });
+
+  it('retrieves L4 Sequences lesson', () => {
+    const l4 = getLesson('L4');
+    expect(l4).not.toBeNull();
+    expect(l4?.cards).toHaveLength(6);
+    expect(l4?.explain).toHaveLength(2);
+    expect(l4?.mistake?.steps).toBe(3);
+    expect(l4?.mistake?.wrong).toBe(1);
+    expect(l4?.stateKey).toBe('sequences');
+  });
 });

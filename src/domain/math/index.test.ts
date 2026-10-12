@@ -105,5 +105,10 @@ describe('src/domain/math/index exports', () => {
     expect(typeof math.readBarValue).toBe('function');
     expect(typeof math.generateAxisTicks).toBe('function');
     expect(typeof math.interpolateBarHeight).toBe('function');
+    expect(typeof math.findFirstDifferences).toBe('function');
+    expect(typeof math.isArithmeticSequence).toBe('function');
+    expect(typeof math.isGeometricSequence).toBe('function');
+    expect(typeof math.predictNextTerm).toBe('function');
+    expect(typeof math.predictNthTerm).toBe('function');
   });
 });
