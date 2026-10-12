@@ -137,7 +137,7 @@ export const SECTIONS: Section[] = [
         id: 'tarka',
         crossing: 'cross.logic',
         knots: [
-          k('S1'),
+          k('S1', { prashna: true, bench: bench('singleset') }),
           k('S2', { bench: bench('sets', { mode: 'sort' }) }),
           k('S3', { bench: bench('sets', { mode: 'guess' }) }),
           k('L1'),

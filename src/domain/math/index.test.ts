@@ -116,5 +116,8 @@ describe('src/domain/math/index exports', () => {
     expect(typeof math.triangularLayerSize).toBe('function');
     expect(typeof math.generateTriangularDots).toBe('function');
     expect(typeof math.generateSquareGrid).toBe('function');
+    expect(typeof math.testRuleMembership).toBe('function');
+    expect(typeof math.partitionSet).toBe('function');
+    expect(typeof math.validateSetRule).toBe('function');
   });
 });
