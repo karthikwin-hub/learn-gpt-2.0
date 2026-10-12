@@ -265,7 +265,38 @@ export function createRectScreen(): ScreenMeta {
             })
           );
         } else if (knotId === 'M1') {
-          guide.appendChild(createStepGuide(1, 'Equal bunches line up into rows.'));
+          guide.appendChild(
+            createStepGuide(1, 'Equal bunches line up into rows. Rotate to test commutativity.')
+          );
+          actionRow.appendChild(
+            el('button', {
+              class: 'btn thread block',
+              type: 'button',
+              text: t('rect.rotate') !== 'rect.rotate' ? t('rect.rotate') : 'Rotate Array (90°)',
+              onclick: () => {
+                const prevC = Number(state.cols);
+                const prevR = Number(state.rows);
+                state.cols = prevR;
+                state.rows = prevC;
+                grid.set(Number(state.cols), Number(state.rows));
+                colStep.set(Number(state.cols));
+                rowStep.set(Number(state.rows));
+                paint();
+                updateFeedback(
+                  `${prevC} × ${prevR} = ${prevR} × ${prevC} = ${area(Number(state.cols), Number(state.rows))}`,
+                  true
+                );
+              },
+            })
+          );
+          actionRow.appendChild(
+            el('button', {
+              class: 'btn primary block',
+              type: 'button',
+              text: t('rect.next') !== 'rect.next' ? t('rect.next') : 'Spot the Mistake',
+              onclick: () => router.go('mistake', { k: 'M1' }),
+            })
+          );
         } else if (currentStep === 1) {
           guide.appendChild(createStepGuide(1, t('rect.s1')));
           actionRow.appendChild(
@@ -405,8 +436,20 @@ export function createRectScreen(): ScreenMeta {
         }
       }
 
+      const title = el('h2', {
+        class: 'screen-title',
+        text: t('rect.title'),
+        style: {
+          fontSize: '1.25rem',
+          fontWeight: 'bold',
+          marginBottom: '0.5rem',
+          color: 'var(--ink, #1f2937)',
+        },
+      });
+
       const controlRow = el('div', { class: 'control-row' }, [colStep.node, rowStep.node]);
 
+      view.appendChild(title);
       view.appendChild(grid.node);
       view.appendChild(controlRow);
       view.appendChild(eq);

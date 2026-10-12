@@ -54,3 +54,4 @@ export * from './growing';
 export * from './singleset';
 export * from './counterexample';
 export * from './conditional';
+export * from './rect';

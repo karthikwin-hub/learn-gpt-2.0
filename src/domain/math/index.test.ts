@@ -136,5 +136,9 @@ describe('src/domain/math/index exports', () => {
     expect(typeof math.testImplicationSubset).toBe('function');
     expect(typeof math.findConverseCounterexamples).toBe('function');
     expect(typeof math.getConditionalStatement).toBe('function');
+    expect(typeof math.arrayTotal).toBe('function');
+    expect(typeof math.rotateArrayDimensions).toBe('function');
+    expect(typeof math.generateArrayGrid).toBe('function');
+    expect(typeof math.isCommutativeProduct).toBe('function');
   });
 });

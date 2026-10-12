@@ -345,4 +345,14 @@ describe('Lesson registry', () => {
     expect(l3?.mistake?.wrong).toBe(1);
     expect(l3?.stateKey).toBe('conditional');
   });
+
+  it('retrieves M1 Multiplication Foundations lesson', () => {
+    const m1 = getLesson('M1');
+    expect(m1).not.toBeNull();
+    expect(m1?.cards).toHaveLength(6);
+    expect(m1?.explain).toHaveLength(2);
+    expect(m1?.mistake?.steps).toBe(3);
+    expect(m1?.mistake?.wrong).toBe(1);
+    expect(m1?.stateKey).toBe('rect');
+  });
 });
