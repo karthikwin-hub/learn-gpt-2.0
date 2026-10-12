@@ -68,18 +68,27 @@ enabled = true
 hint = "A module depends on something it must not (docs/ARCHITECTURE.md). Move the logic to its owning module instead of adding the import."
 
 [[check]]
-name = "mockup-parity"
-run = "npx playwright test tests/e2e/tools/capture-mockups.spec.ts"
+name = "mockup-structure"
+run = "npx playwright test tests/e2e/mockup tests/e2e/tools/capture-mockups.spec.ts"
 fast = false
 enabled = true
-hint = "Mockup capture / parity tests verify UI against the approved prototype."
+hint = "App screens must keep the structure of their prototype mockups (tests/e2e/mockup) and the capture tool must work."
 
 [[check]]
 name = "sweep"
 run = "npx playwright test tests/e2e/sweep"
 fast = false
 enabled = true
-hint = "Five-language and accessibility sweep must pass with 0 errors/overflows."
+timeout = 2400
+hint = "Every playable knot, every lesson screen, five languages: no English left, no raw keys, pictures present, no overflow, no console errors."
+
+[[check]]
+name = "journeys"
+run = "npx playwright test tests/e2e/journeys"
+fast = false
+enabled = true
+timeout = 1800
+hint = "Cross-feature journeys and the every-lesson journey (J5) must pass after every feature. Fix the code, not the journey."
 
 
 [[check]]

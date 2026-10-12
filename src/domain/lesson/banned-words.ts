@@ -4,9 +4,15 @@
  * strictly zero praise words, points, stars, streaks, or timer pressure.
  */
 
+/**
+ * Words that are also ordinary maths, science or grammar words are deliberately absent
+ * (en "point"/"star"/"coins", hi "अंक" digit, "तारे" stars, bn "তারা" they, ta "புள்ளிகள்" dots),
+ * because every dictionary value is scanned with this list.
+ */
 export const BANNED_WORDS: Record<string, string[]> = {
   en: [
-    'great',
+    'great job',
+    'great work',
     'good job',
     'smart',
     'bravo',
@@ -14,13 +20,10 @@ export const BANNED_WORDS: Record<string, string[]> = {
     'awesome',
     'excellent',
     'superb',
+    'brilliant',
+    'amazing',
     'streak',
-    'point',
-    'points',
-    'star',
-    'stars',
     'score',
-    'coins',
     'badge',
     'trophy',
   ],
@@ -29,16 +32,15 @@ export const BANNED_WORDS: Record<string, string[]> = {
     'बहुत अच्छा',
     'बढ़िया',
     'शानदार',
-    'अंक',
     'पॉइंट्स',
     'स्टार',
-    'तारे',
     'स्कोर',
     'स्ट्रिक',
+    'स्ट्रीक',
   ],
-  te: ['మంచి పని', 'చాలా బాగుంది', 'గొప్పది', 'పాయింట్లు', 'నక్షత్రాలు', 'స్కోరు', 'స్ట్రీక్'],
-  bn: ['দারুণ', 'সাবাশ', 'খুব ভালো', 'পয়েন্ট', 'স্টার', 'তারা', 'স্কোর', 'স্ট্রিক'],
-  ta: ['நன்று', 'மிக நன்று', 'அருமை', 'புள்ளிகள்', 'நட்சத்திரங்கள்', 'மதிப்பெண்', 'ஸ்ட்ரீக்'],
+  te: ['మంచి పని', 'చాలా బాగుంది', 'గొప్పది', 'పాయింట్లు', 'స్కోరు', 'స్ట్రీక్', 'శభాష్'],
+  bn: ['দারুণ', 'সাবাশ', 'শাবাশ', 'খুব ভালো', 'পয়েন্ট', 'স্টার', 'স্কোর', 'স্ট্রিক'],
+  ta: ['நன்று', 'மிக நன்று', 'அருமை', 'சபாஷ்', 'மதிப்பெண்', 'ஸ்ட்ரீக்'],
 };
 
 export interface BannedWordsCheckResult {

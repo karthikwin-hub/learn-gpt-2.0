@@ -1,0 +1,23 @@
+# Tasks: 046 Remediation
+
+- [x] T001 [US4] App route sweep (every playable knot × 5 languages, reduced motion) `tests/e2e/sweep/app-routes.spec.ts`
+- [x] T002 [US1] Dictionary completeness, script, placeholder and praise tests `src/domain/i18n/dictionaries.test.ts`
+- [x] T003 [US4] Static UI-text scan (FR-001) `src/ui/ui-text.test.ts`
+- [x] T004 [US3] Every-lesson journey `tests/e2e/journeys/046-every-lesson.spec.ts`
+- [x] T005 [US4] Harness runs sweep, journeys, mockup specs; red baseline recorded
+- [ ] T006 [US2] Lesson-visuals registry; move existing figures unchanged (refactor)
+- [ ] T007 [US3] Remove silent fallbacks (FR-003); explain hint and keep-anyway
+- [ ] T008 [US2] Translated mistake equations with safe markup (FR-005); term regex (FR-004)
+- [ ] T009 Engine fixes FR-006, FR-007
+- [ ] T010 [US2] Group number: figures, mistake pictures, bench text, content review
+- [ ] T011 [US2] Group factors
+- [ ] T012 [US2] Group geometry
+- [ ] T013 [US2] Group measure-data-patterns
+- [ ] T014 [US2] Group sets-logic
+- [ ] T015 [US2] Group ported (N1 N3 U1 B3 R1 K2; Prashna art for ported knots)
+- [ ] T016 [US1] Translations hi
+- [ ] T017 [US1] Translations te
+- [ ] T018 [US1] Translations bn
+- [ ] T019 [US1] Translations ta
+- [ ] T020 Full verify, screenshots, independent review, fixes
+- [ ] T021 Remediation report, checks.md, lessons
