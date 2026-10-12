@@ -507,4 +507,58 @@ export const dictionary: Record<string, string> = {
     'Do we use friendly rounding before or after calculating to set our safety zone?',
   'know.A2':
     'Estimating with friendly benchmarks creates a safe zone to catch wild calculation mistakes before accepting answers.',
+
+  /* D2 Division as Repeated Subtraction */
+  'prashna.D2.q': 'If 20 laddoos are packed into boxes of 4, how many boxes can be packed?',
+  'prashna.D2.c1': '5 boxes',
+  'prashna.D2.c2': '16 boxes',
+  'prashna.D2.c3': '4 boxes',
+  'prashna.D2.a': '5 boxes. 20 − 4 − 4 − 4 − 4 − 4 = 0, so 5 equal groups of 4 are carved out.',
+  'bodha.D2.what':
+    '[[quotition|Quotition]] (repeated subtraction) means packing items into boxes of a fixed group size until zero remains.',
+  'bodha.D2.can':
+    'You will be able to see division as backward hops on a number line, packing equal groups and finding quotients with remainders.',
+  'bodha.D2.idea':
+    'Instead of sharing sweets one by one onto plates, you repeatedly carve out full boxes from the total.',
+  'bodha.D2.why':
+    'Multiplication hops forward on the number line; division hops backward toward zero: 20 − 4 − 4 − 4 − 4 − 4 = 0 (5 hops).',
+  'bodha.D2.example': 'Calculate 18 ÷ 6 using repeated subtraction hops.',
+  'bodha.D2.example1': 'Hop 1: Start at 18, take away 6 to reach 12 (1 group packed).',
+  'bodha.D2.example2': 'Hop 2: From 12, take away 6 to reach 6 (2 groups packed).',
+  'bodha.D2.example3':
+    'Hop 3: From 6, take away 6 to reach 0. Exactly 3 groups formed: 18 ÷ 6 = 3.',
+  'bodha.D2.where':
+    'Cutting a 2-meter ribbon into 25 cm hair ribbons, and packing 10-tablet medicine blister strips.',
+  'bodha.D2.sutra':
+    'Division is repeated subtraction: count how many times the group fits before zero.',
+  'gloss.quotition': 'Division by repeatedly removing equal groups of a fixed size.',
+  'gloss.quotition.en': 'quotition',
+  'quotition.title': 'Repeated subtraction & grouping',
+  'quotition.art': 'A backward number line where equal groups are packed into boxes.',
+  'quotition.s1': 'Hop backward by 4 from 20 to pack boxes.',
+  'quotition.s1done': 'Packed 5 boxes of 4: 20 ÷ 4 = 5.',
+  'quotition.s2': 'Pack 22 laddoos into boxes of 5 and identify the remainder.',
+  'quotition.s2done': 'Packed 4 boxes of 5, with 2 remaining in reserve: 22 ÷ 5 = 4 R 2.',
+  'quotition.s3': 'Compare sharing sweets on plates vs packing in boxes.',
+  'quotition.s3done':
+    '20 shared onto 4 plates gives 5 each; 20 packed in boxes of 4 makes 5 boxes.',
+  'mistake.D2.intro': 'Sita calculated 15 ÷ 3. One step went wrong. Which one?',
+  'mistake.D2.s1': 'We have 15 items and want to divide into groups of 3.',
+  'mistake.D2.s2': 'Subtract 3 from 15 once: 15 − 3 = 12.',
+  'mistake.D2.s3': 'She stopped here and wrote the answer is 12.',
+  'mistake.D2.fine1': 'That is sound: identifying 15 items and groups of 3 is correct.',
+  'mistake.D2.fine2': 'Subtracting 3 gives 12, which is correct for step 1.',
+  'mistake.D2.found':
+    'Here. Division is repeated subtraction until zero or leftover! 12 is the remainder after just 1 hop, not the quotient. She must keep hopping until zero to find 5 groups.',
+  'explain.D2.s':
+    'Quotitive division counts how many {0} can be formed by repeatedly {1} until zero.',
+  'explain.D2.groups': 'groups',
+  'explain.D2.plates': 'plates',
+  'explain.D2.adds': 'adds',
+  'explain.D2.subtracting': 'subtracting',
+  'explain.D2.multiplying': 'multiplying',
+  'explain.D2.halving': 'halving',
+  'explain.D2.hint': 'Does quotition count groups by subtracting repeatedly or by adding?',
+  'know.D2':
+    'Division as repeated subtraction counts the number of equal groups that fit into a total before reaching zero.',
 };

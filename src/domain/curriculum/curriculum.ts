@@ -81,7 +81,7 @@ export const SECTIONS: Section[] = [
           k('M3', { afterBodha: { route: 'rect', params: { k: 'M3' } } }),
           k('M4', { bench: bench('rect') }),
           k('D1', { bench: bench('share', { mode: 'share' }) }),
-          k('D2'),
+          k('D2', { prashna: true, bench: bench('quotition') }),
           k('D3', { bench: bench('share', { mode: 'leftover' }) }),
           k('D4'),
           k('A3'),
