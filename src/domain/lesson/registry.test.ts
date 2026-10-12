@@ -205,4 +205,14 @@ describe('Lesson registry', () => {
     expect(g6?.mistake?.wrong).toBe(1);
     expect(g6?.stateKey).toBe('circle');
   });
+
+  it('retrieves G7 Tangrams lesson', () => {
+    const g7 = getLesson('G7');
+    expect(g7).not.toBeNull();
+    expect(g7?.cards).toHaveLength(6);
+    expect(g7?.explain).toHaveLength(2);
+    expect(g7?.mistake?.steps).toBe(3);
+    expect(g7?.mistake?.wrong).toBe(1);
+    expect(g7?.stateKey).toBe('tangram');
+  });
 });

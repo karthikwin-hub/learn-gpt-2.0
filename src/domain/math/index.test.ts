@@ -82,5 +82,9 @@ describe('src/domain/math/index exports', () => {
     expect(typeof math.radiusFromDiameter).toBe('function');
     expect(typeof math.chordLength).toBe('function');
     expect(typeof math.isChordDiameter).toBe('function');
+    expect(typeof math.totalTangramUnits).toBe('function');
+    expect(typeof math.calculateSilhouetteArea).toBe('function');
+    expect(typeof math.isAreaConserved).toBe('function');
+    expect(typeof math.canTwoSmallTrianglesCompose).toBe('function');
   });
 });
