@@ -35,3 +35,4 @@ export * from './estimate';
 export * from './quotition';
 export * from './longdiv';
 export * from './wordprob';
+export * from './factors';

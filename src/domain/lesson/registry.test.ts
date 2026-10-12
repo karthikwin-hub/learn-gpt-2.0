@@ -109,4 +109,13 @@ describe('Lesson registry', () => {
     expect(a3?.mistake?.steps).toBe(3);
     expect(a3?.mistake?.wrong).toBe(1);
   });
+
+  it('retrieves F1 Factors Make Rectangles lesson', () => {
+    const f1 = getLesson('F1');
+    expect(f1).not.toBeNull();
+    expect(f1?.cards).toHaveLength(6);
+    expect(f1?.explain).toHaveLength(2);
+    expect(f1?.mistake?.steps).toBe(3);
+    expect(f1?.mistake?.wrong).toBe(1);
+  });
 });
