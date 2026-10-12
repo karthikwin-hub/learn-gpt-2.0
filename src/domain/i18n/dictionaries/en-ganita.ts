@@ -1741,4 +1741,48 @@ export const dictionary: Record<string, string> = {
   'explain.S1.hint':
     'Think about what mathematical condition defines a set, and where objects go if they fail the test.',
   'know.S1': 'A rule divides everything: it belongs inside or it stays outside.',
+
+  /* S2 */
+  'prashna.S2.q':
+    'A ball is both RED and ROUND. In two sorting rings labelled "Red Things" and "Round Things", where does it go?',
+  'prashna.S2.c1': 'In the Red ring only',
+  'prashna.S2.c2': 'In the Round ring only',
+  'prashna.S2.c3': 'In the shared middle overlap between both rings',
+  'prashna.S2.a':
+    'The shared middle overlap belongs to BOTH rings at once! A red round ball satisfies both rules, so it sits right in the lens.',
+  'bodha.S2.what': 'When two sorting rings overlap on the floor, they create four distinct zones.',
+  'bodha.S2.can':
+    'Sort attribute blocks into two rings, identify the central intersection, and count items across all four regions.',
+  'bodha.S2.idea':
+    'Zone 1: Fits rule A only. Zone 2: Fits rule B only. Zone 3: Fits BOTH rules at once (the overlap). Zone 4: Fits NEITHER rule (outside).',
+  'bodha.S2.why':
+    'The overlap is the "AND" zone: a red round ball belongs to both sets at once, so it sits in the shared lens!',
+  'bodha.S2.example': 'Sorting with two rules:',
+  'bodha.S2.example1':
+    'Step 1: Rule A: Multiples of 2; Rule B: Multiples of 3. 4 is a multiple of 2 only -> Ring A.',
+  'bodha.S2.example2': 'Step 2: 9 is a multiple of 3 only -> Ring B.',
+  'bodha.S2.example3': 'Step 3: 6 and 12 fit both rules, so they sit in the middle overlap!',
+  'bodha.S2.where':
+    'Search filters (Price < 500 AND Free Delivery), medical symptoms, and sports team rosters.',
+  'bodha.S2.sutra': 'Where two rings overlap, a thing belongs to both sets at once.',
+  'mistake.S2.intro': 'Pooja is sorting 12 with rules: "Multiples of 4" and "Multiples of 3":',
+  'mistake.S2.s1': 'She notes 12 is a multiple of 4 (4 × 3 = 12).',
+  'mistake.S2.s2': 'She places 12 in the "Multiples of 4" ring only.',
+  'mistake.S2.s3': 'She concludes 12 does not need to be in the overlap.',
+  'mistake.S2.fine1': 'Accurate observation: 12 is indeed a multiple of 4.',
+  'mistake.S2.fine3':
+    'Step 3 fails because 12 is also a multiple of 3, so it belongs in the overlap of both rings.',
+  'mistake.S2.found':
+    'Here! 12 is a multiple of both 4 and 3 (4 × 3 = 12). It must be placed in the central overlap region!',
+  'explain.S2.s':
+    'Where two rings overlap, an object belongs to {0} sets at the same time. Objects that satisfy neither rule remain {1} both rings.',
+  'explain.S2.both': 'both',
+  'explain.S2.neither': 'neither',
+  'explain.S2.one': 'one',
+  'explain.S2.outside': 'outside',
+  'explain.S2.between': 'between',
+  'explain.S2.inside': 'inside',
+  'explain.S2.hint':
+    'Think about what the intersection zone means for two rules, and where items that fail both rules stay.',
+  'know.S2': 'Where two rings overlap, a thing belongs to both sets at once.',
 };

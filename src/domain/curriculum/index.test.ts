@@ -65,6 +65,9 @@ describe('src/domain/curriculum', () => {
 
     const m4 = findKnot('M4')!;
     expect(firstStep(m4)).toEqual({ route: 'bodha', params: { k: 'M4' } });
+
+    const s2 = findKnot('S2')!;
+    expect(firstStep(s2)).toEqual({ route: 'prashna', params: { k: 'S2' } });
   });
 
   it('resolves afterBodha route', () => {

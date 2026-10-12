@@ -119,5 +119,7 @@ describe('src/domain/math/index exports', () => {
     expect(typeof math.testRuleMembership).toBe('function');
     expect(typeof math.partitionSet).toBe('function');
     expect(typeof math.validateSetRule).toBe('function');
+    expect(typeof math.classifyVennRegion).toBe('function');
+    expect(typeof math.verifyVennSum).toBe('function');
   });
 });

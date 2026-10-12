@@ -3,6 +3,8 @@ import {
   createBlocks,
   getRegion,
   getRegionCounts,
+  classifyVennRegion,
+  verifyVennSum,
   sameSort,
   SET_RULES,
   type AttributeBlock,
@@ -62,5 +64,18 @@ describe('sets domain math', () => {
     const blocks = createBlocks();
     expect(sameSort(blocks, 'yellow', 'circle', 'yellow', 'circle')).toBe(true);
     expect(sameSort(blocks, 'yellow', 'circle', 'green', 'big')).toBe(false);
+  });
+
+  it('classifies boolean predicates into Venn regions', () => {
+    expect(classifyVennRegion(true, true)).toBe('both');
+    expect(classifyVennRegion(true, false)).toBe('a');
+    expect(classifyVennRegion(false, true)).toBe('b');
+    expect(classifyVennRegion(false, false)).toBe('none');
+  });
+
+  it('verifies Venn sum matching total', () => {
+    const counts = { both: 2, a: 2, b: 2, none: 6 };
+    expect(verifyVennSum(counts, 12)).toBe(true);
+    expect(verifyVennSum(counts, 10)).toBe(false);
   });
 });

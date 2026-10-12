@@ -295,4 +295,14 @@ describe('Lesson registry', () => {
     expect(s1?.mistake?.wrong).toBe(1);
     expect(s1?.stateKey).toBe('singleset');
   });
+
+  it('retrieves S2 Two Rings lesson', () => {
+    const s2 = getLesson('S2');
+    expect(s2).not.toBeNull();
+    expect(s2?.cards).toHaveLength(6);
+    expect(s2?.explain).toHaveLength(2);
+    expect(s2?.mistake?.steps).toBe(3);
+    expect(s2?.mistake?.wrong).toBe(1);
+    expect(s2?.stateKey).toBe('sets');
+  });
 });

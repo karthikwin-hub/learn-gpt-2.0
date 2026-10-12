@@ -75,15 +75,29 @@ export function createBlocks(): AttributeBlock[] {
 }
 
 /**
+ * Pure predicate classification for Venn membership.
+ */
+export function classifyVennRegion(inA: boolean, inB: boolean): VennRegion {
+  if (inA && inB) return 'both';
+  if (inA) return 'a';
+  if (inB) return 'b';
+  return 'none';
+}
+
+/**
  * Classifies an attribute block into one of the 4 Venn regions given ruleA and ruleB.
  */
 export function getRegion(block: AttributeBlock, ruleA: SetRule, ruleB: SetRule): VennRegion {
   const inA = SET_RULES[ruleA](block);
   const inB = SET_RULES[ruleB](block);
-  if (inA && inB) return 'both';
-  if (inA) return 'a';
-  if (inB) return 'b';
-  return 'none';
+  return classifyVennRegion(inA, inB);
+}
+
+/**
+ * Verifies that the sum of all 4 Venn regions matches the expected total.
+ */
+export function verifyVennSum(counts: RegionCounts, total: number): boolean {
+  return counts.both + counts.a + counts.b + counts.none === total;
 }
 
 /**

@@ -42,6 +42,7 @@ function createChips<T extends string | number>(
       class: `chip${isSelected ? ' on' : ''}`,
       'aria-pressed': isSelected ? 'true' : 'false',
       text: it.label,
+      style: { minHeight: '44px', display: 'inline-flex', alignItems: 'center' },
       onclick: () => onChange(it.value),
     });
     group.appendChild(btn);
@@ -250,15 +251,33 @@ export function createSetsScreen(): ScreenMeta {
 
       view.appendChild(countsCard);
 
+      const btnRow = el('div', {
+        class: 'btn-row',
+        style: { display: 'flex', gap: '8px', justifyContent: 'center', flexWrap: 'wrap' },
+      });
+      if (knotId === 'S2') {
+        const mistakeBtn = el('button', {
+          type: 'button',
+          class: 'btn primary',
+          text: 'Spot the Mistake →',
+          style: { minHeight: '44px' },
+          onclick: () => {
+            router.go('mistake', { k: 'S2' });
+          },
+        });
+        btnRow.appendChild(mistakeBtn);
+      }
       const explainBtn = el('button', {
         type: 'button',
-        class: 'btn primary block',
+        class: 'btn',
         text: t('common.explain'),
+        style: { minHeight: '44px' },
         onclick: () => {
           router.go('explain', { k: knotId });
         },
       });
-      view.appendChild(el('div', { class: 'btn-row' }, [explainBtn]));
+      btnRow.appendChild(explainBtn);
+      view.appendChild(btnRow);
 
       if (state.hi) {
         yard.highlight(state.hi as 'and' | 'or' | 'not' | null);
