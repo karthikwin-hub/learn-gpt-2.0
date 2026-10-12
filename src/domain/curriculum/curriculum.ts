@@ -116,7 +116,7 @@ export const SECTIONS: Section[] = [
         knots: [
           k('U1', { prashna: true, bench: bench('money') }),
           k('U2', { prashna: true, bench: bench('metric') }),
-          k('U3'),
+          k('U3', { prashna: true, bench: bench('timeclock') }),
         ],
       },
       {

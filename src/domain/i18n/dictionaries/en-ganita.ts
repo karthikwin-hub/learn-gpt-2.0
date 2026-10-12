@@ -1403,4 +1403,61 @@ export const dictionary: Record<string, string> = {
     'Recall how many hundredths are in a whole metre, and what operation turns smaller units into larger units.',
   'know.U2':
     'Kilo is a thousand, centi a hundredth, milli a thousandth; shift the dot by powers of ten.',
+
+  /* U3 */
+  'prashna.U3.q':
+    'A train ticket shows departure at 21:30. In 12-hour clock time, when does the train leave?',
+  'prashna.U3.c1': '9:30 in the morning (AM)',
+  'prashna.U3.c2': '9:30 at night (PM)',
+  'prashna.U3.c3': '11:30 at night',
+  'prashna.U3.a':
+    '21:30 is 12 hours past 9:30, so 21 - 12 = 9 hours past noon: 9:30 PM (at night)!',
+  'bodha.U3.what':
+    'The 24-hour clock counts straight from 00:00 at midnight through 23:59, eliminating AM and PM mistakes.',
+  'bodha.U3.can': 'Read railway clocks, convert to 12-hour time, and bridge durations easily.',
+  'bodha.U3.idea':
+    'For times past noon (12:00), subtract 12 to find the PM time: 15:00 is 3 PM, 21:30 is 9:30 PM.',
+  'bodha.U3.why': 'Time rolls in 60s, not 100s! When minutes reach 60, they roll into 1 full hour.',
+  'bodha.U3.example': 'Calculate duration from 09:45 to 12:15:',
+  'bodha.U3.example1': 'Step 1: Bridge to next hour 10:00 (15 min).',
+  'bodha.U3.example2': 'Step 2: 10:00 to 12:00 is 2 whole hours.',
+  'bodha.U3.example3': 'Step 3: 12:00 to 12:15 is 15 min. Total duration = 2 hours 30 min.',
+  'bodha.U3.where':
+    'Railway timetables, flight boarding passes, digital watches, hospital charts, and sundials.',
+  'bodha.U3.sutra':
+    'Time rolls in 60s, not 100s; the 24-hour clock counts straight through the day.',
+  'timeclock.title': '24-Hour Clock & Duration (Railway Time)',
+  'timeclock.lead':
+    'Rotate the dual-dial clock, compare 12-hr and 24-hr railway time, and bridge elapsed durations in base 60.',
+  'timeclock.hours': 'Hours',
+  'timeclock.minutes': 'Minutes',
+  'timeclock.railway_time': '24-Hour Railway Time',
+  'timeclock.standard_time': '12-Hour Clock Time',
+  'timeclock.step1': '1. Dual Clock Dial',
+  'timeclock.step2': '2. Base-60 Minute Roll',
+  'timeclock.step3': '3. Hour Bridging Timeline',
+  'timeclock.reset': 'Reset',
+  'timeclock.start_time': 'Departure / Start',
+  'timeclock.end_time': 'Arrival / End',
+  'timeclock.duration': 'Total Elapsed Duration',
+  'mistake.U3.intro':
+    'Rohan wants to add 25 minutes to 14:50 to find when his afternoon science class ends:',
+  'mistake.U3.s1': 'He sets his starting time as 14 hours and 50 minutes.',
+  'mistake.U3.s2': 'He adds 50 + 25 directly as digits and writes 14:75.',
+  'mistake.U3.s3': 'He concludes that class ends at 14:75.',
+  'mistake.U3.fine1': 'Sound step: 14:50 correctly records 2:50 PM.',
+  'mistake.U3.fine3': 'Step 3 fails because of the invalid base-10 time in Step 2.',
+  'mistake.U3.found':
+    'Here! Time rolls in base 60, not base 10! There is no such time as 14:75. 50 min + 10 min rolls to 15:00; adding the remaining 15 min gives 15:15 (3:15 PM).',
+  'explain.U3.s':
+    "One hour contains {0} minutes, not one hundred. In 24-hour railway time, eight o'clock in the evening is written as {1}.",
+  'explain.U3.sixty': 'sixty',
+  'explain.U3.twenty-four': 'twenty-four',
+  'explain.U3.hundred': 'hundred',
+  'explain.U3.20:00': '20:00',
+  'explain.U3.08:00': '08:00',
+  'explain.U3.18:00': '18:00',
+  'explain.U3.hint':
+    'Recall how many minutes roll into a full hour, and what you get by adding 12 to 8 PM.',
+  'know.U3': 'Time rolls in 60s, not 100s; the 24-hour clock counts straight through the day.',
 };
