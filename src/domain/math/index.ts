@@ -41,3 +41,4 @@ export * from './divisibility';
 export * from './hcf';
 export * from './angles';
 export * from './shear';
+export * from './cubenet';
