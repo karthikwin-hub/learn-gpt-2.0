@@ -1335,4 +1335,72 @@ export const dictionary: Record<string, string> = {
     'What overhead document resembles a top view, and what vertical dimension does a front view show?',
   'know.G8':
     'A top view sees the ground; a front view sees the height; together they describe the whole 3D shape.',
+
+  /* U2 */
+  'prashna.U2.q': 'Which is longer: 250 centimetres or 2 metres?',
+  'prashna.U2.c1': '2 metres',
+  'prashna.U2.c2': '250 centimetres (which is 2.5 metres)',
+  'prashna.U2.c3': 'They are the exact same length',
+  'prashna.U2.a':
+    '250 cm equals 2.5 m (or 2 m 50 cm), which is strictly longer than 2 metres (200 cm) by 50 cm!',
+  'bodha.U2.what':
+    'We measure length in metres, mass in grams, and liquid capacity in litres using standard metric units.',
+  'bodha.U2.can': 'Explore the metric ladder and convert between units smoothly.',
+  'bodha.U2.idea':
+    'Prefixes tell the power of 10: Kilo means 1000 times bigger; Centi means 100 times smaller; Milli means 1000 times smaller.',
+  'bodha.U2.why':
+    'Because the metric ladder steps by 10s, converting units is just moving the decimal dot left or right!',
+  'bodha.U2.example': 'Converting on the metric ladder:',
+  'bodha.U2.example1':
+    'Step 1: 1 metre = 100 centimetres (shift dot two places right: multiply by 100).',
+  'bodha.U2.example2': 'Step 2: 3 m 25 cm = 3.25 m = 325 cm.',
+  'bodha.U2.example3': 'Step 3: 4500 g = 4.5 kg (shift dot three places left: divide by 1000).',
+  'bodha.U2.where':
+    'Cloth merchants, milk packets (500 mL), medicine bottles (5 mL), sack of rice (25 kg), road distances (km).',
+  'bodha.U2.sutra':
+    'Kilo is a thousand, centi a hundredth, milli a thousandth; shift the dot by powers of ten.',
+  'metric.title': 'Metric Conversion Ladder',
+  'metric.lead': 'Slide between metric units and watch place values shift by powers of 10.',
+  'metric.length': 'Length (m)',
+  'metric.mass': 'Mass (g)',
+  'metric.capacity': 'Capacity (L)',
+  'metric.ladder': 'Conversion Ladder',
+  'metric.steps': 'Ladder Steps',
+  'metric.unit_km': 'Kilometres (km)',
+  'metric.unit_m': 'Metres (m)',
+  'metric.unit_cm': 'Centimetres (cm)',
+  'metric.unit_mm': 'Millimetres (mm)',
+  'metric.unit_kg': 'Kilograms (kg)',
+  'metric.unit_g': 'Grams (g)',
+  'metric.unit_mg': 'Milligrams (mg)',
+  'metric.unit_kL': 'Kilolitres (kL)',
+  'metric.unit_L': 'Litres (L)',
+  'metric.unit_mL': 'Millilitres (mL)',
+  'metric.factor_up': '÷ 10 (move dot left)',
+  'metric.factor_down': '× 10 (move dot right)',
+  'metric.comparator': 'Dual Balance Comparator',
+  'metric.compare_equal': 'Both quantities are equal!',
+  'metric.compare_greater': 'Left side is larger',
+  'metric.compare_smaller': 'Right side is larger',
+  'metric.reset': 'Reset',
+  'mistake.U2.intro': 'Sonia wants to convert 4 metres and 5 centimetres into decimal metres:',
+  'mistake.U2.s1': 'She writes that 1 metre = 100 centimetres.',
+  'mistake.U2.s2': 'She notes 5 centimetres and writes down 4.5 metres.',
+  'mistake.U2.s3': 'She concludes that 4 m 5 cm is equal to 4.5 m.',
+  'mistake.U2.fine1': 'Sound step: 1 metre is indeed 100 centimetres.',
+  'mistake.U2.fine3': 'Step 3 fails because of the decimal misconception in Step 2.',
+  'mistake.U2.found':
+    'Here! 5 cm is 5 hundredths of a metre (0.05 m), not 5 tenths! 4.5 m is 4 m 50 cm. 4 m 5 cm must be written as 4.05 m.',
+  'explain.U2.s':
+    'One metre contains exactly {0} centimetres. To convert grams into kilograms, we {1} by one thousand.',
+  'explain.U2.one hundred': 'one hundred',
+  'explain.U2.one thousand': 'one thousand',
+  'explain.U2.ten': 'ten',
+  'explain.U2.divide': 'divide',
+  'explain.U2.multiply': 'multiply',
+  'explain.U2.subtract': 'subtract',
+  'explain.U2.hint':
+    'Recall how many hundredths are in a whole metre, and what operation turns smaller units into larger units.',
+  'know.U2':
+    'Kilo is a thousand, centi a hundredth, milli a thousandth; shift the dot by powers of ten.',
 };

@@ -90,5 +90,10 @@ describe('src/domain/math/index exports', () => {
     expect(typeof math.generateTopView).toBe('function');
     expect(typeof math.generateFrontView).toBe('function');
     expect(typeof math.generateSideView).toBe('function');
+    expect(typeof math.convertLength).toBe('function');
+    expect(typeof math.convertMass).toBe('function');
+    expect(typeof math.convertCapacity).toBe('function');
+    expect(typeof math.parseMetersAndCentimeters).toBe('function');
+    expect(typeof math.areMetricQuantitiesEqual).toBe('function');
   });
 });
