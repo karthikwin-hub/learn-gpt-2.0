@@ -30,6 +30,7 @@ import { N2_LESSON } from './n2';
 import { N4_LESSON } from './n4';
 import { N5_LESSON } from './n5';
 import { A1_LESSON } from './a1';
+import { A2_LESSON } from './a2';
 import type { LessonData } from './types';
 
 const LESSONS: Record<string, LessonData> = {
@@ -61,6 +62,7 @@ const LESSONS: Record<string, LessonData> = {
   N4: N4_LESSON,
   N5: N5_LESSON,
   A1: A1_LESSON,
+  A2: A2_LESSON,
 };
 
 export function getLesson(knotId: string): LessonData | null {

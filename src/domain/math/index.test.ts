@@ -44,5 +44,7 @@ describe('src/domain/math/index exports', () => {
     expect(typeof math.decimalToHundredths).toBe('function');
     expect(typeof math.subtractWithRegrouping).toBe('function');
     expect(typeof math.addWithRegrouping).toBe('function');
+    expect(typeof math.roundToNearest).toBe('function');
+    expect(typeof math.estimateSum).toBe('function');
   });
 });

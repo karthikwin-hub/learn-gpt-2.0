@@ -73,4 +73,13 @@ describe('Lesson registry', () => {
     expect(a1?.mistake?.steps).toBe(4);
     expect(a1?.mistake?.wrong).toBe(1);
   });
+
+  it('retrieves A2 Estimate First lesson', () => {
+    const a2 = getLesson('A2');
+    expect(a2).not.toBeNull();
+    expect(a2?.cards).toHaveLength(6);
+    expect(a2?.explain).toHaveLength(2);
+    expect(a2?.mistake?.steps).toBe(4);
+    expect(a2?.mistake?.wrong).toBe(3);
+  });
 });
