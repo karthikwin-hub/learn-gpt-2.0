@@ -1,4 +1,7 @@
 import { describe, it, expect } from 'vitest';
+import fs from 'node:fs';
+import path from 'node:path';
+import { fileURLToPath } from 'node:url';
 import { DICTIONARIES, type LanguageCode } from './dictionaries/index';
 import { checkBannedWords } from '../lesson/banned-words';
 
@@ -100,6 +103,28 @@ describe('046 dictionaries: no praise, score or streak words (US1-AS3)', () => {
         .filter((x) => !x.r.valid)
         .map((x) => `${x.k}: ${x.r.violations.join('/')}`);
       expect(hits).toEqual([]);
+    });
+  }
+});
+
+describe('046 each key has one home per language (FR-003)', () => {
+  const dir = path.join(path.dirname(fileURLToPath(import.meta.url)), 'dictionaries');
+  const files = fs
+    .readdirSync(dir)
+    .filter((f) => /^[a-z]{2}(-[\w-]+)?\.ts$/.test(f) && f !== 'index.ts');
+  for (const lang of ['en', ...OTHER]) {
+    it(`${lang}: no key is defined in two files, so nothing is silently overridden`, () => {
+      const seen = new Map<string, string>();
+      const twice: string[] = [];
+      for (const f of files.filter((f) => f === `${lang}.ts` || f.startsWith(`${lang}-`))) {
+        const text = fs.readFileSync(path.join(dir, f), 'utf8');
+        for (const m of text.matchAll(/^\s+'([^']+)':/gm)) {
+          const key = m[1]!;
+          if (seen.has(key)) twice.push(`${key}: ${seen.get(key)} and ${f}`);
+          else seen.set(key, f);
+        }
+      }
+      expect(twice).toEqual([]);
     });
   }
 });

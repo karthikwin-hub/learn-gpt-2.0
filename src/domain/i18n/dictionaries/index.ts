@@ -14,6 +14,7 @@ import { dictionary as enGFactors } from './en-g-factors';
 import { dictionary as enGGeometry } from './en-g-geometry';
 import { dictionary as enGMeasure } from './en-g-measure';
 import { dictionary as enGLogic } from './en-g-logic';
+import { dictionary as enGPorted } from './en-g-ported';
 
 import { dictionary as hiCore } from './hi';
 import { dictionary as hiGurukul } from './hi-gurukul';
@@ -26,6 +27,7 @@ import { dictionary as hiGFactors } from './hi-g-factors';
 import { dictionary as hiGGeometry } from './hi-g-geometry';
 import { dictionary as hiGMeasure } from './hi-g-measure';
 import { dictionary as hiGLogic } from './hi-g-logic';
+import { dictionary as hiGPorted } from './hi-g-ported';
 
 import { dictionary as teCore } from './te';
 import { dictionary as teGurukul } from './te-gurukul';
@@ -38,6 +40,7 @@ import { dictionary as teGFactors } from './te-g-factors';
 import { dictionary as teGGeometry } from './te-g-geometry';
 import { dictionary as teGMeasure } from './te-g-measure';
 import { dictionary as teGLogic } from './te-g-logic';
+import { dictionary as teGPorted } from './te-g-ported';
 
 import { dictionary as bnCore } from './bn';
 import { dictionary as bnGurukul } from './bn-gurukul';
@@ -50,6 +53,7 @@ import { dictionary as bnGFactors } from './bn-g-factors';
 import { dictionary as bnGGeometry } from './bn-g-geometry';
 import { dictionary as bnGMeasure } from './bn-g-measure';
 import { dictionary as bnGLogic } from './bn-g-logic';
+import { dictionary as bnGPorted } from './bn-g-ported';
 
 import { dictionary as taCore } from './ta';
 import { dictionary as taGurukul } from './ta-gurukul';
@@ -62,6 +66,7 @@ import { dictionary as taGFactors } from './ta-g-factors';
 import { dictionary as taGGeometry } from './ta-g-geometry';
 import { dictionary as taGMeasure } from './ta-g-measure';
 import { dictionary as taGLogic } from './ta-g-logic';
+import { dictionary as taGPorted } from './ta-g-ported';
 
 export type LanguageCode = 'en' | 'hi' | 'te' | 'bn' | 'ta';
 
@@ -77,6 +82,7 @@ export const enDict: Record<string, string> = {
   ...enGGeometry,
   ...enGMeasure,
   ...enGLogic,
+  ...enGPorted,
 };
 
 export const hiDict: Record<string, string> = {
@@ -91,6 +97,7 @@ export const hiDict: Record<string, string> = {
   ...hiGGeometry,
   ...hiGMeasure,
   ...hiGLogic,
+  ...hiGPorted,
 };
 
 export const teDict: Record<string, string> = {
@@ -105,6 +112,7 @@ export const teDict: Record<string, string> = {
   ...teGGeometry,
   ...teGMeasure,
   ...teGLogic,
+  ...teGPorted,
 };
 
 export const bnDict: Record<string, string> = {
@@ -119,6 +127,7 @@ export const bnDict: Record<string, string> = {
   ...bnGGeometry,
   ...bnGMeasure,
   ...bnGLogic,
+  ...bnGPorted,
 };
 
 export const taDict: Record<string, string> = {
@@ -133,6 +142,7 @@ export const taDict: Record<string, string> = {
   ...taGGeometry,
   ...taGMeasure,
   ...taGLogic,
+  ...taGPorted,
 };
 
 export const DICTIONARIES: Record<LanguageCode, Record<string, string>> = {

@@ -44,9 +44,21 @@ import { U3_LESSON } from './u3';
 import { H1_LESSON } from './h1';
 import { H2_LESSON } from './h2';
 import { P1_LESSON } from './p1';
+import { N1_LESSON } from './n1';
+import { N3_LESSON } from './n3';
+import { U1_LESSON } from './u1';
+import { B3_LESSON } from './b3';
+import { K2_LESSON } from './k2';
+import { R1_LESSON } from './r1';
 import type { LessonData } from './types';
 
 const LESSONS: Record<string, LessonData> = {
+  N1: N1_LESSON,
+  N3: N3_LESSON,
+  U1: U1_LESSON,
+  B3: B3_LESSON,
+  K2: K2_LESSON,
+  R1: R1_LESSON,
   M1: M1_LESSON,
   M2: M2_LESSON,
   M3: M3_LESSON,

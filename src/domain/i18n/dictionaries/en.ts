@@ -110,6 +110,7 @@ export const dictionary: Record<string, string> = {
   'common.clearGhosts': 'Clear the outlines',
   'common.explain': 'Explain it back',
   'lesson.missing': 'This lesson is not ready yet. It will be here soon.',
+  'bench.toMistake': 'Spot the mistake',
   'common.reset': 'Start again',
   'common.undo': 'Undo',
   'common.clear': 'Clear',
