@@ -121,7 +121,7 @@ export const SECTIONS: Section[] = [
       },
       {
         id: 'ankana',
-        knots: [k('H1'), k('H2')],
+        knots: [k('H1', { prashna: true, bench: bench('pictograph') }), k('H2')],
       },
       {
         id: 'krama',

@@ -1460,4 +1460,65 @@ export const dictionary: Record<string, string> = {
   'explain.U3.hint':
     'Recall how many minutes roll into a full hour, and what you get by adding 12 to 8 PM.',
   'know.U3': 'Time rolls in 60s, not 100s; the 24-hour clock counts straight through the day.',
+
+  /* H1 */
+  'prashna.H1.q':
+    'In a school library pictograph, 1 book symbol stands for 5 books. If there are 4 book symbols on the shelf row, how many books does that mean?',
+  'prashna.H1.c1': '4 books',
+  'prashna.H1.c2': '9 books',
+  'prashna.H1.c3': '20 books',
+  'prashna.H1.a': 'Each book symbol represents 5 books! 4 symbols × 5 books = 20 books in total.',
+  'bodha.H1.what':
+    'A pictograph shows counts and quantities using pictures instead of long lists of numbers.',
+  'bodha.H1.can':
+    'Read scaled pictograph keys, decode full and half symbols, and tally survey data.',
+  'bodha.H1.idea':
+    'The key tells what one picture is worth: 1 tree icon might stand for 10 real trees.',
+  'bodha.H1.why':
+    'Drawing 50 trees is too slow; drawing 5 tree icons with a key of 10 is fast, neat, and clear!',
+  'bodha.H1.example': 'Key: 1 star = 4 students.',
+  'bodha.H1.example1': 'Step 1: Notice the key: 1 star stands for 4 students.',
+  'bodha.H1.example2': 'Step 2: 3 full stars = 3 × 4 = 12 students.',
+  'bodha.H1.example3':
+    'Step 3: Half a star = half of 4 = 2 students. Total for 3½ stars = 12 + 2 = 14 students.',
+  'bodha.H1.where':
+    'Newspaper charts, museum displays, crop harvest reports, and traffic survey posters.',
+  'bodha.H1.sutra': 'The key tells what one picture is worth; multiply the pictures by the key.',
+  'pictograph.title': 'Pictographs (Scaled Keys & Data Representation)',
+  'pictograph.lead':
+    'Stamp symbols across survey rows, scale by key factors (2, 5, or 10), and decode fractional half-icons.',
+  'pictograph.key_scale': 'Key Scale',
+  'pictograph.one_symbol_equals': '1 Symbol =',
+  'pictograph.items': 'items',
+  'pictograph.full_icon': '+ Full Symbol',
+  'pictograph.half_icon': '+ Half Symbol',
+  'pictograph.clear_row': 'Clear Row',
+  'pictograph.category': 'Category',
+  'pictograph.symbols': 'Symbols Displayed',
+  'pictograph.total_count': 'Calculated Total',
+  'pictograph.step1': '1. Fruit Harvest Survey',
+  'pictograph.step2': '2. Scale Multiplier Explorer',
+  'pictograph.step3': '3. Half-Icon Fractional Tally',
+  'pictograph.reset': 'Reset',
+  'mistake.H1.intro':
+    'Anita is reading a bicycle shop sales report pictograph where the key states: 1 icon = 10 bicycles:',
+  'mistake.H1.s1': 'She looks at Tuesday sales and counts 3 bicycle symbols.',
+  'mistake.H1.s2': 'She ignores the key and writes down that only 3 bicycles were sold.',
+  'mistake.H1.s3': 'She announces that Tuesday was a very slow day with only 3 sales.',
+  'mistake.H1.fine1': 'Sound step: counting 3 bicycle symbols on the chart is accurate.',
+  'mistake.H1.fine3':
+    'Step 3 fails because she forgot to multiply by the key scale factor in Step 2.',
+  'mistake.H1.found':
+    'Here! You must multiply the icon count by the key scale! 1 symbol is worth 10 bicycles. 3 symbols × 10 = 30 bicycles, not 3!',
+  'explain.H1.s':
+    'Every symbol in a pictograph stands for the amount specified in the {0}. If one apple symbol stands for five apples, then four symbols represent {1} apples.',
+  'explain.H1.key': 'key',
+  'explain.H1.title': 'title',
+  'explain.H1.border': 'border',
+  'explain.H1.twenty': 'twenty',
+  'explain.H1.nine': 'nine',
+  'explain.H1.four': 'four',
+  'explain.H1.hint':
+    'Remember what tells you the value of one symbol, and multiply that scale by 4.',
+  'know.H1': 'The key tells what one picture is worth; multiply the pictures by the key.',
 };
