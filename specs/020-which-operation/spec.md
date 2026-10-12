@@ -1,6 +1,6 @@
 # Feature Specification: 020 Which Operation? (Knot A3)
 
-<!-- Spec Kit standard. Status: Draft (Ready for Review) · Priority: P1 · Lane: Feature · Branch: feat/014-collection-fractions -->
+<!-- Spec Kit standard. Status: Approved · Priority: P1 · Lane: Feature · Branch: feat/020-which-operation -->
 
 ## 1. Problem & Pedagogical Intent
 

@@ -50,5 +50,7 @@ describe('src/domain/math/index exports', () => {
     expect(typeof math.quotitionDivide).toBe('function');
     expect(typeof math.executeLongDivisionSteps).toBe('function');
     expect(typeof math.verifyLongDivision).toBe('function');
+    expect(typeof math.classifyRootAction).toBe('function');
+    expect(typeof math.evaluateProblemModel).toBe('function');
   });
 });

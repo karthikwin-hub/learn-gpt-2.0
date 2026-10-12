@@ -1,6 +1,6 @@
 # Implementation Plan: 020 Which Operation? (Knot A3)
 
-Feature Branch: `feat/014-collection-fractions`
+Feature Branch: `feat/020-which-operation`
 
 ## Architecture & Module Ownership
 

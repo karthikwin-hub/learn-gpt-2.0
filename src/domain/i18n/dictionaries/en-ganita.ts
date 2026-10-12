@@ -620,4 +620,62 @@ export const dictionary: Record<string, string> = {
     'What digit must be placed in the quotient house when the divisor cannot fit into the brought-down digit?',
   'know.D4':
     'Standard long division works place by place; writing zero for any house that cannot share prevents tenfold magnitude errors.',
+
+  /* A3 Which Operation? */
+  'prashna.A3.q':
+    '5 children share 30 laddoos equally. Which mathematical model finds each child’s share?',
+  'prashna.A3.c1': '30 ÷ 5',
+  'prashna.A3.c2': '30 + 5',
+  'prashna.A3.c3': '30 × 5',
+  'prashna.A3.a':
+    '30 ÷ 5. Sharing a whole into equal parts is partition division, so 30 ÷ 5 = 6 laddoos each.',
+  'bodha.A3.what':
+    '[[word-problems|Word problems]] tell human stories; mathematics captures the physical action hidden in the scene.',
+  'bodha.A3.can':
+    'You will be able to recognize the four root actions and choose the right mathematical operation without falling into keyword traps.',
+  'bodha.A3.idea':
+    'Look at the root action: joining groups is addition, comparing two heights is subtraction, repeating equal units is multiplication, and sharing is division.',
+  'bodha.A3.why':
+    'Keyword traps mislead: "How much more?" has the word "more", but it asks for the difference gap between two bars—requiring subtraction, not addition!',
+  'bodha.A3.example': 'Three stories using 24 and 6, each needing a different operation.',
+  'bodha.A3.example1': 'Story 1 (Replicate): 6 boxes with 24 pencils each → 24 × 6 = 144 pencils.',
+  'bodha.A3.example2':
+    'Story 2 (Compare): A 24 m tower and a 6 m pole; how much taller? → 24 − 6 = 18 m gap.',
+  'bodha.A3.example3':
+    'Story 3 (Partition): 24 sweets shared among 6 plates → 24 ÷ 6 = 4 sweets each.',
+  'bodha.A3.where':
+    'Planning buses for school excursions, comparing weather temperatures, and splitting market expenses.',
+  'bodha.A3.sutra':
+    'Look at the action in the scene: joining is plus, comparing is minus, repeating is multiply, sharing is divide.',
+  'gloss.word-problems': 'Mathematical questions presented as everyday real-world stories.',
+  'gloss.word-problems.en': 'word problems',
+  'wordprob.title': 'Which operation? Action detective',
+  'wordprob.art':
+    'Tape diagrams illustrating the four root physical actions: Join, Compare, Repeat, and Share.',
+  'wordprob.s1': 'Classify the physical root action in the scene.',
+  'wordprob.s1done': 'Action identified: Replicate equal groups (Multiplication).',
+  'wordprob.s2': 'Model comparison: find how much taller the 40 m pole is than the 15 m pole.',
+  'wordprob.s2done': 'Comparison gap: 40 − 15 = 25 m difference.',
+  'wordprob.s3': 'Assemble the mathematical equation from story quantities.',
+  'wordprob.s3done': 'Equation assembled: 30 ÷ 5 = 6 equal shares.',
+  'mistake.A3.intro':
+    'Amit read: "A pole is 40 m tall. How much taller is it than a 15 m pole?" One step went wrong. Which one?',
+  'mistake.A3.s1': 'Identify the numbers: 40 m and 15 m.',
+  'mistake.A3.s2': 'He saw the word "more" and added: 40 + 15 = 55 m.',
+  'mistake.A3.s3': 'He wrote: The taller pole is 55 m taller.',
+  'mistake.A3.fine1': 'That is sound: identifying 40 m and 15 m is correct.',
+  'mistake.A3.found':
+    'Here. "How much taller" asks for the difference gap between the two poles! Adding gives 55 m, which is taller than both poles combined. He must subtract: 40 − 15 = 25 m.',
+  'mistake.A3.fine3': '55 m answer is directly caused by the wrong addition in step 2.',
+  'explain.A3.s': 'Comparing amounts means finding the {0} by {1} the smaller from the larger.',
+  'explain.A3.difference': 'difference',
+  'explain.A3.sum': 'sum',
+  'explain.A3.product': 'product',
+  'explain.A3.subtracting': 'subtracting',
+  'explain.A3.adding': 'adding',
+  'explain.A3.multiplying': 'multiplying',
+  'explain.A3.hint':
+    'Does comparing two heights find their sum by adding or their difference by subtracting?',
+  'know.A3':
+    'Word problems reflect physical actions: joining is plus, comparing is minus, repeating is multiply, and sharing is divide.',
 };

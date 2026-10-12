@@ -34,3 +34,4 @@ export * from './regroup';
 export * from './estimate';
 export * from './quotition';
 export * from './longdiv';
+export * from './wordprob';
