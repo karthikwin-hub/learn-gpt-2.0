@@ -1,6 +1,6 @@
 # Feature Specification: 022 Primes & Composites (Knot F2)
 
-<!-- Spec Kit standard. Status: Draft (Ready for Review) · Priority: P1 · Lane: Feature · Branch: feat/014-collection-fractions -->
+<!-- Spec Kit standard. Status: Draft (Ready for Review) · Priority: P1 · Lane: Feature · Branch: feat/022-primes -->
 
 ## 1. Problem & Pedagogical Intent
 

@@ -118,4 +118,13 @@ describe('Lesson registry', () => {
     expect(f1?.mistake?.steps).toBe(3);
     expect(f1?.mistake?.wrong).toBe(1);
   });
+
+  it('retrieves F2 Primes & Composites lesson', () => {
+    const f2 = getLesson('F2');
+    expect(f2).not.toBeNull();
+    expect(f2?.cards).toHaveLength(6);
+    expect(f2?.explain).toHaveLength(2);
+    expect(f2?.mistake?.steps).toBe(3);
+    expect(f2?.mistake?.wrong).toBe(1);
+  });
 });
