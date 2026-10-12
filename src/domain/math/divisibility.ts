@@ -12,7 +12,29 @@ export interface DivisibilityResult {
   passes: boolean;
   divisor: DivisorRule;
   family: RuleFamily;
-  reason: string;
+  /** Why it passes or fails, as an id plus the numbers the explanation needs. */
+  reason: DivisibilityReason;
+}
+
+export type DivisibilityReasonId =
+  | 'even'
+  | 'odd'
+  | 'ends05'
+  | 'notEnds05'
+  | 'ends0'
+  | 'notEnds0'
+  | 'sumDivides'
+  | 'sumNotDivides'
+  | 'bothGates'
+  | 'failGate2'
+  | 'failGate3';
+
+export interface DivisibilityReason {
+  id: DivisibilityReasonId;
+  last: number;
+  sum: number;
+  sumExpression: string;
+  quotient: number;
 }
 
 /**
@@ -58,6 +80,13 @@ export function testDivisibility(n: number, divisor: DivisorRule): DivisibilityR
   const abs = Math.abs(Math.trunc(n));
   const last = getLastDigit(abs);
   const { sum, sumExpression } = getDigitSumSteps(abs);
+  const why = (id: DivisibilityReasonId, quotient = 0): DivisibilityReason => ({
+    id,
+    last,
+    sum,
+    sumExpression,
+    quotient,
+  });
 
   switch (divisor) {
     case 2: {
@@ -66,9 +95,7 @@ export function testDivisibility(n: number, divisor: DivisorRule): DivisibilityR
         passes: isEven,
         divisor: 2,
         family: 'last-digit',
-        reason: isEven
-          ? `Last digit ${last} is even (0, 2, 4, 6, 8).`
-          : `Last digit ${last} is odd.`,
+        reason: why(isEven ? 'even' : 'odd'),
       };
     }
     case 5: {
@@ -77,9 +104,7 @@ export function testDivisibility(n: number, divisor: DivisorRule): DivisibilityR
         passes: endsIn0or5,
         divisor: 5,
         family: 'last-digit',
-        reason: endsIn0or5
-          ? `Last digit is ${last} (ends in 0 or 5).`
-          : `Last digit is ${last} (must end in 0 or 5).`,
+        reason: why(endsIn0or5 ? 'ends05' : 'notEnds05'),
       };
     }
     case 10: {
@@ -88,7 +113,7 @@ export function testDivisibility(n: number, divisor: DivisorRule): DivisibilityR
         passes: endsIn0,
         divisor: 10,
         family: 'last-digit',
-        reason: endsIn0 ? `Last digit is 0.` : `Last digit is ${last} (must end in 0).`,
+        reason: why(endsIn0 ? 'ends0' : 'notEnds0'),
       };
     }
     case 3: {
@@ -97,9 +122,7 @@ export function testDivisibility(n: number, divisor: DivisorRule): DivisibilityR
         passes: sumDiv3,
         divisor: 3,
         family: 'digit-sum',
-        reason: sumDiv3
-          ? `Digit sum ${sumExpression}, and ${sum} is divisible by 3 (${sum} ÷ 3 = ${sum / 3}).`
-          : `Digit sum ${sumExpression}, and ${sum} is not divisible by 3.`,
+        reason: sumDiv3 ? why('sumDivides', sum / 3) : why('sumNotDivides'),
       };
     }
     case 9: {
@@ -108,9 +131,7 @@ export function testDivisibility(n: number, divisor: DivisorRule): DivisibilityR
         passes: sumDiv9,
         divisor: 9,
         family: 'digit-sum',
-        reason: sumDiv9
-          ? `Digit sum ${sumExpression}, and ${sum} is divisible by 9 (${sum} ÷ 9 = ${sum / 9}).`
-          : `Digit sum ${sumExpression}, and ${sum} is not divisible by 9.`,
+        reason: sumDiv9 ? why('sumDivides', sum / 9) : why('sumNotDivides'),
       };
     }
     case 6: {
@@ -121,11 +142,7 @@ export function testDivisibility(n: number, divisor: DivisorRule): DivisibilityR
         passes,
         divisor: 6,
         family: 'composite',
-        reason: passes
-          ? `Passes both gates: even (ends in ${last}) AND digit sum ${sum} divides by 3.`
-          : !isEven
-            ? `Fails gate 2: number ends in ${last} (odd).`
-            : `Fails gate 3: digit sum ${sum} does not divide by 3.`,
+        reason: why(passes ? 'bothGates' : !isEven ? 'failGate2' : 'failGate3'),
       };
     }
   }

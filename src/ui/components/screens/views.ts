@@ -20,6 +20,17 @@ import { readStep, toMistakeButton } from '../../util/bench';
 import { enterThread } from '../../util/thread';
 import { type ScreenMeta } from '../app/router';
 
+const PRESET_LABEL: Record<string, string> = {
+  staircase: 'views.presetStair',
+  tower: 'views.presetTower',
+  l_shape: 'views.presetCorner',
+  bridge: 'views.presetBridge',
+};
+
+function presetName(preset: { id: string }): string {
+  return t(PRESET_LABEL[preset.id] || 'views.presetStair');
+}
+
 export function createViewsScreen(): ScreenMeta {
   return {
     id: 'views',
@@ -109,7 +120,7 @@ export function createViewsScreen(): ScreenMeta {
         if (stepNum === 1) {
           feedbackEl.textContent = t('views.s1done');
         } else if (stepNum === 2) {
-          feedbackEl.textContent = t('views.s2done', { name: preset.name });
+          feedbackEl.textContent = t('views.s2done', { name: presetName(preset) });
         } else {
           feedbackEl.textContent = t('views.s3done');
         }
@@ -140,7 +151,7 @@ export function createViewsScreen(): ScreenMeta {
         const structureBadge = el('div', {
           class: 'stat-pill structure-pill',
           id: 'structure-name',
-          text: t('views.structureLabel', { name: preset.name }),
+          text: t('views.structureLabel', { name: presetName(preset) }),
           style: {
             padding: '6px 14px',
             borderRadius: '999px',
@@ -190,7 +201,7 @@ export function createViewsScreen(): ScreenMeta {
             ? t('views.statusJaal')
             : preset.id === 'staircase'
               ? t('views.statusStairTop')
-              : t('views.statusOrtho', { name: preset.name });
+              : t('views.statusOrtho', { name: presetName(preset) });
         contentBox.appendChild(statusCard);
 
         // 3 Viewports Grid Container
@@ -285,29 +296,29 @@ export function createViewsScreen(): ScreenMeta {
 
         // Top View Card (Plan)
         const topCard = createViewportCard(
-          'Top View (Plan)',
+          t('views.top'),
           views.top,
           'top-view-card',
           'var(--teal)',
-          "Bird's Eye (Map)"
+          t('views.subTop')
         );
 
         // Front View Card (Elevation)
         const frontCard = createViewportCard(
-          'Front View (Elevation)',
+          t('views.front'),
           views.front,
           'front-view-card',
           'var(--leaf)',
-          'Width × Height'
+          t('views.subFront')
         );
 
         // Side View Card (Profile)
         const sideCard = createViewportCard(
-          'Side View (Profile)',
+          t('views.side'),
           views.side,
           'side-view-card',
-          '#d97706',
-          'Depth × Height'
+          'var(--kumkum)',
+          t('views.subSide')
         );
 
         viewportsContainer.appendChild(topCard);
@@ -347,7 +358,7 @@ export function createViewsScreen(): ScreenMeta {
           const btn = el('button', {
             class: `btn ${currentPresetId === p.id ? 'btn-active' : ''}`,
             id: `preset-${p.id}-btn`,
-            text: p.name,
+            text: presetName(p),
             style: { minHeight: '44px', minWidth: '44px' },
             onclick: () => {
               currentPresetId = p.id;

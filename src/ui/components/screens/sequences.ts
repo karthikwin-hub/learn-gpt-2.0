@@ -166,7 +166,7 @@ export function createSequencesScreen(): ScreenMeta {
 
           const pBtn = el('button', {
             class: `btn preset-btn ${isSel ? 'active' : ''}`,
-            text: `${preset.name} (${preset.ruleName})`,
+            text: `${t(`sequences.preset.${preset.id}`)} (${preset.ruleName})`,
             style: {
               minHeight: '44px',
               padding: '6px 14px',

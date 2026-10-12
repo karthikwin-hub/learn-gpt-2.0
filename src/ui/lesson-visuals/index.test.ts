@@ -1,6 +1,7 @@
 import { describe, expect, it, vi } from 'vitest';
 import { playable, SECTIONS } from '../../domain/curriculum/curriculum';
 import { getLesson } from '../../domain/lesson/registry';
+import { setLang } from '../../domain/i18n/core';
 import { getVisuals, mergeTables } from './index';
 
 const pic = () => document.createElementNS('http://www.w3.org/2000/svg', 'svg');
@@ -61,6 +62,48 @@ describe('046 every lesson has its pictures (US2-AS1, US2-AS2, US2-AS3)', () => 
         .filter((m) => m.startsWith('Missing'));
       warn.mockRestore();
       expect([...problems, ...missing]).toEqual([]);
+    });
+  }
+
+  /* Latin a translated picture may keep: Roman numerals, single letters naming points or sets, unit and
+     time symbols, and the AND/OR/NOT gate names. Mirrors the dictionary script test. */
+  const LATIN_OK =
+    /^(?:[IVXLCDM]+|[A-Za-z]|cm|mm|km|kg|mg|ml|mL|AM|PM|am|pm|LCM|HCF|AND|OR|NOT|AI)$/;
+
+  function englishIn(svgEl: SVGSVGElement | null | undefined): string[] {
+    if (!svgEl) return [];
+    const texts = [...svgEl.querySelectorAll('text, tspan, title')].map((n) => n.textContent || '');
+    texts.push(svgEl.getAttribute('aria-label') || '');
+    return texts.flatMap((x) => (x.match(/[A-Za-z]+/g) || []).filter((w) => !LATIN_OK.test(w)));
+  }
+
+  for (const knot of knots) {
+    it(`${knot.id}: every picture is in the learner's language, with no English left (US1-AS1)`, () => {
+      setLang('hi', true);
+      try {
+        const lesson = getLesson(knot.id)!;
+        const v = getVisuals(knot.id);
+        const pictures: [string, SVGSVGElement | null | undefined][] = [];
+        if (knot.prashna) pictures.push(['prashna', v.prashna?.()]);
+        for (const card of lesson.cards) {
+          if (card.key === 'sutra') continue;
+          const draw = v.cards?.[card.key];
+          if (!draw) continue;
+          for (let step = 0; step <= (card.steps || 0); step++) {
+            pictures.push([`${card.key} step ${step}`, draw(step)]);
+          }
+        }
+        if (lesson.mistake) {
+          pictures.push(['mistake', v.mistake?.(false)], ['mistake revealed', v.mistake?.(true)]);
+        }
+        const english = pictures
+          .map(([name, el]) => [name, englishIn(el)] as const)
+          .filter(([, words]) => words.length > 0)
+          .map(([name, words]) => `${name}: ${[...new Set(words)].join(' ')}`);
+        expect(english).toEqual([]);
+      } finally {
+        setLang('en', true);
+      }
     });
   }
 });

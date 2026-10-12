@@ -4,12 +4,28 @@
  * and dual-gate composite filter for 6.
  */
 
-import { getDigits, getDigitSumSteps, testDivisibility } from '../../../domain/math/divisibility';
+import {
+  getDigits,
+  getDigitSumSteps,
+  testDivisibility,
+  type DivisibilityResult,
+} from '../../../domain/math/divisibility';
 import { t } from '../../../domain/i18n/core';
 import { clear, el } from '../../util/dom';
 import { readStep, toMistakeButton } from '../../util/bench';
 import { enterThread } from '../../util/thread';
 import { type ScreenMeta } from '../app/router';
+
+function reasonText(r: DivisibilityResult): string {
+  const { id, last, sum, sumExpression, quotient } = r.reason;
+  return t(`divisibility.reason.${id}`, {
+    last,
+    sum,
+    expr: sumExpression,
+    d: r.divisor,
+    q: quotient,
+  });
+}
 
 export function createDivisibilityScreen(): ScreenMeta {
   return {
@@ -227,12 +243,12 @@ export function createDivisibilityScreen(): ScreenMeta {
             ? t('divisibility.verdictPass', {
                 n: numStep1,
                 d: activeDivisor1,
-                reason: testRes.reason,
+                reason: reasonText(testRes),
               })
             : t('divisibility.verdictFail', {
                 n: numStep1,
                 d: activeDivisor1,
-                reason: testRes.reason,
+                reason: reasonText(testRes),
               }),
           style: {
             padding: '10px 14px',

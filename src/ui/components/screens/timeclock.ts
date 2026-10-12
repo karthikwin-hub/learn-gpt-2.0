@@ -15,6 +15,7 @@ import {
   formatTime24,
 } from '../../../domain/math/timeclock';
 import { t } from '../../../domain/i18n/core';
+import { durationText } from '../../util/duration';
 import { clear, el, svg } from '../../util/dom';
 import { readStep, toMistakeButton } from '../../util/bench';
 import { enterThread } from '../../util/thread';
@@ -595,7 +596,7 @@ export function createTimeclockScreen(): ScreenMeta {
         feedbackEl.textContent = t('timeclock.bridgeFeedback', {
           start: formatTime24(bridgeStartH, bridgeStartM),
           end: formatTime24(bridgeEndH, bridgeEndM),
-          dur: dur.formatted,
+          dur: durationText(dur.hours, dur.minutes),
         });
 
         const bridgeCard = el('div', {
@@ -633,7 +634,7 @@ export function createTimeclockScreen(): ScreenMeta {
         summaryBar.appendChild(
           el('span', {
             class: 'stat-pill total-duration-pill',
-            text: dur.formatted,
+            text: durationText(dur.hours, dur.minutes),
             style: {
               fontWeight: 'bold',
               fontSize: '1.2rem',
@@ -676,7 +677,13 @@ export function createTimeclockScreen(): ScreenMeta {
             })
           );
           leftText.appendChild(
-            el('small', { text: hop.description, style: { color: 'var(--ink-soft)' } })
+            el('small', {
+              text: t(`timeclock.hop.${hop.kind}`, {
+                m: hop.minutes,
+                h: Math.floor(hop.minutes / 60),
+              }),
+              style: { color: 'var(--ink-soft)' },
+            })
           );
 
           const rightTime = el('span', {

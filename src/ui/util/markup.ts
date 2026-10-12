@@ -11,7 +11,9 @@ const MARK = /<(s|r)>([\s\S]*?)<\/\1>/g;
 export const TERM_REGEX = /\[\[([\w.-]+)\|([^\]]+)\]\]/g;
 
 export function plainText(str: string): string {
-  return str.replace(TERM_REGEX, (_match, _id: string, shown: string) => shown);
+  return str
+    .replace(TERM_REGEX, (_match, _id: string, shown: string) => shown)
+    .replace(/<\/?[sr]>/g, '');
 }
 
 export function markupLine(str: string, cls = 'eq'): HTMLElement {

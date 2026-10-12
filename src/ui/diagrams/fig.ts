@@ -3,6 +3,7 @@
  */
 
 import { svg as createSvg } from '../util/dom';
+import { plainText } from '../util/markup';
 
 export interface TextOptions {
   anchor?: string;
@@ -45,7 +46,7 @@ export function figSvg(w: number, h: number, label?: string): SVGSVGElement {
   return createSvg('svg', {
     viewBox: `0 0 ${w} ${h}`,
     role: 'img',
-    'aria-label': label || '',
+    'aria-label': plainText(label || ''),
   }) as SVGSVGElement;
 }
 

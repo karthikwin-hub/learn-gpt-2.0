@@ -343,4 +343,17 @@ export const dictionary: Record<string, string> = {
   'hcf.reduceBtn': 'HCF(6) দিয়ে ভাগ',
   'hcf.fracDone': 'এক ঝটপট ধাপে: 12 ÷ 6 = 2 আর 18 ÷ 6 = 3 → 2/3 সরল রূপে।',
   'hcf.fracHint': 'লব আর হর তাদের HCF দিয়ে ভাগ করলে এক ধাপে সরলতম রূপ পাওয়া যায়।',
+  'divisibility.reason.even': 'শেষ অঙ্ক {last} জোড় (0, 2, 4, 6, 8)',
+  'divisibility.reason.odd': 'শেষ অঙ্ক {last} বিজোড়',
+  'divisibility.reason.ends05': 'শেষ অঙ্ক {last}: এটা 0 বা 5-এ শেষ হয়',
+  'divisibility.reason.notEnds05': 'শেষ অঙ্ক {last}: এটাকে 0 বা 5-এ শেষ হতে হবে',
+  'divisibility.reason.ends0': 'শেষ অঙ্ক 0',
+  'divisibility.reason.notEnds0': 'শেষ অঙ্ক {last}: এটাকে 0-তে শেষ হতে হবে',
+  'divisibility.reason.sumDivides': 'অঙ্কের যোগফল {expr}, আর {sum} ÷ {d} = {q}',
+  'divisibility.reason.sumNotDivides':
+    'অঙ্কের যোগফল {expr}, কিন্তু {sum}-কে {d} দিয়ে ভাগ করা যায় না',
+  'divisibility.reason.bothGates':
+    'দুটো দরজাই পার: জোড় ({last}-এ শেষ) আর অঙ্কের যোগফল {sum} 3 দিয়ে ভাগ যায়',
+  'divisibility.reason.failGate2': 'দরজা 2-এ আটকাল: এটা {last}-এ শেষ, যা বিজোড়',
+  'divisibility.reason.failGate3': 'দরজা 3-এ আটকাল: অঙ্কের যোগফল {sum} 3 দিয়ে ভাগ যায় না',
 };

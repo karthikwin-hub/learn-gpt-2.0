@@ -25,7 +25,10 @@ async function englishLeft(page: Page): Promise<string[]> {
     if (!view) return '';
     const clone = view.cloneNode(true) as HTMLElement;
     clone.querySelectorAll('[lang="en"]').forEach((n) => n.remove());
-    return clone.textContent || '';
+    const parts: string[] = [];
+    const walker = document.createTreeWalker(clone, NodeFilter.SHOW_TEXT);
+    while (walker.nextNode()) parts.push(walker.currentNode.textContent || '');
+    return parts.join(' ');
   });
   return (text.match(/[A-Za-z]{2,}/g) || []).filter((w) => !LATIN_OK.test(w));
 }

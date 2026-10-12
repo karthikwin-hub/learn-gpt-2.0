@@ -479,4 +479,7 @@ export const dictionary: Record<string, string> = {
   'mistake.G7.eq':
     'উচ্চতা ক্ষেত্রফল ঠিক করে না; একই ৭টি টুকরো সাজালে মোট ক্ষেত্রফল <r>একদম সমান</r>',
   'mistake.G8.eq': 'উপরের দৃশ্য উপর থেকে; উল্লম্ব ধাপ <r>সপাট বর্গের জাল</r>-এ সমতল',
+  'views.subTop': 'পাখির চোখে (মানচিত্র)',
+  'views.subFront': 'প্রস্থ × উচ্চতা',
+  'views.subSide': 'গভীরতা × উচ্চতা',
 };

@@ -402,4 +402,16 @@ export const dictionary: Record<string, string> = {
     'Reduced in a single clean leap: 12 ÷ 6 = 2 and 18 ÷ 6 = 3 → 2/3 is in lowest terms!',
   'hcf.fracHint':
     'Dividing numerator and denominator by their HCF guarantees simplest form in ONE step.',
+  'divisibility.reason.even': 'last digit {last} is even (0, 2, 4, 6, 8)',
+  'divisibility.reason.odd': 'last digit {last} is odd',
+  'divisibility.reason.ends05': 'last digit is {last}: it ends in 0 or 5',
+  'divisibility.reason.notEnds05': 'last digit is {last}: it must end in 0 or 5',
+  'divisibility.reason.ends0': 'last digit is 0',
+  'divisibility.reason.notEnds0': 'last digit is {last}: it must end in 0',
+  'divisibility.reason.sumDivides': 'digit sum {expr}, and {sum} ÷ {d} = {q}',
+  'divisibility.reason.sumNotDivides': 'digit sum {expr}, and {sum} does not divide by {d}',
+  'divisibility.reason.bothGates':
+    'passes both gates: even (ends in {last}) and digit sum {sum} divides by 3',
+  'divisibility.reason.failGate2': 'stops at gate 2: it ends in {last}, which is odd',
+  'divisibility.reason.failGate3': 'stops at gate 3: digit sum {sum} does not divide by 3',
 };

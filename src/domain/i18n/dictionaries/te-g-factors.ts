@@ -374,4 +374,16 @@ export const dictionary: Record<string, string> = {
   'hcf.reduceBtn': 'HCF(6)తో భాగించండి',
   'hcf.fracDone': 'ఒక చక్కని దశ: 12 ÷ 6 = 2 మరియు 18 ÷ 6 = 3 → 2/3 సరళమైన రూపం!',
   'hcf.fracHint': 'HCF ద్వారా న్యూమరేటర్ మరియు హారం విభజించడం ఒక దశలో సరళమైన భిన్నాన్ని ఇస్తుంది.',
+  'divisibility.reason.even': 'చివరి అంకె {last} సరి సంఖ్య (0, 2, 4, 6, 8)',
+  'divisibility.reason.odd': 'చివరి అంకె {last} బేసి సంఖ్య',
+  'divisibility.reason.ends05': 'చివరి అంకె {last}: ఇది 0 లేదా 5తో ముగుస్తుంది',
+  'divisibility.reason.notEnds05': 'చివరి అంకె {last}: ఇది 0 లేదా 5తో ముగియాలి',
+  'divisibility.reason.ends0': 'చివరి అంకె 0',
+  'divisibility.reason.notEnds0': 'చివరి అంకె {last}: ఇది 0తో ముగియాలి',
+  'divisibility.reason.sumDivides': 'అంకెల మొత్తం {expr}, మరియు {sum} ÷ {d} = {q}',
+  'divisibility.reason.sumNotDivides': 'అంకెల మొత్తం {expr}, కానీ {sum} ని {d} నిశ్శేషంగా భాగించదు',
+  'divisibility.reason.bothGates':
+    'రెండు ద్వారాలూ దాటింది: సరి ({last}తో ముగుస్తుంది), అంకెల మొత్తం {sum} ని 3 భాగిస్తుంది',
+  'divisibility.reason.failGate2': 'ద్వారం 2 వద్ద ఆగింది: ఇది {last}తో ముగుస్తుంది, అది బేసి',
+  'divisibility.reason.failGate3': 'ద్వారం 3 వద్ద ఆగింది: అంకెల మొత్తం {sum} ని 3 భాగించదు',
 };

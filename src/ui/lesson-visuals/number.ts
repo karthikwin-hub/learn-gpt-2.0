@@ -235,7 +235,7 @@ function n5Cards(card: CardKey, step: number): SVGSVGElement {
 
 function n5Mistake(reveal: boolean): SVGSVGElement {
   const s = figSvg(360, 200, t('mistake.N5.intro'));
-  decimalGrid(s, reveal ? 70 : 15, reveal ? '0.7 > 0.15' : '0.7  vs  0.15');
+  decimalGrid(s, reveal ? 70 : 15, reveal ? '0.7 > 0.15' : '0.7  ?  0.15');
   return s;
 }
 

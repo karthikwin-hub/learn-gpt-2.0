@@ -2,6 +2,7 @@
  * Tile and Area diagram visual builders for M2 and M4 Bodha cards.
  */
 
+import { t } from '../../domain/i18n/core';
 import { figGrid, figLine, figRect, figSvg, figText } from './fig';
 
 const IND = 'var(--indigo)';
@@ -133,7 +134,7 @@ export function renderM4MistakeRooms(reveal: boolean): SVGSVGElement {
   const k = 7;
   const X = 30;
   const Y = 14;
-  const svg = figSvg(220, 130, 'Mistake rooms');
+  const svg = figSvg(220, 130, t('mistake.M4.intro'));
   const parts = [
     { x: 0, y: 0, w: 20, h: 10, n: 200, kept: true },
     { x: 20, y: 0, w: 3, h: 10, n: 30, kept: false },

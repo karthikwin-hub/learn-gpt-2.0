@@ -574,4 +574,7 @@ export const dictionary: Record<string, string> = {
     'Height does not determine area; rearranging the same 7 pieces leaves total area <r>strictly equal</r>',
   'mistake.G8.eq':
     'A top view looks straight down from above; vertical steps collapse into a <r>flat grid of squares</r>',
+  'views.subTop': "Bird's eye (map)",
+  'views.subFront': 'Width × height',
+  'views.subSide': 'Depth × height',
 };

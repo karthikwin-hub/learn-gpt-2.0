@@ -87,10 +87,16 @@ export function createSeedScreen(): ScreenMeta {
             style: { padding: '8px', border: '1px solid var(--hair)', borderRadius: '8px' },
           });
           partBox.appendChild(
-            el('strong', { style: { display: 'block', fontSize: '13px' }, text: p.name })
+            el('strong', {
+              style: { display: 'block', fontSize: '13px' },
+              text: t(`seed.part.${p.id}.name`),
+            })
           );
           partBox.appendChild(
-            el('span', { style: { fontSize: '11px', color: 'var(--ink-soft)' }, text: p.role })
+            el('span', {
+              style: { fontSize: '11px', color: 'var(--ink-soft)' },
+              text: t(`seed.part.${p.id}.role`),
+            })
           );
           partsGrid.appendChild(partBox);
         }

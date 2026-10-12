@@ -53,8 +53,8 @@ export function renderL2TruthTable(step: number): SVGSVGElement {
     step >= 2
       ? [
           [
-            'open',
-            'shut',
+            t('logic.open'),
+            t('logic.shut'),
             step >= 3 ? t('logic.no') : '…',
             step >= 2 ? t('logic.yes') : '…',
             step >= 3 ? t('logic.no') : '…',
@@ -62,8 +62,8 @@ export function renderL2TruthTable(step: number): SVGSVGElement {
         ]
       : step >= 1
         ? [
-            ['open', t('logic.no')],
-            ['shut', t('logic.yes')],
+            [t('logic.open'), t('logic.no')],
+            [t('logic.shut'), t('logic.yes')],
           ]
         : getGateInputs('and').map((inp) => {
             const a = inp[0] ? t('logic.open') : t('logic.shut');

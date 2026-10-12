@@ -44,13 +44,18 @@ export function createBargraphScreen(): ScreenMeta {
       let stepInterval = typeof state.stepInterval === 'number' ? state.stepInterval : 5;
 
       const defaultBars: BarData[] = [
-        { category: 'Footballs', gridUnits: 3, color: '#3b82f6' },
-        { category: 'Cricket Bats', gridUnits: 4, color: '#10b981' },
-        { category: 'Rackets', gridUnits: 2, color: '#f59e0b' },
-        { category: 'Helmets', gridUnits: 5, color: '#8b5cf6' },
+        { category: 'footballs', gridUnits: 3, color: '#3b82f6' },
+        { category: 'cricketBats', gridUnits: 4, color: '#10b981' },
+        { category: 'rackets', gridUnits: 2, color: '#f59e0b' },
+        { category: 'helmets', gridUnits: 5, color: '#8b5cf6' },
       ];
 
-      let bars: BarData[] = Array.isArray(state.bars) ? (state.bars as BarData[]) : defaultBars;
+      const CATEGORIES = defaultBars.map((b) => b.category);
+      let bars: BarData[] =
+        Array.isArray(state.bars) &&
+        (state.bars as BarData[]).every((b) => CATEGORIES.includes(b.category))
+          ? (state.bars as BarData[])
+          : defaultBars;
 
       let expMark = typeof state.expMark === 'number' ? state.expMark : 4;
       let expStep = typeof state.expStep === 'number' ? state.expStep : 10;
@@ -328,7 +333,7 @@ export function createBargraphScreen(): ScreenMeta {
               'font-weight': '500',
               'text-anchor': 'middle',
               fill: '#475569',
-              text: b.category.split(' ')[0] ?? '',
+              text: t(`bargraph.cat.${b.category}`),
             })
           );
         });
@@ -369,7 +374,7 @@ export function createBargraphScreen(): ScreenMeta {
 
           const label = el('span', {
             text: t('bargraph.barLabel', {
-              category: b.category,
+              category: t(`bargraph.cat.${b.category}`),
               value: String(readBarValue(b.gridUnits, stepInterval)),
               grid: String(b.gridUnits),
             }),
@@ -703,10 +708,10 @@ export function createBargraphScreen(): ScreenMeta {
         onClick() {
           stepInterval = 5;
           bars = [
-            { category: 'Footballs', gridUnits: 3, color: '#3b82f6' },
-            { category: 'Cricket Bats', gridUnits: 4, color: '#10b981' },
-            { category: 'Rackets', gridUnits: 2, color: '#f59e0b' },
-            { category: 'Helmets', gridUnits: 5, color: '#8b5cf6' },
+            { category: 'footballs', gridUnits: 3, color: '#3b82f6' },
+            { category: 'cricketBats', gridUnits: 4, color: '#10b981' },
+            { category: 'rackets', gridUnits: 2, color: '#f59e0b' },
+            { category: 'helmets', gridUnits: 5, color: '#8b5cf6' },
           ];
           expMark = 4;
           expStep = 10;

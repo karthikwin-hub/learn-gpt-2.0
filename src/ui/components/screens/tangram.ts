@@ -178,9 +178,8 @@ export function createTangramScreen(): ScreenMeta {
         if (stepNum === 1) {
           feedbackEl.textContent = t('tangram.s1done');
         } else if (stepNum === 2) {
-          const sil = SILHOUETTES.find((s) => s.id === currentSilhouette);
           feedbackEl.textContent = t('tangram.s2done', {
-            name: sil ? sil.name : currentSilhouette,
+            name: t(PRESET_LABEL[currentSilhouette] || 'tangram.presetSquare'),
           });
         } else {
           feedbackEl.textContent = t('tangram.s3done');
@@ -270,8 +269,7 @@ export function createTangramScreen(): ScreenMeta {
           },
         });
 
-        const curSil = SILHOUETTES.find((s) => s.id === currentSilhouette);
-        const silName = curSil ? curSil.name : 'Silhouette';
+        const silName = t(PRESET_LABEL[currentSilhouette] || 'tangram.presetSquare');
 
         statusCard.textContent =
           stepNum === 3

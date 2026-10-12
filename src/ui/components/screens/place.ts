@@ -77,7 +77,7 @@ export function createPlaceScreen(): ScreenMeta {
           houseCard.appendChild(
             el('h4', {
               class: 'house-name',
-              text: house.name,
+              text: t(`place.house.${house.id}`),
               style: { margin: '0 0 8px 0', color: 'var(--indigo)' },
             })
           );
@@ -96,7 +96,7 @@ export function createPlaceScreen(): ScreenMeta {
             digitCol.appendChild(
               el('span', {
                 class: 'digit-name',
-                text: d.name,
+                text: t(`place.digit.${d.id}`),
                 style: { fontSize: '11px', color: 'var(--ink-soft)' },
               })
             );
@@ -104,7 +104,7 @@ export function createPlaceScreen(): ScreenMeta {
             const incBtn = el('button', {
               class: 'btn icon mini',
               type: 'button',
-              'aria-label': t('place.increase', { place: d.name }),
+              'aria-label': t('place.increase', { place: t(`place.digit.${d.id}`) }),
               text: '▲',
               onclick: () => {
                 currentVal = adjustDigit(currentVal, d.multiplier, 1);
@@ -126,7 +126,7 @@ export function createPlaceScreen(): ScreenMeta {
             const decBtn = el('button', {
               class: 'btn icon mini',
               type: 'button',
-              'aria-label': t('place.decrease', { place: d.name }),
+              'aria-label': t('place.decrease', { place: t(`place.digit.${d.id}`) }),
               text: '▼',
               onclick: () => {
                 currentVal = adjustDigit(currentVal, d.multiplier, -1);

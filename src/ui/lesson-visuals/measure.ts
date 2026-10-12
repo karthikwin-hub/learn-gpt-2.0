@@ -15,6 +15,7 @@ import {
 import { triangularNumber, squareNumber, generateTriangularDots } from '../../domain/math/growing';
 import { figSvg, figText, figRect, figLine, figCircle, figPath, figGrid } from '../diagrams/fig';
 import { svg } from '../util/dom';
+import { durationText } from '../util/duration';
 import type { CardKey, LessonVisuals, VisualsTable } from './types';
 
 const W = 360;
@@ -249,7 +250,12 @@ const U3: LessonVisuals = {
         );
       });
       if (step >= 2) {
-        s.appendChild(figText(180, 130, dur.formatted, { size: 13, color: 'var(--indigo)' }));
+        s.appendChild(
+          figText(180, 130, durationText(dur.hours, dur.minutes), {
+            size: 13,
+            color: 'var(--indigo)',
+          })
+        );
       }
       return s;
     },

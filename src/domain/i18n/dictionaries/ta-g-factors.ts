@@ -357,4 +357,17 @@ export const dictionary: Record<string, string> = {
   'hcf.reduceBtn': 'HCF(6)-ஆல் வகு',
   'hcf.fracDone': 'ஒரே சுத்தமான படி: 12 ÷ 6 = 2, 18 ÷ 6 = 3 → 2/3 எளிய வடிவில்.',
   'hcf.fracHint': 'தொகுதி, வகுத்தியை HCF-ஆல் வகுத்தால் ஒரே படியில் எளிய பின்னம் கிடைக்கும்.',
+  'divisibility.reason.even': 'கடைசி இலக்கம் {last} இரட்டை எண் (0, 2, 4, 6, 8)',
+  'divisibility.reason.odd': 'கடைசி இலக்கம் {last} ஒற்றை எண்',
+  'divisibility.reason.ends05': 'கடைசி இலக்கம் {last}: இது 0 அல்லது 5-இல் முடிகிறது',
+  'divisibility.reason.notEnds05': 'கடைசி இலக்கம் {last}: இது 0 அல்லது 5-இல் முடிய வேண்டும்',
+  'divisibility.reason.ends0': 'கடைசி இலக்கம் 0',
+  'divisibility.reason.notEnds0': 'கடைசி இலக்கம் {last}: இது 0-இல் முடிய வேண்டும்',
+  'divisibility.reason.sumDivides': 'இலக்கங்களின் கூட்டல் {expr}, மேலும் {sum} ÷ {d} = {q}',
+  'divisibility.reason.sumNotDivides':
+    'இலக்கங்களின் கூட்டல் {expr}, ஆனால் {sum} ஐ {d} மீதியின்றி வகுக்காது',
+  'divisibility.reason.bothGates':
+    'இரண்டு வாயில்களையும் கடந்தது: இரட்டை ({last}-இல் முடிகிறது), இலக்கக் கூட்டல் {sum} ஐ 3 வகுக்கிறது',
+  'divisibility.reason.failGate2': 'வாயில் 2-இல் நின்றது: இது {last}-இல் முடிகிறது, அது ஒற்றை எண்',
+  'divisibility.reason.failGate3': 'வாயில் 3-இல் நின்றது: இலக்கக் கூட்டல் {sum} ஐ 3 வகுக்காது',
 };

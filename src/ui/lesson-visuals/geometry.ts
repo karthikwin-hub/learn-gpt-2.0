@@ -90,7 +90,7 @@ function g1Cards(): LessonVisuals['cards'] {
       const info = getAngleInfo(45);
       s.appendChild(rayTurn(100, 80, 45, 70));
       s.appendChild(figText(100, 108, `${info.degrees}°`, { size: 13, color: TEAL }));
-      s.appendChild(figText(260, 40, t('gloss.angle.en'), { size: 14, color: IND }));
+      s.appendChild(figText(260, 40, t('angles.type.acute'), { size: 14, color: IND }));
       return s;
     },
     idea: () => {

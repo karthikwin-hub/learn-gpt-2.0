@@ -338,4 +338,17 @@ export const dictionary: Record<string, string> = {
   'hcf.reduceBtn': 'HCF (6) से भाग',
   'hcf.fracDone': 'एक साफ कदम: 12 ÷ 6 = 2 और 18 ÷ 6 = 3 → 2/3 सबसे सरल रूप!',
   'hcf.fracHint': 'अंश और हर को HCF से भाग देने से एक कदम में सबसे सरल भिन्न मिलती है।',
+  'divisibility.reason.even': 'अंतिम अंक {last} सम है (0, 2, 4, 6, 8)',
+  'divisibility.reason.odd': 'अंतिम अंक {last} विषम है',
+  'divisibility.reason.ends05': 'अंतिम अंक {last} है: यह 0 या 5 पर खत्म होता है',
+  'divisibility.reason.notEnds05': 'अंतिम अंक {last} है: इसे 0 या 5 पर खत्म होना चाहिए',
+  'divisibility.reason.ends0': 'अंतिम अंक 0 है',
+  'divisibility.reason.notEnds0': 'अंतिम अंक {last} है: इसे 0 पर खत्म होना चाहिए',
+  'divisibility.reason.sumDivides': 'अंकों का योग {expr}, और {sum} ÷ {d} = {q}',
+  'divisibility.reason.sumNotDivides':
+    'अंकों का योग {expr}, और {sum} में {d} से पूरा भाग नहीं जाता',
+  'divisibility.reason.bothGates':
+    'दोनों द्वार पार: सम ({last} पर खत्म) और अंकों का योग {sum}, 3 से भाग जाता है',
+  'divisibility.reason.failGate2': 'द्वार 2 पर रुका: यह {last} पर खत्म होता है, जो विषम है',
+  'divisibility.reason.failGate3': 'द्वार 3 पर रुका: अंकों का योग {sum}, 3 से नहीं भाग जाता',
 };

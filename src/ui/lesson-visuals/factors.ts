@@ -13,6 +13,7 @@ import {
 import { classifyVennFactors } from '../../domain/math/hcf';
 import { rotateArrayDimensions } from '../../domain/math/rect';
 import { t } from '../../domain/i18n/core';
+import { plainText } from '../util/markup';
 import { figCircle, figGrid, figLine, figPath, figRect, figSvg, figText } from '../diagrams/fig';
 import { renderM2Tiles } from '../diagrams/tiles';
 import type { LessonVisuals, VisualsTable } from './types';
@@ -161,7 +162,7 @@ function f2Prashna(): SVGSVGElement {
 
 function f2Cards(): LessonVisuals['cards'] {
   return {
-    what: () => tileGrid(7, 1, '7 prime'),
+    what: () => tileGrid(7, 1, plainText(t('bodha.F2.what'))),
     idea: () => {
       const s = figSvg(360, 100, t('bodha.F2.idea'));
       s.appendChild(figText(100, 50, '1', { color: SOFT }));
