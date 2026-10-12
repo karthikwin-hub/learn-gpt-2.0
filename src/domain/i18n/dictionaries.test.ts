@@ -76,6 +76,17 @@ describe('046 dictionaries: every English string exists in hi, te, bn, ta (US1-A
       ).toEqual([]);
     });
 
+    it(`${lang}: no other Indian script and no letters that do not exist in ${lang} (US1-AS2)`, () => {
+      const others = OTHER.filter((o) => o !== lang && SCRIPT[o].source !== SCRIPT[lang].source);
+      const bad = Object.entries(DICTIONARIES[lang])
+        .filter(([, v]) => {
+          const text = v.replace(/[\u0964\u0965]/g, '');
+          return /\p{Cn}/u.test(text) || others.some((o) => SCRIPT[o].test(text));
+        })
+        .map(([k, v]) => `${k} = ${v.slice(0, 50)}`);
+      expect(bad, `${bad.length} values in ${lang}: ${bad.slice(0, 10).join(' | ')}`).toEqual([]);
+    });
+
     it(`${lang}: placeholders, glossary term ids and mistake markup match English (US1-AS2)`, () => {
       const dict = DICTIONARIES[lang];
       const bad: string[] = [];

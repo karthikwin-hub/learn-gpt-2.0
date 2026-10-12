@@ -198,9 +198,9 @@ export const dictionary: Record<string, string> = {
   'bodha.A1.example1':
     'Step 1: Unbundle 1 ten-thousand from 40,000 all the way to the ones house: 40,005 becomes 30,000 + 9,000 + 900 + 90 + 15.',
   'bodha.A1.example2':
-    'Step 2: Subtract column by column: 15 - 7 = 8 ones, 90 - 40 = 50 tens, 900 - 300 = 600 hundreds.',
+    'Step 2: Subtract column by column: 15 - 7 = 8 ones, 9 - 4 = 5 tens, 9 - 3 = 6 hundreds.',
   'bodha.A1.example3':
-    'Step 3: 9,000 - 8,000 = 1,000 thousands, and 30,000 - 10,000 = 20,000: result is 21,658.',
+    'Step 3: 9 - 8 = 1 thousand, and 3 - 1 = 2 ten-thousands: the result is 21,658.',
   'bodha.A1.where':
     'Counting changes in city census populations, library book collections, and bank treasury deposits.',
   'bodha.A1.sutra':
