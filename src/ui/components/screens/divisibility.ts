@@ -7,8 +7,9 @@
 import { getDigits, getDigitSumSteps, testDivisibility } from '../../../domain/math/divisibility';
 import { t } from '../../../domain/i18n/core';
 import { clear, el } from '../../util/dom';
+import { readStep, toMistakeButton } from '../../util/bench';
 import { enterThread } from '../../util/thread';
-import { router, type ScreenMeta } from '../app/router';
+import { type ScreenMeta } from '../app/router';
 
 export function createDivisibilityScreen(): ScreenMeta {
   return {
@@ -20,11 +21,7 @@ export function createDivisibilityScreen(): ScreenMeta {
     render(view, state, params = {}) {
       enterThread('F3', 'divisibility', params);
 
-      let stepNum = params.step
-        ? Number(params.step)
-        : typeof state.step === 'number'
-          ? state.step
-          : 1;
+      let stepNum = readStep(params.step, state.step, 3);
 
       let numStep1 = typeof state.numStep1 === 'number' ? state.numStep1 : 5232;
       let activeDivisor1: 2 | 5 | 10 =
@@ -62,17 +59,17 @@ export function createDivisibilityScreen(): ScreenMeta {
 
       const tab1 = el('button', {
         class: `step-tab ${stepNum === 1 ? 'active' : ''}`,
-        text: '1. Last-Digit Gate (2, 5, 10)',
+        text: t('divisibility.tab1'),
         style: { minHeight: '44px', padding: '8px 12px' },
       });
       const tab2 = el('button', {
         class: `step-tab ${stepNum === 2 ? 'active' : ''}`,
-        text: '2. Digit-Sum Beam (3, 9)',
+        text: t('divisibility.tab2'),
         style: { minHeight: '44px', padding: '8px 12px' },
       });
       const tab3 = el('button', {
         class: `step-tab ${stepNum === 3 ? 'active' : ''}`,
-        text: '3. Dual Gate for 6',
+        text: t('divisibility.tab3'),
         style: { minHeight: '44px', padding: '8px 12px' },
       });
 
@@ -191,7 +188,7 @@ export function createDivisibilityScreen(): ScreenMeta {
 
         const lastDigitBadge = el('div', {
           class: 'units-badge',
-          text: `Units digit is ${digits[digits.length - 1]}`,
+          text: t('divisibility.unitsBadge', { d: digits[digits.length - 1] ?? 0 }),
           style: { fontSize: '13px', fontWeight: '600', color: '#ff6f00' },
         });
 
@@ -204,7 +201,7 @@ export function createDivisibilityScreen(): ScreenMeta {
         ([2, 5, 10] as const).forEach((div) => {
           const btn = el('button', {
             class: `btn-divisor-tab ${activeDivisor1 === div ? 'active' : ''}`,
-            text: `Test ÷ ${div}`,
+            text: t('divisibility.testDiv', { d: div }),
             style: {
               minHeight: '44px',
               padding: '6px 12px',
@@ -227,8 +224,16 @@ export function createDivisibilityScreen(): ScreenMeta {
         const verdictBanner = el('div', {
           class: `divisibility-verdict ${testRes.passes ? 'passes' : 'fails'}`,
           text: testRes.passes
-            ? `Passes! ${numStep1} is divisible by ${activeDivisor1}. (${testRes.reason})`
-            : `Fails! ${numStep1} is NOT divisible by ${activeDivisor1}. (${testRes.reason})`,
+            ? t('divisibility.verdictPass', {
+                n: numStep1,
+                d: activeDivisor1,
+                reason: testRes.reason,
+              })
+            : t('divisibility.verdictFail', {
+                n: numStep1,
+                d: activeDivisor1,
+                reason: testRes.reason,
+              }),
           style: {
             padding: '10px 14px',
             borderRadius: '8px',
@@ -243,7 +248,7 @@ export function createDivisibilityScreen(): ScreenMeta {
 
         const nextBtn = el('button', {
           class: 'btn-next-step primary-button',
-          text: 'Go to Digit-Sum Beam →',
+          text: t('divisibility.toSum'),
           style: { minHeight: '44px', padding: '10px 16px', marginTop: '8px' },
         });
         nextBtn.onclick = () => switchStep(2);
@@ -319,13 +324,13 @@ export function createDivisibilityScreen(): ScreenMeta {
 
         const formulaText = el('div', {
           class: 'sum-expression-text',
-          text: `Digit Sum: ${sumExpression}`,
+          text: t('divisibility.sumLine', { expr: sumExpression }),
           style: { fontSize: '18px', fontWeight: '700', color: '#4a148c' },
         });
 
         const whyPlaceValText = el('p', {
           class: 'why-place-value-note',
-          text: 'Every 10 leaves +1 loose from 9; every 100 leaves +1 from 99. Adding the digits checks all loose leftovers!',
+          text: t('divisibility.placeValueNote'),
           style: { fontSize: '12px', margin: '0', textAlign: 'center', color: '#5e35b1' },
         });
 
@@ -353,12 +358,12 @@ export function createDivisibilityScreen(): ScreenMeta {
           },
         });
         const t3Label = el('span', {
-          text: `Divisible by 3? (Sum ${sum})`,
+          text: t('divisibility.test3', { sum }),
           style: { fontWeight: '700' },
         });
         const t3Verdict = el('span', {
           class: 't3-verdict',
-          text: res3.passes ? 'YES (divides by 3)' : 'NO (remainder)',
+          text: res3.passes ? t('divisibility.yes3') : t('divisibility.no3'),
           style: { color: res3.passes ? '#2e7d32' : '#c62828', fontWeight: '700' },
         });
         test3Row.append(t3Label, t3Verdict);
@@ -377,12 +382,12 @@ export function createDivisibilityScreen(): ScreenMeta {
           },
         });
         const t9Label = el('span', {
-          text: `Divisible by 9? (Sum ${sum})`,
+          text: t('divisibility.test9', { sum }),
           style: { fontWeight: '700' },
         });
         const t9Verdict = el('span', {
           class: 't9-verdict',
-          text: res9.passes ? 'YES (divides by 9)' : 'NO (remainder)',
+          text: res9.passes ? t('divisibility.yes9') : t('divisibility.no9'),
           style: { color: res9.passes ? '#2e7d32' : '#c62828', fontWeight: '700' },
         });
         test9Row.append(t9Label, t9Verdict);
@@ -391,7 +396,7 @@ export function createDivisibilityScreen(): ScreenMeta {
 
         const nextBtn = el('button', {
           class: 'btn-next-step primary-button',
-          text: 'Go to Dual Gate for 6 →',
+          text: t('divisibility.toGate6'),
           style: { minHeight: '44px', padding: '10px 16px', marginTop: '8px' },
         });
         nextBtn.onclick = () => switchStep(3);
@@ -473,12 +478,12 @@ export function createDivisibilityScreen(): ScreenMeta {
           },
         });
         const g2Title = el('div', {
-          text: 'Gate 2 (Even)',
+          text: t('divisibility.gate2Title'),
           style: { fontWeight: '700', fontSize: '14px' },
         });
         const g2State = el('div', {
           class: 'g2-state',
-          text: isEven ? '✓ PASS' : '✗ FAIL',
+          text: isEven ? t('divisibility.gatePass') : t('divisibility.gateFail'),
           style: { fontWeight: '700', color: isEven ? '#2e7d32' : '#c62828', marginTop: '4px' },
         });
         gate2.append(g2Title, g2State);
@@ -495,12 +500,12 @@ export function createDivisibilityScreen(): ScreenMeta {
           },
         });
         const g3Title = el('div', {
-          text: 'Gate 3 (Sum / 3)',
+          text: t('divisibility.gate3Title'),
           style: { fontWeight: '700', fontSize: '14px' },
         });
         const g3State = el('div', {
           class: 'g3-state',
-          text: isSumDiv3 ? '✓ PASS' : '✗ FAIL',
+          text: isSumDiv3 ? t('divisibility.gatePass') : t('divisibility.gateFail'),
           style: { fontWeight: '700', color: isSumDiv3 ? '#2e7d32' : '#c62828', marginTop: '4px' },
         });
         gate3.append(g3Title, g3State);
@@ -510,8 +515,8 @@ export function createDivisibilityScreen(): ScreenMeta {
         const gate6Result = el('div', {
           class: `gate-6-banner ${isDiv6 ? 'unlocked' : 'locked'}`,
           text: isDiv6
-            ? `Unlocked! ${numStep3} is divisible by 6 (Passes both 2 and 3).`
-            : `Blocked! ${numStep3} is NOT divisible by 6 (Both gates must pass).`,
+            ? t('divisibility.gate6Open', { n: numStep3 })
+            : t('divisibility.gate6Shut', { n: numStep3 }),
           style: {
             padding: '12px 16px',
             borderRadius: '8px',
@@ -526,22 +531,8 @@ export function createDivisibilityScreen(): ScreenMeta {
           },
         });
 
-        const doneBtn = el('button', {
-          class: 'btn-divisibility-done primary-button',
-          text: 'Complete & Continue →',
-          style: {
-            minHeight: '44px',
-            padding: '10px 18px',
-            backgroundColor: '#2e7d32',
-            color: '#ffffff',
-            borderRadius: '8px',
-            fontWeight: '700',
-            cursor: 'pointer',
-          },
-        });
-        doneBtn.onclick = () => {
-          router.go('mistake', { k: 'F3' });
-        };
+        const doneBtn = toMistakeButton('F3');
+        doneBtn.classList.add('btn-divisibility-done', 'primary-button');
 
         card.append(numSelector, dualGatesBox, gate6Result, doneBtn);
         contentBox.appendChild(card);

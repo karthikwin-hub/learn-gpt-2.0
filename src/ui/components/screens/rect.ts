@@ -6,21 +6,22 @@
 
 import { area, columnMethod, partialProducts } from '../../../domain/math/multiply';
 import { t } from '../../../domain/i18n/core';
-import { clear, createStepper, el } from '../../util/dom';
+import { append, clear, createStepper, el } from '../../util/dom';
+import { createStepGuide, toMistakeButton } from '../../util/bench';
 import { createAreaGrid, type AreaGridInstance } from '../../manipulatives/area-grid';
 import { enterThread } from '../../util/thread';
 import { router, type ScreenMeta } from '../app/router';
 import { voice } from '../voice/voice';
 
-function createStepGuide(num: number, text: string): HTMLElement {
-  return el('div', { class: 'step-guide' }, [
-    el('span', { class: 'num', text: String(num) }),
-    el('p', { text }),
+function paintEq(node: HTMLElement, cols: number, rows: number, product: number): void {
+  clear(node);
+  append(node, [
+    el('span', { class: 'a', text: String(cols) }),
+    ' × ',
+    el('span', { class: 'b', text: String(rows) }),
+    ' = ',
+    el('span', { class: 'r', text: String(product) }),
   ]);
-}
-
-function eqHTML(cols: number, rows: number, product: number): string {
-  return `<span class="a">${cols}</span> × <span class="b">${rows}</span> = <span class="r">${product}</span>`;
 }
 
 export function createRectScreen(): ScreenMeta {
@@ -143,16 +144,13 @@ export function createRectScreen(): ScreenMeta {
         });
 
         col.appendChild(
-          el('div', {
-            class: 'row on',
-            html: `<span class="a-txt">${c}</span>`,
-          })
+          el('div', { class: 'row on' }, [el('span', { class: 'a-txt', text: String(c) })])
         );
         col.appendChild(
-          el('div', {
-            class: 'row on',
-            html: `× <span class="b-txt">${r}</span>`,
-          })
+          el('div', { class: 'row on' }, [
+            document.createTextNode('× '),
+            el('span', { class: 'b-txt', text: String(r) }),
+          ])
         );
         col.appendChild(el('div', { class: 'rule' }));
 
@@ -171,10 +169,13 @@ export function createRectScreen(): ScreenMeta {
 
         col.appendChild(el('div', { class: 'rule' }));
         col.appendChild(
-          el('div', {
-            class: `row${foldedLevel > cm.lines.length ? ' on' : ''}`,
-            html: `<span class="r-txt">${cm.total}</span>`,
-          })
+          el(
+            'div',
+            {
+              class: `row${foldedLevel > cm.lines.length ? ' on' : ''}`,
+            },
+            [el('span', { class: 'r-txt', text: String(cm.total) })]
+          )
         );
 
         return col;
@@ -196,7 +197,7 @@ export function createRectScreen(): ScreenMeta {
       function paint(): void {
         const c = Number(state.cols);
         const r = Number(state.rows);
-        eq.innerHTML = eqHTML(c, r, area(c, r));
+        paintEq(eq, c, r, area(c, r));
 
         clear(partsCard);
         partsCard.hidden = !state.cut;
@@ -242,61 +243,44 @@ export function createRectScreen(): ScreenMeta {
 
         const currentStep = Number(state.step);
 
+        const rotateArray = () => {
+          const prevC = Number(state.cols);
+          const prevR = Number(state.rows);
+          state.cols = prevR;
+          state.rows = prevC;
+          grid.set(Number(state.cols), Number(state.rows));
+          colStep.set(Number(state.cols));
+          rowStep.set(Number(state.rows));
+          paint();
+          const total = area(Number(state.cols), Number(state.rows));
+          const sayKey = knotId === 'M3' ? 'rect.M3.rotateSay' : 'rect.M1.rotateSay';
+          updateFeedback(t(sayKey, { a: prevC, b: prevR, c: prevR, d: prevC, n: total }), true);
+        };
+
         if (knotId === 'M3') {
           actionRow.appendChild(
             el('button', {
               class: 'btn thread block',
               type: 'button',
-              text: t('rect.turn') !== 'rect.turn' ? t('rect.turn') : 'Turn it around',
-              onclick: () => {
-                const prevC = Number(state.cols);
-                const prevR = Number(state.rows);
-                state.cols = prevR;
-                state.rows = prevC;
-                grid.set(Number(state.cols), Number(state.rows));
-                colStep.set(Number(state.cols));
-                rowStep.set(Number(state.rows));
-                paint();
-                updateFeedback(
-                  `${prevC} × ${prevR} = ${prevR} × ${prevC} = ${area(Number(state.cols), Number(state.rows))}`,
-                  true
-                );
-              },
+              text: t('rect.turn'),
+              'aria-label': t('rect.turn'),
+              onclick: rotateArray,
             })
           );
         } else if (knotId === 'M1') {
-          guide.appendChild(
-            createStepGuide(1, 'Equal bunches line up into rows. Rotate to test commutativity.')
-          );
+          guide.appendChild(createStepGuide(1, t('rect.M1.guide')));
           actionRow.appendChild(
             el('button', {
               class: 'btn thread block',
               type: 'button',
-              text: t('rect.rotate') !== 'rect.rotate' ? t('rect.rotate') : 'Rotate Array (90°)',
-              onclick: () => {
-                const prevC = Number(state.cols);
-                const prevR = Number(state.rows);
-                state.cols = prevR;
-                state.rows = prevC;
-                grid.set(Number(state.cols), Number(state.rows));
-                colStep.set(Number(state.cols));
-                rowStep.set(Number(state.rows));
-                paint();
-                updateFeedback(
-                  `${prevC} × ${prevR} = ${prevR} × ${prevC} = ${area(Number(state.cols), Number(state.rows))}`,
-                  true
-                );
-              },
+              text: t('rect.rotate'),
+              'aria-label': t('rect.rotate'),
+              onclick: rotateArray,
             })
           );
-          actionRow.appendChild(
-            el('button', {
-              class: 'btn primary block',
-              type: 'button',
-              text: t('rect.next') !== 'rect.next' ? t('rect.next') : 'Spot the Mistake',
-              onclick: () => router.go('mistake', { k: 'M1' }),
-            })
-          );
+          const nextM1 = toMistakeButton('M1');
+          nextM1.classList.add('btn', 'primary', 'block');
+          actionRow.appendChild(nextM1);
         } else if (currentStep === 1) {
           guide.appendChild(createStepGuide(1, t('rect.s1')));
           actionRow.appendChild(

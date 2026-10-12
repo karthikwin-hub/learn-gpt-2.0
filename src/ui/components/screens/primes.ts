@@ -8,9 +8,9 @@ import { isPrime, sievePrimesUpTo, primeFactorize } from '../../../domain/math/p
 import { arrangeTiles } from '../../../domain/math/factors';
 import { t } from '../../../domain/i18n/core';
 import { clear, el } from '../../util/dom';
-import { readStep } from '../../util/bench';
+import { readStep, toMistakeButton } from '../../util/bench';
 import { enterThread } from '../../util/thread';
-import { router, type ScreenMeta } from '../app/router';
+import { type ScreenMeta } from '../app/router';
 
 export function createPrimesScreen(): ScreenMeta {
   return {
@@ -60,17 +60,17 @@ export function createPrimesScreen(): ScreenMeta {
 
       const tab1 = el('button', {
         class: `step-tab ${stepNum === 1 ? 'active' : ''}`,
-        text: '1. Stubborn Prime Test',
+        text: t('primes.tab1'),
         style: { minHeight: '44px', padding: '8px 12px' },
       });
       const tab2 = el('button', {
         class: `step-tab ${stepNum === 2 ? 'active' : ''}`,
-        text: '2. Sieve of Eratosthenes (1–50)',
+        text: t('primes.tab2'),
         style: { minHeight: '44px', padding: '8px 12px' },
       });
       const tab3 = el('button', {
         class: `step-tab ${stepNum === 3 ? 'active' : ''}`,
-        text: '3. Prime Factor Tree',
+        text: t('primes.tab3'),
         style: { minHeight: '44px', padding: '8px 12px' },
       });
 
@@ -143,7 +143,7 @@ export function createPrimesScreen(): ScreenMeta {
         });
 
         const selectorLabel = el('span', {
-          text: 'Choose tiles to test:',
+          text: t('primes.chooseTiles'),
           style: { fontSize: '13px', color: '#555' },
         });
 
@@ -154,7 +154,7 @@ export function createPrimesScreen(): ScreenMeta {
         [6, 7, 11, 12].forEach((n) => {
           const btn = el('button', {
             class: `btn-test-num ${testNumber === n ? 'active' : ''}`,
-            text: `${n} tiles`,
+            text: t('primes.tilesChoice', { n }),
             style: {
               minHeight: '44px',
               padding: '8px 12px',
@@ -183,8 +183,12 @@ export function createPrimesScreen(): ScreenMeta {
         const statusBanner = el('div', {
           class: `prime-status-banner ${arrangement.isValid ? 'valid' : 'invalid'}`,
           text: arrangement.isValid
-            ? `Solid Rectangle! ${testRows} × ${arrangement.columns} = ${testNumber} (Composite!)`
-            : `Broken! ${testRows} rows leaves ${arrangement.remainder} loose tile(s).`,
+            ? t('primes.statusSolid', {
+                rows: testRows,
+                cols: arrangement.columns,
+                total: testNumber,
+              })
+            : t('primes.statusBroken', { rows: testRows, rem: arrangement.remainder }),
           style: {
             padding: '8px 14px',
             borderRadius: '10px',
@@ -208,7 +212,7 @@ export function createPrimesScreen(): ScreenMeta {
         });
 
         const rowLabel = el('span', {
-          text: `Try folding ${testNumber} into rows:`,
+          text: t('primes.foldLabel', { n: testNumber }),
           style: { fontSize: '14px', fontWeight: '600' },
         });
 
@@ -219,7 +223,7 @@ export function createPrimesScreen(): ScreenMeta {
         for (let r = 1; r <= 4; r++) {
           const btn = el('button', {
             class: `btn-fold-row ${testRows === r ? 'active' : ''}`,
-            text: `${r} row(s)`,
+            text: t('primes.rowChoice', { n: r }),
             style: {
               minHeight: '44px',
               padding: '6px 12px',
@@ -305,8 +309,8 @@ export function createPrimesScreen(): ScreenMeta {
         const verdictBox = el('div', {
           class: 'verdict-box',
           text: isNPrime
-            ? `Stubborn Prime! ${testNumber} only forms a single straight 1 × ${testNumber} line. It has exactly two factors: 1 and ${testNumber}.`
-            : `${testNumber} is Composite! It can fold into multiple rows without leftovers.`,
+            ? t('primes.verdictPrime', { n: testNumber })
+            : t('primes.verdictComposite', { n: testNumber }),
           style: {
             fontSize: '13px',
             fontWeight: '600',
@@ -317,7 +321,7 @@ export function createPrimesScreen(): ScreenMeta {
 
         const nextBtn = el('button', {
           class: 'btn-next-step primary-button',
-          text: 'Go to Sieve of Eratosthenes →',
+          text: t('primes.toSieve'),
           style: { minHeight: '44px', padding: '10px 16px', marginTop: '8px' },
         });
         nextBtn.onclick = () => switchStep(2);
@@ -359,7 +363,7 @@ export function createPrimesScreen(): ScreenMeta {
 
         const btnCross1 = el('button', {
           class: `btn-filter-sieve ${sieveFiltered.includes(1) ? 'active' : ''}`,
-          text: 'Cross out 1 (Unit)',
+          text: t('primes.sieveCross1'),
           style: { minHeight: '44px', padding: '6px 10px', borderRadius: '8px' },
         });
         btnCross1.onclick = () => {
@@ -372,7 +376,7 @@ export function createPrimesScreen(): ScreenMeta {
 
         const btnFilter2 = el('button', {
           class: `btn-filter-sieve ${sieveFiltered.includes(2) ? 'active' : ''}`,
-          text: 'Filter 2s',
+          text: t('primes.sieveFilter2'),
           style: { minHeight: '44px', padding: '6px 10px', borderRadius: '8px' },
         });
         btnFilter2.onclick = () => {
@@ -385,7 +389,7 @@ export function createPrimesScreen(): ScreenMeta {
 
         const btnFilter3 = el('button', {
           class: `btn-filter-sieve ${sieveFiltered.includes(3) ? 'active' : ''}`,
-          text: 'Filter 3s',
+          text: t('primes.sieveFilter3'),
           style: { minHeight: '44px', padding: '6px 10px', borderRadius: '8px' },
         });
         btnFilter3.onclick = () => {
@@ -398,7 +402,7 @@ export function createPrimesScreen(): ScreenMeta {
 
         const btnFilter5 = el('button', {
           class: `btn-filter-sieve ${sieveFiltered.includes(5) ? 'active' : ''}`,
-          text: 'Filter 5s',
+          text: t('primes.sieveFilter5'),
           style: { minHeight: '44px', padding: '6px 10px', borderRadius: '8px' },
         });
         btnFilter5.onclick = () => {
@@ -411,7 +415,7 @@ export function createPrimesScreen(): ScreenMeta {
 
         const btnFilterAll = el('button', {
           class: 'btn-filter-sieve primary-action',
-          text: 'Reveal All 15 Primes',
+          text: t('primes.sieveReveal'),
           style: {
             minHeight: '44px',
             padding: '6px 12px',
@@ -490,7 +494,7 @@ export function createPrimesScreen(): ScreenMeta {
 
         const sieveSummary = el('div', {
           class: 'sieve-summary-banner',
-          text: 'Primes between 1 and 50: 2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47 (15 primes total).',
+          text: t('primes.sieveSummary'),
           style: {
             fontSize: '13px',
             fontWeight: '600',
@@ -506,7 +510,7 @@ export function createPrimesScreen(): ScreenMeta {
 
         const nextBtn = el('button', {
           class: 'btn-next-step primary-button',
-          text: 'Go to Prime Factor Tree →',
+          text: t('primes.toTree'),
           style: { minHeight: '44px', padding: '10px 16px', marginTop: '8px' },
         });
         nextBtn.onclick = () => switchStep(3);
@@ -599,7 +603,7 @@ export function createPrimesScreen(): ScreenMeta {
         });
 
         const branchConnect = el('div', {
-          text: '↓ branches split into prime building blocks ↓',
+          text: t('primes.treeBranch'),
           style: { fontSize: '12px', color: '#555', fontStyle: 'italic' },
         });
 
@@ -647,7 +651,7 @@ export function createPrimesScreen(): ScreenMeta {
         // Equation Decomposition Banner
         const equationBanner = el('div', {
           class: 'prime-factors-banner',
-          text: `Prime Factorization: ${treeNumber} = ${primeLeaves.join(' × ')}`,
+          text: t('primes.factorization', { n: treeNumber, parts: primeLeaves.join(' × ') }),
           style: {
             padding: '10px 16px',
             borderRadius: '8px',
@@ -660,22 +664,8 @@ export function createPrimesScreen(): ScreenMeta {
           },
         });
 
-        const doneBtn = el('button', {
-          class: 'btn-primes-done primary-button',
-          text: 'Complete & Continue →',
-          style: {
-            minHeight: '44px',
-            padding: '10px 18px',
-            backgroundColor: '#2e7d32',
-            color: '#ffffff',
-            borderRadius: '8px',
-            fontWeight: '700',
-            cursor: 'pointer',
-          },
-        });
-        doneBtn.onclick = () => {
-          router.go('mistake', { k: 'F2' });
-        };
+        const doneBtn = toMistakeButton('F2');
+        doneBtn.classList.add('btn-primes-done', 'primary-button');
 
         card.append(treeSelector, treeBox, equationBanner, doneBtn);
         contentBox.appendChild(card);

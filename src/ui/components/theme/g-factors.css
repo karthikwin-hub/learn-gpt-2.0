@@ -1,1 +1,35 @@
 /* Bench and lesson-picture styles for the factors lesson group (spec 046). Uses tokens.css variables only. */
+
+.factors-card-step1 .rect-status.valid,
+.primes-card-step1 .prime-status-banner.valid,
+.divisibility-verdict.passes,
+.hcf-card-step2 .fit-status-banner.is-hcf {
+  background: var(--paper-raised);
+  color: var(--ink);
+  border-color: var(--teal);
+}
+
+.factors-card-step1 .rect-status.invalid,
+.primes-card-step1 .prime-status-banner.invalid,
+.divisibility-verdict.fails,
+.gate-indicator.gate-2:not(.green),
+.gate-indicator.gate-3:not(.green) {
+  background: var(--paper-sunk);
+  color: var(--ink-soft);
+  border-color: var(--ink-soft);
+}
+
+.gate-indicator.green {
+  border-color: var(--teal);
+}
+
+.factor-chip.hcf-highlight {
+  background: var(--indigo);
+  color: var(--paper-raised);
+}
+
+.sieve-cell.prime-glow {
+  background: var(--paper-raised);
+  border-color: var(--indigo);
+  color: var(--indigo);
+}

@@ -272,4 +272,134 @@ export const dictionary: Record<string, string> = {
   'mistake.F4.eq': 'Factors of 8 and 12 share 1, 2, and <r>4</r>: HCF is 4, not 2',
   'mistake.M1.eq':
     'Rotating 8 × 3 by a quarter turn creates 3 × 8 with the exact same <r>24 squares</r>: a × b = b × a',
+
+  /* M3 Turn it around (commutativity follow-up) */
+  'bodha.M3.what':
+    'When you [[turn|turn a rectangle]] of equal squares, the rows and columns swap places but the total count stays the same.',
+  'bodha.M3.can':
+    'You will be able to spin any array and see that a × b and b × a name the same pile of squares.',
+  'bodha.M3.idea':
+    'Picture 3 rows of 8 squares. Turn the whole mat a quarter turn: now it is 8 rows of 3 — same 24 squares.',
+  'bodha.M3.why':
+    'Rotation moves squares, it does not add or remove any. That is why 3 × 8 and 8 × 3 always match.',
+  'bodha.M3.example': 'Turn a 3 × 8 apple array and read the new rows and columns.',
+  'bodha.M3.example1': 'Start with 3 rows of 8: 3 × 8 = 24.',
+  'bodha.M3.example2': 'Turn the mat 90°: it becomes 8 rows of 3.',
+  'bodha.M3.example3': '8 × 3 = 24 — the same total after turning.',
+  'bodha.M3.where': 'Spinning a rangoli grid, turning a woven mat, or flipping a tile tray.',
+  'bodha.M3.sutra': 'Turn the rectangle: rows and columns swap, the square count does not.',
+  'explain.M3.s':
+    'Turning an array swaps rows and columns; the total stays the {0} because no squares were added or removed.',
+  'explain.M3.turning': 'turning',
+  'explain.M3.cutting': 'cutting',
+  'explain.M3.adding': 'adding',
+  'explain.M3.same': 'same',
+  'explain.M3.different': 'different',
+  'explain.M3.bigger': 'bigger',
+  'explain.M3.hint':
+    'Does turning the mat change how many squares fit inside, or only how we read rows and columns?',
+  'know.M3': 'Turn the rectangle: rows and columns swap, the square count does not.',
+  'rect.turn': 'Turn it around',
+  'rect.M1.guide': 'Equal bunches line up into rows. Rotate to test commutativity.',
+  'rect.M1.rotateSay': '{a} × {b} = {c} × {d} = {n}',
+  'rect.M3.rotateSay': '{a} × {b} = {c} × {d} = {n}',
+
+  'bench.nextStep': 'Continue',
+
+  /* F1 bench UI (acceptance strings preserved) */
+  'factors.tab1': '1. Tile Snapper (N=12)',
+  'factors.tab2': '2. Rainbow Pairs',
+  'factors.tab3': '3. Square Symmetry (N=16)',
+  'factors.statusSolid': 'Solid Rectangle! {rows} × {cols} = {total}',
+  'factors.statusBroken': '{rows} rows leaves {rem} loose tile(s) — Not a rectangle!',
+  'factors.rowsLabel': 'Rows: {n}',
+  'factors.rowAria': '{n} rows',
+  'factors.pairsHeading': 'Factors of 12 discovered so far:',
+  'factors.toRainbow': 'Go to Rainbow Pairs →',
+  'factors.rainbowHint':
+    'Every factor connects to its partner across the center! Click a pair to illuminate its rainbow link:',
+  'factors.factorAria': 'Factor {n}',
+  'factors.showAll': 'Show All Pairs',
+  'factors.toSquare': 'Go to Square Symmetry →',
+  'factors.squarePerfect': '4 × 4 = 16: A Perfect Square Mat! 4 pairs with itself.',
+  'factors.squareRect': '{rows} × {cols} = {total}',
+  'factors.rowChoice': '{n} rows',
+  'factors.factorList': 'All Factors of 16: [{list}]',
+  'factors.oddRule':
+    'Notice: 16 has exactly 5 factors (an ODD number) because the middle partner 4 is not counted twice!',
+
+  /* F2 bench UI */
+  'primes.tab1': '1. Stubborn Prime Test',
+  'primes.tab2': '2. Sieve of Eratosthenes (1–50)',
+  'primes.tab3': '3. Prime Factor Tree',
+  'primes.chooseTiles': 'Choose tiles to test:',
+  'primes.tilesChoice': '{n} tiles',
+  'primes.statusSolid': 'Solid Rectangle! {rows} × {cols} = {total} (Composite!)',
+  'primes.statusBroken': 'Broken! {rows} rows leaves {rem} loose tile(s).',
+  'primes.foldLabel': 'Try folding {n} into rows:',
+  'primes.rowChoice': '{n} row(s)',
+  'primes.verdictPrime':
+    'Stubborn Prime! {n} only forms a single straight 1 × {n} line. It has exactly two factors: 1 and {n}.',
+  'primes.verdictComposite': '{n} is Composite! It can fold into multiple rows without leftovers.',
+  'primes.toSieve': 'Go to Sieve of Eratosthenes →',
+  'primes.sieveCross1': 'Cross out 1 (Unit)',
+  'primes.sieveFilter2': 'Filter 2s',
+  'primes.sieveFilter3': 'Filter 3s',
+  'primes.sieveFilter5': 'Filter 5s',
+  'primes.sieveReveal': 'Reveal All 15 Primes',
+  'primes.sieveSummary':
+    'Primes between 1 and 50: 2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47 (15 primes total).',
+  'primes.toTree': 'Go to Prime Factor Tree →',
+  'primes.treeBranch': '↓ branches split into prime building blocks ↓',
+  'primes.factorization': 'Prime Factorization: {n} = {parts}',
+
+  /* F3 bench UI */
+  'divisibility.tab1': '1. Last-Digit Gate (2, 5, 10)',
+  'divisibility.tab2': '2. Digit-Sum Beam (3, 9)',
+  'divisibility.tab3': '3. Dual Gate for 6',
+  'divisibility.unitsBadge': 'Units digit is {d}',
+  'divisibility.testDiv': 'Test ÷ {d}',
+  'divisibility.verdictPass': 'Passes! {n} is divisible by {d}. ({reason})',
+  'divisibility.verdictFail': 'Fails! {n} is NOT divisible by {d}. ({reason})',
+  'divisibility.toSum': 'Go to Digit-Sum Beam →',
+  'divisibility.sumLine': 'Digit Sum: {expr}',
+  'divisibility.placeValueNote':
+    'Every 10 leaves +1 loose from 9; every 100 leaves +1 from 99. Adding the digits checks all loose leftovers!',
+  'divisibility.test3': 'Divisible by 3? (Sum {sum})',
+  'divisibility.test9': 'Divisible by 9? (Sum {sum})',
+  'divisibility.yes3': 'YES (divides by 3)',
+  'divisibility.no3': 'NO (remainder)',
+  'divisibility.yes9': 'YES (divides by 9)',
+  'divisibility.no9': 'NO (remainder)',
+  'divisibility.toGate6': 'Go to Dual Gate for 6 →',
+  'divisibility.gate2Title': 'Gate 2 (Even)',
+  'divisibility.gate3Title': 'Gate 3 (Sum / 3)',
+  'divisibility.gatePass': 'PASS',
+  'divisibility.gateFail': 'FAIL',
+  'divisibility.gate6Open': 'Unlocked! {n} is divisible by 6 (Passes both 2 and 3).',
+  'divisibility.gate6Shut': 'Blocked! {n} is NOT divisible by 6 (Both gates must pass).',
+
+  /* F4 bench UI */
+  'hcf.tab1': '1. Venn Factor Rings',
+  'hcf.tab2': '2. Dual-Beam Tile Fitting',
+  'hcf.tab3': '3. One-Step Fraction Reducer',
+  'hcf.onlyA': 'Only {n}',
+  'hcf.commonTitle': 'Common Factors',
+  'hcf.resultBanner': 'Common Factors: {list} → Highest Common Factor is {hcf}',
+  'hcf.toTiles': 'Go to Dual-Beam Tile Fitting →',
+  'hcf.tileChoice': 'Tile {n}',
+  'hcf.beamA': 'Beam A (12 m):',
+  'hcf.beamB': 'Beam B (18 m):',
+  'hcf.remainderPiece': '+{rem}',
+  'hcf.fitHcf': 'Tile {t} is the HCF! Fits both 12 and 18 with ZERO gaps: 12 = 2 × 6, 18 = 3 × 6.',
+  'hcf.fitCommon': 'Tile {t} fits both, but a LARGER tile also fits!',
+  'hcf.fitBad': 'Tile {t} leaves leftovers on 18 (remainder {rem}) — Not a common factor!',
+  'hcf.toFraction': 'Go to One-Step Fraction Reducer →',
+  'hcf.fracOpDone': '÷ 6  =',
+  'hcf.fracOpAsk': '÷ HCF(6) ?',
+  'hcf.reduceBtn': 'Divide by HCF (6)',
+  'hcf.fracDone':
+    'Reduced in a single clean leap: 12 ÷ 6 = 2 and 18 ÷ 6 = 3 → 2/3 is in lowest terms!',
+  'hcf.fracHint':
+    'Dividing numerator and denominator by their HCF guarantees simplest form in ONE step.',
 };

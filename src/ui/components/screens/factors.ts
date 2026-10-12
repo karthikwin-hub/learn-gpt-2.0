@@ -7,8 +7,9 @@
 import { findAllFactors, findFactorPairs, arrangeTiles } from '../../../domain/math/factors';
 import { t } from '../../../domain/i18n/core';
 import { clear, el, svg } from '../../util/dom';
+import { readStep, toMistakeButton } from '../../util/bench';
 import { enterThread } from '../../util/thread';
-import { router, type ScreenMeta } from '../app/router';
+import { type ScreenMeta } from '../app/router';
 
 export function createFactorsScreen(): ScreenMeta {
   return {
@@ -20,11 +21,7 @@ export function createFactorsScreen(): ScreenMeta {
     render(view, state, params = {}) {
       enterThread('F1', 'factors', params);
 
-      let stepNum = params.step
-        ? Number(params.step)
-        : typeof state.step === 'number'
-          ? state.step
-          : 1;
+      let stepNum = readStep(params.step, state.step, 3);
 
       let currentRowsStep1 =
         typeof state.currentRowsStep1 === 'number' ? state.currentRowsStep1 : 3;
@@ -60,17 +57,23 @@ export function createFactorsScreen(): ScreenMeta {
 
       const tab1 = el('button', {
         class: `step-tab ${stepNum === 1 ? 'active' : ''}`,
-        text: '1. Tile Snapper (N=12)',
+        type: 'button',
+        text: t('factors.tab1'),
+        'aria-label': t('factors.tab1'),
         style: { minHeight: '44px', padding: '8px 12px' },
       });
       const tab2 = el('button', {
         class: `step-tab ${stepNum === 2 ? 'active' : ''}`,
-        text: '2. Rainbow Pairs',
+        type: 'button',
+        text: t('factors.tab2'),
+        'aria-label': t('factors.tab2'),
         style: { minHeight: '44px', padding: '8px 12px' },
       });
       const tab3 = el('button', {
         class: `step-tab ${stepNum === 3 ? 'active' : ''}`,
-        text: '3. Square Symmetry (N=16)',
+        type: 'button',
+        text: t('factors.tab3'),
+        'aria-label': t('factors.tab3'),
         style: { minHeight: '44px', padding: '8px 12px' },
       });
 
@@ -137,8 +140,15 @@ export function createFactorsScreen(): ScreenMeta {
         const statusBadge = el('div', {
           class: `rect-status ${arrangement.isValid ? 'valid' : 'invalid'}`,
           text: arrangement.isValid
-            ? `Solid Rectangle! ${currentRowsStep1} × ${arrangement.columns} = 12`
-            : `${currentRowsStep1} rows leaves ${arrangement.remainder} loose tile(s) — Not a rectangle!`,
+            ? t('factors.statusSolid', {
+                rows: currentRowsStep1,
+                cols: arrangement.columns,
+                total: 12,
+              })
+            : t('factors.statusBroken', {
+                rows: currentRowsStep1,
+                rem: arrangement.remainder,
+              }),
           style: {
             padding: '6px 12px',
             borderRadius: '16px',
@@ -164,7 +174,7 @@ export function createFactorsScreen(): ScreenMeta {
 
         const rowLabel = el('div', {
           class: 'row-counter-label',
-          text: `Rows: ${currentRowsStep1}`,
+          text: t('factors.rowsLabel', { n: currentRowsStep1 }),
           style: { fontWeight: '700', fontSize: '16px' },
         });
 
@@ -182,7 +192,7 @@ export function createFactorsScreen(): ScreenMeta {
           const btn = el('button', {
             class: `btn-row-select ${currentRowsStep1 === r ? 'active' : ''}`,
             text: `${r}`,
-            'aria-label': `${r} rows`,
+            'aria-label': t('factors.rowAria', { n: r }),
             style: {
               minWidth: '44px',
               minHeight: '44px',
@@ -286,7 +296,7 @@ export function createFactorsScreen(): ScreenMeta {
 
         const pairsHeading = el('div', {
           class: 'pairs-heading',
-          text: 'Factors of 12 discovered so far:',
+          text: t('factors.pairsHeading'),
           style: { fontSize: '13px', color: '#555' },
         });
 
@@ -328,7 +338,8 @@ export function createFactorsScreen(): ScreenMeta {
 
         const nextStepBtn = el('button', {
           class: 'btn-next-step primary-button',
-          text: 'Go to Rainbow Pairs →',
+          type: 'button',
+          text: t('factors.toRainbow'),
           style: { minHeight: '44px', padding: '10px 16px', marginTop: '8px' },
         });
         nextStepBtn.onclick = () => switchStep(2);
@@ -362,7 +373,7 @@ export function createFactorsScreen(): ScreenMeta {
 
         const explanationText = el('p', {
           class: 'rainbow-explanation',
-          text: 'Every factor connects to its partner across the center! Click a pair to illuminate its rainbow link:',
+          text: t('factors.rainbowHint'),
           style: { fontSize: '14px', textAlign: 'center', margin: '0' },
         });
 
@@ -420,7 +431,7 @@ export function createFactorsScreen(): ScreenMeta {
           const tokenBtn = el('button', {
             class: `factor-token ${isHighlighted ? 'highlighted' : ''}`,
             text: `${fact}`,
-            'aria-label': `Factor ${fact}`,
+            'aria-label': t('factors.factorAria', { n: fact }),
             style: {
               width: '44px',
               height: '44px',
@@ -457,7 +468,7 @@ export function createFactorsScreen(): ScreenMeta {
 
         const showAllBtn = el('button', {
           class: `btn-pair-select ${activeRainbowPair === 0 ? 'active' : ''}`,
-          text: 'Show All Pairs',
+          text: t('factors.showAll'),
           style: { minHeight: '44px', padding: '6px 12px', borderRadius: '8px' },
         });
         showAllBtn.onclick = () => {
@@ -488,7 +499,8 @@ export function createFactorsScreen(): ScreenMeta {
 
         const nextStepBtn = el('button', {
           class: 'btn-next-step primary-button',
-          text: 'Go to Square Symmetry →',
+          type: 'button',
+          text: t('factors.toSquare'),
           style: { minHeight: '44px', padding: '10px 16px', marginTop: '8px' },
         });
         nextStepBtn.onclick = () => switchStep(3);
@@ -525,8 +537,12 @@ export function createFactorsScreen(): ScreenMeta {
         const symmetryBanner = el('div', {
           class: 'symmetry-banner',
           text: isSquare
-            ? '4 × 4 = 16: A Perfect Square Mat! 4 pairs with itself.'
-            : `${squareRows} × ${arrangement.columns} = 16`,
+            ? t('factors.squarePerfect')
+            : t('factors.squareRect', {
+                rows: squareRows,
+                cols: arrangement.columns,
+                total: 16,
+              }),
           style: {
             padding: '8px 14px',
             borderRadius: '12px',
@@ -552,7 +568,7 @@ export function createFactorsScreen(): ScreenMeta {
         [1, 2, 4, 8].forEach((r) => {
           const btn = el('button', {
             class: `btn-square-row ${squareRows === r ? 'active' : ''}`,
-            text: `${r} rows`,
+            text: t('factors.rowChoice', { n: r }),
             style: {
               minWidth: '44px',
               minHeight: '44px',
@@ -620,13 +636,13 @@ export function createFactorsScreen(): ScreenMeta {
         });
 
         const listTitle = el('div', {
-          text: `All Factors of 16: [${factors16.join(', ')}]`,
+          text: t('factors.factorList', { list: factors16.join(', ') }),
           style: { fontWeight: '700', color: '#ff6f00', fontSize: '15px' },
         });
 
         const oddExpl = el('p', {
           class: 'odd-factor-rule',
-          text: 'Notice: 16 has exactly 5 factors (an ODD number) because the middle partner 4 is not counted twice!',
+          text: t('factors.oddRule'),
           style: {
             fontSize: '13px',
             margin: '4px 0 0 0',
@@ -637,22 +653,8 @@ export function createFactorsScreen(): ScreenMeta {
         factorListContainer.append(listTitle, oddExpl);
 
         // Completion & Done Button
-        const doneBtn = el('button', {
-          class: 'btn-factors-done primary-button',
-          text: 'Complete & Continue →',
-          style: {
-            minHeight: '44px',
-            padding: '10px 18px',
-            backgroundColor: '#2e7d32',
-            color: '#ffffff',
-            borderRadius: '8px',
-            fontWeight: '700',
-            cursor: 'pointer',
-          },
-        });
-        doneBtn.onclick = () => {
-          router.go('mistake', { k: 'F1' });
-        };
+        const doneBtn = toMistakeButton('F1');
+        doneBtn.classList.add('btn-factors-done', 'primary-button');
 
         card.append(symmetryBanner, rowsGrid, gridBox, factorListContainer, doneBtn);
         contentBox.appendChild(card);
