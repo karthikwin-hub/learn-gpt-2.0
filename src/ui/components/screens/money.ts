@@ -67,7 +67,7 @@ export function createMoneyScreen(): ScreenMeta {
       const exchangeBtn = el('button', {
         class: 'btn primary block btn-exchange',
         type: 'button',
-        text: 'Exchange 100p → ₹1',
+        text: t('money.exchange'),
         onclick: () => {
           const res = exchangePaiseToRupee(drawer);
           if (res.exchanged) {
@@ -88,7 +88,7 @@ export function createMoneyScreen(): ScreenMeta {
         state.drawer = drawer;
         const totalPaise = calculateTotalPaise(drawer);
         totalAmount.textContent = formatRupees(totalPaise);
-        paiseNotice.textContent = `${totalPaise} paise · (100p = ₹1)`;
+        paiseNotice.textContent = t('money.paiseSummary', { n: totalPaise });
 
         const canEx = canExchangePaiseToRupee(drawer);
         exchangeBtn.disabled = !canEx;
@@ -168,7 +168,7 @@ export function createMoneyScreen(): ScreenMeta {
             const plusBtn = el('button', {
               class: 'btn icon mini',
               type: 'button',
-              'aria-label': `Add ${item.label}`,
+              'aria-label': t('money.addDenom', { label: item.label }),
               text: '+',
               onclick: () => {
                 drawer = modifyDrawer(drawer, item.id, 1);
@@ -179,7 +179,7 @@ export function createMoneyScreen(): ScreenMeta {
             const minusBtn = el('button', {
               class: 'btn icon mini',
               type: 'button',
-              'aria-label': `Remove ${item.label}`,
+              'aria-label': t('money.removeDenom', { label: item.label }),
               text: '−',
               onclick: () => {
                 drawer = modifyDrawer(drawer, item.id, -1);
@@ -209,7 +209,7 @@ export function createMoneyScreen(): ScreenMeta {
 
       const examples = [
         {
-          label: '₹1.50 (Exchangeable)',
+          label: t('money.chipExchange'),
           apply: () => {
             drawer = createEmptyDrawer();
             drawer = modifyDrawer(drawer, 'p50', 3);

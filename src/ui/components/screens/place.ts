@@ -59,7 +59,7 @@ export function createPlaceScreen(): ScreenMeta {
         state.num = currentVal;
         const dec = decomposePlaceValue(currentVal);
         numLabel.textContent = dec.formatted;
-        expandedLabel.textContent = `${t('place.expanded') || 'Expanded'}: ${dec.expandedTerms.join(' + ')}`;
+        expandedLabel.textContent = `${t('place.expandedLabel')}: ${dec.expandedTerms.join(' + ')}`;
 
         clear(housesContainer);
         for (const house of dec.houses) {
@@ -104,7 +104,7 @@ export function createPlaceScreen(): ScreenMeta {
             const incBtn = el('button', {
               class: 'btn icon mini',
               type: 'button',
-              'aria-label': `Increase ${d.name}`,
+              'aria-label': t('place.increase', { place: d.name }),
               text: '▲',
               onclick: () => {
                 currentVal = adjustDigit(currentVal, d.multiplier, 1);
@@ -126,7 +126,7 @@ export function createPlaceScreen(): ScreenMeta {
             const decBtn = el('button', {
               class: 'btn icon mini',
               type: 'button',
-              'aria-label': `Decrease ${d.name}`,
+              'aria-label': t('place.decrease', { place: d.name }),
               text: '▼',
               onclick: () => {
                 currentVal = adjustDigit(currentVal, d.multiplier, -1);
@@ -152,7 +152,7 @@ export function createPlaceScreen(): ScreenMeta {
       });
 
       const examples = [
-        { label: '99,999 (Bundle)', val: 99999 },
+        { label: t('place.chipBundle'), val: 99999 },
         { label: '3,05,200', val: 305200 },
         { label: '1,25,00,000', val: 12500000 },
       ];

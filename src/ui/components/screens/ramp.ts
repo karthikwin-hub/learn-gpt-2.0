@@ -179,7 +179,7 @@ export function createRampScreen(): ScreenMeta {
                 runs.push(nextRun);
 
                 if (isFairTest(prevRun, nextRun)) {
-                  say.textContent = `${t('ramp.fair') || 'Fair test'}: only the surface changed.`;
+                  say.textContent = t('ramp.fairSay', { fair: t('ramp.fair') });
                 }
                 paint();
               },
@@ -194,7 +194,7 @@ export function createRampScreen(): ScreenMeta {
           text: t('ramp.showMe') || 'Roll the car',
           onclick: () => {
             const d = rollDistance(height, surface);
-            say.textContent = `Rolled ${d}m on ${t(`ramp.s.${surface}`) || surface}.`;
+            say.textContent = t('ramp.rolledSay', { d, surface: t(`ramp.s.${surface}`) });
             done = true;
             paint();
           },

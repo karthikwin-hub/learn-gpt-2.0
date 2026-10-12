@@ -5,6 +5,7 @@
  * Rings can be moved, pulled apart (producing homeless blocks outlined in kumkum), or placed inside.
  */
 
+import { t } from '../../domain/i18n/core';
 import {
   createBlocks,
   getRegion,
@@ -209,7 +210,7 @@ export function createCourtyard(opts: CourtyardOptions): CourtyardManipulative {
       class: 'handle',
       style: { cursor: 'grab' },
       role: 'group',
-      'aria-label': `Ring ${idx === 0 ? 'A' : 'B'}`,
+      'aria-label': t('sets.ringLabel', { name: idx === 0 ? 'A' : 'B' }),
     }) as SVGGElement;
     const disk = svg('circle', { fill: 'transparent' }) as SVGCircleElement;
     const ropeA = svg('circle', {

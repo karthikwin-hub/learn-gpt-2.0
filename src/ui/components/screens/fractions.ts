@@ -150,10 +150,10 @@ export function createFractionsScreen(): ScreenMeta {
       });
 
       const examples = [
-        { label: '1/2 (Half)', denom: 2, count: 1 },
-        { label: '2/4 (Two Fourths)', denom: 4, count: 2 },
-        { label: '3/4 (Three Fourths)', denom: 4, count: 3 },
-        { label: '4/8 (Four Eighths)', denom: 8, count: 4 },
+        { label: t('frac.chipHalf'), denom: 2, count: 1 },
+        { label: t('frac.chipTwoFourths'), denom: 4, count: 2 },
+        { label: t('frac.chipThreeFourths'), denom: 4, count: 3 },
+        { label: t('frac.chipFourEighths'), denom: 8, count: 4 },
       ];
 
       for (const ex of examples) {
