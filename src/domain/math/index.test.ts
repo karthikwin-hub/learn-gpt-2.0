@@ -68,5 +68,9 @@ describe('src/domain/math/index exports', () => {
     expect(typeof math.turnFraction).toBe('function');
     expect(typeof math.getAngleInfo).toBe('function');
     expect(typeof math.isArmLengthInvariant).toBe('function');
+    expect(typeof math.parallelogramArea).toBe('function');
+    expect(typeof math.slantLength).toBe('function');
+    expect(typeof math.parallelogramPerimeter).toBe('function');
+    expect(typeof math.shearDecomposition).toBe('function');
   });
 });
