@@ -1521,4 +1521,58 @@ export const dictionary: Record<string, string> = {
   'explain.H1.hint':
     'Remember what tells you the value of one symbol, and multiply that scale by 4.',
   'know.H1': 'The key tells what one picture is worth; multiply the pictures by the key.',
+
+  /* H2 */
+  'prashna.H2.q':
+    'A bar reaches line 4 on an axis marked in steps of 10 (0, 10, 20, 30, 40). What value does the bar represent?',
+  'prashna.H2.c1': '4',
+  'prashna.H2.c2': '14',
+  'prashna.H2.c3': '40',
+  'prashna.H2.a': 'Each line on the axis counts by 10! Line 4 corresponds to 4 × 10 = 40, not 4!',
+  'bodha.H2.what':
+    'A bar graph uses rectangles of equal width to compare amounts across different categories.',
+  'bodha.H2.can':
+    'Read scaled axis intervals, compare bar heights, and graph nutrition data (Jaal B1).',
+  'bodha.H2.idea':
+    'The height or length of each bar matches the count: taller bar means greater amount.',
+  'bodha.H2.why':
+    'The side axis has a scale: always check the step size! If the axis goes by 5s (0, 5, 10, 15), line 3 means 15.',
+  'bodha.H2.example': 'Reading a bar graph:',
+  'bodha.H2.example1': 'Step 1: Check category (e.g. Mango).',
+  'bodha.H2.example2': 'Step 2: Follow top of bar horizontally to vertical axis.',
+  'bodha.H2.example3': 'Step 3: Axis shows 25, so 25 children chose Mango.',
+  'bodha.H2.where':
+    'Cricket match run rates, daily rainfall records, sports scores, and nutrient intake (Vijnana B1).',
+  'bodha.H2.sutra': 'The height of the bar tells the count; always read the scale on the side.',
+  'bargraph.title': 'Bar Graphs (Axes, Scale Intervals & Jaal B1 ↔ H2)',
+  'bargraph.lead':
+    'Adjust bar heights, switch axis scale intervals (1, 2, 5, 10), and view nutritional food intake bars.',
+  'bargraph.axis_scale': 'Axis Step Scale',
+  'bargraph.step_size': 'Step:',
+  'bargraph.orientation': 'Orientation',
+  'bargraph.vertical': 'Vertical',
+  'bargraph.horizontal': 'Horizontal',
+  'bargraph.step1': '1. Standard Bar Graph',
+  'bargraph.step2': '2. Axis Scale Multipliers',
+  'bargraph.step3': '3. Jaal B1 Food Nutrient Intake',
+  'bargraph.reset': 'Reset',
+  'mistake.H2.intro':
+    'Vikram is reading a sports equipment bar graph with an axis marked in steps of 5 (0, 5, 10, 15):',
+  'mistake.H2.s1': 'He looks at the football bar and sees it reaches grid mark 3.',
+  'mistake.H2.s2':
+    'He ignores the axis numbers and writes down that only 3 footballs are in stock.',
+  'mistake.H2.s3': 'He announces that the school needs to order more footballs immediately.',
+  'mistake.H2.fine1': 'Sound step: observing the bar reaching mark 3 is accurate.',
+  'mistake.H2.fine3': 'Step 3 fails because he counted grid lines instead of reading axis values.',
+  'mistake.H2.found':
+    'Here! The axis steps by 5s (0, 5, 10, 15). Grid line 3 corresponds to 3 × 5 = 15 footballs, not 3!',
+  'explain.H2.s':
+    'The height of a bar represents its count according to the {0} on the axis. All bars in a graph must have equal {1} and start from the same baseline.',
+  'explain.H2.scale': 'scale',
+  'explain.H2.color': 'color',
+  'explain.H2.width': 'width',
+  'explain.H2.height': 'height',
+  'explain.H2.hint':
+    'Check what sets the value of grid marks, and what property must remain identical across all bars.',
+  'know.H2': 'The height of the bar tells the count; always read the scale on the side.',
 };

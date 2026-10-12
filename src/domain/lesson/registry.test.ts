@@ -255,4 +255,14 @@ describe('Lesson registry', () => {
     expect(h1?.mistake?.wrong).toBe(1);
     expect(h1?.stateKey).toBe('pictograph');
   });
+
+  it('retrieves H2 Bar Graphs lesson', () => {
+    const h2 = getLesson('H2');
+    expect(h2).not.toBeNull();
+    expect(h2?.cards).toHaveLength(6);
+    expect(h2?.explain).toHaveLength(2);
+    expect(h2?.mistake?.steps).toBe(3);
+    expect(h2?.mistake?.wrong).toBe(1);
+    expect(h2?.stateKey).toBe('bargraph');
+  });
 });

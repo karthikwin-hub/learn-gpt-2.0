@@ -102,5 +102,8 @@ describe('src/domain/math/index exports', () => {
     expect(typeof math.calculateTotalFromIcons).toBe('function');
     expect(typeof math.iconsRequiredForCount).toBe('function');
     expect(typeof math.validatePictographScale).toBe('function');
+    expect(typeof math.readBarValue).toBe('function');
+    expect(typeof math.generateAxisTicks).toBe('function');
+    expect(typeof math.interpolateBarHeight).toBe('function');
   });
 });
