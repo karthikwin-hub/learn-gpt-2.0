@@ -35,6 +35,7 @@ function createChips<T extends string>(
     const btn = el('button', {
       type: 'button',
       class: `chip${isSelected ? ' on' : ''}`,
+      style: { minHeight: '44px' },
       'aria-pressed': isSelected ? 'true' : 'false',
       text: it.label,
       onclick: () => onChange(it.value),
@@ -101,7 +102,7 @@ export function createLogicScreen(): ScreenMeta {
         const btnA = el('button', {
           type: 'button',
           class: 'btn',
-          style: { borderColor: 'var(--indigo)' },
+          style: { borderColor: 'var(--indigo)', minHeight: '44px' },
           'aria-pressed': String(state.a),
           text: `A: ${state.a ? t('logic.open') : t('logic.shut')}`,
           onclick: () => {
@@ -116,7 +117,7 @@ export function createLogicScreen(): ScreenMeta {
           const btnB = el('button', {
             type: 'button',
             class: 'btn',
-            style: { borderColor: 'var(--teal)' },
+            style: { borderColor: 'var(--teal)', minHeight: '44px' },
             'aria-pressed': String(state.b),
             text: `B: ${state.b ? t('logic.open') : t('logic.shut')}`,
             onclick: () => {
@@ -241,6 +242,7 @@ export function createLogicScreen(): ScreenMeta {
       const dropBtn = el('button', {
         type: 'button',
         class: 'btn primary block',
+        style: { minHeight: '44px' },
         text: t('logic.drop'),
         onclick: () => {
           if (machine.busy()) return;
@@ -256,15 +258,17 @@ export function createLogicScreen(): ScreenMeta {
         },
       });
 
-      const explainBtn = el('button', {
+      const nextBtn = el('button', {
         type: 'button',
         class: 'btn primary block',
-        text: t('common.explain'),
+        style: { minHeight: '44px' },
+        text: 'Spot the Mistake →',
         onclick: () => {
-          router.go('explain', { k: 'L2' });
+          router.go('mistake', { k: 'L2' });
         },
       });
 
+      view.appendChild(el('h2', { class: 'screen-title', text: t('logic.title') }));
       view.appendChild(createStepGuide(1, t('logic.s1')));
       view.appendChild(gateRow);
       view.appendChild(el('div', { class: 'model' }, [machine.node]));
@@ -272,7 +276,7 @@ export function createLogicScreen(): ScreenMeta {
       view.appendChild(el('div', { class: 'btn-row' }, [dropBtn]));
       view.appendChild(say);
       view.appendChild(tableCard);
-      view.appendChild(el('div', { class: 'btn-row' }, [explainBtn]));
+      view.appendChild(el('div', { class: 'btn-row' }, [nextBtn]));
 
       paintGates();
       paintDoors();

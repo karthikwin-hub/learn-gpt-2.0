@@ -325,4 +325,14 @@ describe('Lesson registry', () => {
     expect(l1?.mistake?.wrong).toBe(1);
     expect(l1?.stateKey).toBe('counterexample');
   });
+
+  it('retrieves L2 Marble Gates lesson', () => {
+    const l2 = getLesson('L2');
+    expect(l2).not.toBeNull();
+    expect(l2?.cards).toHaveLength(6);
+    expect(l2?.explain).toHaveLength(2);
+    expect(l2?.mistake?.steps).toBe(3);
+    expect(l2?.mistake?.wrong).toBe(1);
+    expect(l2?.stateKey).toBe('logic');
+  });
 });

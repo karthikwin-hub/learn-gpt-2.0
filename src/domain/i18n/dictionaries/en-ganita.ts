@@ -1883,4 +1883,49 @@ export const dictionary: Record<string, string> = {
   'explain.L1.hint':
     'Think about how many exceptions are needed to break a rule that claims to be true for all.',
   'know.L1': 'A thousand examples cannot prove "always", but one counterexample disproves it.',
+
+  /* L2 */
+  'prashna.L2.q':
+    'In a track with an AND gate, Switch A is OPEN and Switch B is CLOSED. Can a marble roll all the way through?',
+  'prashna.L2.c1': 'Yes, because Switch A is open',
+  'prashna.L2.c2': 'No, because an AND gate requires BOTH switches to be open',
+  'prashna.L2.c3': 'It depends on marble speed',
+  'prashna.L2.a':
+    'An AND gate requires BOTH switches in series to be open for the marble to pass. Since Switch B is closed, the marble stops!',
+  'bodha.L2.what':
+    'Logic gates are decision points that allow or block paths based on truth rules: AND, OR, NOT.',
+  'bodha.L2.can':
+    'Test switch combinations on AND, OR, and NOT gates, trace marble paths, and build truth tables.',
+  'bodha.L2.idea':
+    'AND is like two switches in a row (series): BOTH must be open for electricity or a marble to pass.',
+  'bodha.L2.why':
+    'OR is like two parallel tracks: if EITHER path is open (or both!), the marble passes freely.',
+  'bodha.L2.example': 'Testing marble gates:',
+  'bodha.L2.example1': 'Step 1: AND gate with A open and B shut: path is blocked (Output: NO).',
+  'bodha.L2.example2':
+    'Step 2: OR gate with A open and B shut: marble rolls through track A (Output: YES).',
+  'bodha.L2.example3': 'Step 3: NOT gate with A open: inverts truth to shut (Output: NO).',
+  'bodha.L2.where':
+    'Light switches on staircases, search engines, railway signals, and computer microchips.',
+  'bodha.L2.sutra': 'AND needs both; OR needs at least one; NOT flips the answer.',
+  'logic.title': 'Marble Gates (Boolean Logic: AND, OR, NOT)',
+  'logic.lead':
+    'Set switches and drop a marble to explore how AND, OR, and NOT gates direct pathways.',
+  'mistake.L2.intro': 'Sneha is testing an OR gate when Switch A is OPEN and Switch B is OPEN:',
+  'mistake.L2.s1': 'She observes that both switches are in the OPEN position.',
+  'mistake.L2.s2':
+    'She believes OR means exclusive choice ("only one switch or the other, but not both").',
+  'mistake.L2.s3': 'She claims the marble will be blocked because having both open is not allowed.',
+  'mistake.L2.fine1': 'Sound observation: both switches are indeed open.',
+  'mistake.L2.fine3': 'Step 3 fails because of the exclusive OR misconception in Step 2.',
+  'mistake.L2.found':
+    'Here! In logic and mathematics, OR is inclusive: it is true if A is open, B is open, OR BOTH are open! When both switches are open, the marble passes freely.',
+  'explain.L2.s':
+    'An AND gate allows a marble to pass only when {0} switches are on. An OR gate allows a marble to pass if at least {1} switch is on.',
+  'explain.L2.both': 'both',
+  'explain.L2.one': 'one',
+  'explain.L2.neither': 'neither',
+  'explain.L2.hint':
+    'Recall how series (AND) and parallel (OR) tracks behave when switches are open.',
+  'know.L2': 'AND needs both; OR needs at least one; NOT flips the answer.',
 };

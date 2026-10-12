@@ -6,6 +6,7 @@ import type { LessonData } from './types';
 
 export const L2_LESSON: LessonData = {
   knotId: 'L2',
+  stateKey: 'logic',
   cards: [
     { key: 'what' },
     { key: 'idea' },
@@ -14,8 +15,14 @@ export const L2_LESSON: LessonData = {
     { key: 'where' },
     { key: 'sutra' },
   ],
+  mistake: {
+    steps: 3,
+    wrong: 1,
+    eq: () =>
+      'OR is inclusive: if both switches are open, the marble rolls freely through <span class="r-txt">both parallel paths</span>',
+  },
   explain: [
-    { tiles: ['both', 'no', 'one'], expect: 'both' },
-    { tiles: ['least', 'every', 'one'], expect: 'least' },
+    { tiles: ['both', 'one', 'neither'], expect: 'both' },
+    { tiles: ['one', 'both', 'neither'], expect: 'one' },
   ],
 };
