@@ -972,4 +972,71 @@ export const dictionary: Record<string, string> = {
   'mistake.G2.fine2': 'Sound calculation: 6 by 6 gives perimeter 24 m and area 36 m².',
   'mistake.G2.found':
     'Here! Both fences are 24 m, but Garden B holds 36 m² while Garden A holds only 20 m². Same perimeter does NOT mean same area!',
+
+  /* G3 */
+  'prashna.G3.q':
+    'If you push the top card of a deck of cards sideways so the deck leans, does the face area of the cards change?',
+  'prashna.G3.c1': 'Yes, it gets bigger',
+  'prashna.G3.c2': 'Yes, it gets smaller',
+  'prashna.G3.c3': 'No, the area stays exactly the same',
+  'prashna.G3.a':
+    'No, the area stays exactly the same! Sliding the top sideways changes the shape and perimeter, but every card has the same face area, so the total area never changes.',
+  'bodha.G3.what':
+    'Take a rectangle and slide its top edge along a straight guide rail: it slants into a [[parallelogram|parallelogram]].',
+  'bodha.G3.can':
+    'You will be able to see that sliding the top preserves area because the removed triangle perfectly fills the opposite side.',
+  'bodha.G3.idea':
+    'A triangle overhangs on one side, but an identical triangular gap opens on the other side.',
+  'bodha.G3.why':
+    'Slice off the overhanging triangle and slide it across: it fits the gap perfectly, reforming the original rectangle!',
+  'bodha.G3.example': 'Sliding a rectangle with base 6 and height 4:',
+  'bodha.G3.example1': 'Start with a rectangle: base 6, height 4, area = 6 × 4 = 24.',
+  'bodha.G3.example2':
+    'Slide the top edge right: the perpendicular height stays 4, but slant increases.',
+  'bodha.G3.example3': 'The cut triangle fills the gap: area is still 6 × 4 = 24.',
+  'bodha.G3.where': 'Leaning stacks of coins, ramps, staircases, and roof trusses.',
+  'bodha.G3.sutra':
+    'Slide the top along the rail: the cut piece fills the gap, and the area never changes.',
+  'gloss.parallelogram':
+    'A four-sided flat shape with opposite sides parallel and equal in length.',
+  'gloss.parallelogram.en': 'parallelogram',
+  'shear.title': 'Slide the top',
+  'shear.art':
+    'A slidable parallelogram on a guide rail with live area and perimeter readouts and cut-and-shift demonstration.',
+  'shear.base': 'Base',
+  'shear.height': 'Height',
+  'shear.offset': 'Slant slide',
+  'shear.area': 'Area',
+  'shear.perimeter': 'Perimeter',
+  'shear.slant': 'Slant side',
+  'shear.cutShift': 'Cut & Shift',
+  'shear.reset': 'Reset',
+  'shear.s1': 'Slide the top edge along the guide rail to slant the shape.',
+  'shear.s1done': 'Top slid: perimeter grew longer, but vertical height and base stayed identical!',
+  'shear.s2': 'Tap Cut & Shift to move the overhanging triangle to the left gap.',
+  'shear.s2done':
+    'The cut piece perfectly fills the gap, restoring the rectangle with area {area}!',
+  'shear.s3': 'Explore different base and height combinations.',
+  'shear.s3done': 'Area is always base × perpendicular height, no matter how far the top slides!',
+  'mistake.G3.intro':
+    'Leena was finding the area of a slanted parallelogram. One step went wrong. Which one?',
+  'mistake.G3.s1': 'She measured the base of the parallelogram as 6 cm.',
+  'mistake.G3.s2': 'She measured the slanted side as 5 cm and multiplied 6 × 5 = 30 cm².',
+  'mistake.G3.s3': 'She concluded the area was 30 cm².',
+  'mistake.G3.fine1': 'Sound measurement: the base is 6 cm.',
+  'mistake.G3.fine3': 'Step 3 follows from Step 2, but the calculation in Step 2 was flawed.',
+  'mistake.G3.found':
+    'Here! She multiplied by the slanted side (5 cm) instead of the perpendicular height (4 cm). Area is 6 × 4 = 24 cm²!',
+  'explain.G3.s':
+    'When the top slides along the rail, the {0} stays the same because the base and vertical height do not change. To calculate the area of a parallelogram, we multiply the base by the {1} height.',
+  'explain.G3.area': 'area',
+  'explain.G3.perimeter': 'perimeter',
+  'explain.G3.slant': 'slant',
+  'explain.G3.perpendicular': 'perpendicular',
+  'explain.G3.slanted': 'slanted',
+  'explain.G3.corner': 'corner',
+  'explain.G3.hint':
+    'Which quantity is conserved under shear, and which height line is used for the area formula?',
+  'know.G3':
+    'Slide the top along the rail: the cut piece fills the gap, and the area never changes.',
 };

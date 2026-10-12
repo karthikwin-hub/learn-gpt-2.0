@@ -40,3 +40,4 @@ export * from './primes';
 export * from './divisibility';
 export * from './hcf';
 export * from './angles';
+export * from './shear';

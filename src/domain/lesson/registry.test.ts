@@ -165,4 +165,14 @@ describe('Lesson registry', () => {
     expect(g2?.mistake?.wrong).toBe(2);
     expect(g2?.stateKey).toBe('rope');
   });
+
+  it('retrieves G3 Slide the top lesson', () => {
+    const g3 = getLesson('G3');
+    expect(g3).not.toBeNull();
+    expect(g3?.cards).toHaveLength(6);
+    expect(g3?.explain).toHaveLength(2);
+    expect(g3?.mistake?.steps).toBe(3);
+    expect(g3?.mistake?.wrong).toBe(1);
+    expect(g3?.stateKey).toBe('shear');
+  });
 });
