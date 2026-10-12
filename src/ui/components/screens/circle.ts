@@ -11,8 +11,9 @@
 import { compareChordToDiameter } from '../../../domain/math/circle';
 import { t } from '../../../domain/i18n/core';
 import { clear, el } from '../../util/dom';
+import { readStep, toMistakeButton } from '../../util/bench';
 import { enterThread } from '../../util/thread';
-import { router, type ScreenMeta } from '../app/router';
+import { type ScreenMeta } from '../app/router';
 
 export function createCircleScreen(): ScreenMeta {
   return {
@@ -24,11 +25,7 @@ export function createCircleScreen(): ScreenMeta {
     render(view, state, params = {}) {
       enterThread('G6', 'circle', params);
 
-      let stepNum = params.step
-        ? Number(params.step)
-        : typeof state.step === 'number'
-          ? state.step
-          : 1;
+      let stepNum = readStep(params.step, state.step, 3);
 
       let radiusVal = typeof state.radius === 'number' ? state.radius : 5;
       let offsetVal = typeof state.offset === 'number' ? state.offset : 0;
@@ -60,9 +57,9 @@ export function createCircleScreen(): ScreenMeta {
       });
 
       const stepsConfig = [
-        { num: 1, label: '1. Radius & Circle' },
-        { num: 2, label: '2. Chords vs Diameter' },
-        { num: 3, label: '3. Verify & Measure' },
+        { num: 1, label: t('circle.tab1') },
+        { num: 2, label: t('circle.tab2') },
+        { num: 3, label: t('circle.tab3') },
       ];
 
       stepsConfig.forEach((cfg) => {
@@ -145,7 +142,7 @@ export function createCircleScreen(): ScreenMeta {
         const radiusBadge = el('div', {
           class: 'stat-pill radius-pill',
           id: 'radius-display',
-          text: `Radius: ${radiusVal} cm`,
+          text: t('circle.radiusReadout', { r: radiusVal }),
           style: {
             padding: '6px 14px',
             borderRadius: '999px',
@@ -160,7 +157,7 @@ export function createCircleScreen(): ScreenMeta {
         const diameterBadge = el('div', {
           class: 'stat-pill diameter-pill',
           id: 'diameter-display',
-          text: `Diameter: ${comp.diameter} cm (2 × ${radiusVal} cm)`,
+          text: t('circle.diameterReadout', { d: comp.diameter, r: radiusVal }),
           style: {
             padding: '6px 14px',
             borderRadius: '999px',
@@ -175,7 +172,7 @@ export function createCircleScreen(): ScreenMeta {
         const chordBadge = el('div', {
           class: 'stat-pill chord-pill',
           id: 'chord-display',
-          text: `Line across: ${comp.chordLength.toFixed(1)} cm`,
+          text: t('circle.chordReadout', { c: comp.chordLength.toFixed(1) }),
           style: {
             padding: '6px 14px',
             borderRadius: '999px',
@@ -212,11 +209,13 @@ export function createCircleScreen(): ScreenMeta {
           },
         });
 
-        if (comp.isDiameter) {
-          statusCard.innerHTML = `<strong>Passes Through Centre (Diameter)</strong>: d = 2 × ${radiusVal} = ${comp.diameter} cm. This is the longest possible line across the circle!`;
-        } else {
-          statusCard.innerHTML = `<strong>Off-Centre Chord (Misses Centre by ${offsetVal} cm)</strong>: Length = ${comp.chordLength.toFixed(1)} cm. It is <span style="color:var(--kumkum, #b91c1c);font-weight:700;">shorter</span> than the diameter by ${comp.differenceFromDiameter.toFixed(1)} cm.`;
-        }
+        statusCard.textContent = comp.isDiameter
+          ? t('circle.statusDiameter', { r: radiusVal, d: comp.diameter })
+          : t('circle.statusChord', {
+              offset: offsetVal,
+              c: comp.chordLength.toFixed(1),
+              diff: comp.differenceFromDiameter.toFixed(1),
+            });
         contentBox.appendChild(statusCard);
 
         // SVG Canvas
@@ -243,7 +242,7 @@ export function createCircleScreen(): ScreenMeta {
         svg.setAttribute('width', '100%');
         svg.setAttribute('height', '100%');
         svg.setAttribute('role', 'img');
-        svg.setAttribute('aria-label', `Circle of radius ${radiusVal} cm`);
+        svg.setAttribute('aria-label', t('circle.canvasLabel'));
 
         const cx = 160;
         const cy = 160;
@@ -367,8 +366,8 @@ export function createCircleScreen(): ScreenMeta {
         chordText.setAttribute('font-size', '12px');
         chordText.setAttribute('font-weight', 'bold');
         chordText.textContent = comp.isDiameter
-          ? `Diameter = ${comp.diameter} cm (through centre)`
-          : `Chord = ${comp.chordLength.toFixed(1)} cm`;
+          ? t('circle.chordSvgDiameter', { d: comp.diameter })
+          : t('circle.chordSvgChord', { c: comp.chordLength.toFixed(1) });
         svg.appendChild(chordText);
 
         // Centre dot & label
@@ -389,7 +388,7 @@ export function createCircleScreen(): ScreenMeta {
         centreText.setAttribute('fill', 'var(--c-gold, #f59e0b)');
         centreText.setAttribute('font-size', '11px');
         centreText.setAttribute('font-weight', 'bold');
-        centreText.textContent = 'Centre O';
+        centreText.textContent = t('circle.centreLabel');
         svg.appendChild(centreText);
 
         svgBox.appendChild(svg);
@@ -446,7 +445,7 @@ export function createCircleScreen(): ScreenMeta {
         const radiusDecBtn = el('button', {
           class: 'btn btn-icon',
           text: '−',
-          'aria-label': 'Decrease radius',
+          'aria-label': t('circle.decRadius'),
           style: { minHeight: '44px', minWidth: '44px', fontSize: '1.2rem' },
           disabled: radiusVal <= 2,
           onclick: () => {
@@ -465,7 +464,7 @@ export function createCircleScreen(): ScreenMeta {
           max: '8',
           step: '1',
           value: String(radiusVal),
-          'aria-label': 'Circle radius in cm',
+          'aria-label': t('circle.radiusAria'),
           style: { flex: '1', minHeight: '44px', cursor: 'pointer' },
           oninput: (e: Event) => {
             radiusVal = Number((e.target as HTMLInputElement).value);
@@ -477,7 +476,7 @@ export function createCircleScreen(): ScreenMeta {
         const radiusIncBtn = el('button', {
           class: 'btn btn-icon',
           text: '+',
-          'aria-label': 'Increase radius',
+          'aria-label': t('circle.incRadius'),
           style: { minHeight: '44px', minWidth: '44px', fontSize: '1.2rem' },
           disabled: radiusVal >= 8,
           onclick: () => {
@@ -538,7 +537,7 @@ export function createCircleScreen(): ScreenMeta {
         const offsetDecBtn = el('button', {
           class: 'btn btn-icon',
           text: '−',
-          'aria-label': 'Decrease distance from centre',
+          'aria-label': t('circle.decOffset'),
           style: { minHeight: '44px', minWidth: '44px', fontSize: '1.2rem' },
           disabled: offsetVal <= 0,
           onclick: () => {
@@ -557,7 +556,7 @@ export function createCircleScreen(): ScreenMeta {
           max: String(radiusVal),
           step: '0.5',
           value: String(offsetVal),
-          'aria-label': 'Distance from centre in cm',
+          'aria-label': t('circle.offsetAria'),
           style: { flex: '1', minHeight: '44px', cursor: 'pointer' },
           oninput: (e: Event) => {
             offsetVal = Number((e.target as HTMLInputElement).value);
@@ -569,7 +568,7 @@ export function createCircleScreen(): ScreenMeta {
         const offsetIncBtn = el('button', {
           class: 'btn btn-icon',
           text: '+',
-          'aria-label': 'Increase distance from centre',
+          'aria-label': t('circle.incOffset'),
           style: { minHeight: '44px', minWidth: '44px', fontSize: '1.2rem' },
           disabled: offsetVal >= radiusVal,
           onclick: () => {
@@ -601,7 +600,7 @@ export function createCircleScreen(): ScreenMeta {
         const centreBtn = el('button', {
           class: `btn ${offsetVal === 0 ? 'btn-active' : ''}`,
           id: 'preset-diameter-btn',
-          text: 'Centre (Diameter = 2r)',
+          text: t('circle.chipCentre'),
           style: { minHeight: '44px', minWidth: '44px' },
           onclick: () => {
             offsetVal = 0;
@@ -613,7 +612,7 @@ export function createCircleScreen(): ScreenMeta {
         const offCentreBtn = el('button', {
           class: `btn ${offsetVal > 0 && offsetVal < radiusVal ? 'btn-active' : ''}`,
           id: 'preset-chord-btn',
-          text: 'Off-Centre Chord (3 cm)',
+          text: t('circle.chipOffCentre'),
           style: { minHeight: '44px', minWidth: '44px' },
           onclick: () => {
             offsetVal = Math.min(3, radiusVal - 0.5);
@@ -636,20 +635,11 @@ export function createCircleScreen(): ScreenMeta {
           },
         });
 
-        const continueBtn = el('button', {
-          class: 'btn btn-primary',
-          id: 'continue-btn',
-          text: 'Continue to Spot Mistake',
-          style: {
-            minHeight: '44px',
-            padding: '10px 24px',
-            fontWeight: '600',
-          },
-          onclick: () => {
-            router.go('mistake', { k: 'G6' });
-          },
-        });
-
+        const continueBtn = toMistakeButton('G6');
+        continueBtn.id = 'continue-btn';
+        continueBtn.className = 'btn btn-primary';
+        continueBtn.style.minHeight = '44px';
+        continueBtn.style.padding = '10px 24px';
         actionRow.appendChild(continueBtn);
         controlPanel.appendChild(actionRow);
 

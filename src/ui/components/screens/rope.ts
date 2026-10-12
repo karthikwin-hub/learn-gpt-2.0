@@ -8,6 +8,7 @@
 import { t } from '../../../domain/i18n/core';
 import type { RopeRectangle } from '../../../domain/math/geometry';
 import { clear, createStepper, el } from '../../util/dom';
+import { createStepGuide, toMistakeButton } from '../../util/bench';
 import {
   createRopeManipulative,
   renderAreaHill,
@@ -15,13 +16,6 @@ import {
 } from '../../manipulatives/rope';
 import { enterThread } from '../../util/thread';
 import { router, type ScreenMeta } from '../app/router';
-
-function createStepGuide(num: number, text: string): HTMLElement {
-  return el('div', { class: 'step-guide' }, [
-    el('span', { class: 'num', text: String(num) }),
-    el('p', { text }),
-  ]);
-}
 
 function createChips<T extends string | number>(
   items: { value: T; label: string }[],
@@ -101,16 +95,24 @@ export function createRopeScreen(): ScreenMeta {
 
       function paint(r: RopeRectangle, triedMap: Record<number, RopeRectangle>) {
         clear(read);
-        const perimEq = el('div', {
-          class: 'eq',
-          style: { fontSize: '20px' },
-          html: `<span class="a">${r.w}</span> + <span class="b">${r.h}</span> + <span class="a">${r.w}</span> + <span class="b">${r.h}</span> = <span class="t">${r.perimeter} m</span>`,
-        });
+        const perimEq = el('div', { class: 'eq', style: { fontSize: '20px' } }, [
+          el('span', { class: 'a', text: String(r.w) }),
+          document.createTextNode(' + '),
+          el('span', { class: 'b', text: String(r.h) }),
+          document.createTextNode(' + '),
+          el('span', { class: 'a', text: String(r.w) }),
+          document.createTextNode(' + '),
+          el('span', { class: 'b', text: String(r.h) }),
+          document.createTextNode(` = ${r.perimeter} m`),
+        ]);
         const note = el('p', { class: 'muted small', text: t('rope.perimNote') });
-        const areaEq = el('div', {
-          class: 'eq',
-          html: `${t('rope.area')} = <span class="a">${r.w}</span> × <span class="b">${r.h}</span> = <span class="r">${r.area}</span> m²`,
-        });
+        const areaEq = el('div', { class: 'eq' }, [
+          document.createTextNode(`${t('rope.area')} = `),
+          el('span', { class: 'a', text: String(r.w) }),
+          document.createTextNode(' × '),
+          el('span', { class: 'b', text: String(r.h) }),
+          document.createTextNode(` = ${r.area} m²`),
+        ]);
         read.appendChild(perimEq);
         read.appendChild(note);
         read.appendChild(areaEq);
@@ -166,16 +168,10 @@ export function createRopeScreen(): ScreenMeta {
       view.appendChild(say);
       view.appendChild(hill);
 
-      const mistakeBtn = el('button', {
-        type: 'button',
-        class: 'btn outline block',
-        id: 'btn-to-mistake',
-        text: t('bench.toMistake'),
-        style: { minHeight: '44px' },
-        onclick: () => {
-          router.go('mistake', { k: 'G2' });
-        },
-      });
+      const mistakeBtn = toMistakeButton('G2');
+      mistakeBtn.className = 'btn outline block';
+      mistakeBtn.id = 'btn-to-mistake';
+      mistakeBtn.style.minHeight = '44px';
 
       const explainBtn = el('button', {
         type: 'button',

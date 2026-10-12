@@ -6,17 +6,11 @@
 
 import { t } from '../../../domain/i18n/core';
 import { smallestTurn, type Point2D, type SymmetryMode } from '../../../domain/math/geometry';
-import { el } from '../../util/dom';
+import { el, reducedMotion } from '../../util/dom';
+import { createStepGuide, toMistakeButton } from '../../util/bench';
 import { createKolamManipulative, type KolamManipulative } from '../../manipulatives/kolam';
 import { enterThread } from '../../util/thread';
-import { router, type ScreenMeta } from '../app/router';
-
-function createStepGuide(num: number, text: string): HTMLElement {
-  return el('div', { class: 'step-guide' }, [
-    el('span', { class: 'num', text: String(num) }),
-    el('p', { text }),
-  ]);
-}
+import { type ScreenMeta } from '../app/router';
 
 function createChips<T extends string | number>(
   items: { value: T; label: string }[],
@@ -178,16 +172,9 @@ export function createKolamScreen(): ScreenMeta {
       view.appendChild(challengeCard);
 
       // Next: Spot the Mistake button
-      const mistakeBtn = el('button', {
-        id: 'btn-to-mistake',
-        type: 'button',
-        class: 'btn primary block',
-        text: 'Next: Spot the Mistake →',
-        style: { minHeight: '44px' },
-        onclick: () => {
-          router.go('mistake', { k: 'G4' });
-        },
-      });
+      const mistakeBtn = toMistakeButton('G4');
+      mistakeBtn.id = 'btn-to-mistake';
+      mistakeBtn.style.minHeight = '44px';
       view.appendChild(el('div', { class: 'btn-row' }, [mistakeBtn]));
 
       paintRead();
@@ -195,9 +182,11 @@ export function createKolamScreen(): ScreenMeta {
       let demoTimer = 0;
       if (!state.demoed && (state.strokes as Point2D[][]).length === 0) {
         state.demoed = true;
-        demoTimer = window.setTimeout(() => {
-          km.demo();
-        }, 500);
+        if (!reducedMotion()) {
+          demoTimer = window.setTimeout(() => {
+            km.demo();
+          }, 500);
+        }
       }
 
       return () => {

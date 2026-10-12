@@ -436,6 +436,129 @@ export const dictionary: Record<string, string> = {
   'know.G8':
     'A top view sees the ground; a front view sees the height; together they describe the whole 3D shape.',
 
+  /* Bench UI (G1 angles) */
+  'angles.tab1': '1. Turn the ray',
+  'angles.tab2': '2. Arm length',
+  'angles.tab3': '3. Clock hands',
+  'angles.dec15': '- 15°',
+  'angles.inc15': '+ 15°',
+  'angles.preset45': '45° (Half right)',
+  'angles.preset90': '90° (Quarter)',
+  'angles.preset180': '180° (Straight)',
+  'angles.preset360': '360° (Full)',
+  'angles.nextArm': 'Next: Test Arm Length →',
+  'angles.nextClock': 'Next: Compare Clock Hands →',
+  'angles.invariance': 'Arm Length: {len}px  |  Angle: 90° (Constant!)',
+  'angles.invarianceNote': 'Stretching or shortening the arms does NOT change the turn.',
+  'angles.shortArm': 'Short (60px)',
+  'angles.longArm': 'Long (160px)',
+  'angles.towerLabel': 'Giant Tower Clock',
+  'angles.watchLabel': 'Tiny Wristwatch',
+  'angles.towerDetail': 'Hands: 60 cm | Angle: 90°',
+  'angles.watchDetail': 'Hands: 1 cm | Angle: 90°',
+  'angles.type.zero': 'Zero turn (0°)',
+  'angles.type.acute': 'Acute angle (< 90°)',
+  'angles.type.right': 'Quarter turn / Right angle (90°)',
+  'angles.type.obtuse': 'Obtuse angle (between 90° and 180°)',
+  'angles.type.straight': 'Half turn / Straight angle (180°)',
+  'angles.type.reflex': 'Reflex angle (> 180°)',
+  'angles.type.full': 'Full turn (360°)',
+  'angles.turnQuarter': '1/4 turn (Quarter turn)',
+  'angles.turnHalf': '1/2 turn (Half turn)',
+  'angles.turnThreeQuarter': '3/4 turn (Three-quarter turn)',
+  'angles.turnFull': 'Full turn',
+  'angles.turnGeneric': '{num}/{den} turn',
+  'angles.turnZero': '0 turn',
+  'angles.slider': 'Angle in degrees',
+
+  /* G3 shear bench */
+  'shear.tab1': '1. Slide the top',
+  'shear.tab2': '2. Cut & Shift',
+  'shear.tab3': '3. Compare & Formula',
+  'shear.offsetValue': '{n} cm',
+  'shear.offsetHint': '(slide along rail)',
+  'shear.slantFormula': '√(h² + offset²)',
+  'shear.insight':
+    'Area Invariant: Sliding the top increases the slant and perimeter, but Area remains strictly {area} cm² because the base ({base} cm) and perpendicular height ({height} cm) do not change.',
+  'shear.guideRail': 'Guide Rail (height = {h} cm)',
+
+  /* G5 cubenet bench */
+  'cubenet.tab1': '1. Arrange 6 squares',
+  'cubenet.tab2': '2. Fold 3D Box',
+  'cubenet.tab3': '3. Find 11 Nets',
+  'cubenet.foldHint': '(0° Flat → 90° Closed Box)',
+  'cubenet.presetsLabel': 'Quick Test Presets:',
+  'cubenet.closedCube': 'Closed 3D Cube (0 Collisions, 6 Faces Sealed)',
+  'cubenet.collisionCube': 'Collision! Faces Overlap & Leaves Hole',
+
+  /* G6 circle bench */
+  'circle.tab1': '1. Radius & Circle',
+  'circle.tab2': '2. Chords vs Diameter',
+  'circle.tab3': '3. Verify & Measure',
+  'circle.radiusReadout': 'Radius: {r} cm',
+  'circle.diameterReadout': 'Diameter: {d} cm (2 × {r} cm)',
+  'circle.chordReadout': 'Line across: {c} cm',
+  'circle.statusDiameter':
+    'Passes Through Centre (Diameter): d = 2 × {r} = {d} cm. This is the longest possible line across the circle!',
+  'circle.statusChord':
+    'Off-Centre Chord (Misses Centre by {offset} cm): Length = {c} cm. It is shorter than the diameter by {diff} cm.',
+  'circle.centreLabel': 'Centre O',
+  'circle.decRadius': 'Decrease radius',
+  'circle.incRadius': 'Increase radius',
+  'circle.radiusAria': 'Circle radius in cm',
+  'circle.decOffset': 'Decrease distance from centre',
+  'circle.incOffset': 'Increase distance from centre',
+  'circle.offsetAria': 'Distance from centre in cm',
+  'circle.chipCentre': 'Centre (Diameter = 2r)',
+  'circle.chipOffCentre': 'Off-Centre Chord (3 cm)',
+  'circle.canvasLabel': 'Circle with radius and chord explorer',
+  'circle.chordSvgDiameter': '{d} cm',
+  'circle.chordSvgChord': '{c} cm',
+  'cubenet.need6msg': 'Select exactly 6 squares to fold.',
+  'views.tab1': '1. Staircase Views',
+  'views.tab2': '2. Compare 3D Shapes',
+  'views.tab3': '3. Jaal E4 Map Link',
+  'views.structureLabel': 'Structure: {name}',
+
+  /* G7 tangram bench */
+  'tangram.tab1': '1. Square Dissection',
+  'tangram.tab2': '2. Silhouettes & Balance',
+  'tangram.tab3': '3. Small Triangle Equivalence',
+  'tangram.piecesCount': 'Pieces: 7 of 7',
+  'tangram.unitsCount': 'Total Units: {u} / 16 (100%)',
+  'tangram.areaDisplay': 'Total Area: {a} cm²',
+  'tangram.statusConserved':
+    'Area Strictly Conserved ({name}): Rearranging 7 pieces creates a new silhouette, but the total area is still 16 units (100 cm²) with zero change!',
+  'tangram.statusEquiv':
+    'Piece Decomposition Equivalence: 2 Small Triangles (1 + 1 = 2 units) exactly equal 1 Square, 1 Parallelogram, or 1 Medium Triangle!',
+  'tangram.presetsLabel': 'Choose Silhouette Preset:',
+  'tangram.legendTitle': '7 Dissection Pieces (Total = 16 units)',
+  'tangram.legendL1': '2 Large Triangles: 4 units each (8 units total, 50% of square)',
+  'tangram.legendL2': '1 Medium Triangle: 2 units (12.5% of square)',
+  'tangram.legendL3': '2 Small Triangles: 1 unit each (2 units total)',
+  'tangram.legendL4': '1 Square: 2 units (12.5% of square)',
+  'tangram.legendL5': '1 Parallelogram: 2 units (12.5% of square)',
+  'tangram.eqCanvasLabel': 'Tangram equivalence diagram',
+  'tangram.eqLabel1': '2 Small Triangles (1 + 1) = 1 Square (2)',
+  'tangram.eqLabel2': '2 Small Triangles (1 + 1) = 1 Medium Triangle (2)',
+  'tangram.silhouetteAria': 'Tangram silhouette {name}',
+  'tangram.rotatePiece': 'Rotate tangram piece',
+  'tangram.movePiece': 'Move tangram piece with arrow keys',
+  'tangram.selectPiece': 'Select tangram piece',
+
+  /* G8 views bench */
+  'views.presetsLabel': 'Select 3D Structure Preset:',
+  'views.statusJaal':
+    'Jaal Link (E4 Maps ↔ G8 Top View): Looking straight down from the ceiling collapses all heights into a flat layout — this is exactly how maps and architectural blueprints represent 3D land!',
+  'views.statusStairTop':
+    'Top View Collapses Drops: Looking straight down at the 3-step staircase hides vertical drops. You see 3 flat adjacent squares in a line!',
+  'views.statusOrtho':
+    'Orthographic Views ({name}): Top view sees ground footprint; Front view sees width & height; Side view sees depth & height.',
+
+  /* G2 rope equation fragments */
+  'rope.perimEq': '{w} + {h} + {w} + {h} = {p} m',
+  'rope.areaEq': '{w} × {h} = {a} m²',
+
   /* Spot-the-mistake equation lines: <s> struck, <r> highlighted. */
   'mistake.G1.eq':
     'A pencil box lid open wide (60°) has a <r>larger angle</r> than a giant door open a crack (15°)',

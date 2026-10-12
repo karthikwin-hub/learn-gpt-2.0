@@ -16,8 +16,9 @@ import {
 } from '../../../domain/math/views';
 import { t } from '../../../domain/i18n/core';
 import { clear, el } from '../../util/dom';
+import { readStep, toMistakeButton } from '../../util/bench';
 import { enterThread } from '../../util/thread';
-import { router, type ScreenMeta } from '../app/router';
+import { type ScreenMeta } from '../app/router';
 
 export function createViewsScreen(): ScreenMeta {
   return {
@@ -29,11 +30,7 @@ export function createViewsScreen(): ScreenMeta {
     render(view, state, params = {}) {
       enterThread('G8', 'views', params);
 
-      let stepNum = params.step
-        ? Number(params.step)
-        : typeof state.step === 'number'
-          ? state.step
-          : 1;
+      let stepNum = readStep(params.step, state.step, 3);
 
       let currentPresetId = typeof state.preset === 'string' ? state.preset : 'staircase';
       let jaalActive = Boolean(state.jaal);
@@ -65,9 +62,9 @@ export function createViewsScreen(): ScreenMeta {
       });
 
       const stepsConfig = [
-        { num: 1, label: '1. Staircase Views' },
-        { num: 2, label: '2. Compare 3D Shapes' },
-        { num: 3, label: '3. Jaal E4 Map Link' },
+        { num: 1, label: t('views.tab1') },
+        { num: 2, label: t('views.tab2') },
+        { num: 3, label: t('views.tab3') },
       ];
 
       stepsConfig.forEach((cfg) => {
@@ -143,7 +140,7 @@ export function createViewsScreen(): ScreenMeta {
         const structureBadge = el('div', {
           class: 'stat-pill structure-pill',
           id: 'structure-name',
-          text: `Structure: ${preset.name}`,
+          text: t('views.structureLabel', { name: preset.name }),
           style: {
             padding: '6px 14px',
             borderRadius: '999px',
@@ -158,7 +155,7 @@ export function createViewsScreen(): ScreenMeta {
         const countBadge = el('div', {
           class: 'stat-pill blocks-pill',
           id: 'blocks-count',
-          text: `Total Blocks: ${blockCount}`,
+          text: t('views.blocks', { count: blockCount }),
           style: {
             padding: '6px 14px',
             borderRadius: '999px',
@@ -188,13 +185,12 @@ export function createViewsScreen(): ScreenMeta {
           },
         });
 
-        if (stepNum === 3 || jaalActive) {
-          statusCard.innerHTML = `<strong>Jaal Link (E4 Maps ↔ G8 Top View)</strong>: Looking straight down from the ceiling collapses all heights into a flat layout — this is <em>exactly</em> how maps and architectural blueprints represent 3D land!`;
-        } else if (preset.id === 'staircase') {
-          statusCard.innerHTML = `<strong>Top View Collapses Drops</strong>: Looking straight down at the 3-step staircase hides vertical drops. You see 3 flat adjacent squares in a line!`;
-        } else {
-          statusCard.innerHTML = `<strong>Orthographic Views (${preset.name})</strong>: Top view sees ground footprint; Front view sees width & height; Side view sees depth & height.`;
-        }
+        statusCard.textContent =
+          stepNum === 3 || jaalActive
+            ? t('views.statusJaal')
+            : preset.id === 'staircase'
+              ? t('views.statusStairTop')
+              : t('views.statusOrtho', { name: preset.name });
         contentBox.appendChild(statusCard);
 
         // 3 Viewports Grid Container
@@ -332,7 +328,7 @@ export function createViewsScreen(): ScreenMeta {
         });
 
         const presetLabel = el('label', {
-          text: 'Select 3D Structure Preset:',
+          text: t('views.presetsLabel'),
           style: { fontWeight: '600', fontSize: '0.9rem' },
         });
         presetGroup.appendChild(presetLabel);
@@ -375,20 +371,11 @@ export function createViewsScreen(): ScreenMeta {
           },
         });
 
-        const continueBtn = el('button', {
-          class: 'btn btn-primary',
-          id: 'continue-btn',
-          text: 'Continue to Spot Mistake',
-          style: {
-            minHeight: '44px',
-            padding: '10px 24px',
-            fontWeight: '600',
-          },
-          onclick: () => {
-            router.go('mistake', { k: 'G8' });
-          },
-        });
-
+        const continueBtn = toMistakeButton('G8');
+        continueBtn.id = 'continue-btn';
+        continueBtn.className = 'btn btn-primary';
+        continueBtn.style.minHeight = '44px';
+        continueBtn.style.padding = '10px 24px';
         actionRow.appendChild(continueBtn);
         contentBox.appendChild(actionRow);
       }
