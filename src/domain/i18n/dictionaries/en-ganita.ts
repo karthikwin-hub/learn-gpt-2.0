@@ -732,4 +732,59 @@ export const dictionary: Record<string, string> = {
   'explain.F1.hint': 'Do factors travel in pairs with a partner, or alone as single multiples?',
   'know.F1':
     'A factor divides a number with no leftover; factors come in pairs formed by the sides of neat rectangular arrangements.',
+
+  /* F2 Primes & Composites */
+  'prashna.F2.q': 'How many different rectangles can you build using 7 square tiles?',
+  'prashna.F2.c1': 'Only 1 line',
+  'prashna.F2.c2': '2 rectangles',
+  'prashna.F2.c3': '4 rectangles',
+  'prashna.F2.a':
+    'Only 1 line. 7 tiles can only stretch into a single 1×7 line! It is stubborn and has no other factors.',
+  'bodha.F2.what':
+    '[[prime-numbers|Prime numbers]] are stubborn numbers that cannot be folded into neat multi-row mats—they only form a single straight line.',
+  'bodha.F2.can':
+    'You will be able to distinguish primes from composites, understand why 1 is special, and use the Sieve of Eratosthenes.',
+  'bodha.F2.idea':
+    'A prime number has *exactly two distinct factors*: 1 and itself. A composite number has more than two factors.',
+  'bodha.F2.why':
+    'Number 1 has only ONE factor (itself), so it is neither prime nor composite. Number 2 is the smallest prime and the only even prime!',
+  'bodha.F2.example': 'Filter primes up to 30 using the Sieve of Eratosthenes.',
+  'bodha.F2.example1': 'Cross out 1. Keep 2, cross out all even multiples of 2.',
+  'bodha.F2.example2': 'Keep 3, cross out remaining multiples of 3 (9, 15, 21, 27).',
+  'bodha.F2.example3':
+    'Keep 5, cross out multiples of 5 (25). Survivors are primes: 2, 3, 5, 7, 11, 13, 17, 19, 23, 29.',
+  'bodha.F2.where':
+    'Securing online bank transfers with prime cryptography, and 13- and 17-year cicada lifecycle emergence.',
+  'bodha.F2.sutra':
+    'A prime makes only a single straight line: exactly two factors, one and itself.',
+  'gloss.prime-numbers':
+    'Whole numbers greater than 1 that have exactly two factors: 1 and the number itself.',
+  'gloss.prime-numbers.en': 'prime numbers',
+  'primes.title': 'Primes & composites sieve',
+  'primes.art': 'A 1–50 grid revealing glowing golden primes as composite multiples are filtered.',
+  'primes.s1': 'Test stubborn numbers: try to fold 7 tiles into multiple rows.',
+  'primes.s1done': '7 cannot fold into equal rows: 7 is prime (1 × 7 only).',
+  'primes.s2': 'Filter multiples of 2, 3, and 5 to uncover primes on the 1–50 board.',
+  'primes.s2done': 'Sieve complete: 15 primes discovered between 1 and 50.',
+  'primes.s3': 'Decompose composite numbers into prime factor trees.',
+  'primes.s3done': '24 decomposed into prime leaves: 2 × 2 × 2 × 3.',
+  'mistake.F2.intro':
+    'Arjun claims 9 is a prime number because it is odd. One step went wrong. Which one?',
+  'mistake.F2.s1': 'He noticed that 9 cannot be divided by 2 (it is odd).',
+  'mistake.F2.s2': 'He concluded that 9 has no factors other than 1 and 9.',
+  'mistake.F2.s3': 'He declared that 9 is a prime number.',
+  'mistake.F2.fine1': 'That is sound: 9 is indeed an odd number that cannot be halved.',
+  'mistake.F2.found':
+    'Here. Being odd does not make a number prime! 9 has 3 as a factor: 3 × 3 = 9. Its factors are 1, 3, 9, making it composite.',
+  'mistake.F2.fine3': 'Calling 9 prime is directly caused by ignoring factor 3 in step 2.',
+  'explain.F2.s': 'A prime number has exactly {0} factors; the number 1 is neither prime nor {1}.',
+  'explain.F2.two': 'two',
+  'explain.F2.three': 'three',
+  'explain.F2.one': 'one',
+  'explain.F2.composite': 'composite',
+  'explain.F2.prime': 'prime',
+  'explain.F2.odd': 'odd',
+  'explain.F2.hint': 'Does a prime have two factors or three, and what is 1 called?',
+  'know.F2':
+    'A prime number has exactly two factors (1 and itself); composite numbers have more than two, and 1 is neither.',
 };

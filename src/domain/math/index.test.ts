@@ -55,5 +55,9 @@ describe('src/domain/math/index exports', () => {
     expect(typeof math.findAllFactors).toBe('function');
     expect(typeof math.findFactorPairs).toBe('function');
     expect(typeof math.isValidRectangle).toBe('function');
+    expect(typeof math.isPrime).toBe('function');
+    expect(typeof math.isComposite).toBe('function');
+    expect(typeof math.sievePrimesUpTo).toBe('function');
+    expect(typeof math.primeFactorize).toBe('function');
   });
 });

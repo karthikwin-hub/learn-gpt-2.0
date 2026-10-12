@@ -1,6 +1,6 @@
 # Implementation Plan: 022 Primes & Composites (Knot F2)
 
-Feature Branch: `feat/014-collection-fractions`
+Feature Branch: `feat/022-primes`
 
 ## Architecture & Module Ownership
 
