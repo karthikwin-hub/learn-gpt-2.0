@@ -1,6 +1,6 @@
 # Implementation Plan: 019 Long Division Algorithm (Knot D4)
 
-Feature Branch: `feat/014-collection-fractions`
+Feature Branch: `feat/019-long-division`
 
 ## Architecture & Module Ownership
 

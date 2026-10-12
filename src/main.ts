@@ -33,6 +33,7 @@ import { createDecimalsScreen } from './ui/components/screens/decimals';
 import { createRegroupScreen } from './ui/components/screens/regroup';
 import { createEstimateScreen } from './ui/components/screens/estimate';
 import { createQuotitionScreen } from './ui/components/screens/quotition';
+import { createLongdivScreen } from './ui/components/screens/longdiv';
 import { createMoneyScreen } from './ui/components/screens/money';
 import { createDigestScreen } from './ui/components/screens/digest';
 import { createRampScreen } from './ui/components/screens/ramp';
@@ -85,6 +86,7 @@ export function initApp(): void {
   router.register(createRegroupScreen());
   router.register(createEstimateScreen());
   router.register(createQuotitionScreen());
+  router.register(createLongdivScreen());
   router.register(createMoneyScreen());
   router.register(createDigestScreen());
   router.register(createRampScreen());

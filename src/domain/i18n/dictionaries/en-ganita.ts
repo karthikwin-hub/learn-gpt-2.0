@@ -561,4 +561,63 @@ export const dictionary: Record<string, string> = {
   'explain.D2.hint': 'Does quotition count groups by subtracting repeatedly or by adding?',
   'know.D2':
     'Division as repeated subtraction counts the number of equal groups that fit into a total before reaching zero.',
+
+  /* D4 Long Division Algorithm */
+  'prashna.D4.q': 'When dividing 615 by 3, what digit belongs in the tens house of the quotient?',
+  'prashna.D4.c1': '0',
+  'prashna.D4.c2': '1',
+  'prashna.D4.c3': '2',
+  'prashna.D4.a':
+    '0. Since 3 does not fit into 1 ten (0 times), write 0 in the tens house before bringing down the 5 ones!',
+  'bodha.D4.what':
+    'The [[long-division|long division]] algorithm breaks large multi-digit sharing into simple columnar steps: divide, multiply, subtract, and bring down.',
+  'bodha.D4.can':
+    'You will be able to perform standard long division step by step and master the Zero Gate to prevent tenfold errors.',
+  'bodha.D4.idea':
+    'Work house by house from left to right. When a house cannot share, write zero before opening the next door.',
+  'bodha.D4.why':
+    'Omitting a quotient zero turns 204 into 24—cutting the answer by ten! The Zero Gate keeps every place value in its rightful house.',
+  'bodha.D4.example': 'Calculate 612 ÷ 3 using long division.',
+  'bodha.D4.example1':
+    'Step 1: Hundreds house: 6 ÷ 3 = 2. Multiply 2 × 3 = 6, subtract 6 − 6 = 0. Bring down 1.',
+  'bodha.D4.example2':
+    'Step 2 (The Zero Gate): Tens house: 3 does not fit into 1. Write 0 in the quotient! Bring down 2.',
+  'bodha.D4.example3':
+    'Step 3: Ones house: 12 ÷ 3 = 4. Multiply 4 × 3 = 12, subtract 12 − 12 = 0. Quotient is 204.',
+  'bodha.D4.where': 'Distributing panchayat scholarship funds and packing railway textbook crates.',
+  'bodha.D4.sutra':
+    'Divide, multiply, subtract, bring down: if a house cannot share, write zero before you open the next door.',
+  'gloss.long-division':
+    'A systematic algorithm to divide large numbers place value by place value.',
+  'gloss.long-division.en': 'long division',
+  'longdiv.title': 'The long division algorithm',
+  'longdiv.art': 'A columnar long division frame showing the four-beat rhythm and the Zero Gate.',
+  'longdiv.s1': 'Follow the four beats (Divide, Multiply, Subtract, Bring down) for 824 ÷ 4.',
+  'longdiv.s1done': '824 ÷ 4 = 206 solved through systematic columnar sharing.',
+  'longdiv.s2': 'Solve 612 ÷ 3 and guard the Zero Gate.',
+  'longdiv.s2done': 'The Zero Gate guarded: 612 ÷ 3 = 204.',
+  'longdiv.s3': 'Validate long division answers using inverse multiplication.',
+  'longdiv.s3done': 'Verified: 204 × 3 = 612.',
+  'mistake.D4.intro': 'Kabir divided 824 by 4 and got 26. One step went wrong. Which one?',
+  'mistake.D4.s1': 'Divide hundreds: 8 ÷ 4 = 2. 2 hundreds placed in quotient.',
+  'mistake.D4.s2':
+    'Bring down 2 tens. Since 4 does not fit into 2, he pulled down 4 ones directly without writing 0.',
+  'mistake.D4.s3': 'Divide 24 by 4 = 6, writing 26 as the final quotient.',
+  'mistake.D4.fine1': 'That is sound: 8 ÷ 4 = 2 in the hundreds place is correct.',
+  'mistake.D4.found':
+    'Here. When 2 tens cannot be divided by 4, he MUST write 0 in the tens house! Without 0, 206 becomes 26—an error of nearly 180.',
+  'mistake.D4.fine3':
+    '24 ÷ 4 = 6 is mathematically true, but placing it immediately next to 2 created 26 instead of 206.',
+  'explain.D4.s':
+    'If a brought-down house cannot share, we write {0} in the quotient before opening the next {1}.',
+  'explain.D4.zero': 'zero',
+  'explain.D4.one': 'one',
+  'explain.D4.ten': 'ten',
+  'explain.D4.door': 'door',
+  'explain.D4.wall': 'wall',
+  'explain.D4.roof': 'roof',
+  'explain.D4.hint':
+    'What digit must be placed in the quotient house when the divisor cannot fit into the brought-down digit?',
+  'know.D4':
+    'Standard long division works place by place; writing zero for any house that cannot share prevents tenfold magnitude errors.',
 };

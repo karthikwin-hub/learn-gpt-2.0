@@ -83,7 +83,7 @@ export const SECTIONS: Section[] = [
           k('D1', { bench: bench('share', { mode: 'share' }) }),
           k('D2', { prashna: true, bench: bench('quotition') }),
           k('D3', { bench: bench('share', { mode: 'leftover' }) }),
-          k('D4'),
+          k('D4', { prashna: true, bench: bench('longdiv') }),
           k('A3'),
         ],
       },
