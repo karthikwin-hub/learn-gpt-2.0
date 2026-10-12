@@ -245,4 +245,14 @@ describe('Lesson registry', () => {
     expect(u3?.mistake?.wrong).toBe(1);
     expect(u3?.stateKey).toBe('timeclock');
   });
+
+  it('retrieves H1 Pictographs lesson', () => {
+    const h1 = getLesson('H1');
+    expect(h1).not.toBeNull();
+    expect(h1?.cards).toHaveLength(6);
+    expect(h1?.explain).toHaveLength(2);
+    expect(h1?.mistake?.steps).toBe(3);
+    expect(h1?.mistake?.wrong).toBe(1);
+    expect(h1?.stateKey).toBe('pictograph');
+  });
 });

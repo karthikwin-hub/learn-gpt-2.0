@@ -39,10 +39,10 @@ describe('src/domain/curriculum', () => {
     expect(ganitaKnots.length + vijnanaKnots.length + lokaKnots.length).toBe(74);
   });
 
-  it('identifies exactly 39 playable knots', () => {
+  it('identifies exactly 40 playable knots', () => {
     const allKnots = SECTIONS.flatMap((s) => s.threads.flatMap((th) => th.knots));
     const playableKnots = allKnots.filter(playable);
-    expect(playableKnots.length).toBe(39);
+    expect(playableKnots.length).toBe(40);
   });
 
   it('finds knot by id and determines its location', () => {

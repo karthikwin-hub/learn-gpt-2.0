@@ -99,5 +99,8 @@ describe('src/domain/math/index exports', () => {
     expect(typeof math.to12Hour).toBe('function');
     expect(typeof math.addMinutes).toBe('function');
     expect(typeof math.calculateDuration).toBe('function');
+    expect(typeof math.calculateTotalFromIcons).toBe('function');
+    expect(typeof math.iconsRequiredForCount).toBe('function');
+    expect(typeof math.validatePictographScale).toBe('function');
   });
 });
