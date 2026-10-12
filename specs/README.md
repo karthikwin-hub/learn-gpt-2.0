@@ -1,6 +1,6 @@
 # Specifications (`specs/`)
 
-This directory contains feature specifications, implementation plans, task checklists, progress handoffs, and verification evidence for Gurukul features (001–012), adhering to the Agentic Delivery Standard.
+This directory contains feature specifications, implementation plans, task checklists, progress handoffs, and verification evidence for Gurukul features (001–045), adhering to the Agentic Delivery Standard.
 
 ---
 
