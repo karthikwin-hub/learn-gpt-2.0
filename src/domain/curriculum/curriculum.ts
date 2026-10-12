@@ -113,7 +113,11 @@ export const SECTIONS: Section[] = [
       },
       {
         id: 'mana',
-        knots: [k('U1', { prashna: true, bench: bench('money') }), k('U2'), k('U3')],
+        knots: [
+          k('U1', { prashna: true, bench: bench('money') }),
+          k('U2', { prashna: true, bench: bench('metric') }),
+          k('U3'),
+        ],
       },
       {
         id: 'ankana',

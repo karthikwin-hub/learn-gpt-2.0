@@ -225,4 +225,14 @@ describe('Lesson registry', () => {
     expect(g8?.mistake?.wrong).toBe(1);
     expect(g8?.stateKey).toBe('views');
   });
+
+  it('retrieves U2 Metric Units lesson', () => {
+    const u2 = getLesson('U2');
+    expect(u2).not.toBeNull();
+    expect(u2?.cards).toHaveLength(6);
+    expect(u2?.explain).toHaveLength(2);
+    expect(u2?.mistake?.steps).toBe(3);
+    expect(u2?.mistake?.wrong).toBe(1);
+    expect(u2?.stateKey).toBe('metric');
+  });
 });

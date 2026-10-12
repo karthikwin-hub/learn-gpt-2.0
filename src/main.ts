@@ -45,6 +45,7 @@ import { createCubenetScreen } from './ui/components/screens/cubenet';
 import { createCircleScreen } from './ui/components/screens/circle';
 import { createTangramScreen } from './ui/components/screens/tangram';
 import { createViewsScreen } from './ui/components/screens/views';
+import { createMetricScreen } from './ui/components/screens/metric';
 import { createMoneyScreen } from './ui/components/screens/money';
 import { createDigestScreen } from './ui/components/screens/digest';
 import { createRampScreen } from './ui/components/screens/ramp';
@@ -109,6 +110,7 @@ export function initApp(): void {
   router.register(createCircleScreen());
   router.register(createTangramScreen());
   router.register(createViewsScreen());
+  router.register(createMetricScreen());
   router.register(createMoneyScreen());
   router.register(createDigestScreen());
   router.register(createRampScreen());
