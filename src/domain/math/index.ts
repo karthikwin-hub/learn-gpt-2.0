@@ -44,3 +44,4 @@ export * from './shear';
 export * from './cubenet';
 export * from './circle';
 export * from './tangram';
+export * from './views';

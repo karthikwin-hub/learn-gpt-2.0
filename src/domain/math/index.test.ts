@@ -86,5 +86,9 @@ describe('src/domain/math/index exports', () => {
     expect(typeof math.calculateSilhouetteArea).toBe('function');
     expect(typeof math.isAreaConserved).toBe('function');
     expect(typeof math.canTwoSmallTrianglesCompose).toBe('function');
+    expect(typeof math.projectOrthographicViews).toBe('function');
+    expect(typeof math.generateTopView).toBe('function');
+    expect(typeof math.generateFrontView).toBe('function');
+    expect(typeof math.generateSideView).toBe('function');
   });
 });

@@ -108,7 +108,7 @@ export const SECTIONS: Section[] = [
           k('G5', { prashna: true, bench: bench('cubenet') }),
           k('G6', { prashna: true, bench: bench('circle') }),
           k('G7', { prashna: true, bench: bench('tangram') }),
-          k('G8'),
+          k('G8', { prashna: true, bench: bench('views') }),
         ],
       },
       {
