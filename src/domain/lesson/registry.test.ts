@@ -195,4 +195,14 @@ describe('Lesson registry', () => {
     expect(g5?.mistake?.wrong).toBe(0);
     expect(g5?.stateKey).toBe('cubenet');
   });
+
+  it('retrieves G6 Circles lesson', () => {
+    const g6 = getLesson('G6');
+    expect(g6).not.toBeNull();
+    expect(g6?.cards).toHaveLength(6);
+    expect(g6?.explain).toHaveLength(2);
+    expect(g6?.mistake?.steps).toBe(3);
+    expect(g6?.mistake?.wrong).toBe(1);
+    expect(g6?.stateKey).toBe('circle');
+  });
 });

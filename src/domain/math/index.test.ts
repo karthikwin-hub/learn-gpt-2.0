@@ -78,5 +78,9 @@ describe('src/domain/math/index exports', () => {
     expect(typeof math.detectFaceCollisions).toBe('function');
     expect(typeof math.isValidCubeNet).toBe('function');
     expect(typeof math.getOppositeFacePairs).toBe('function');
+    expect(typeof math.diameterFromRadius).toBe('function');
+    expect(typeof math.radiusFromDiameter).toBe('function');
+    expect(typeof math.chordLength).toBe('function');
+    expect(typeof math.isChordDiameter).toBe('function');
   });
 });

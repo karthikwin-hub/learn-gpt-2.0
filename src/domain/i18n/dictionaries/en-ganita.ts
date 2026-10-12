@@ -1124,4 +1124,75 @@ export const dictionary: Record<string, string> = {
   'explain.G5.hint':
     'How many faces does a cube have, and what collision must a folding net avoid?',
   'know.G5': 'Six squares must fold without collision to close all six faces of a cube.',
+
+  /* G6 */
+  'prashna.G6.q':
+    'A bicycle wheel spoke goes straight from the centre axle to the outer rim and measures 30 cm. How wide is the wheel straight across through the centre?',
+  'prashna.G6.c1': '30 cm',
+  'prashna.G6.c2': '60 cm',
+  'prashna.G6.c3': '90 cm',
+  'prashna.G6.a':
+    '60 cm! The spoke is a radius (30 cm). The diameter straight across through the centre is two spokes in a straight line: 2 × 30 cm = 60 cm.',
+  'bodha.G6.what':
+    'A [[circle|circle]] is a round boundary where every single point is the exact same distance from the centre dot.',
+  'bodha.G6.can':
+    'You will be able to measure radius and diameter and see why diameter is always twice the radius through the centre.',
+  'bodha.G6.idea':
+    'Tie a rope to a central peg and pull it taut: as you walk around, the stick traces a circle of radius r.',
+  'bodha.G6.why':
+    'Diameter is two spokes stretched in a straight line passing through the centre: Diameter = 2 × Radius. Any other line across (chord) is shorter.',
+  'bodha.G6.example': 'A circle with radius 5 cm:',
+  'bodha.G6.example1': 'Radius from centre to rim is 5 cm.',
+  'bodha.G6.example2':
+    'Straight line through centre to opposite rim is 5 cm + 5 cm = 10 cm (Diameter = 10 cm).',
+  'bodha.G6.example3':
+    'A line across the circle that misses the centre is only 8 cm — shorter than the diameter!',
+  'bodha.G6.where':
+    'Bullock cart wheels, coins, bangles, rotary dials, round wells, and circular tracks.',
+  'bodha.G6.sutra':
+    'Every point on the rim is one radius away; through the centre, diameter is twice the radius.',
+  'gloss.circle':
+    'A closed curved shape where all boundary points are equidistant from a central point.',
+  'gloss.circle.en': 'circle',
+  'circle.title': 'Circles: Centre, Radius, Diameter',
+  'circle.art':
+    'Interactive circle compass with adjustable radius, centre point, and chord offset explorer.',
+  'circle.radius': 'Radius: {r} cm',
+  'circle.diameter': 'Diameter: {d} cm',
+  'circle.chord': 'Chord: {c} cm (Offset: {offset} cm)',
+  'circle.radiusSlider': 'Radius (cm)',
+  'circle.offsetSlider': 'Distance from Centre (cm)',
+  'circle.centreLine': 'Passes Through Centre (Diameter)',
+  'circle.offCentreLine': 'Off-Centre Chord',
+  'circle.formula': 'd = 2 × r = {d} cm',
+  'circle.chordFormula': 'Chord = 2 × √(r² - d²) = {c} cm',
+  'circle.s1': 'Adjust the radius slider to see the circle expand or shrink.',
+  'circle.s1done': 'Radius set to {r} cm; diameter through the centre is {d} cm.',
+  'circle.s2': 'Move the line offset away from the centre.',
+  'circle.s2done': 'When the line misses the centre, chord length decreases from {d} cm to {c} cm.',
+  'circle.s3': 'Return the line to offset 0 cm through the centre.',
+  'circle.s3done':
+    'At offset 0 cm, the line passes directly through the centre: it is the diameter!',
+  'mistake.G6.intro':
+    'Dev was measuring lines across a circle with radius 5 cm. One step went wrong. Which one?',
+  'mistake.G6.s1': 'Dev drew a circle with a radius of 5 cm from the centre peg.',
+  'mistake.G6.s2':
+    'He drew an 8 cm line near the top edge connecting two rim points and called it the diameter.',
+  'mistake.G6.s3': 'He concluded that the diameter of this circle is 8 cm.',
+  'mistake.G6.fine1': 'Sound step: drawing a circle of radius 5 cm is correct.',
+  'mistake.G6.fine3': 'Step 3 is based on his misidentification in Step 2.',
+  'mistake.G6.found':
+    'Here! A diameter MUST pass directly through the centre dot. A line that misses the centre is an off-centre chord, which is shorter than the true diameter (10 cm)!',
+  'explain.G6.s':
+    'The distance from the centre to any point on the rim is the {0}. A straight line through the centre connecting opposite points is the diameter, which is {1} the radius.',
+  'explain.G6.radius': 'radius',
+  'explain.G6.diameter': 'diameter',
+  'explain.G6.chord': 'chord',
+  'explain.G6.twice': 'twice',
+  'explain.G6.half': 'half',
+  'explain.G6.equal to': 'equal to',
+  'explain.G6.hint':
+    'What is the name for centre-to-rim, and how many times the radius is the diameter?',
+  'know.G6':
+    'Every point on the rim is one radius away; through the centre, diameter is twice the radius.',
 };
