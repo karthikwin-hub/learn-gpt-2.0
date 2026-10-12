@@ -18,4 +18,5 @@ export const D1_LESSON: LessonData = {
     { tiles: ['same', 'different', 'more'], expect: 'same' },
     { tiles: ['multiply', 'subtract', 'add'], expect: 'multiply' },
   ],
+  mistakeFrom: 'M4',
 };

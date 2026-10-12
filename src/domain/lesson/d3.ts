@@ -18,4 +18,5 @@ export const D3_LESSON: LessonData = {
     { tiles: ['plates', 'total', 'remainder'], expect: 'plates' },
     { tiles: ['fractions', 'mistakes', 'zeros'], expect: 'fractions' },
   ],
+  mistakeFrom: 'M4',
 };

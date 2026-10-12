@@ -446,7 +446,7 @@ export const dictionary: Record<string, string> = {
   'figure.L1.remainder2': 'remainder 2',
   'figure.L1.mistakeMult': '×1 and ×0 break "always bigger"',
   'figure.L1.whereCaption': 'Science, safety, maths proofs',
-  'figure.L2.gate': 'Marble gate',
+  'figure.L2.gate': 'Marble Gate',
   'figure.L2.bothOpen': 'OR: both open → marble passes',
   'figure.L2.whereCaption': 'Stairs, signals, chips',
   'figure.L3.nested': 'Nested sets P ⊆ Q',

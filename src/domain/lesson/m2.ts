@@ -27,4 +27,5 @@ export const M2_LESSON: LessonData = {
     { tiles: ['tiles', 'dots', 'lines'], expect: 'tiles' },
     { tiles: ['area', 'perimeter', 'shape'], expect: 'area' },
   ],
+  mistakeFrom: 'M4',
 };

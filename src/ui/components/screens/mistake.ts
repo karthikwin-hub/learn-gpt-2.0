@@ -22,8 +22,10 @@ export function createMistakeScreen(): ScreenMeta {
     title: 'mistake.title',
     render(view, state, params: Record<string, string> = {}) {
       const knotId = params.k || params.knot || getCurrentThread() || 'M4';
-      const mistakeData = getLesson(knotId)?.mistake;
-      if (!mistakeData) {
+      const lesson = getLesson(knotId);
+      const source = lesson?.mistake ? knotId : lesson?.mistakeFrom;
+      const mistakeData = source ? getLesson(source)?.mistake : undefined;
+      if (!source || !mistakeData) {
         renderLessonMissing(view, knotId, 'mistake');
         return;
       }
@@ -36,9 +38,9 @@ export function createMistakeScreen(): ScreenMeta {
         state.fine = [];
       }
 
-      const key = (k: string) => `mistake.${knotId}.${k}`;
-      const picture = getVisuals(knotId).mistake;
-      if (!picture) console.error(`No Spot-the-mistake picture for ${knotId}`);
+      const key = (k: string) => `mistake.${source}.${k}`;
+      const picture = getVisuals(source).mistake;
+      if (!picture) console.error(`No Spot-the-mistake picture for ${source}`);
 
       const say = el('p', { class: 'say', hidden: true });
       const pictureHolder = el('div', { class: 'model' });

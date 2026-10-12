@@ -61,12 +61,9 @@ function s1Cards(card: CardKey, step: number): SVGSVGElement {
 }
 
 function s2Cards(card: CardKey, step: number): SVGSVGElement {
-  if (card === 'what') return renderS2Multiples(0, false);
-  if (card === 'idea') {
-    const s = renderS2Multiples(0, true);
-    return s;
-  }
-  if (card === 'why') return renderS2Multiples(3, true);
+  if (card === 'what') return renderS2Rings(0, false);
+  if (card === 'idea') return renderS2Multiples(0, true);
+  if (card === 'why') return renderS2Rings(0, true);
   if (card === 'example') return renderS2Multiples(Math.min(step + 1, 3), false);
   const s = figSvg(360, 200, t('bodha.S2.where'));
   slateWhere(s, 'figure.S2.whereCaption');
@@ -93,7 +90,8 @@ function l1Cards(card: CardKey, step: number): SVGSVGElement {
 }
 
 function l2Cards(card: CardKey, step: number): SVGSVGElement {
-  if (card === 'what' || card === 'idea') return renderL2TruthTable(0);
+  if (card === 'what') return renderL2Gate(0, 'and');
+  if (card === 'idea') return renderL2Gate(2, 'and');
   if (card === 'why') return renderL2Gate(0, 'or');
   if (card === 'example') return renderL2TruthTable(Math.min(step + 1, 3));
   const s = figSvg(360, 200, t('bodha.L2.where'));

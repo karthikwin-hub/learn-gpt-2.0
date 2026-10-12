@@ -4,7 +4,12 @@
 
 import { findAllFactors, findFactorPairs, arrangeTiles } from '../../domain/math/factors';
 import { isPrime, sievePrimesUpTo } from '../../domain/math/primes';
-import { getDigits, getDigitSumSteps, testDivisibility } from '../../domain/math/divisibility';
+import {
+  getDigits,
+  getDigitSumSteps,
+  sumOfDigits,
+  testDivisibility,
+} from '../../domain/math/divisibility';
 import { classifyVennFactors } from '../../domain/math/hcf';
 import { rotateArrayDimensions } from '../../domain/math/rect';
 import { t } from '../../domain/i18n/core';
@@ -218,9 +223,8 @@ function f2Mistake(reveal: boolean): SVGSVGElement {
   return s;
 }
 
-function digitRow(n: number, highlightLast = false): SVGSVGElement {
+function drawDigits(s: SVGSVGElement, n: number, highlightLast: boolean): void {
   const digits = getDigits(n);
-  const s = figSvg(360, 80, String(n));
   digits.forEach((d, i) => {
     const last = i === digits.length - 1;
     s.appendChild(
@@ -232,6 +236,11 @@ function digitRow(n: number, highlightLast = false): SVGSVGElement {
     );
     s.appendChild(figText(100 + i * 44, 46, d, { size: 18, weight: 700 }));
   });
+}
+
+function digitRow(n: number, highlightLast = false): SVGSVGElement {
+  const s = figSvg(360, 80, String(n));
+  drawDigits(s, n, highlightLast);
   return s;
 }
 
@@ -279,10 +288,12 @@ function f3Cards(): LessonVisuals['cards'] {
 }
 
 function f3Mistake(reveal: boolean): SVGSVGElement {
+  const n = 43;
   const s = figSvg(360, 120, t('mistake.F3.intro'));
-  s.appendChild(digitRow(43, true));
+  drawDigits(s, n, true);
   if (reveal) {
-    s.appendChild(figText(180, 100, '4 + 3 = 7', { size: 14, color: KUM, weight: 700 }));
+    const sum = `${getDigits(n).join(' + ')} = ${sumOfDigits(n)}`;
+    s.appendChild(figText(180, 100, sum, { size: 14, color: KUM, weight: 700 }));
   }
   return s;
 }

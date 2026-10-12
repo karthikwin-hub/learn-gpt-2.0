@@ -33,6 +33,8 @@ export interface LessonData {
   content?: string;
   cards: BodhaCard[];
   mistake?: MistakeData;
+  /** Phase 1 lessons without their own Spot-the-mistake use this knot's (the prototype's flow). */
+  mistakeFrom?: string;
   explain?: ExplainTemplate;
   stateKey?: string;
 }
