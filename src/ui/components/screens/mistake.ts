@@ -5,7 +5,7 @@
  */
 
 import { t } from '../../../domain/i18n/core';
-import { getLesson } from '../../../domain/lesson/registry';
+import { getLesson, mistakeSource } from '../../../domain/lesson/registry';
 import { clear, el } from '../../util/dom';
 import { markupLine } from '../../util/markup';
 import { enterThread, getCurrentThread } from '../../util/thread';
@@ -22,8 +22,7 @@ export function createMistakeScreen(): ScreenMeta {
     title: 'mistake.title',
     render(view, state, params: Record<string, string> = {}) {
       const knotId = params.k || params.knot || getCurrentThread() || 'M4';
-      const lesson = getLesson(knotId);
-      const source = lesson?.mistake ? knotId : lesson?.mistakeFrom;
+      const source = mistakeSource(knotId);
       const mistakeData = source ? getLesson(source)?.mistake : undefined;
       if (!source || !mistakeData) {
         renderLessonMissing(view, knotId, 'mistake');

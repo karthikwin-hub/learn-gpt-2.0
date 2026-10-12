@@ -5,7 +5,6 @@
 
 import {
   DIGESTIVE_TRACT_ORDER,
-  ORGANS,
   isValidDigestiveSequence,
   isMainNutrientAbsorptionSite,
   type OrganId,
@@ -132,7 +131,7 @@ export function createDigestScreen(): ScreenMeta {
             'text-anchor': 'middle',
             'font-weight': isHigh ? 'bold' : 'normal',
           });
-          labelText.textContent = t(`dig.o.${id}`) || ORGANS[id].name;
+          labelText.textContent = t(`dig.o.${id}`);
           svgEl.appendChild(labelText);
         }
 
@@ -179,7 +178,7 @@ export function createDigestScreen(): ScreenMeta {
           const demoBtn = el('button', {
             class: 'btn primary block btn-follow',
             type: 'button',
-            text: t('dig.showMe') || 'Follow the roti',
+            text: t('dig.showMe'),
             onclick: runDemo,
           });
           actionsCard.appendChild(demoBtn);
@@ -193,7 +192,7 @@ export function createDigestScreen(): ScreenMeta {
               el('button', {
                 class: `btn chip${placed.includes(id) ? ' active' : ''}`,
                 type: 'button',
-                text: t(`dig.o.${id}`) || ORGANS[id].name,
+                text: t(`dig.o.${id}`),
                 onclick: () => handleTap(id),
               })
             );
@@ -203,14 +202,14 @@ export function createDigestScreen(): ScreenMeta {
           if (placed.length > 0) {
             const list = el('ol', { class: 'placed-list', style: { paddingLeft: '20px' } });
             for (const id of placed) {
-              list.appendChild(el('li', { text: t(`dig.o.${id}`) || ORGANS[id].name }));
+              list.appendChild(el('li', { text: t(`dig.o.${id}`) }));
             }
             actionsCard.appendChild(list);
           }
         } else if (currentStep === 3) {
           const choiceNotice = el('p', {
             class: 'muted small',
-            text: t('dig.s3') || 'Tap where most food passes into the blood.',
+            text: t('dig.s3'),
           });
           actionsCard.appendChild(choiceNotice);
 
@@ -223,7 +222,7 @@ export function createDigestScreen(): ScreenMeta {
               el('button', {
                 class: `btn chip btn-organ-${id}`,
                 type: 'button',
-                text: t(`dig.o.${id}`) || ORGANS[id].name,
+                text: t(`dig.o.${id}`),
                 onclick: () => handleTap(id),
               })
             );
@@ -235,7 +234,7 @@ export function createDigestScreen(): ScreenMeta {
           const nextBtn = el('button', {
             class: 'btn primary block btn-next',
             type: 'button',
-            text: t('bench.toMistake') || 'Spot the mistake',
+            text: t('bench.toMistake'),
             onclick: () => router.go('mistake'),
           });
           actionsCard.appendChild(nextBtn);

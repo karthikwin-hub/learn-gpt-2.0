@@ -71,4 +71,13 @@ export const dictionary: Record<string, string> = {
 
   'film.playIconLabel': 'Play',
   'film.pauseIconLabel': 'Pause',
+  'mistake.B3.eq':
+    'Food passes into the blood in the <r>small intestine</r>, not the <s>stomach</s>.',
+  'mistake.K2.eq':
+    '<s>Higher ramp and sand</s> together: change <r>only the floor</r>, keep the ramp the same.',
+  'mistake.R1.eq': 'Torch lower → shadow <s>shorter</s> <r>longer</r>',
+  'mistake.E1.eq':
+    'June is hot: not <s>closest to the Sun</s> but <r>our half leans toward the Sun</r>.',
+  'money.coins': 'Coins',
+  'money.notes': 'Notes',
 };

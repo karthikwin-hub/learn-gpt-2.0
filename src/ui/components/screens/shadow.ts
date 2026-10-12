@@ -171,7 +171,7 @@ export function createShadowScreen(): ScreenMeta {
         const readout = el('div', {
           class: 'shadow-readout',
           style: { marginTop: '8px', fontSize: '16px', fontWeight: 'bold' },
-          text: `${t('light.shadowLen', { n: lenDisplay }) || `Shadow: ${lenDisplay}`}`,
+          text: t('light.shadowLen', { n: lenDisplay }),
         });
         modelCard.appendChild(readout);
 
@@ -185,7 +185,7 @@ export function createShadowScreen(): ScreenMeta {
         const lampCol = el('div', { style: { textAlign: 'center' } }, [
           el('span', {
             style: { fontSize: '13px', display: 'block', marginBottom: '4px' },
-            text: t('light.lampHeight') || 'Lamp height',
+            text: t('light.lampHeight'),
           }),
           el('div', { style: { display: 'flex', gap: '6px', alignItems: 'center' } }, [
             el('button', {
@@ -216,7 +216,7 @@ export function createShadowScreen(): ScreenMeta {
         // Materials chips
         const matLabel = el('h4', {
           style: { margin: '0 0 8px 0' },
-          text: t('light.material') || 'Material',
+          text: t('light.material'),
         });
         actionsCard.appendChild(matLabel);
 
@@ -230,7 +230,7 @@ export function createShadowScreen(): ScreenMeta {
             el('button', {
               class: `btn chip${material === m ? ' active' : ''}`,
               type: 'button',
-              text: t(`light.m.${m}`) || m,
+              text: t(`light.m.${m}`),
               onclick: () => {
                 material = m;
                 if (m === 'cardboard') done = true;
@@ -245,7 +245,7 @@ export function createShadowScreen(): ScreenMeta {
           const nextBtn = el('button', {
             class: 'btn ghost block',
             type: 'button',
-            text: t('bench.toMistake') || 'Spot the mistake',
+            text: t('bench.toMistake'),
             onclick: () => router.go('mistake'),
           });
           actionsCard.appendChild(nextBtn);

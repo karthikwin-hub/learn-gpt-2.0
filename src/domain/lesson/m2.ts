@@ -22,10 +22,6 @@ export const M2_LESSON: LessonData = {
     { key: 'where' },
     { key: 'sutra' },
   ],
-  explain: [
-    { tiles: ['rows', 'tens', 'halves'], expect: 'rows' },
-    { tiles: ['tiles', 'dots', 'lines'], expect: 'tiles' },
-    { tiles: ['area', 'perimeter', 'shape'], expect: 'area' },
-  ],
   mistakeFrom: 'M4',
+  explainFrom: 'M4',
 };

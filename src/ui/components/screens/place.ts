@@ -36,7 +36,7 @@ export function createPlaceScreen(): ScreenMeta {
       const titleEl = el('h2', { class: 'screen-title', text: t('place.title') });
       const subEl = el('p', {
         class: 'screen-sub',
-        text: t('place.s1') || 'Slide digits into their houses to see how big numbers grow.',
+        text: t('place.s1'),
       });
 
       const displayCard = el('section', { class: 'card place-display', 'aria-live': 'polite' });
@@ -179,7 +179,7 @@ export function createPlaceScreen(): ScreenMeta {
       const addOneBtn = el('button', {
         class: 'btn primary',
         type: 'button',
-        text: t('place.addOne') || '+1 Bead',
+        text: t('place.addOne'),
         onclick: () => {
           currentVal = Math.min(999999999, currentVal + 1);
           update();
@@ -190,7 +190,7 @@ export function createPlaceScreen(): ScreenMeta {
         class: 'btn ghost',
         id: 'btn-reset',
         type: 'button',
-        text: t('action.reset') || 'Reset',
+        text: t('common.reset'),
         onclick: () => {
           currentVal = 0;
           update();

@@ -33,7 +33,7 @@ export function createFractionsScreen(): ScreenMeta {
       const titleEl = el('h2', { class: 'screen-title', text: t('frac.title') });
       const subEl = el('p', {
         class: 'screen-sub',
-        text: t('frac.s1') || 'Fold and align strips to find equal parts.',
+        text: t('frac.s1'),
       });
 
       const displayCard = el('section', { class: 'card frac-display', 'aria-live': 'polite' });
@@ -72,7 +72,7 @@ export function createFractionsScreen(): ScreenMeta {
 
         fracReadout.textContent = `${selCount}/${selDenom}`;
         const eqStrings = equivalents.map((eq) => `${eq.count}/${eq.denominator}`);
-        eqReadout.textContent = `${t('frac.same') || 'Equivalent'}: ${eqStrings.join(' = ')}`;
+        eqReadout.textContent = `${t('frac.same')}: ${eqStrings.join(' = ')}`;
 
         clear(stripsContainer);
         for (const row of rows) {
@@ -180,7 +180,7 @@ export function createFractionsScreen(): ScreenMeta {
         class: 'btn ghost',
         id: 'btn-reset',
         type: 'button',
-        text: t('action.reset') || 'Reset',
+        text: t('common.reset'),
         onclick: () => {
           selDenom = 2;
           selCount = 1;

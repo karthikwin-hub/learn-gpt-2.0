@@ -289,7 +289,7 @@ export const dictionary: Record<string, string> = {
   'bodha.M3.where': 'Spinning a rangoli grid, turning a woven mat, or flipping a tile tray.',
   'bodha.M3.sutra': 'Turn the rectangle: rows and columns swap, the square count does not.',
   'explain.M3.s':
-    'Turning an array swaps rows and columns; the total stays the {0} because no squares were added or removed.',
+    'After {0} an array, its rows and columns swap; the total stays the {1} because no squares were added or removed.',
   'explain.M3.turning': 'turning',
   'explain.M3.cutting': 'cutting',
   'explain.M3.adding': 'adding',

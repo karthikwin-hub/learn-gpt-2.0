@@ -15,8 +15,8 @@ export const D3_LESSON: LessonData = {
     { key: 'sutra' },
   ],
   explain: [
-    { tiles: ['plates', 'total', 'remainder'], expect: 'plates' },
-    { tiles: ['fractions', 'mistakes', 'zeros'], expect: 'fractions' },
+    { tiles: ['hide', 'cut', 'keep'], expect: 'cut' },
+    { tiles: ['whole', 'plate', 'fraction'], expect: 'fraction' },
   ],
   mistakeFrom: 'M4',
 };

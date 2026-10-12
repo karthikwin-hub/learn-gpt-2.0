@@ -7,7 +7,7 @@
 
 import { findKnot } from '../../../domain/curriculum/curriculum';
 import { t } from '../../../domain/i18n/core';
-import { getLesson } from '../../../domain/lesson/registry';
+import { explainSource, getLesson } from '../../../domain/lesson/registry';
 import { pothi } from '../../../persistence/pothi';
 import { storage } from '../../../persistence/storage';
 import { createStepGuide } from '../../util/bench';
@@ -18,9 +18,10 @@ import { voice } from '../voice/voice';
 import { renderLessonMissing } from './lesson-missing';
 
 export function sentenceText(thread: string, fills: string[]): string {
-  let s = t(`explain.${thread}.s`);
+  const id = explainSource(thread) || thread;
+  let s = t(`explain.${id}.s`);
   (fills || []).forEach((f, i) => {
-    s = s.replace(`{${i}}`, t(`explain.${thread}.${f}`));
+    s = s.replace(`{${i}}`, t(`explain.${id}.${f}`));
   });
   return s;
 }
@@ -35,7 +36,8 @@ export function renderSentence(
   } = {}
 ): HTMLElement {
   const p = el('p', { class: 'sentence' });
-  const src = t(`explain.${thread}.s`);
+  const id = explainSource(thread) || thread;
+  const src = t(`explain.${id}.s`);
   const parts = src
     .split(/(\{\d\})/)
     .filter(Boolean)
@@ -51,7 +53,7 @@ export function renderSentence(
     }
 
     const f = fills[part.blank];
-    const tileText = f ? t(`explain.${thread}.${f}`) : '…';
+    const tileText = f ? t(`explain.${id}.${f}`) : '…';
 
     if (opts.interactive && opts.onBlank) {
       p.appendChild(
@@ -79,7 +81,8 @@ export function createExplainScreen(): ScreenMeta {
     title: 'explain.title',
     render(view, state, params: Record<string, string> = {}) {
       const thread = params.k || params.knot || getCurrentThread() || 'M4';
-      const lessonTpl = getLesson(thread)?.explain;
+      const source = explainSource(thread);
+      const lessonTpl = source ? getLesson(source)?.explain : undefined;
       if (!lessonTpl) {
         renderLessonMissing(view, thread, 'explain');
         return;
@@ -131,7 +134,7 @@ export function createExplainScreen(): ScreenMeta {
               type: 'button',
               class: 'chip',
               'aria-pressed': String(fills()[activeBlankIdx] === tileKey),
-              text: t(`explain.${thread}.${tileKey}`),
+              text: t(`explain.${source}.${tileKey}`),
               onclick: () => {
                 const next = [...fills()];
                 next[activeBlankIdx] = tileKey;
@@ -169,7 +172,7 @@ export function createExplainScreen(): ScreenMeta {
       function keep(): void {
         if (!matches() && !state.hinted) {
           state.hinted = true;
-          hint.textContent = `${t(`explain.${thread}.hint`)} ${t('explain.hintTail')}`;
+          hint.textContent = `${t(`explain.${source}.hint`)} ${t('explain.hintTail')}`;
           hint.hidden = false;
           voice.say(hint.textContent, { noCaption: true });
           paint();

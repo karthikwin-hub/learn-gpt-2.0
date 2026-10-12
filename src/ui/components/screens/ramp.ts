@@ -148,7 +148,7 @@ export function createRampScreen(): ScreenMeta {
         const readout = el('div', {
           class: 'ramp-readout',
           style: { marginTop: '8px', fontSize: '16px', fontWeight: 'bold' },
-          text: `${t(`ramp.s.${surface}`) || surface}: ${dist}m (${t('ramp.pretend') || 'model metres'})`,
+          text: `${t(`ramp.s.${surface}`)}: ${dist}m (${t('ramp.pretend')})`,
         });
         modelCard.appendChild(readout);
 
@@ -157,7 +157,7 @@ export function createRampScreen(): ScreenMeta {
 
         const surfaceLabel = el('h4', {
           style: { margin: '0 0 8px 0' },
-          text: t('ramp.surface') || 'Surface texture',
+          text: t('ramp.floor'),
         });
         actionsCard.appendChild(surfaceLabel);
 
@@ -171,7 +171,7 @@ export function createRampScreen(): ScreenMeta {
             el('button', {
               class: `btn chip${surface === s ? ' active' : ''}`,
               type: 'button',
-              text: t(`ramp.s.${s}`) || s,
+              text: t(`ramp.s.${s}`),
               onclick: () => {
                 const prevRun: RampRun = { height, surface, car: 'blue' };
                 surface = s;
@@ -191,7 +191,7 @@ export function createRampScreen(): ScreenMeta {
         const rollBtn = el('button', {
           class: 'btn primary block btn-roll',
           type: 'button',
-          text: t('ramp.showMe') || 'Roll the car',
+          text: t('ramp.showMe'),
           onclick: () => {
             const d = rollDistance(height, surface);
             say.textContent = t('ramp.rolledSay', { d, surface: t(`ramp.s.${surface}`) });
@@ -206,7 +206,7 @@ export function createRampScreen(): ScreenMeta {
             class: 'btn ghost block',
             type: 'button',
             style: { marginTop: '12px' },
-            text: t('bench.toMistake') || 'Spot the mistake',
+            text: t('bench.toMistake'),
             onclick: () => router.go('mistake'),
           });
           actionsCard.appendChild(nextBtn);

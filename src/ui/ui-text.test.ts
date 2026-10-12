@@ -33,7 +33,13 @@ function staticText(node: ts.Node): string | null {
   if (ts.isTemplateExpression(node)) {
     return [node.head.text, ...node.templateSpans.map((s) => s.literal.text)].join(' ');
   }
-  if (ts.isBinaryExpression(node) && node.operatorToken.kind === ts.SyntaxKind.PlusToken) {
+  if (ts.isParenthesizedExpression(node)) return staticText(node.expression);
+  if (
+    ts.isBinaryExpression(node) &&
+    (node.operatorToken.kind === ts.SyntaxKind.PlusToken ||
+      node.operatorToken.kind === ts.SyntaxKind.BarBarToken ||
+      node.operatorToken.kind === ts.SyntaxKind.QuestionQuestionToken)
+  ) {
     return [staticText(node.left), staticText(node.right)].filter(Boolean).join(' ');
   }
   if (ts.isConditionalExpression(node)) {
@@ -98,6 +104,19 @@ function scan(file: string): string[] {
       const shown = TEXT_CALLS.has(callee) ? n.arguments[2] : undefined;
       if (shown && hasWords(staticText(shown))) {
         found.push(`${where(shown)} ${callee}(${shown.getText().slice(0, 50)})`);
+      }
+      const childText =
+        callee === 'createTextNode'
+          ? [n.arguments[0]]
+          : callee === 'el' && n.arguments[2]
+            ? ts.isArrayLiteralExpression(n.arguments[2])
+              ? [...n.arguments[2].elements]
+              : [n.arguments[2]]
+            : [];
+      for (const child of childText) {
+        if (child && hasWords(staticText(child))) {
+          found.push(`${where(child)} ${callee} child: ${child.getText().slice(0, 50)}`);
+        }
       }
       if (callee === 'setAttribute' && n.arguments.length === 2) {
         const [attr, value] = n.arguments;

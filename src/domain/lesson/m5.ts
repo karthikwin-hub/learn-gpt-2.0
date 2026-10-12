@@ -19,7 +19,7 @@ export const M5_LESSON: LessonData = {
     wrong: 1,
   },
   explain: [
-    { tiles: ['both', 'first', 'only'], expect: 'both' },
-    { tiles: ['smallest', 'largest', 'total'], expect: 'smallest' },
+    { tiles: ['one', 'neither', 'both'], expect: 'both' },
+    { tiles: ['smallest', 'biggest', 'last'], expect: 'smallest' },
   ],
 };

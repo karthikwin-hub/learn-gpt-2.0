@@ -107,6 +107,20 @@ export function getLesson(knotId: string): LessonData | null {
   return LESSONS[knotId] || null;
 }
 
+/** The knot whose Spot-the-mistake this lesson uses: its own, or the one it borrows (Phase 1 flow). */
+export function mistakeSource(knotId: string): string | null {
+  const lesson = getLesson(knotId);
+  if (lesson?.mistake) return knotId;
+  return lesson?.mistakeFrom && getLesson(lesson.mistakeFrom)?.mistake ? lesson.mistakeFrom : null;
+}
+
+/** The knot whose Explain-it-back sentence this lesson uses: its own, or the one it borrows. */
+export function explainSource(knotId: string): string | null {
+  const lesson = getLesson(knotId);
+  if (lesson?.explain) return knotId;
+  return lesson?.explainFrom && getLesson(lesson.explainFrom)?.explain ? lesson.explainFrom : null;
+}
+
 export function registerLesson(lesson: LessonData): void {
   LESSONS[lesson.knotId] = lesson;
 }

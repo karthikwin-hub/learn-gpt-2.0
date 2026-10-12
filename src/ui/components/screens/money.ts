@@ -44,7 +44,7 @@ export function createMoneyScreen(): ScreenMeta {
       const titleEl = el('h2', { class: 'screen-title', text: t('money.title') });
       const subEl = el('p', {
         class: 'screen-sub',
-        text: t('money.s1') || 'Count coins and exchange 100 paise for ₹1.',
+        text: t('money.s1'),
       });
 
       const displayCard = el('section', { class: 'card money-display', 'aria-live': 'polite' });
@@ -101,8 +101,8 @@ export function createMoneyScreen(): ScreenMeta {
         const notes = DENOMINATIONS.filter((d) => d.type === 'note');
 
         const groups = [
-          { name: t('money.coins') || 'Coins', items: coins },
-          { name: t('money.notes') || 'Notes', items: notes },
+          { name: t('money.coins'), items: coins },
+          { name: t('money.notes'), items: notes },
         ];
 
         for (const grp of groups) {
@@ -255,7 +255,7 @@ export function createMoneyScreen(): ScreenMeta {
         class: 'btn ghost',
         id: 'btn-reset',
         type: 'button',
-        text: t('action.reset') || 'Reset',
+        text: t('common.reset'),
         onclick: () => {
           drawer = createEmptyDrawer();
           update();
