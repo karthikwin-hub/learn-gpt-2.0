@@ -52,3 +52,4 @@ export * from './bargraph';
 export * from './sequences';
 export * from './growing';
 export * from './singleset';
+export * from './counterexample';

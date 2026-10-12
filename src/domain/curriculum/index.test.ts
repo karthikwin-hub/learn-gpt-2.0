@@ -39,10 +39,10 @@ describe('src/domain/curriculum', () => {
     expect(ganitaKnots.length + vijnanaKnots.length + lokaKnots.length).toBe(74);
   });
 
-  it('identifies exactly 44 playable knots', () => {
+  it('identifies exactly 45 playable knots', () => {
     const allKnots = SECTIONS.flatMap((s) => s.threads.flatMap((th) => th.knots));
     const playableKnots = allKnots.filter(playable);
-    expect(playableKnots.length).toBe(44);
+    expect(playableKnots.length).toBe(45);
   });
 
   it('finds knot by id and determines its location', () => {
@@ -71,6 +71,9 @@ describe('src/domain/curriculum', () => {
 
     const s3 = findKnot('S3')!;
     expect(firstStep(s3)).toEqual({ route: 'prashna', params: { k: 'S3' } });
+
+    const l1 = findKnot('L1')!;
+    expect(firstStep(l1)).toEqual({ route: 'prashna', params: { k: 'L1' } });
   });
 
   it('resolves afterBodha route', () => {

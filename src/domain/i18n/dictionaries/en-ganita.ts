@@ -1830,4 +1830,57 @@ export const dictionary: Record<string, string> = {
   'explain.S3.hint':
     'Think about whether rules can have exceptions in a set, and what you must do when a counter-example is found.',
   'know.S3': 'Look at what is inside and what was left out: the rule must fit all of them.',
+
+  /* L1 */
+  'prashna.L1.q':
+    'Someone says: "Every number that ends in 4 can be shared equally by 4 friends without remainder." Is this statement true?',
+  'prashna.L1.c1': 'Yes, because 4, 24, and 44 all divide by 4',
+  'prashna.L1.c2': 'No, because 14 ends in 4 but leaves a remainder of 2',
+  'prashna.L1.c3': 'Yes, all numbers ending in 4 divide by 4',
+  'prashna.L1.a':
+    '14 ends in 4, but 14 ÷ 4 = 3 with a remainder of 2! A single counterexample proves that the rule is NOT always true.',
+  'bodha.L1.what':
+    'A universal statement says something is ALWAYS true for all numbers or objects.',
+  'bodha.L1.can':
+    'Test universal claims across multiple numbers, spot disproving counterexamples, and distinguish positive examples from proof.',
+  'bodha.L1.idea':
+    'To prove a statement FALSE, you do not need a hundred reasons: you only need ONE single counterexample!',
+  'bodha.L1.why':
+    'Seeing a thousand white swans does not prove all swans are white; spotting one black swan proves the rule wrong.',
+  'bodha.L1.example': 'Testing a universal claim:',
+  'bodha.L1.example1':
+    'Step 1: Statement: "All prime numbers are odd." Test 3, 5, 7, 11 (all odd).',
+  'bodha.L1.example2': 'Step 2: But 2 is a prime number, and 2 is even!',
+  'bodha.L1.example3': 'Step 3: The single number 2 disproves the entire claim!',
+  'bodha.L1.where': 'Scientific laws, safety rules, mathematics proofs, and legal arguments.',
+  'bodha.L1.sutra':
+    'A thousand examples cannot prove "always", but one counterexample disproves it.',
+  'counterexample.title': 'True for All? (Universal Claims & Counterexamples)',
+  'counterexample.lead':
+    'Test universal statements across numbers and search for a single counterexample that disproves the claim.',
+  'counterexample.claim': 'Universal Claim:',
+  'counterexample.status_holds': 'Holds for all tested items',
+  'counterexample.status_disproved': 'Disproved by counterexample!',
+  'counterexample.test_item': 'Test Candidate',
+  'counterexample.reset': 'Reset',
+  'mistake.L1.intro':
+    'Rahul claims: "Multiplying any two numbers always makes a strictly bigger number":',
+  'mistake.L1.s1': 'He checks 3 × 4 = 12, noting 12 is bigger than 3 and 4.',
+  'mistake.L1.s2': 'He lists 5 × 6 = 30 and claims the rule must hold for all numbers.',
+  'mistake.L1.s3': 'He ignores boundary numbers like 1 and 0.',
+  'mistake.L1.fine1': 'Accurate calculation: 3 × 4 is indeed 12.',
+  'mistake.L1.fine3': 'Step 3 fails because boundary cases can serve as counterexamples.',
+  'mistake.L1.found':
+    'Here! 5 × 1 = 5 (equal) and 5 × 0 = 0 (smaller). A single counterexample disproves "always"!',
+  'explain.L1.s':
+    'To disprove a claim that says "always", you only need to find {0} counterexample. Even if a hundred examples work, a single exception proves the claim is {1}.',
+  'explain.L1.one': 'one',
+  'explain.L1.many': 'many',
+  'explain.L1.ten': 'ten',
+  'explain.L1.false': 'false',
+  'explain.L1.true': 'true',
+  'explain.L1.proven': 'proven',
+  'explain.L1.hint':
+    'Think about how many exceptions are needed to break a rule that claims to be true for all.',
+  'know.L1': 'A thousand examples cannot prove "always", but one counterexample disproves it.',
 };
