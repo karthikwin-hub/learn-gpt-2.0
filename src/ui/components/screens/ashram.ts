@@ -6,7 +6,7 @@ import { SECTIONS, findKnot, knotsIn } from '../../../domain/curriculum/curricul
 import { t } from '../../../domain/i18n/core';
 import { storage } from '../../../persistence/storage';
 import { renderBanyanTree, renderShalaMotif } from '../../diagrams/banyan';
-import { el, toast } from '../../util/dom';
+import { el, svg, toast } from '../../util/dom';
 import { router, type ScreenMeta } from '../app/router';
 
 export function createAshramScreen(): ScreenMeta {
@@ -41,10 +41,22 @@ export function createAshramScreen(): ScreenMeta {
               },
             },
             [
-              el('span', {
-                class: 'thumb',
-                html: '<svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M8 5l8 7-8 7"/></svg>',
-              }),
+              el('span', { class: 'thumb' }, [
+                svg(
+                  'svg',
+                  {
+                    viewBox: '0 0 24 24',
+                    width: '28',
+                    height: '28',
+                    fill: 'none',
+                    stroke: 'currentColor',
+                    'stroke-width': '2',
+                    'stroke-linecap': 'round',
+                    'aria-hidden': 'true',
+                  },
+                  [svg('path', { d: 'M8 5l8 7-8 7' })]
+                ),
+              ]),
               el('span', {}, [
                 el('span', { class: 'label', text: t('home.continue') }),
                 el('br'),

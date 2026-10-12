@@ -9,7 +9,7 @@ import { getLang, t, tIn } from '../../../domain/i18n/core';
 import { getLesson } from '../../../domain/lesson/registry';
 import type { BodhaCard } from '../../../domain/lesson/types';
 import { storage } from '../../../persistence/storage';
-import { el } from '../../util/dom';
+import { clear, el } from '../../util/dom';
 import { plainText, TERM_REGEX } from '../../util/markup';
 import { enterThread } from '../../util/thread';
 import { router, type ScreenMeta } from '../app/router';
@@ -146,7 +146,7 @@ export function createBodhaScreen(): ScreenMeta {
       });
 
       const onTerm = (id: string, shown: string) => {
-        bridge.innerHTML = '';
+        clear(bridge);
         bridge.hidden = false;
         bridge.appendChild(el('p', { class: 'bridge-word', text: shown }));
         bridge.appendChild(el('p', { text: t(`gloss.${id}`) }));

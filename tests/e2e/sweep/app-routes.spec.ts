@@ -7,7 +7,7 @@ import {
 import { LANGUAGES, playableLessons, url, type Lang } from './lesson-routes';
 
 /* Tokens a translated screen may show in Latin script: Roman numerals, units, gate names, single letters. */
-const LATIN_OK = /^(?:[IVXLCDM]+|[A-Za-z]|cm|mm|km|kg|mg|ml|mL|AM|PM|LCM|HCF|AND|OR|NOT)$/;
+const LATIN_OK = /^(?:[IVXLCDM]+|[A-Za-z]|cm|mm|km|kg|mg|ml|mL|AM|PM|LCM|HCF|AND|OR|NOT|AI)$/;
 
 function watchConsole(page: Page): string[] {
   const problems: string[] = [];

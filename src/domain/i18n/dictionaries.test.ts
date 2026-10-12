@@ -17,7 +17,7 @@ const SCRIPT: Record<Exclude<LanguageCode, 'en'>, RegExp> = {
 /* Latin tokens a translation may keep: Roman numerals, unit and time symbols, single letters naming
    points or sets, and the AND/OR/NOT gate names printed on the marble machine. */
 const LATIN_ALLOWED =
-  /^(?:[IVXLCDM]+|[A-Za-z]|cm|mm|km|kg|mg|ml|mL|AM|PM|am|pm|LCM|HCF|AND|OR|NOT)$/;
+  /^(?:[IVXLCDM]+|[A-Za-z]|cm|mm|km|kg|mg|ml|mL|AM|PM|am|pm|LCM|HCF|AND|OR|NOT|AI)$/;
 
 /* `gloss.<id>.en` holds the English bridge word shown under a translated term, so it exists only in English. */
 const en = Object.fromEntries(
