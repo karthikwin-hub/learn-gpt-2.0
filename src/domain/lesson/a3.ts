@@ -19,7 +19,6 @@ export const A3_LESSON: LessonData = {
   mistake: {
     steps: 3,
     wrong: 1,
-    eq: () => '40 - 15 = 25 (not <span class="r-txt">55</span>)',
   },
   explain: [
     { tiles: ['difference', 'sum', 'product'], expect: 'difference' },

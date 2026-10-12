@@ -18,7 +18,6 @@ export const N2_LESSON: LessonData = {
   mistake: {
     steps: 4,
     wrong: 2,
-    eq: () => '40 + 5 = <span class="r-txt">VL</span>',
   },
   explain: [
     { tiles: ['subtracts', 'adds', 'multiplies'], expect: 'subtracts' },

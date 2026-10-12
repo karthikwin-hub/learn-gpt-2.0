@@ -22,6 +22,5 @@ export const E4_LESSON: LessonData = {
   mistake: {
     steps: 4,
     wrong: 2,
-    eq: () => '10 + 10 + 10 = 3 × 10 = 30 m',
   },
 };

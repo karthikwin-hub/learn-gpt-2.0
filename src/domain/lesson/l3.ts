@@ -18,8 +18,6 @@ export const L3_LESSON: LessonData = {
   mistake: {
     steps: 3,
     wrong: 1,
-    eq: () =>
-      'Having 4 sides does not guarantee being a square: rectangles, kites, and trapezoids also have <span class="r-txt">4 sides</span> without being squares',
   },
   explain: [
     { tiles: ['forward', 'reverse', 'opposite'], expect: 'forward' },

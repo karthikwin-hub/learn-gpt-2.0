@@ -12,6 +12,7 @@ import {
 } from '../../../domain/math/estimate';
 import { t } from '../../../domain/i18n/core';
 import { clear, el, svg } from '../../util/dom';
+import { readStep } from '../../util/bench';
 import { enterThread } from '../../util/thread';
 import { router, type ScreenMeta } from '../app/router';
 
@@ -25,11 +26,7 @@ export function createEstimateScreen(): ScreenMeta {
     render(view, state, params = {}) {
       enterThread('A2', 'estimate', params);
 
-      let stepNum = params.step
-        ? Number(params.step)
-        : typeof state.step === 'number'
-          ? state.step
-          : 1;
+      let stepNum = readStep(params.step, state.step, 3);
 
       let snapped48 = Boolean(state.snapped48);
       let snapped392 = Boolean(state.snapped392);

@@ -1,30 +1,21 @@
 /**
  * Explain It Back screen: The child builds one sentence from word tiles,
  * then keeps it as a notebook page (Nididhyasana movement).
+ * If the sentence does not match the model, a gentle hint points back to the idea once;
+ * the child can still keep their own sentence (US3-AS2).
  */
 
+import { findKnot } from '../../../domain/curriculum/curriculum';
 import { t } from '../../../domain/i18n/core';
 import { getLesson } from '../../../domain/lesson/registry';
-import type { ExplainTemplate } from '../../../domain/lesson/types';
 import { pothi } from '../../../persistence/pothi';
+import { storage } from '../../../persistence/storage';
+import { createStepGuide } from '../../util/bench';
 import { clear, el } from '../../util/dom';
 import { enterThread, getCurrentThread } from '../../util/thread';
 import { router, type ScreenMeta } from '../app/router';
-
-const FALLBACK_M4: ExplainTemplate = [
-  { tiles: ['rows', 'tens', 'halves'], expect: 'tens' },
-  { tiles: ['room', 'digit', 'row'], expect: 'room' },
-  { tiles: ['multiply', 'subtract', 'add'], expect: 'add' },
-];
-
-const DEFAULT_TEMPLATES: Record<string, ExplainTemplate> = {
-  M4: FALLBACK_M4,
-  M2: [
-    { tiles: ['rows', 'tens', 'halves'], expect: 'rows' },
-    { tiles: ['tiles', 'dots', 'lines'], expect: 'tiles' },
-    { tiles: ['area', 'perimeter', 'shape'], expect: 'area' },
-  ],
-};
+import { voice } from '../voice/voice';
+import { renderLessonMissing } from './lesson-missing';
 
 export function sentenceText(thread: string, fills: string[]): string {
   let s = t(`explain.${thread}.s`);
@@ -87,36 +78,45 @@ export function createExplainScreen(): ScreenMeta {
     step: 'explain',
     title: 'explain.title',
     render(view, state, params: Record<string, string> = {}) {
-      const thread = params.knot || params.k || getCurrentThread() || 'M4';
-      enterThread(thread, 'explain');
-
-      const lesson = getLesson(thread);
-      const tpl: ExplainTemplate = lesson?.explain || DEFAULT_TEMPLATES[thread] || FALLBACK_M4;
+      const thread = params.k || params.knot || getCurrentThread() || 'M4';
+      const lessonTpl = getLesson(thread)?.explain;
+      if (!lessonTpl) {
+        renderLessonMissing(view, thread, 'explain');
+        return;
+      }
+      const tpl = lessonTpl;
+      enterThread(thread, 'explain', { k: thread });
 
       if (state.thread !== thread) {
         state.thread = thread;
         state.fills = [];
         state.active = 0;
+        state.hinted = false;
       }
 
       const holder = el('div');
       const tilesContainer = el('div', { class: 'tiles' });
-      const actions = el('div', { class: 'btn-row' });
+      const hint = el('p', { class: 'say explain-hint', hidden: true, 'aria-live': 'polite' });
+      const actions = el('div', { class: 'btn-row explain-actions' });
+      const fills = (): string[] => (state.fills as string[]) || [];
 
-      function isComplete(): boolean {
-        const fills = (state.fills as string[]) || [];
-        return tpl.every((_, i) => !!fills[i]);
+      const isComplete = () => tpl.every((_, i) => !!fills()[i]);
+      const matches = () => tpl.every((blank, i) => fills()[i] === blank.expect);
+
+      function clearHint(): void {
+        state.hinted = false;
+        hint.hidden = true;
       }
 
       function paint(): void {
         clear(holder);
-        const fills = (state.fills as string[]) || [];
         holder.appendChild(
-          renderSentence(thread, fills, {
+          renderSentence(thread, fills(), {
             interactive: true,
             active: Number(state.active || 0),
             onBlank: (i) => {
               state.active = i;
+              clearHint();
               paint();
             },
           })
@@ -125,53 +125,74 @@ export function createExplainScreen(): ScreenMeta {
         clear(tilesContainer);
         const activeBlankIdx = Number(state.active || 0);
         const currentBlank = tpl[activeBlankIdx];
-
-        if (currentBlank) {
-          currentBlank.tiles.forEach((tileKey) => {
-            const isUsed = fills[activeBlankIdx] === tileKey;
-            tilesContainer.appendChild(
-              el('button', {
-                type: 'button',
-                class: `chip${isUsed ? ' used' : ''}`,
-                text: t(`explain.${thread}.${tileKey}`),
-                onclick: () => {
-                  fills[activeBlankIdx] = tileKey;
-                  state.fills = fills;
-                  // Advance to next unfilled blank
-                  const nextUnfilled = tpl.findIndex((_, idx) => !fills[idx]);
-                  if (nextUnfilled >= 0) {
-                    state.active = nextUnfilled;
-                  }
-                  paint();
-                },
-              })
-            );
-          });
-        }
+        currentBlank?.tiles.forEach((tileKey) => {
+          tilesContainer.appendChild(
+            el('button', {
+              type: 'button',
+              class: 'chip',
+              'aria-pressed': String(fills()[activeBlankIdx] === tileKey),
+              text: t(`explain.${thread}.${tileKey}`),
+              onclick: () => {
+                const next = [...fills()];
+                next[activeBlankIdx] = tileKey;
+                state.fills = next;
+                clearHint();
+                const nextUnfilled = tpl.findIndex((_, idx) => !next[idx]);
+                if (nextUnfilled >= 0) state.active = nextUnfilled;
+                paint();
+              },
+            })
+          );
+        });
 
         clear(actions);
         if (isComplete()) {
           actions.appendChild(
             el('button', {
+              class: 'btn quiet',
+              type: 'button',
+              text: t('explain.hear'),
+              onclick: () => voice.say(sentenceText(thread, fills())),
+            })
+          );
+          actions.appendChild(
+            el('button', {
               class: 'btn primary block',
               type: 'button',
-              text: t('explain.keep'),
-              onclick: () => {
-                const saved = pothi.savePage({
-                  thread,
-                  fills: (state.fills as string[]) || [],
-                  time: Date.now(),
-                  date: new Date().toISOString(),
-                });
-                router.go('stop', { page: saved.id });
-              },
+              text: state.hinted ? t('explain.keepAnyway') : t('explain.keep'),
+              onclick: keep,
             })
           );
         }
       }
 
+      function keep(): void {
+        if (!matches() && !state.hinted) {
+          state.hinted = true;
+          hint.textContent = `${t(`explain.${thread}.hint`)} ${t('explain.hintTail')}`;
+          hint.hidden = false;
+          voice.say(hint.textContent, { noCaption: true });
+          paint();
+          return;
+        }
+        const bench = findKnot(thread)?.bench;
+        const saved = pothi.savePage({
+          thread,
+          fills: fills(),
+          route: bench?.route,
+          params: bench?.params,
+        });
+        const done = storage.get<string[]>('done', []);
+        if (!done.includes(thread)) storage.set('done', [...done, thread]);
+        state.thread = null;
+        router.go('stop', { page: saved.id });
+      }
+
+      view.appendChild(createStepGuide(1, t('explain.intro')));
+      view.appendChild(el('p', { class: 'muted small explain-knot', text: t(`knot.${thread}.t`) }));
       view.appendChild(holder);
       view.appendChild(tilesContainer);
+      view.appendChild(hint);
       view.appendChild(actions);
 
       paint();

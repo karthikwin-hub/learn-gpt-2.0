@@ -18,8 +18,6 @@ export const S1_LESSON: LessonData = {
   mistake: {
     steps: 3,
     wrong: 1,
-    eq: () =>
-      'The rule only asks if the number ends in 5: 15 ends in 5, so it belongs <span class="r-txt">inside</span> the ring',
   },
   explain: [
     { tiles: ['rule', 'guess', 'color'], expect: 'rule' },

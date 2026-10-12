@@ -17,7 +17,6 @@ export const M5_LESSON: LessonData = {
   mistake: {
     steps: 3,
     wrong: 1,
-    eq: () => 'LCM(4, 6) = <span class="r-txt">12</span> ≠ 24',
   },
   explain: [
     { tiles: ['both', 'first', 'only'], expect: 'both' },

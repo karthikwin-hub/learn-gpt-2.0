@@ -19,8 +19,6 @@ export const F3_LESSON: LessonData = {
   mistake: {
     steps: 3,
     wrong: 1,
-    eq: () =>
-      '43: digit sum 4 + 3 = 7 (not divisible by 3; ending in 3 is a <span class="r-txt">trap!</span>)',
   },
   explain: [
     { tiles: ['digits', 'factors', 'ends'], expect: 'digits' },

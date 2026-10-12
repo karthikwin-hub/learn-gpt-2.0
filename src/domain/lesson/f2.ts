@@ -19,7 +19,6 @@ export const F2_LESSON: LessonData = {
   mistake: {
     steps: 3,
     wrong: 1,
-    eq: () => '9 is composite: 3 × 3 = 9 (has <span class="r-txt">3 factors</span>: 1, 3, 9)',
   },
   explain: [
     { tiles: ['two', 'three', 'one'], expect: 'two' },

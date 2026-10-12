@@ -18,6 +18,7 @@ import {
 } from '../../../domain/math/metric';
 import { t } from '../../../domain/i18n/core';
 import { clear, el } from '../../util/dom';
+import { readStep } from '../../util/bench';
 import { enterThread } from '../../util/thread';
 import { router, type ScreenMeta } from '../app/router';
 
@@ -31,11 +32,7 @@ export function createMetricScreen(): ScreenMeta {
     render(view, state, params = {}) {
       enterThread('U2', 'metric', params);
 
-      let stepNum = params.step
-        ? Number(params.step)
-        : typeof state.step === 'number'
-          ? state.step
-          : 1;
+      let stepNum = readStep(params.step, state.step, 3);
 
       let lengthVal = typeof state.lengthVal === 'number' ? state.lengthVal : 2.5;
       let lengthUnit = (state.lengthUnit as LengthUnit) || 'm';

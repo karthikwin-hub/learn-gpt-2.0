@@ -13,6 +13,15 @@ export interface StorageAdapter {
   keys(): string[];
 }
 
+const reported = new Set<string>();
+
+/* Storage can be blocked or full; the app keeps working in memory, but the failure must be visible. */
+function report(op: string, err: unknown): void {
+  if (reported.has(op)) return;
+  reported.add(op);
+  console.warn(`gurukul storage ${op} failed; progress may not be saved`, err);
+}
+
 export const storage: StorageAdapter = {
   get<T>(key: string, fallback: T): T {
     try {
@@ -25,7 +34,8 @@ export const storage: StorageAdapter = {
         // Fallback for unquoted raw strings (e.g. from init scripts)
         return raw as unknown as T;
       }
-    } catch {
+    } catch (err) {
+      report('read', err);
       return fallback;
     }
   },
@@ -34,8 +44,8 @@ export const storage: StorageAdapter = {
     try {
       if (typeof localStorage === 'undefined') return;
       localStorage.setItem(STORAGE_PREFIX + key, JSON.stringify(value));
-    } catch {
-      // Storage full or quota exceeded
+    } catch (err) {
+      report('write', err);
     }
   },
 
@@ -43,8 +53,8 @@ export const storage: StorageAdapter = {
     try {
       if (typeof localStorage === 'undefined') return;
       localStorage.removeItem(STORAGE_PREFIX + key);
-    } catch {
-      // Storage blocked
+    } catch (err) {
+      report('remove', err);
     }
   },
 
@@ -57,8 +67,8 @@ export const storage: StorageAdapter = {
           localStorage.removeItem(k);
         }
       }
-    } catch {
-      // Storage blocked
+    } catch (err) {
+      report('clear', err);
     }
   },
 
@@ -68,7 +78,8 @@ export const storage: StorageAdapter = {
       return Object.keys(localStorage)
         .filter((k) => k.startsWith(STORAGE_PREFIX))
         .map((k) => k.slice(STORAGE_PREFIX.length));
-    } catch {
+    } catch (err) {
+      report('list', err);
       return [];
     }
   },

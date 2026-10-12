@@ -16,6 +16,7 @@ import {
 } from '../../../domain/math/sequences';
 import { t } from '../../../domain/i18n/core';
 import { clear, el } from '../../util/dom';
+import { readStep } from '../../util/bench';
 import { enterThread } from '../../util/thread';
 import { router, type ScreenMeta } from '../app/router';
 
@@ -29,11 +30,7 @@ export function createSequencesScreen(): ScreenMeta {
     render(view, state, params = {}) {
       enterThread('L4', 'sequences', params);
 
-      let stepNum = params.step
-        ? Number(params.step)
-        : typeof state.step === 'number'
-          ? state.step
-          : 1;
+      let stepNum = readStep(params.step, state.step, 3);
 
       let currentTerms: number[] = Array.isArray(state.terms)
         ? (state.terms as number[])

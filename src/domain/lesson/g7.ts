@@ -18,8 +18,6 @@ export const G7_LESSON: LessonData = {
   mistake: {
     steps: 3,
     wrong: 1,
-    eq: () =>
-      'Height does not determine area; rearranging the same 7 pieces leaves total area <span class="r-txt">strictly equal</span>',
   },
   explain: [
     { tiles: ['unchanged', 'larger', 'smaller'], expect: 'unchanged' },

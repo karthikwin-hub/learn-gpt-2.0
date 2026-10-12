@@ -242,9 +242,12 @@ export function createDigestScreen(): ScreenMeta {
         }
       }
 
+      let interval: ReturnType<typeof setInterval> | undefined;
+
       function runDemo(): void {
+        clearInterval(interval);
         let idx = 0;
-        const interval = setInterval(() => {
+        interval = setInterval(() => {
           if (idx < DIGESTIVE_TRACT_ORDER.length) {
             const organId = DIGESTIVE_TRACT_ORDER[idx]!;
             currentAt = organId;
@@ -298,6 +301,7 @@ export function createDigestScreen(): ScreenMeta {
       view.appendChild(actionsCard);
 
       paint();
+      return () => clearInterval(interval);
     },
   };
 }

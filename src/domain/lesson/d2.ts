@@ -18,7 +18,6 @@ export const D2_LESSON: LessonData = {
   mistake: {
     steps: 3,
     wrong: 2,
-    eq: () => '15 ÷ 3 = 5 (not <span class="r-txt">12</span> after 1 hop)',
   },
   explain: [
     { tiles: ['groups', 'plates', 'adds'], expect: 'groups' },

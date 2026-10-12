@@ -6,6 +6,7 @@ import {
   testTileFit,
   simplifyFractionByHCF,
 } from './hcf';
+import { gcd } from './multiply';
 
 describe('domain/math/hcf', () => {
   it('computes HCF accurately using Euclid algorithm', () => {
@@ -72,5 +73,11 @@ describe('domain/math/hcf', () => {
       simplifiedDen: 3,
       hcf: 8,
     });
+  });
+});
+
+describe('046 one owner for HCF (FR-006)', () => {
+  it('gcd used by fractions and division is the same function as calculateHCF', () => {
+    expect(gcd).toBe(calculateHCF);
   });
 });

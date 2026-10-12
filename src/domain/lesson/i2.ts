@@ -22,6 +22,5 @@ export const I2_LESSON: LessonData = {
   mistake: {
     steps: 4,
     wrong: 1,
-    eq: () => '49 + 1 + 49 = <span class="r">99</span>',
   },
 };

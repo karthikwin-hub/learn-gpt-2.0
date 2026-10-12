@@ -18,8 +18,6 @@ export const L4_LESSON: LessonData = {
   mistake: {
     steps: 3,
     wrong: 1,
-    eq: () =>
-      'The rule is multiplying by 2: next term is 16 × 2 = <span class="r-txt">32</span>, not 24',
   },
   explain: [
     { tiles: ['rule', 'guess', 'color'], expect: 'rule' },

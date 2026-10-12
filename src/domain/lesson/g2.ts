@@ -18,8 +18,6 @@ export const G2_LESSON: LessonData = {
   mistake: {
     steps: 3,
     wrong: 2,
-    eq: () =>
-      'Both have perimeter 24 m, but 6 × 6 = <span class="r-txt">36 m²</span> while 10 × 2 = 20 m²',
   },
   explain: [
     { tiles: ['thin', 'square', 'long'], expect: 'square' },

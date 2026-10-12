@@ -18,7 +18,6 @@ export const N4_LESSON: LessonData = {
   mistake: {
     steps: 4,
     wrong: 2,
-    eq: () => '2/5 + 1/5 = <span class="r-txt">3/10</span>',
   },
   explain: [
     { tiles: ['stays', 'changes', 'doubles'], expect: 'stays' },

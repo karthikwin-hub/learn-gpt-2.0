@@ -231,4 +231,8 @@ export const dictionary: Record<string, string> = {
     'Look at the map: where are we looking from? What does “1 square = 5 m” tell you?',
   'know.E4':
     'A map shows a place from above, and you can use its scale, directions and symbols to find your way and work out distances.',
+
+  /* Spot-the-mistake equation lines: <s> struck, <r> highlighted. */
+  'mistake.E4.eq': '10 + 10 + 10 = 3 × 10 = 30 m',
+  'mistake.I2.eq': '49 + 1 + 49 = <r>99</r>',
 };

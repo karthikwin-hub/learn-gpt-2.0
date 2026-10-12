@@ -5,10 +5,10 @@
 - [x] T003 [US4] Static UI-text scan (FR-001) `src/ui/ui-text.test.ts`
 - [x] T004 [US3] Every-lesson journey `tests/e2e/journeys/046-every-lesson.spec.ts`
 - [x] T005 [US4] Harness runs sweep, journeys, mockup specs; red baseline recorded
-- [ ] T006 [US2] Lesson-visuals registry; move existing figures unchanged (refactor)
-- [ ] T007 [US3] Remove silent fallbacks (FR-003); explain hint and keep-anyway
-- [ ] T008 [US2] Translated mistake equations with safe markup (FR-005); term regex (FR-004)
-- [ ] T009 Engine fixes FR-006, FR-007
+- [x] T006 [US2] Lesson-visuals registry; move existing figures unchanged (refactor)
+- [x] T007 [US3] Remove silent fallbacks (FR-003); explain hint and keep-anyway
+- [x] T008 [US2] Translated mistake equations with safe markup (FR-005); term regex (FR-004)
+- [x] T009 Engine fixes FR-006, FR-007
 - [ ] T010 [US2] Group number: figures, mistake pictures, bench text, content review
 - [ ] T011 [US2] Group factors
 - [ ] T012 [US2] Group geometry

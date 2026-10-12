@@ -7,10 +7,12 @@
 import { t } from '../../../domain/i18n/core';
 import { getLesson } from '../../../domain/lesson/registry';
 import { clear, el } from '../../util/dom';
+import { markupLine } from '../../util/markup';
 import { enterThread, getCurrentThread } from '../../util/thread';
-import { renderM4MistakeRooms } from '../../diagrams/tiles';
+import { getVisuals } from '../../lesson-visuals';
 import { router, type ScreenMeta } from '../app/router';
 import { voice } from '../voice/voice';
+import { renderLessonMissing } from './lesson-missing';
 
 export function createMistakeScreen(): ScreenMeta {
   return {
@@ -19,13 +21,14 @@ export function createMistakeScreen(): ScreenMeta {
     step: 'mistake',
     title: 'mistake.title',
     render(view, state, params: Record<string, string> = {}) {
-      const threadKnot = params.knot || params.k || getCurrentThread() || 'M4';
-      const threadLesson = getLesson(threadKnot);
-      const knotId = threadLesson?.mistake ? threadKnot : 'M4';
-      const lesson = getLesson(knotId) || getLesson('M4');
-      const mistakeData = lesson?.mistake;
+      const knotId = params.k || params.knot || getCurrentThread() || 'M4';
+      const mistakeData = getLesson(knotId)?.mistake;
+      if (!mistakeData) {
+        renderLessonMissing(view, knotId, 'mistake');
+        return;
+      }
 
-      enterThread(knotId, 'mistake');
+      enterThread(knotId, 'mistake', { k: knotId });
 
       if (state.knot !== knotId) {
         state.knot = knotId;
@@ -33,51 +36,40 @@ export function createMistakeScreen(): ScreenMeta {
         state.fine = [];
       }
 
-      const key = (k: string) => {
-        const upper = `mistake.${knotId}.${k}`;
-        const lower = `mistake.${knotId.toLowerCase()}.${k}`;
-        return t(upper) !== upper ? upper : lower;
-      };
+      const key = (k: string) => `mistake.${knotId}.${k}`;
+      const picture = getVisuals(knotId).mistake;
+      if (!picture) console.error(`No Spot-the-mistake picture for ${knotId}`);
 
       const say = el('p', { class: 'say', hidden: true });
-      const picture = el('div', { class: 'model' });
-      const after = el('div');
+      const pictureHolder = el('div', { class: 'model' });
+      const after = el('div', { class: 'after' });
       const list = el('div', { class: 'work-steps' });
 
       function paint(): void {
         clear(list);
-        const stepsCount = mistakeData ? mistakeData.steps : 4;
-        for (let n = 0; n < stepsCount; n++) {
-          list.appendChild(createStepButton(n));
-        }
+        for (let n = 0; n < mistakeData!.steps; n++) list.appendChild(createStepButton(n));
 
-        clear(picture);
+        clear(pictureHolder);
         clear(after);
+        if (!state.found) return;
 
-        if (state.found) {
-          const pic =
-            (mistakeData?.picture ? (mistakeData.picture(true) as SVGSVGElement) : null) ||
-            renderM4MistakeRooms(true);
-          picture.appendChild(pic);
-          if (mistakeData?.eq) {
-            after.appendChild(el('div', { class: 'eq', html: mistakeData.eq() }));
-          }
-          after.appendChild(
-            el('div', { class: 'btn-row' }, [
-              el('button', {
-                class: 'btn primary block',
-                type: 'button',
-                text: t('common.explain'),
-                onclick: () => router.go('explain'),
-              }),
-            ])
-          );
-        }
+        if (picture) pictureHolder.appendChild(picture(true));
+        after.appendChild(markupLine(t(key('eq'))));
+        after.appendChild(
+          el('div', { class: 'btn-row' }, [
+            el('button', {
+              class: 'btn primary block',
+              type: 'button',
+              text: t('common.explain'),
+              onclick: () => router.go('explain', { k: knotId }),
+            }),
+          ])
+        );
       }
 
       function createStepButton(i: number): HTMLElement {
         const fineList = (state.fine as number[]) || [];
-        const isFound = state.found && i === mistakeData?.wrong;
+        const isFound = state.found && i === mistakeData!.wrong;
         const isFine = fineList.includes(i);
         const cls = isFound ? 'found' : isFine ? 'fine' : '';
 
@@ -88,7 +80,7 @@ export function createMistakeScreen(): ScreenMeta {
             type: 'button',
             onclick: () => {
               if (state.found) return;
-              if (i === mistakeData?.wrong) {
+              if (i === mistakeData!.wrong) {
                 state.found = true;
                 paint();
                 updateSay(t(key('found')), true);
@@ -109,22 +101,19 @@ export function createMistakeScreen(): ScreenMeta {
       function updateSay(text: string, speak = false): void {
         say.textContent = text;
         say.hidden = false;
-        if (speak) {
-          voice.say(text);
-        }
+        if (speak) voice.say(text);
       }
 
+      view.appendChild(el('p', { class: 'muted small', text: t(`knot.${knotId}.t`) }));
       view.appendChild(el('p', { text: t(key('intro')) }));
       view.appendChild(list);
       view.appendChild(say);
-      view.appendChild(picture);
+      view.appendChild(pictureHolder);
       view.appendChild(after);
 
       paint();
 
-      if (state.found) {
-        updateSay(t(key('found')), false);
-      }
+      if (state.found) updateSay(t(key('found')), false);
     },
   };
 }

@@ -3,6 +3,7 @@
  * (Ray rotation, angle classification, turn fractions, arm length invariance, and SVG arc geometry).
  */
 
+import { calculateHCF } from './hcf';
 export type AngleType = 'zero' | 'acute' | 'right' | 'obtuse' | 'straight' | 'reflex' | 'full';
 
 export interface TurnFraction {
@@ -62,9 +63,7 @@ export function turnFraction(degrees: number): TurnFraction {
     return { num: 1, den: 1, label: 'Full turn' };
   }
 
-  // General simplification: gcd with 360
-  const gcd = (a: number, b: number): number => (b === 0 ? a : gcd(b, a % b));
-  const g = gcd(Math.round(norm), 360);
+  const g = calculateHCF(Math.round(norm), 360);
   const num = Math.round(norm) / g;
   const den = 360 / g;
   return { num, den, label: `${num}/${den} turn` };

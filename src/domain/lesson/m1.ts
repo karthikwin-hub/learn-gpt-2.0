@@ -18,8 +18,6 @@ export const M1_LESSON: LessonData = {
   mistake: {
     steps: 3,
     wrong: 1,
-    eq: () =>
-      'Rotating 8 × 3 by a quarter turn creates 3 × 8 with the exact same <span class="r-txt">24 squares</span>: a × b = b × a',
   },
   explain: [
     { tiles: ['columns', 'diagonals', 'circles'], expect: 'columns' },
