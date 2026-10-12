@@ -131,6 +131,7 @@ export function createRopeScreen(): ScreenMeta {
         }
       }
 
+      view.appendChild(el('h2', { class: 'screen-title', text: t('rope.title') }));
       view.appendChild(createStepGuide(1, t('rope.s1', { p: Number(state.perimeter) })));
       view.appendChild(el('div', { class: 'model' }, [rope.node]));
       view.appendChild(read);
@@ -165,15 +166,32 @@ export function createRopeScreen(): ScreenMeta {
       view.appendChild(say);
       view.appendChild(hill);
 
+      const mistakeBtn = el('button', {
+        type: 'button',
+        class: 'btn outline block',
+        id: 'btn-to-mistake',
+        text: t('bench.toMistake'),
+        style: { minHeight: '44px' },
+        onclick: () => {
+          router.go('mistake', { k: 'G2' });
+        },
+      });
+
       const explainBtn = el('button', {
         type: 'button',
         class: 'btn primary block',
         text: t('common.explain'),
+        style: { minHeight: '44px' },
         onclick: () => {
           router.go('explain', { k: 'G2' });
         },
       });
-      view.appendChild(el('div', { class: 'btn-row' }, [explainBtn]));
+      view.appendChild(
+        el('div', { class: 'btn-row', style: { display: 'flex', gap: '8px', flexWrap: 'wrap' } }, [
+          mistakeBtn,
+          explainBtn,
+        ])
+      );
 
       paint(rope.get(), rope.tried());
 
