@@ -46,4 +46,13 @@ describe('Lesson registry', () => {
     expect(n2?.mistake?.steps).toBe(4);
     expect(n2?.mistake?.wrong).toBe(2);
   });
+
+  it('retrieves N4 Fractions of a Collection lesson', () => {
+    const n4 = getLesson('N4');
+    expect(n4).not.toBeNull();
+    expect(n4?.cards).toHaveLength(6);
+    expect(n4?.explain).toHaveLength(2);
+    expect(n4?.mistake?.steps).toBe(4);
+    expect(n4?.mistake?.wrong).toBe(2);
+  });
 });

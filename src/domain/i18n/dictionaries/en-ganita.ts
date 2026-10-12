@@ -275,4 +275,63 @@ export const dictionary: Record<string, string> = {
     'Look at IV (5 - 1): does I add or subtract? How many times in a row can I or X appear?',
   'know.N2':
     'You can read and write Roman numerals using addition, subtraction, and the three-repetition rule.',
+
+  /* N4 Fractions of a Collection */
+  'prashna.N4.q': 'How many apples is 1/3 of a basket of 12 apples?',
+  'prashna.N4.c1': '3 apples',
+  'prashna.N4.c2': '4 apples',
+  'prashna.N4.c3': '6 apples',
+  'prashna.N4.a': '4 apples. To find 1/3 of 12, share 12 into 3 equal groups: 12 ÷ 3 = 4.',
+  'bodha.N4.what':
+    'A [[collection|collection]] of items can be divided into equal parts just like a single whole object.',
+  'bodha.N4.can':
+    'You will be able to find fractions of a collection and add fractions with equal denominators without adding the denominators.',
+  'bodha.N4.idea':
+    'The bottom number (denominator) tells you how many equal baskets to share into; the top number (numerator) tells you how many baskets to take.',
+  'bodha.N4.why':
+    'When adding like fractions, the size of each basket does not change—only the count of baskets is added together.',
+  'bodha.N4.example': 'Find 2/3 of 18 marbles.',
+  'bodha.N4.example1':
+    'Step 1: Look at the denominator (3). Share 18 marbles into 3 equal baskets: 18 ÷ 3 = 6 marbles in each basket.',
+  'bodha.N4.example2':
+    'Step 2: Look at the numerator (2). Take 2 of those baskets: 2 × 6 = 12 marbles.',
+  'bodha.N4.example3': 'Step 3: So 2/3 of 18 is 12 marbles.',
+  'bodha.N4.where':
+    'Sharing sweets with friends, calculating minutes in 3/4 of an hour, or knowing how many pages of a book you have finished.',
+  'bodha.N4.sutra':
+    'The bottom number groups the set into equal baskets; the top counts the baskets you take.',
+  'gloss.collection': 'A group of distinct objects considered together as a single whole.',
+  'gloss.collection.en': 'collection',
+  'collection.title': 'Fractions of a collection',
+  'collection.art': 'A tray with marbles sorted into equal rings.',
+  'collection.s1': 'Share 12 items into equal rings.',
+  'collection.s1done':
+    '12 items shared into equal rings. Notice how the denominator decides the ring count.',
+  'collection.s2': 'Tap rings to take fractions of 16 items.',
+  'collection.s2done': 'You selected {num} of {den} rings: {total} items taken.',
+  'collection.s3': 'Combine like fractions: 1/5 + 2/5.',
+  'collection.s3done': 'The baskets are still fifths: 1/5 + 2/5 = 3/5.',
+  'collection.s3wrong': '10 would mean cutting into 10 baskets. Our baskets are still fifths.',
+  'mistake.N4.intro': 'Rahul added two like fractions. One step went wrong. Which one?',
+  'mistake.N4.s1': 'Both fractions have fifths as their parts.',
+  'mistake.N4.s2': 'Add the top numbers: 2 + 1 = 3.',
+  'mistake.N4.s3': 'Add the bottom numbers: 5 + 5 = 10.',
+  'mistake.N4.s4': 'So 2/5 + 1/5 = 3/10.',
+  'mistake.N4.fine1': 'That is sound: identifying that both have the same denominator is true.',
+  'mistake.N4.fine2': 'That is sound: numerators count the parts, so they are added.',
+  'mistake.N4.fine4': 'This just writes down the earlier calculation. Look earlier.',
+  'mistake.N4.found':
+    'The parts are fifths; adding the amounts does not double the number of parts. The bottom number stays 5: 3/5.',
+  'explain.N4.s':
+    'When adding fractions with the same bottom number, the denominator {0} and only the numerators {1}.',
+  'explain.N4.stays': 'stays',
+  'explain.N4.changes': 'changes',
+  'explain.N4.doubles': 'doubles',
+  'explain.N4.add': 'add',
+  'explain.N4.multiply': 'multiply',
+  'explain.N4.subtract': 'subtract',
+  'explain.N4.hint':
+    'Look at the baskets: does combining two groups change the total size of each basket? Or do you just count how many baskets you took?',
+  'know.N4':
+    'A fraction of a collection divides the total items into equal baskets; when adding fractions with the same denominator, the denominator stays the same.',
 };

@@ -5,10 +5,12 @@
 - Scope: Fully playable 7-stage lesson for Knot N4 (Fractions of a Collection & Like-Fraction Addition) with dedicated `#collection` workbench.
 
 ## State of Work
-- **Spec Kit Documentation**:
-  - `spec.md`, `plan.md`, `tasks.md`, `checks.md` authored.
-  - Paused at Gate: Spec and Plan presented for human approval before code implementation.
+- **Domain Modeling**: `src/domain/math/collection.ts` and `src/domain/math/collection.test.ts` implemented (10 unit tests passing).
+- **Lesson Registry**: `src/domain/lesson/n4.ts` registered in `registry.ts`.
+- **Curriculum**: Knot N4 playable binding in `src/domain/curriculum/curriculum.ts` (21 playable knots).
+- **Workbench**: `#collection` SVG workbench screen implemented with partition rings and like-fraction addition.
+- **Acceptance Tests**: `tests/acceptance/014-collection-fractions.spec.ts` (16/16 passed).
+- **Verification**: All 11 sensors PASS (`.agent/last-verify.md`).
 
 ## Next Step
-- Review and sign off with N5, A1, A2.
-- Upon approval, proceed to Task 2 (Domain modeling for `collection.ts`).
+- Complete PR & merge into `main`, then proceed to Feature 015: Decimals (Knot N5).
