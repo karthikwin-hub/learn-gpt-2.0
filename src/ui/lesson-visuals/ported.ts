@@ -6,13 +6,6 @@ import { renderM2Tiles, renderM4MistakeRooms, renderM4Rooms } from '../diagrams/
 import { renderM5Beats } from '../diagrams/drums';
 import { renderFairSharePlates } from '../diagrams/share';
 import { renderG2Ropes, renderG4Flower } from '../diagrams/geometry';
-import { renderS2Rings } from '../diagrams/sets';
-import {
-  renderL1Negation,
-  renderL2Gate,
-  renderL3Quantifiers,
-  renderL4Implication,
-} from '../diagrams/logic';
 import type { CardKey, LessonVisuals, VisualsTable } from './types';
 
 function phaseOneFigure(knotId: string, cardKey: string, step: number): SVGSVGElement | null {
@@ -91,29 +84,6 @@ function phaseOneFigure(knotId: string, cardKey: string, step: number): SVGSVGEl
     if (cardKey === 'example') {
       return renderG4Flower(false, false, step >= 2);
     }
-  } else if (knotId === 'S2' || knotId === 'S3') {
-    if (cardKey === 'what' || cardKey === 'idea') {
-      return renderS2Rings(0, false);
-    }
-    if (cardKey === 'why') {
-      return renderS2Rings(0, true);
-    }
-    if (cardKey === 'example') {
-      return renderS2Rings(step, false);
-    }
-  } else if (knotId === 'L1') {
-    return renderL1Negation();
-  } else if (knotId === 'L2') {
-    if (cardKey === 'what' || cardKey === 'idea' || cardKey === 'why') {
-      return renderL2Gate(0, 'and');
-    }
-    if (cardKey === 'example') {
-      return renderL2Gate(step, 'and');
-    }
-  } else if (knotId === 'L3') {
-    return renderL3Quantifiers();
-  } else if (knotId === 'L4') {
-    return renderL4Implication();
   }
   return null;
 }
@@ -129,10 +99,7 @@ function fromPhaseOne(knotId: string): LessonVisuals {
 }
 
 const PHASE_ONE: VisualsTable = Object.fromEntries(
-  ['M2', 'M4', 'M5', 'D1', 'D3', 'G2', 'G4', 'S2', 'S3', 'L1', 'L2', 'L3', 'L4'].map((k) => [
-    k,
-    fromPhaseOne(k),
-  ])
+  ['M2', 'M4', 'M5', 'D1', 'D3', 'G2', 'G4'].map((k) => [k, fromPhaseOne(k)])
 );
 
 export const PORTED: VisualsTable = {

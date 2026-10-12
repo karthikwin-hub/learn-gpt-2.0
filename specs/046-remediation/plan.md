@@ -27,6 +27,12 @@
 4. English strings: add new keys to `src/domain/i18n/dictionaries/en-g-<group>.ts` only (prefix with the bench or knot, e.g. `metric.s1`, `bodha.U2.*`). Do **not** edit any other dictionary file: if an existing key elsewhere (en.ts, en-ganita.ts, en-bodha.ts, …) needs new English, list it in your report as `key → new English` and the coordinator applies it. Never re-define a key that exists elsewhere (a test fails on duplicates). Keep placeholders `{n}` and term tokens `[[term-id|word]]`. No praise/score/streak words (`src/domain/lesson/banned-words.ts`).
 5. Mistake equation: `mistake.<K>.eq` with `<s>…</s>` (struck) and `<r>…</r>` (highlight) only.
 
+**Who draws what (merged per part by `lesson-visuals/index.ts`; a part defined twice throws)**:
+- ported (`ported.ts`): N1 N3 U1 B3 R1 K2 everything; M2 M4 M5 D1 D3 G2 G4 card figures (Phase 1, already there) plus a `where` figure for each; Prashna art for M2 M4 M5 D1 D3 if their curriculum entry has `prashna: true`; M5 mistake picture (M4's exists).
+- geometry: G1 G3 G5 G6 G7 G8 everything; G2 and G4 only `prashna` (if `prashna: true`) and `mistake`.
+- logic: S1 S2 S3 L1 L2 L3 everything (the Phase 1 S2/L1/L2/L3 figures did not match the current text; `src/ui/diagrams/sets.ts` and `logic.ts` are yours to reuse or change).
+- measure: U2 U3 H1 H2 L4 P1 everything. number: N2 N4 N5 A1 A2 A3 D2 D4 everything. factors: F1 F2 F3 F4 M1 M3 everything.
+
 **Files you own**: your group's screens, `lesson-visuals/<group>.ts`, `en-g-<group>.ts`, `src/ui/components/theme/g-<group>.css` (already linked; do not edit lesson.css), your knots' `src/domain/lesson/<k>.ts`, and domain modules used only by your knots. **Everything else is read-only**, including tests in `tests/`, the 046 sensors, `lesson-visuals/index.ts`, `src/ui/util/*`, `router.ts`, other groups' files and the non-English dictionaries. Need a change there? Put it in your report.
 
 **Acceptance tests are the contract**: never edit them; if an English text is matched by a test, keep the en value matching it.
