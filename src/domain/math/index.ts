@@ -38,3 +38,4 @@ export * from './wordprob';
 export * from './factors';
 export * from './primes';
 export * from './divisibility';
+export * from './hcf';

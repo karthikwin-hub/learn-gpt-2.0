@@ -94,7 +94,7 @@ export const SECTIONS: Section[] = [
           k('F2', { prashna: true, bench: bench('primes') }),
           k('F3', { prashna: true, bench: bench('divisibility') }),
           k('M5', { bench: bench('drums') }),
-          k('F4'),
+          k('F4', { prashna: true, bench: bench('hcf') }),
         ],
       },
       {

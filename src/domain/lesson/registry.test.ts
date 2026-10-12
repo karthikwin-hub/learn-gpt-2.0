@@ -136,4 +136,13 @@ describe('Lesson registry', () => {
     expect(f3?.mistake?.steps).toBe(3);
     expect(f3?.mistake?.wrong).toBe(1);
   });
+
+  it('retrieves F4 Common Factors & HCF lesson', () => {
+    const f4 = getLesson('F4');
+    expect(f4).not.toBeNull();
+    expect(f4?.cards).toHaveLength(6);
+    expect(f4?.explain).toHaveLength(2);
+    expect(f4?.mistake?.steps).toBe(3);
+    expect(f4?.mistake?.wrong).toBe(1);
+  });
 });
