@@ -52,7 +52,7 @@ export function createAreaGrid(opts: AreaGridOptions): AreaGridInstance {
   const root = svg('svg', {
     class: 'area-grid manip-grid',
     viewBox: `0 0 ${W} ${H}`,
-    role: 'img',
+    role: 'group',
   }) as SVGSVGElement;
 
   const defs = svg('defs');

@@ -199,6 +199,7 @@ export function createFairShare(opts: FairShareOptions): FairShareManipulative {
 
   function build(preserveState = false): void {
     stopTimers();
+    root.setAttribute('aria-label', `${total} ÷ ${plates}`);
     seq = dealSequence(total, plates);
     if (!preserveState) {
       dealt = isInitial && opts.initialDealt !== undefined ? Math.min(total, opts.initialDealt) : 0;

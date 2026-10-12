@@ -142,9 +142,9 @@ export function createAnglesScreen(): ScreenMeta {
         svgBox.style.width = '100%';
         svgBox.style.maxWidth = '280px';
         svgBox.style.height = '240px';
-        svgBox.style.background = 'var(--bg-card, #f8fafc)';
+        svgBox.style.background = 'var(--paper-raised)';
         svgBox.style.borderRadius = '12px';
-        svgBox.style.border = '1px solid var(--border, #cbd5e1)';
+        svgBox.style.border = '1px solid var(--hair)';
 
         const cx = 140;
         const cy = 150;
@@ -214,14 +214,14 @@ export function createAnglesScreen(): ScreenMeta {
             width: '100%',
             textAlign: 'center',
             padding: '12px',
-            background: 'var(--bg-card, #f8fafc)',
+            background: 'var(--paper-raised)',
             borderRadius: '8px',
           },
         });
 
         const degreesText = el('div', {
           class: 'angle-degrees',
-          style: { fontSize: '1.5rem', fontWeight: 'bold', color: 'var(--primary, #4338ca)' },
+          style: { fontSize: '1.5rem', fontWeight: 'bold', color: 'var(--indigo)' },
           text: `${angleDeg}°`,
         });
 
@@ -274,6 +274,7 @@ export function createAnglesScreen(): ScreenMeta {
           step: '5',
           value: String(angleDeg),
           id: 'angle-slider',
+          'aria-label': t('angles.slider'),
           style: { flex: '1', minWidth: '140px', minHeight: '44px' },
           oninput: (e: Event) => {
             angleDeg = Number((e.target as HTMLInputElement).value);
@@ -357,9 +358,9 @@ export function createAnglesScreen(): ScreenMeta {
         svgBox.style.width = '100%';
         svgBox.style.maxWidth = '280px';
         svgBox.style.height = '240px';
-        svgBox.style.background = 'var(--bg-card, #f8fafc)';
+        svgBox.style.background = 'var(--paper-raised)';
         svgBox.style.borderRadius = '12px';
-        svgBox.style.border = '1px solid var(--border, #cbd5e1)';
+        svgBox.style.border = '1px solid var(--hair)';
 
         const cx = 80;
         const cy = 180;
@@ -415,7 +416,7 @@ export function createAnglesScreen(): ScreenMeta {
             width: '100%',
             textAlign: 'center',
             padding: '12px',
-            background: 'var(--bg-card, #f8fafc)',
+            background: 'var(--paper-raised)',
             borderRadius: '8px',
           },
         });

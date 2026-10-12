@@ -136,10 +136,10 @@ export function createLongdivScreen(): ScreenMeta {
             lineHeight: '1.6',
             display: 'inline-block',
             textAlign: 'left',
-            background: 'var(--color-surface-soft, #f7f2ea)',
+            background: 'var(--paper-sunk)',
             padding: '16px 24px',
             borderRadius: '8px',
-            border: '1px solid var(--color-border, #d1c7bd)',
+            border: '1px solid var(--hair)',
             marginBottom: '16px',
           },
         });
@@ -153,7 +153,7 @@ export function createLongdivScreen(): ScreenMeta {
         bracketBox.appendChild(
           el('div', {
             style: {
-              color: 'var(--color-accent, #c2410c)',
+              color: 'var(--indigo)',
               fontWeight: 'bold',
               marginLeft: '45px',
             },
@@ -231,7 +231,7 @@ export function createLongdivScreen(): ScreenMeta {
             class: 'beat-chip',
             style: {
               background: '#fff',
-              border: '1px solid var(--color-border, #ccc)',
+              border: '1px solid var(--hair)',
               borderRadius: '12px',
               padding: '4px 8px',
               fontSize: '0.85rem',
@@ -297,10 +297,10 @@ export function createLongdivScreen(): ScreenMeta {
             lineHeight: '1.6',
             display: 'inline-block',
             textAlign: 'left',
-            background: 'var(--color-surface-soft, #f7f2ea)',
+            background: 'var(--paper-sunk)',
             padding: '16px 24px',
             borderRadius: '8px',
-            border: '1px solid var(--color-border, #d1c7bd)',
+            border: '1px solid var(--hair)',
             marginBottom: '16px',
           },
         });
@@ -308,7 +308,7 @@ export function createLongdivScreen(): ScreenMeta {
         bracketBox.appendChild(
           el('div', {
             style: {
-              color: 'var(--color-accent, #c2410c)',
+              color: 'var(--indigo)',
               fontWeight: 'bold',
               marginLeft: '45px',
             },
@@ -407,7 +407,7 @@ export function createLongdivScreen(): ScreenMeta {
         const formulaCard = el('div', {
           class: 'formula-card',
           style: {
-            background: 'var(--color-surface-soft, #f7f2ea)',
+            background: 'var(--paper-sunk)',
             padding: '16px',
             borderRadius: '8px',
             margin: '12px 0',

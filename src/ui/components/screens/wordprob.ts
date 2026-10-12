@@ -124,10 +124,10 @@ export function createWordprobScreen(): ScreenMeta {
         const storyCard = el('div', {
           class: 'story-card',
           style: {
-            background: 'var(--color-surface-soft, #f7f2ea)',
+            background: 'var(--paper-sunk)',
             padding: '16px',
             borderRadius: '8px',
-            borderLeft: '4px solid var(--color-accent, #c2410c)',
+            borderLeft: '4px solid var(--thread)',
             marginBottom: '16px',
             textAlign: 'left',
           },
@@ -138,7 +138,7 @@ export function createWordprobScreen(): ScreenMeta {
             style: {
               fontWeight: 'bold',
               marginBottom: '6px',
-              color: 'var(--color-accent, #c2410c)',
+              color: 'var(--indigo)',
             },
             text: t('wordprob.story1Title'),
           })
@@ -254,7 +254,7 @@ export function createWordprobScreen(): ScreenMeta {
         const storyCard = el('div', {
           class: 'story-card',
           style: {
-            background: 'var(--color-surface-soft, #f7f2ea)',
+            background: 'var(--paper-sunk)',
             padding: '16px',
             borderRadius: '8px',
             borderLeft: '4px solid #b45309',
@@ -294,7 +294,7 @@ export function createWordprobScreen(): ScreenMeta {
         const bar1 = el('div', {
           style: {
             width: '100%',
-            background: 'var(--color-accent, #c2410c)',
+            background: 'var(--thread)',
             color: '#fff',
             padding: '8px 12px',
             borderRadius: '6px',
@@ -374,7 +374,7 @@ export function createWordprobScreen(): ScreenMeta {
         const storyCard = el('div', {
           class: 'story-card',
           style: {
-            background: 'var(--color-surface-soft, #f7f2ea)',
+            background: 'var(--paper-sunk)',
             padding: '16px',
             borderRadius: '8px',
             borderLeft: '4px solid #16a34a',
@@ -404,8 +404,8 @@ export function createWordprobScreen(): ScreenMeta {
             fontSize: '1.4rem',
             fontWeight: 'bold',
             padding: '12px',
-            background: equationAssembled ? '#f0fdf4' : 'var(--color-surface-soft, #f7f2ea)',
-            border: equationAssembled ? '2px solid #16a34a' : '1px solid var(--color-border, #ccc)',
+            background: equationAssembled ? '#f0fdf4' : 'var(--paper-sunk)',
+            border: equationAssembled ? '2px solid #16a34a' : '1px solid var(--hair)',
             borderRadius: '8px',
             margin: '16px 0',
           },

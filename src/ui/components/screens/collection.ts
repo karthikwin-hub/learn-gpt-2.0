@@ -101,8 +101,8 @@ export function createCollectionScreen(): ScreenMeta {
             width: 344,
             height: 184,
             rx: 12,
-            fill: 'var(--warm-bg, #fbf7ee)',
-            stroke: 'var(--border, #d8d0c0)',
+            fill: 'var(--paper)',
+            stroke: 'var(--hair)',
             'stroke-width': 2,
           })
         );
@@ -120,7 +120,7 @@ export function createCollectionScreen(): ScreenMeta {
               cy,
               r: radius,
               fill: 'none',
-              stroke: 'var(--accent, #a66a38)',
+              stroke: 'var(--thread)',
               'stroke-width': 2,
               'stroke-dasharray': '4 3',
             })
@@ -140,7 +140,7 @@ export function createCollectionScreen(): ScreenMeta {
                 cx: tx,
                 cy: ty,
                 r: Math.max(tokenRadius, 7),
-                fill: 'var(--accent, #a66a38)',
+                fill: 'var(--thread)',
               })
             );
           }
@@ -177,8 +177,8 @@ export function createCollectionScreen(): ScreenMeta {
             width: 344,
             height: 194,
             rx: 12,
-            fill: 'var(--warm-bg, #fbf7ee)',
-            stroke: 'var(--border, #d8d0c0)',
+            fill: 'var(--paper)',
+            stroke: 'var(--hair)',
             'stroke-width': 2,
           })
         );
@@ -219,8 +219,8 @@ export function createCollectionScreen(): ScreenMeta {
               cx,
               cy,
               r: radius,
-              fill: isSelected ? 'var(--highlight-bg, #e8dfcf)' : 'rgba(255,255,255,0.7)',
-              stroke: isSelected ? 'var(--accent, #a66a38)' : 'var(--border, #d8d0c0)',
+              fill: isSelected ? 'var(--thread-soft)' : 'rgba(255,255,255,0.7)',
+              stroke: isSelected ? 'var(--thread)' : 'var(--hair)',
               'stroke-width': isSelected ? 3 : 2,
             })
           );
@@ -236,7 +236,7 @@ export function createCollectionScreen(): ScreenMeta {
                 cx: tx,
                 cy: ty,
                 r: 7,
-                fill: isSelected ? 'var(--accent, #a66a38)' : '#8b7e74',
+                fill: isSelected ? 'var(--thread)' : '#8b7e74',
               })
             );
           }
@@ -275,8 +275,8 @@ export function createCollectionScreen(): ScreenMeta {
             width: 344,
             height: 164,
             rx: 12,
-            fill: 'var(--warm-bg, #fbf7ee)',
-            stroke: 'var(--border, #d8d0c0)',
+            fill: 'var(--paper)',
+            stroke: 'var(--hair)',
             'stroke-width': 2,
           })
         );
@@ -303,7 +303,7 @@ export function createCollectionScreen(): ScreenMeta {
                 : isSecondAddend
                   ? '#f3e6cf'
                   : 'rgba(255,255,255,0.7)',
-              stroke: isIncluded ? 'var(--accent, #a66a38)' : 'var(--border, #d8d0c0)',
+              stroke: isIncluded ? 'var(--thread)' : 'var(--hair)',
               'stroke-width': isIncluded ? 2 : 1,
             })
           );
@@ -314,11 +314,7 @@ export function createCollectionScreen(): ScreenMeta {
               cx,
               cy,
               r: 8,
-              fill: isFirstAddend
-                ? '#2e6b38'
-                : isSecondAddend
-                  ? 'var(--accent, #a66a38)'
-                  : '#a4988d',
+              fill: isFirstAddend ? '#2e6b38' : isSecondAddend ? 'var(--thread)' : '#a4988d',
             })
           );
 
@@ -415,7 +411,7 @@ export function createCollectionScreen(): ScreenMeta {
           }
 
           const hint = el('p', {
-            style: { fontSize: '13px', color: 'var(--muted, #6f675b)', margin: '8px 0' },
+            style: { fontSize: '13px', color: 'var(--ink-soft)', margin: '8px 0' },
             text: t('collection.tapRings'),
           });
           actionsCard.appendChild(hint);

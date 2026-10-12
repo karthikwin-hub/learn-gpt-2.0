@@ -149,7 +149,7 @@ export function createQuotitionScreen(): ScreenMeta {
             y1: '70',
             x2: '320',
             y2: '70',
-            stroke: 'var(--color-border, #8c827a)',
+            stroke: 'var(--hair)',
             'stroke-width': '3',
           })
         );
@@ -164,7 +164,7 @@ export function createQuotitionScreen(): ScreenMeta {
               y1: isMajor ? '60' : '65',
               x2: String(x),
               y2: '75',
-              stroke: isMajor ? 'var(--color-fg, #2b2523)' : '#aaa',
+              stroke: isMajor ? 'var(--ink)' : '#aaa',
               'stroke-width': isMajor ? '2' : '1',
             })
           );
@@ -177,7 +177,7 @@ export function createQuotitionScreen(): ScreenMeta {
                   y: '90',
                   'text-anchor': 'middle',
                   'font-size': '11',
-                  fill: 'var(--color-fg, #2b2523)',
+                  fill: 'var(--ink)',
                 },
                 String(i)
               )
@@ -198,7 +198,7 @@ export function createQuotitionScreen(): ScreenMeta {
             svg('path', {
               d: arcD,
               fill: 'none',
-              stroke: 'var(--color-accent, #c2410c)',
+              stroke: 'var(--thread)',
               'stroke-width': '2.5',
               'stroke-dasharray': '2 1',
             })
@@ -210,7 +210,7 @@ export function createQuotitionScreen(): ScreenMeta {
               cx: String(xEnd),
               cy: '65',
               r: '4',
-              fill: 'var(--color-accent, #c2410c)',
+              fill: 'var(--thread)',
             })
           );
         }
@@ -233,12 +233,12 @@ export function createQuotitionScreen(): ScreenMeta {
           const box = el('div', {
             class: 'packed-box',
             style: {
-              background: 'var(--color-surface-soft, #f7f2ea)',
-              border: '2px solid var(--color-accent, #c2410c)',
+              background: 'var(--paper-sunk)',
+              border: '2px solid var(--thread)',
               borderRadius: '6px',
               padding: '6px 10px',
               fontWeight: 'bold',
-              color: 'var(--color-accent, #c2410c)',
+              color: 'var(--indigo)',
             },
             text: t('quotition.boxLabel', { n: String(i), size: '4' }),
           });
@@ -322,7 +322,7 @@ export function createQuotitionScreen(): ScreenMeta {
             y1: '70',
             x2: '320',
             y2: '70',
-            stroke: 'var(--color-border, #8c827a)',
+            stroke: 'var(--hair)',
             'stroke-width': '3',
           })
         );
@@ -337,7 +337,7 @@ export function createQuotitionScreen(): ScreenMeta {
               y1: isMajor ? '60' : '65',
               x2: String(x),
               y2: '75',
-              stroke: isMajor ? 'var(--color-fg, #2b2523)' : '#aaa',
+              stroke: isMajor ? 'var(--ink)' : '#aaa',
               'stroke-width': isMajor ? '2' : '1',
             })
           );
@@ -350,7 +350,7 @@ export function createQuotitionScreen(): ScreenMeta {
                   y: '90',
                   'text-anchor': 'middle',
                   'font-size': '11',
-                  fill: 'var(--color-fg, #2b2523)',
+                  fill: 'var(--ink)',
                 },
                 String(i)
               )
@@ -371,7 +371,7 @@ export function createQuotitionScreen(): ScreenMeta {
             svg('path', {
               d: arcD,
               fill: 'none',
-              stroke: 'var(--color-accent, #c2410c)',
+              stroke: 'var(--thread)',
               'stroke-width': '2.5',
             })
           );
@@ -380,7 +380,7 @@ export function createQuotitionScreen(): ScreenMeta {
               cx: String(xEnd),
               cy: '65',
               r: '4',
-              fill: 'var(--color-accent, #c2410c)',
+              fill: 'var(--thread)',
             })
           );
         }
@@ -401,12 +401,12 @@ export function createQuotitionScreen(): ScreenMeta {
           const box = el('div', {
             class: 'packed-box',
             style: {
-              background: 'var(--color-surface-soft, #f7f2ea)',
-              border: '2px solid var(--color-accent, #c2410c)',
+              background: 'var(--paper-sunk)',
+              border: '2px solid var(--thread)',
               borderRadius: '6px',
               padding: '6px 10px',
               fontWeight: 'bold',
-              color: 'var(--color-accent, #c2410c)',
+              color: 'var(--indigo)',
             },
             text: t('quotition.boxLabel', { n: String(i), size: '5' }),
           });
@@ -419,7 +419,7 @@ export function createQuotitionScreen(): ScreenMeta {
           const remainderTray = el('div', {
             class: 'remainder-tray',
             style: {
-              background: 'var(--color-surface-soft, #fff5eb)',
+              background: 'var(--paper-sunk)',
               border: '2px dashed #b45309',
               borderRadius: '8px',
               padding: '10px',

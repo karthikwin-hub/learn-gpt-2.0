@@ -54,7 +54,7 @@ export function createSeedScreen(): ScreenMeta {
           class: 'seed-stage-title',
           style: {
             textTransform: 'capitalize',
-            color: 'var(--thread-ganita, #8b5cf6)',
+            color: 'var(--indigo)',
             margin: '0 0 10px 0',
           },
           text: t('seed.stage', { stage }),
@@ -62,7 +62,7 @@ export function createSeedScreen(): ScreenMeta {
 
         const statusNotice = el('p', {
           class: 'seed-status-notice',
-          style: { fontSize: '14px', color: 'var(--muted)' },
+          style: { fontSize: '14px', color: 'var(--ink-soft)' },
           text: canGerminate(conditions) ? t('seed.statusReady', { n: day }) : t('seed.statusHalt'),
         });
 
@@ -84,13 +84,13 @@ export function createSeedScreen(): ScreenMeta {
           const p = SEED_PARTS[key];
           const partBox = el('div', {
             class: `card part-${p.id}`,
-            style: { padding: '8px', border: '1px solid var(--border)', borderRadius: '8px' },
+            style: { padding: '8px', border: '1px solid var(--hair)', borderRadius: '8px' },
           });
           partBox.appendChild(
             el('strong', { style: { display: 'block', fontSize: '13px' }, text: p.name })
           );
           partBox.appendChild(
-            el('span', { style: { fontSize: '11px', color: 'var(--muted)' }, text: p.role })
+            el('span', { style: { fontSize: '11px', color: 'var(--ink-soft)' }, text: p.role })
           );
           partsGrid.appendChild(partBox);
         }

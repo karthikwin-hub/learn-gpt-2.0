@@ -82,8 +82,8 @@ export function createCounterexampleScreen(): ScreenMeta {
             border:
               activeClaimId === cfg.id
                 ? '2px solid var(--ink, #1f2937)'
-                : '1px solid var(--sand, #d1d5db)',
-            background: activeClaimId === cfg.id ? 'var(--parchment, #fff)' : 'transparent',
+                : '1px solid var(--paper-sunk)',
+            background: activeClaimId === cfg.id ? 'var(--paper)' : 'transparent',
             fontWeight: activeClaimId === cfg.id ? 'bold' : 'normal',
             cursor: 'pointer',
           },
@@ -117,8 +117,8 @@ export function createCounterexampleScreen(): ScreenMeta {
           (b as HTMLElement).style.fontWeight = isActive ? 'bold' : 'normal';
           (b as HTMLElement).style.border = isActive
             ? '2px solid var(--ink, #1f2937)'
-            : '1px solid var(--sand, #d1d5db)';
-          (b as HTMLElement).style.background = isActive ? 'var(--parchment, #fff)' : 'transparent';
+            : '1px solid var(--paper-sunk)';
+          (b as HTMLElement).style.background = isActive ? 'var(--paper)' : 'transparent';
         });
 
         clear(workspaceContainer);
@@ -151,7 +151,7 @@ export function createCounterexampleScreen(): ScreenMeta {
             padding: '20px',
             borderRadius: '12px',
             border: '1px solid #e5e7eb',
-            background: 'var(--card-bg, #fff)',
+            background: 'var(--paper-raised)',
           },
         });
 

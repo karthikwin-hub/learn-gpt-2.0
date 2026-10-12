@@ -144,9 +144,9 @@ export function createViewsScreen(): ScreenMeta {
           style: {
             padding: '6px 14px',
             borderRadius: '999px',
-            background: 'rgba(59, 130, 246, 0.15)',
+            background: 'var(--teal-soft)',
             border: '1px solid rgba(59, 130, 246, 0.4)',
-            color: 'var(--c-teal, #0284c7)',
+            color: 'var(--teal)',
             fontWeight: '600',
             fontSize: '0.9rem',
           },
@@ -161,7 +161,7 @@ export function createViewsScreen(): ScreenMeta {
             borderRadius: '999px',
             background: 'rgba(168, 85, 247, 0.15)',
             border: '1px solid rgba(168, 85, 247, 0.4)',
-            color: 'var(--c-purple, #9333ea)',
+            color: 'var(--indigo)',
             fontWeight: '600',
             fontSize: '0.9rem',
           },
@@ -218,7 +218,7 @@ export function createViewsScreen(): ScreenMeta {
             style: {
               padding: '12px',
               borderRadius: '12px',
-              background: 'var(--card-bg, rgba(255, 255, 255, 0.03))',
+              background: 'var(--paper-raised)',
               border: `1px solid ${color}40`,
               display: 'flex',
               flexDirection: 'column',
@@ -272,7 +272,7 @@ export function createViewsScreen(): ScreenMeta {
             text: subtitle,
             style: {
               fontSize: '0.75rem',
-              color: 'var(--text-muted, #94a3b8)',
+              color: 'var(--ink-soft)',
               textAlign: 'center',
             },
           });
@@ -288,7 +288,7 @@ export function createViewsScreen(): ScreenMeta {
           'Top View (Plan)',
           views.top,
           'top-view-card',
-          '#0284c7',
+          'var(--teal)',
           "Bird's Eye (Map)"
         );
 
@@ -297,7 +297,7 @@ export function createViewsScreen(): ScreenMeta {
           'Front View (Elevation)',
           views.front,
           'front-view-card',
-          '#16a34a',
+          'var(--leaf)',
           'Width × Height'
         );
 

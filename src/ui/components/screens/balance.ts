@@ -52,7 +52,7 @@ export function createBalanceScreen(): ScreenMeta {
             fontSize: '18px',
             fontWeight: 'bold',
             marginBottom: '12px',
-            color: balanced ? 'var(--leaf, #10b981)' : 'var(--thread-ganita, #8b5cf6)',
+            color: balanced ? 'var(--leaf, #10b981)' : 'var(--indigo)',
           },
           text: balanced
             ? t('balance.equilibrium')
@@ -96,7 +96,7 @@ export function createBalanceScreen(): ScreenMeta {
             cx: '160',
             cy: '60',
             r: '6',
-            fill: 'var(--thread-ganita, #8b5cf6)',
+            fill: 'var(--indigo)',
           })
         );
 

@@ -93,10 +93,8 @@ export function createTimeclockScreen(): ScreenMeta {
             minHeight: '44px',
             borderRadius: '6px',
             border:
-              stepNum === cfg.num
-                ? '2px solid var(--ink, #1f2937)'
-                : '1px solid var(--sand, #d1d5db)',
-            background: stepNum === cfg.num ? 'var(--parchment, #fff)' : 'transparent',
+              stepNum === cfg.num ? '2px solid var(--ink, #1f2937)' : '1px solid var(--paper-sunk)',
+            background: stepNum === cfg.num ? 'var(--paper)' : 'transparent',
             fontWeight: stepNum === cfg.num ? 'bold' : 'normal',
             cursor: 'pointer',
           },
@@ -128,8 +126,8 @@ export function createTimeclockScreen(): ScreenMeta {
           (b as HTMLElement).style.fontWeight = isActive ? 'bold' : 'normal';
           (b as HTMLElement).style.border = isActive
             ? '2px solid var(--ink, #1f2937)'
-            : '1px solid var(--sand, #d1d5db)';
-          (b as HTMLElement).style.background = isActive ? 'var(--parchment, #fff)' : 'transparent';
+            : '1px solid var(--paper-sunk)';
+          (b as HTMLElement).style.background = isActive ? 'var(--paper)' : 'transparent';
         });
 
         clear(workspaceContainer);
@@ -262,8 +260,8 @@ export function createTimeclockScreen(): ScreenMeta {
             width: '100%',
             padding: '16px',
             borderRadius: '12px',
-            border: '1px solid var(--sand, #e5e7eb)',
-            background: 'var(--card-bg, #fff)',
+            border: '1px solid var(--paper-sunk)',
+            background: 'var(--paper-raised)',
           },
         });
 
@@ -329,8 +327,8 @@ export function createTimeclockScreen(): ScreenMeta {
             width: '100%',
             padding: '12px',
             borderRadius: '8px',
-            border: '1px solid var(--sand, #e5e7eb)',
-            background: 'var(--card-bg, #fafafa)',
+            border: '1px solid var(--paper-sunk)',
+            background: 'var(--paper-raised)',
           },
         });
 
@@ -446,8 +444,8 @@ export function createTimeclockScreen(): ScreenMeta {
             width: '100%',
             padding: '16px',
             borderRadius: '12px',
-            border: '1px solid var(--sand, #e5e7eb)',
-            background: 'var(--card-bg, #fff)',
+            border: '1px solid var(--paper-sunk)',
+            background: 'var(--paper-raised)',
           },
         });
 
@@ -458,7 +456,7 @@ export function createTimeclockScreen(): ScreenMeta {
             justifyContent: 'space-between',
             alignItems: 'center',
             padding: '10px 14px',
-            background: 'var(--sand, #f8fafc)',
+            background: 'var(--paper-sunk)',
             borderRadius: '8px',
           },
         });
@@ -609,8 +607,8 @@ export function createTimeclockScreen(): ScreenMeta {
             width: '100%',
             padding: '16px',
             borderRadius: '12px',
-            border: '1px solid var(--sand, #e5e7eb)',
-            background: 'var(--card-bg, #fff)',
+            border: '1px solid var(--paper-sunk)',
+            background: 'var(--paper-raised)',
           },
         });
 
@@ -621,9 +619,9 @@ export function createTimeclockScreen(): ScreenMeta {
             justifyContent: 'space-between',
             alignItems: 'center',
             padding: '12px 16px',
-            background: 'var(--sand, #f8fafc)',
+            background: 'var(--paper-sunk)',
             borderRadius: '8px',
-            border: '1px solid var(--sand, #e2e8f0)',
+            border: '1px solid var(--paper-sunk)',
           },
         });
         summaryBar.appendChild(
@@ -678,7 +676,7 @@ export function createTimeclockScreen(): ScreenMeta {
             })
           );
           leftText.appendChild(
-            el('small', { text: hop.description, style: { color: 'var(--muted, #64748b)' } })
+            el('small', { text: hop.description, style: { color: 'var(--ink-soft)' } })
           );
 
           const rightTime = el('span', {
@@ -697,7 +695,7 @@ export function createTimeclockScreen(): ScreenMeta {
         // Presets
         const presetsTitle = el('span', {
           text: t('timeclock.presetsTitle'),
-          style: { fontWeight: '600', fontSize: '0.9rem', color: 'var(--muted, #64748b)' },
+          style: { fontWeight: '600', fontSize: '0.9rem', color: 'var(--ink-soft)' },
         });
         bridgeCard.appendChild(presetsTitle);
 

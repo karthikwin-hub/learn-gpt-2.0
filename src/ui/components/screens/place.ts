@@ -66,11 +66,11 @@ export function createPlaceScreen(): ScreenMeta {
           const houseCard = el('div', {
             class: `card place-house house-${house.id}`,
             style: {
-              border: '2px solid var(--border)',
+              border: '2px solid var(--hair)',
               borderRadius: '12px',
               padding: '12px',
               textAlign: 'center',
-              background: 'var(--card-bg, #fff)',
+              background: 'var(--paper-raised)',
             },
           });
 
@@ -78,7 +78,7 @@ export function createPlaceScreen(): ScreenMeta {
             el('h4', {
               class: 'house-name',
               text: house.name,
-              style: { margin: '0 0 8px 0', color: 'var(--thread-ganita, #8b5cf6)' },
+              style: { margin: '0 0 8px 0', color: 'var(--indigo)' },
             })
           );
 
@@ -97,7 +97,7 @@ export function createPlaceScreen(): ScreenMeta {
               el('span', {
                 class: 'digit-name',
                 text: d.name,
-                style: { fontSize: '11px', color: 'var(--muted)' },
+                style: { fontSize: '11px', color: 'var(--ink-soft)' },
               })
             );
 

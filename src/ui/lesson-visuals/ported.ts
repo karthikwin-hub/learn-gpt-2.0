@@ -125,7 +125,7 @@ function renderPlaceHouses(n: number, highlight: number[] = []): SVGSVGElement {
     );
     s.appendChild(g);
     if (i === 3 || i === 5 || i === 7) {
-      s.appendChild(figText(x + w + 1, 200, ',', { size: 22, color: 'var(--thread)' }));
+      s.appendChild(figText(x + w + 1, 200, ',', { size: 22, color: 'var(--indigo)' }));
     }
   }
   return s;

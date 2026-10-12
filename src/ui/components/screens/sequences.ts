@@ -80,10 +80,8 @@ export function createSequencesScreen(): ScreenMeta {
             minHeight: '44px',
             borderRadius: '6px',
             border:
-              stepNum === cfg.num
-                ? '2px solid var(--ink, #1f2937)'
-                : '1px solid var(--sand, #d1d5db)',
-            background: stepNum === cfg.num ? 'var(--parchment, #fff)' : 'transparent',
+              stepNum === cfg.num ? '2px solid var(--ink, #1f2937)' : '1px solid var(--paper-sunk)',
+            background: stepNum === cfg.num ? 'var(--paper)' : 'transparent',
             fontWeight: stepNum === cfg.num ? 'bold' : 'normal',
             cursor: 'pointer',
           },
@@ -121,8 +119,8 @@ export function createSequencesScreen(): ScreenMeta {
           (b as HTMLElement).style.fontWeight = isActive ? 'bold' : 'normal';
           (b as HTMLElement).style.border = isActive
             ? '2px solid var(--ink, #1f2937)'
-            : '1px solid var(--sand, #d1d5db)';
-          (b as HTMLElement).style.background = isActive ? 'var(--parchment, #fff)' : 'transparent';
+            : '1px solid var(--paper-sunk)';
+          (b as HTMLElement).style.background = isActive ? 'var(--paper)' : 'transparent';
         });
 
         clear(workspaceContainer);
@@ -200,7 +198,7 @@ export function createSequencesScreen(): ScreenMeta {
             padding: '20px',
             borderRadius: '12px',
             border: '1px solid #e5e7eb',
-            background: 'var(--card-bg, #fff)',
+            background: 'var(--paper-raised)',
           },
         });
 
@@ -259,7 +257,7 @@ export function createSequencesScreen(): ScreenMeta {
         // Next term preview bubble
         const arrow = el('span', {
           text: '→',
-          style: { fontSize: '1.4rem', color: '#64748b', fontWeight: 'bold' },
+          style: { fontSize: '1.4rem', color: 'var(--ink-soft)', fontWeight: 'bold' },
         });
         const nextCircle = el('div', {
           class: 'term-bubble next-bubble',
@@ -268,8 +266,8 @@ export function createSequencesScreen(): ScreenMeta {
             width: '54px',
             height: '54px',
             borderRadius: '50%',
-            background: '#10b981',
-            color: '#fff',
+            background: 'var(--teal)',
+            color: 'var(--paper)',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
@@ -373,7 +371,7 @@ export function createSequencesScreen(): ScreenMeta {
             padding: '20px',
             borderRadius: '12px',
             border: '1px solid #e5e7eb',
-            background: 'var(--card-bg, #fff)',
+            background: 'var(--paper-raised)',
           },
         });
 
@@ -432,8 +430,8 @@ export function createSequencesScreen(): ScreenMeta {
             width: '52px',
             height: '52px',
             borderRadius: '50%',
-            background: '#10b981',
-            color: '#fff',
+            background: 'var(--teal)',
+            color: 'var(--paper)',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
@@ -465,7 +463,7 @@ export function createSequencesScreen(): ScreenMeta {
               d2: String(diffs[1] ?? 4),
               d3: String(diffs[2] ?? 8),
             }),
-            style: { color: '#64748b', fontSize: '0.95rem' },
+            style: { color: 'var(--ink-soft)', fontSize: '0.95rem' },
           })
         );
         compBox.appendChild(
@@ -517,7 +515,7 @@ export function createSequencesScreen(): ScreenMeta {
             padding: '20px',
             borderRadius: '12px',
             border: '1px solid #e5e7eb',
-            background: 'var(--card-bg, #fff)',
+            background: 'var(--paper-raised)',
           },
         });
 

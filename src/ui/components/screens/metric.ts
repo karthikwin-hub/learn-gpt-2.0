@@ -102,10 +102,8 @@ export function createMetricScreen(): ScreenMeta {
             minHeight: '44px',
             borderRadius: '6px',
             border:
-              stepNum === cfg.num
-                ? '2px solid var(--ink, #1f2937)'
-                : '1px solid var(--sand, #d1d5db)',
-            background: stepNum === cfg.num ? 'var(--parchment, #fff)' : 'transparent',
+              stepNum === cfg.num ? '2px solid var(--ink, #1f2937)' : '1px solid var(--paper-sunk)',
+            background: stepNum === cfg.num ? 'var(--paper)' : 'transparent',
             fontWeight: stepNum === cfg.num ? 'bold' : 'normal',
             cursor: 'pointer',
           },
@@ -137,8 +135,8 @@ export function createMetricScreen(): ScreenMeta {
           (b as HTMLElement).style.fontWeight = isActive ? 'bold' : 'normal';
           (b as HTMLElement).style.border = isActive
             ? '2px solid var(--ink, #1f2937)'
-            : '1px solid var(--sand, #d1d5db)';
-          (b as HTMLElement).style.background = isActive ? 'var(--parchment, #fff)' : 'transparent';
+            : '1px solid var(--paper-sunk)';
+          (b as HTMLElement).style.background = isActive ? 'var(--paper)' : 'transparent';
         });
 
         clear(workspaceContainer);
@@ -167,9 +165,9 @@ export function createMetricScreen(): ScreenMeta {
             gap: '12px',
             width: '100%',
             padding: '12px',
-            border: '1px solid var(--sand, #e5e7eb)',
+            border: '1px solid var(--paper-sunk)',
             borderRadius: '8px',
-            background: 'var(--card-bg, #fafafa)',
+            background: 'var(--paper-raised)',
           },
         });
 
@@ -235,8 +233,8 @@ export function createMetricScreen(): ScreenMeta {
               padding: '6px 12px',
               borderRadius: '6px',
               fontWeight: lengthUnit === u ? 'bold' : 'normal',
-              background: lengthUnit === u ? 'var(--sand, #e5e7eb)' : 'transparent',
-              border: '1px solid var(--sand, #d1d5db)',
+              background: lengthUnit === u ? 'var(--paper-sunk)' : 'transparent',
+              border: '1px solid var(--paper-sunk)',
             },
             onClick() {
               lengthUnit = u;
@@ -278,10 +276,8 @@ export function createMetricScreen(): ScreenMeta {
               alignItems: 'center',
               padding: '12px 16px',
               borderRadius: '8px',
-              border: isCurrent
-                ? '2px solid var(--accent, #3b82f6)'
-                : '1px solid var(--sand, #e5e7eb)',
-              background: isCurrent ? 'rgba(59, 130, 246, 0.08)' : 'var(--card-bg, #fff)',
+              border: isCurrent ? '2px solid var(--thread)' : '1px solid var(--paper-sunk)',
+              background: isCurrent ? 'rgba(59, 130, 246, 0.08)' : 'var(--paper-raised)',
               minHeight: '48px',
             },
           });
@@ -296,7 +292,7 @@ export function createMetricScreen(): ScreenMeta {
           leftInfo.appendChild(
             el('small', {
               text: t(st.multKey),
-              style: { color: 'var(--muted, #6b7280)' },
+              style: { color: 'var(--ink-soft)' },
             })
           );
 
@@ -308,8 +304,8 @@ export function createMetricScreen(): ScreenMeta {
               fontSize: '1.1rem',
               padding: '4px 10px',
               borderRadius: '6px',
-              background: isCurrent ? 'var(--accent, #3b82f6)' : 'var(--sand, #f3f4f6)',
-              color: isCurrent ? '#fff' : 'var(--ink, #1f2937)',
+              background: isCurrent ? 'var(--indigo)' : 'var(--paper-sunk)',
+              color: isCurrent ? 'var(--paper-raised)' : 'var(--ink)',
             },
           });
 
@@ -356,9 +352,7 @@ export function createMetricScreen(): ScreenMeta {
             minHeight: '44px',
             borderRadius: '6px',
             border:
-              subMode === 'mass'
-                ? '2px solid var(--ink, #1f2937)'
-                : '1px solid var(--sand, #d1d5db)',
+              subMode === 'mass' ? '2px solid var(--ink, #1f2937)' : '1px solid var(--paper-sunk)',
             fontWeight: subMode === 'mass' ? 'bold' : 'normal',
           },
           onClick() {
@@ -378,7 +372,7 @@ export function createMetricScreen(): ScreenMeta {
             border:
               subMode === 'capacity'
                 ? '2px solid var(--ink, #1f2937)'
-                : '1px solid var(--sand, #d1d5db)',
+                : '1px solid var(--paper-sunk)',
             fontWeight: subMode === 'capacity' ? 'bold' : 'normal',
           },
           onClick() {
@@ -410,7 +404,7 @@ export function createMetricScreen(): ScreenMeta {
               justifyContent: 'space-between',
               alignItems: 'center',
               padding: '10px',
-              border: '1px solid var(--sand, #e5e7eb)',
+              border: '1px solid var(--paper-sunk)',
               borderRadius: '8px',
               flexWrap: 'wrap',
               gap: '8px',
@@ -458,10 +452,8 @@ export function createMetricScreen(): ScreenMeta {
                 alignItems: 'center',
                 padding: '12px 16px',
                 borderRadius: '8px',
-                border: isCurr
-                  ? '2px solid var(--accent, #3b82f6)'
-                  : '1px solid var(--sand, #e5e7eb)',
-                background: isCurr ? 'rgba(59, 130, 246, 0.08)' : 'var(--card-bg, #fff)',
+                border: isCurr ? '2px solid var(--thread)' : '1px solid var(--paper-sunk)',
+                background: isCurr ? 'rgba(59, 130, 246, 0.08)' : 'var(--paper-raised)',
               },
             });
             r.appendChild(el('span', { text: t(st.nameKey), style: { fontWeight: '600' } }));
@@ -483,7 +475,7 @@ export function createMetricScreen(): ScreenMeta {
               justifyContent: 'space-between',
               alignItems: 'center',
               padding: '10px',
-              border: '1px solid var(--sand, #e5e7eb)',
+              border: '1px solid var(--paper-sunk)',
               borderRadius: '8px',
               flexWrap: 'wrap',
               gap: '8px',
@@ -540,10 +532,8 @@ export function createMetricScreen(): ScreenMeta {
                 alignItems: 'center',
                 padding: '12px 16px',
                 borderRadius: '8px',
-                border: isCurr
-                  ? '2px solid var(--accent, #3b82f6)'
-                  : '1px solid var(--sand, #e5e7eb)',
-                background: isCurr ? 'rgba(59, 130, 246, 0.08)' : 'var(--card-bg, #fff)',
+                border: isCurr ? '2px solid var(--thread)' : '1px solid var(--paper-sunk)',
+                background: isCurr ? 'rgba(59, 130, 246, 0.08)' : 'var(--paper-raised)',
               },
             });
             r.appendChild(el('span', { text: t(st.nameKey), style: { fontWeight: '600' } }));
@@ -615,8 +605,8 @@ export function createMetricScreen(): ScreenMeta {
               minHeight: '44px',
               padding: '6px 12px',
               borderRadius: '6px',
-              border: '1px solid var(--sand, #d1d5db)',
-              background: 'var(--card-bg, #fff)',
+              border: '1px solid var(--paper-sunk)',
+              background: 'var(--paper-raised)',
             },
             onClick() {
               compMode = p.mode;
@@ -702,8 +692,8 @@ export function createMetricScreen(): ScreenMeta {
             width: '100%',
             padding: '16px',
             borderRadius: '12px',
-            border: '1px solid var(--sand, #e5e7eb)',
-            background: 'var(--card-bg, #fff)',
+            border: '1px solid var(--paper-sunk)',
+            background: 'var(--paper-raised)',
           },
         });
 
@@ -790,7 +780,7 @@ export function createMetricScreen(): ScreenMeta {
             textAlign: 'center',
             padding: '10px',
             borderRadius: '8px',
-            background: isLeftGreater ? 'rgba(59, 130, 246, 0.12)' : 'var(--sand, #f3f4f6)',
+            background: isLeftGreater ? 'rgba(59, 130, 246, 0.12)' : 'var(--paper-sunk)',
             border: isLeftGreater ? '1px solid #3b82f6' : '1px solid #e5e7eb',
           },
         });
@@ -803,7 +793,7 @@ export function createMetricScreen(): ScreenMeta {
         leftPan.appendChild(
           el('small', {
             text: t('metric.convReadout', { conv: String(leftBase), unit: baseUnitName }),
-            style: { color: 'var(--muted, #6b7280)' },
+            style: { color: 'var(--ink-soft)' },
           })
         );
 
@@ -829,7 +819,7 @@ export function createMetricScreen(): ScreenMeta {
             padding: '10px',
             borderRadius: '8px',
             background:
-              !isEqual && !isLeftGreater ? 'rgba(59, 130, 246, 0.12)' : 'var(--sand, #f3f4f6)',
+              !isEqual && !isLeftGreater ? 'rgba(59, 130, 246, 0.12)' : 'var(--paper-sunk)',
             border: !isEqual && !isLeftGreater ? '1px solid #3b82f6' : '1px solid #e5e7eb',
           },
         });
@@ -842,7 +832,7 @@ export function createMetricScreen(): ScreenMeta {
         rightPan.appendChild(
           el('small', {
             text: t('metric.convReadout', { conv: String(rightBase), unit: baseUnitName }),
-            style: { color: 'var(--muted, #6b7280)' },
+            style: { color: 'var(--ink-soft)' },
           })
         );
 

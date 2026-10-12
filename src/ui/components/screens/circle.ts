@@ -146,9 +146,9 @@ export function createCircleScreen(): ScreenMeta {
           style: {
             padding: '6px 14px',
             borderRadius: '999px',
-            background: 'rgba(56, 189, 248, 0.15)',
+            background: 'var(--teal-soft)',
             border: '1px solid rgba(56, 189, 248, 0.4)',
-            color: 'var(--c-teal, #0284c7)',
+            color: 'var(--teal)',
             fontWeight: '600',
             fontSize: '0.9rem',
           },
@@ -161,9 +161,9 @@ export function createCircleScreen(): ScreenMeta {
           style: {
             padding: '6px 14px',
             borderRadius: '999px',
-            background: 'rgba(168, 85, 247, 0.15)',
+            background: 'var(--indigo-soft)',
             border: '1px solid rgba(168, 85, 247, 0.4)',
-            color: 'var(--c-purple, #9333ea)',
+            color: 'var(--indigo)',
             fontWeight: '600',
             fontSize: '0.9rem',
           },
@@ -176,11 +176,11 @@ export function createCircleScreen(): ScreenMeta {
           style: {
             padding: '6px 14px',
             borderRadius: '999px',
-            background: comp.isDiameter ? 'rgba(34, 197, 94, 0.15)' : 'rgba(245, 158, 11, 0.15)',
+            background: comp.isDiameter ? 'var(--leaf-soft)' : 'var(--thread-soft)',
             border: comp.isDiameter
               ? '1px solid rgba(34, 197, 94, 0.4)'
               : '1px solid rgba(245, 158, 11, 0.4)',
-            color: comp.isDiameter ? 'var(--c-green, #16a34a)' : '#d97706',
+            color: 'var(--ink)',
             fontWeight: '600',
             fontSize: '0.9rem',
           },
@@ -227,8 +227,8 @@ export function createCircleScreen(): ScreenMeta {
             maxWidth: '340px',
             aspectRatio: '1',
             borderRadius: '16px',
-            background: 'var(--card-bg, rgba(255, 255, 255, 0.03))',
-            border: '1px solid var(--border-color, rgba(255, 255, 255, 0.1))',
+            background: 'var(--paper-raised)',
+            border: '1px solid var(--hair)',
             overflow: 'hidden',
             display: 'flex',
             alignItems: 'center',
@@ -278,7 +278,7 @@ export function createCircleScreen(): ScreenMeta {
         circleEl.setAttribute('cy', String(cy));
         circleEl.setAttribute('r', String(rPx));
         circleEl.setAttribute('fill', 'rgba(56, 189, 248, 0.06)');
-        circleEl.setAttribute('stroke', 'var(--c-teal, #0284c7)');
+        circleEl.setAttribute('stroke', 'var(--teal)');
         circleEl.setAttribute('stroke-width', '3');
         circleEl.setAttribute('class', 'boundary-circle');
         svg.appendChild(circleEl);
@@ -289,7 +289,7 @@ export function createCircleScreen(): ScreenMeta {
         radiusLine.setAttribute('y1', String(cy));
         radiusLine.setAttribute('x2', String(cx + rPx));
         radiusLine.setAttribute('y2', String(cy));
-        radiusLine.setAttribute('stroke', 'var(--c-teal, #0284c7)');
+        radiusLine.setAttribute('stroke', 'var(--teal)');
         radiusLine.setAttribute('stroke-width', '2.5');
         radiusLine.setAttribute('stroke-dasharray', '4,3');
         svg.appendChild(radiusLine);
@@ -299,7 +299,7 @@ export function createCircleScreen(): ScreenMeta {
         radiusText.setAttribute('x', String(cx + rPx / 2));
         radiusText.setAttribute('y', String(cy + 16));
         radiusText.setAttribute('text-anchor', 'middle');
-        radiusText.setAttribute('fill', 'var(--c-teal, #0284c7)');
+        radiusText.setAttribute('fill', 'var(--teal)');
         radiusText.setAttribute('font-size', '12px');
         radiusText.setAttribute('font-weight', 'bold');
         radiusText.textContent = `r = ${radiusVal} cm`;
@@ -336,7 +336,7 @@ export function createCircleScreen(): ScreenMeta {
         chordLine.setAttribute('y1', String(chordY));
         chordLine.setAttribute('x2', String(cx + chordHalfLen));
         chordLine.setAttribute('y2', String(chordY));
-        chordLine.setAttribute('stroke', comp.isDiameter ? 'var(--c-green, #16a34a)' : '#d97706');
+        chordLine.setAttribute('stroke', comp.isDiameter ? 'var(--leaf)' : '#d97706');
         chordLine.setAttribute('stroke-width', '4');
         chordLine.setAttribute('stroke-linecap', 'round');
         chordLine.setAttribute('id', 'chord-line');
@@ -347,14 +347,14 @@ export function createCircleScreen(): ScreenMeta {
         dotA.setAttribute('cx', String(cx - chordHalfLen));
         dotA.setAttribute('cy', String(chordY));
         dotA.setAttribute('r', '4');
-        dotA.setAttribute('fill', comp.isDiameter ? 'var(--c-green, #16a34a)' : '#d97706');
+        dotA.setAttribute('fill', comp.isDiameter ? 'var(--leaf)' : '#d97706');
         svg.appendChild(dotA);
 
         const dotB = document.createElementNS(svgNS, 'circle');
         dotB.setAttribute('cx', String(cx + chordHalfLen));
         dotB.setAttribute('cy', String(chordY));
         dotB.setAttribute('r', '4');
-        dotB.setAttribute('fill', comp.isDiameter ? 'var(--c-green, #16a34a)' : '#d97706');
+        dotB.setAttribute('fill', comp.isDiameter ? 'var(--leaf)' : '#d97706');
         svg.appendChild(dotB);
 
         // Chord text label above line
@@ -362,7 +362,7 @@ export function createCircleScreen(): ScreenMeta {
         chordText.setAttribute('x', String(cx));
         chordText.setAttribute('y', String(chordY - 8));
         chordText.setAttribute('text-anchor', 'middle');
-        chordText.setAttribute('fill', comp.isDiameter ? 'var(--c-green, #16a34a)' : '#d97706');
+        chordText.setAttribute('fill', comp.isDiameter ? 'var(--leaf)' : '#d97706');
         chordText.setAttribute('font-size', '12px');
         chordText.setAttribute('font-weight', 'bold');
         chordText.textContent = comp.isDiameter
@@ -375,7 +375,7 @@ export function createCircleScreen(): ScreenMeta {
         centreDot.setAttribute('cx', String(cx));
         centreDot.setAttribute('cy', String(cy));
         centreDot.setAttribute('r', '6');
-        centreDot.setAttribute('fill', 'var(--c-gold, #f59e0b)');
+        centreDot.setAttribute('fill', 'var(--thread)');
         centreDot.setAttribute('stroke', '#ffffff');
         centreDot.setAttribute('stroke-width', '2');
         centreDot.setAttribute('id', 'centre-pin');
@@ -385,7 +385,7 @@ export function createCircleScreen(): ScreenMeta {
         centreText.setAttribute('x', String(cx));
         centreText.setAttribute('y', String(cy - 10));
         centreText.setAttribute('text-anchor', 'middle');
-        centreText.setAttribute('fill', 'var(--c-gold, #f59e0b)');
+        centreText.setAttribute('fill', 'var(--thread)');
         centreText.setAttribute('font-size', '11px');
         centreText.setAttribute('font-weight', 'bold');
         centreText.textContent = t('circle.centreLabel');
@@ -431,7 +431,7 @@ export function createCircleScreen(): ScreenMeta {
 
         const radiusValue = el('span', {
           text: `${radiusVal} cm`,
-          style: { fontWeight: 'bold', color: 'var(--c-teal, #0284c7)' },
+          style: { fontWeight: 'bold', color: 'var(--teal)' },
         });
 
         radiusLabelRow.appendChild(radiusTitle);
@@ -522,7 +522,7 @@ export function createCircleScreen(): ScreenMeta {
           text: `${offsetVal} cm`,
           style: {
             fontWeight: 'bold',
-            color: offsetVal === 0 ? 'var(--c-green, #16a34a)' : '#d97706',
+            color: offsetVal === 0 ? 'var(--leaf)' : '#d97706',
           },
         });
 

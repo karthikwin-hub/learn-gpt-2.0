@@ -95,9 +95,9 @@ export function createDigestScreen(): ScreenMeta {
         svgEl.appendChild(
           svg('path', {
             d: 'M180 6 C 140 6, 130 40, 150 60 L 112 90 C 96 140, 100 240, 116 300 L 244 300 C 260 240, 264 140, 248 90 L 210 60 C 230 40, 220 6, 180 6 Z',
-            stroke: 'var(--border, #cbd5e1)',
+            stroke: 'var(--hair)',
             'stroke-width': '2',
-            fill: 'var(--card-bg, #f8fafc)',
+            fill: 'var(--paper-raised)',
           })
         );
 
@@ -111,7 +111,7 @@ export function createDigestScreen(): ScreenMeta {
             d: sh.d,
             class: `organ-path organ-${id}`,
             stroke: isHigh
-              ? 'var(--thread-ganita, #8b5cf6)'
+              ? 'var(--indigo)'
               : isDone
                 ? 'var(--leaf, #10b981)'
                 : 'var(--ink-soft, #94a3b8)',
@@ -127,7 +127,7 @@ export function createDigestScreen(): ScreenMeta {
             x: String(sh.label[0]),
             y: String(sh.label[1]),
             'font-size': '12',
-            fill: isHigh ? 'var(--ink, #0f172a)' : 'var(--muted, #64748b)',
+            fill: isHigh ? 'var(--ink, #0f172a)' : 'var(--ink-soft)',
             'text-anchor': 'middle',
             'font-weight': isHigh ? 'bold' : 'normal',
           });
@@ -156,7 +156,7 @@ export function createDigestScreen(): ScreenMeta {
               cx: String(p[0]),
               cy: String(p[1]),
               r: currentAt === 'large' ? '4' : '8',
-              fill: 'var(--thread-ganita, #8b5cf6)',
+              fill: 'var(--indigo)',
               stroke: 'var(--ink, #0f172a)',
               'stroke-width': '1.5',
             })

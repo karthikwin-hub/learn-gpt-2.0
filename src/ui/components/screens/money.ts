@@ -50,11 +50,11 @@ export function createMoneyScreen(): ScreenMeta {
       const displayCard = el('section', { class: 'card money-display', 'aria-live': 'polite' });
       const totalAmount = el('div', {
         class: 'money-total',
-        style: { fontSize: '28px', fontWeight: 'bold', color: 'var(--thread-ganita, #8b5cf6)' },
+        style: { fontSize: '28px', fontWeight: 'bold', color: 'var(--indigo)' },
       });
       const paiseNotice = el('div', {
         class: 'paise-notice',
-        style: { color: 'var(--muted)', fontSize: '14px', marginTop: '4px' },
+        style: { color: 'var(--ink-soft)', fontSize: '14px', marginTop: '4px' },
       });
       displayCard.appendChild(totalAmount);
       displayCard.appendChild(paiseNotice);
@@ -127,11 +127,11 @@ export function createMoneyScreen(): ScreenMeta {
             const itemBox = el('div', {
               class: `denom-box item-${item.id}`,
               style: {
-                border: '1px solid var(--border)',
+                border: '1px solid var(--hair)',
                 borderRadius: '8px',
                 padding: '8px',
                 textAlign: 'center',
-                background: 'var(--card-bg, #fff)',
+                background: 'var(--paper-raised)',
               },
             });
 
@@ -149,8 +149,7 @@ export function createMoneyScreen(): ScreenMeta {
                 fontWeight: 'bold',
                 fontSize: '12px',
                 marginBottom: '6px',
-                background:
-                  item.type === 'coin' ? 'var(--sand-soft, #fef3c7)' : 'var(--sage-soft, #d1fae5)',
+                background: item.type === 'coin' ? 'var(--paper-sunk)' : 'var(--leaf-soft)',
               },
               text: item.label,
             });

@@ -43,7 +43,7 @@ export function createFractionsScreen(): ScreenMeta {
       });
       const eqReadout = el('div', {
         class: 'frac-equivalents',
-        style: { color: 'var(--muted)', fontSize: '14px' },
+        style: { color: 'var(--ink-soft)', fontSize: '14px' },
       });
       displayCard.appendChild(fracReadout);
       displayCard.appendChild(eqReadout);
@@ -95,10 +95,10 @@ export function createFractionsScreen(): ScreenMeta {
               flex: '1',
               display: 'flex',
               height: '42px',
-              border: '2px solid var(--border)',
+              border: '2px solid var(--hair)',
               borderRadius: '8px',
               overflow: 'hidden',
-              background: 'var(--card-bg, #fff)',
+              background: 'var(--paper-raised)',
             },
           });
 
@@ -118,9 +118,8 @@ export function createFractionsScreen(): ScreenMeta {
               style: {
                 flex: '1',
                 border: 'none',
-                borderRight:
-                  i < row.segments.length - 1 ? '1px dashed var(--border-dark, #cbd5e1)' : 'none',
-                background: isActive ? 'var(--thread-ganita, #8b5cf6)' : 'transparent',
+                borderRight: i < row.segments.length - 1 ? '1px dashed var(--ink-soft)' : 'none',
+                background: isActive ? 'var(--indigo)' : 'transparent',
                 color: isActive ? '#fff' : 'var(--ink)',
                 cursor: 'pointer',
                 fontSize: '12px',

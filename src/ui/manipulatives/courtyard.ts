@@ -138,7 +138,7 @@ export function createCourtyard(opts: CourtyardOptions): CourtyardManipulative {
 
   const root = svg('svg', {
     viewBox: `0 0 ${W} ${H}`,
-    role: 'img',
+    role: 'group',
     class: 'courtyard-manipulative',
   }) as SVGSVGElement;
 

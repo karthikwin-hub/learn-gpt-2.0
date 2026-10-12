@@ -158,9 +158,9 @@ export function createCubenetScreen(): ScreenMeta {
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'center',
-            background: 'var(--card-bg, #ffffff)',
+            background: 'var(--paper-raised)',
             borderRadius: '12px',
-            border: '1px solid var(--border, #e5e7eb)',
+            border: '1px solid var(--hair)',
           },
         });
 
@@ -303,9 +303,9 @@ export function createCubenetScreen(): ScreenMeta {
             display: 'flex',
             flexDirection: 'column',
             gap: '14px',
-            background: 'var(--card-bg, #ffffff)',
+            background: 'var(--paper-raised)',
             borderRadius: '12px',
-            border: '1px solid var(--border, #e5e7eb)',
+            border: '1px solid var(--hair)',
           },
         });
 

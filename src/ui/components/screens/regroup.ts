@@ -100,8 +100,8 @@ export function createRegroupScreen(): ScreenMeta {
             width: 320,
             height: 160,
             rx: 10,
-            fill: 'var(--warm-bg, #fbf7ee)',
-            stroke: 'var(--border, #d8d0c0)',
+            fill: 'var(--paper)',
+            stroke: 'var(--hair)',
             'stroke-width': 2,
           })
         );
@@ -120,7 +120,7 @@ export function createRegroupScreen(): ScreenMeta {
               y1: 30,
               x2: col.x,
               y2: 130,
-              stroke: 'var(--border, #d8d0c0)',
+              stroke: 'var(--hair)',
               'stroke-width': 4,
             })
           );
@@ -133,7 +133,7 @@ export function createRegroupScreen(): ScreenMeta {
               width: 48,
               height: 40,
               rx: 8,
-              fill: 'var(--accent, #a66a38)',
+              fill: 'var(--thread)',
             })
           );
 
@@ -266,7 +266,7 @@ export function createRegroupScreen(): ScreenMeta {
 
           const explanationBox = el('div', {
             style: {
-              background: 'var(--warm-bg, #fbf7ee)',
+              background: 'var(--paper)',
               padding: '12px',
               borderRadius: '8px',
               maxWidth: '360px',

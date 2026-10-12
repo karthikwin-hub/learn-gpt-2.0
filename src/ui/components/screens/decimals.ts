@@ -118,7 +118,7 @@ export function createDecimalsScreen(): ScreenMeta {
                 width: 20,
                 height: 20,
                 fill: isShaded ? '#5a8260' : 'rgba(255,255,255,0.7)',
-                stroke: 'var(--border, #d8d0c0)',
+                stroke: 'var(--hair)',
                 'stroke-width': 1,
               })
             );

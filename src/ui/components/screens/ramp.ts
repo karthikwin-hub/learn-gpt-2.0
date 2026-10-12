@@ -113,7 +113,7 @@ export function createRampScreen(): ScreenMeta {
             x: String(70 + m * k),
             y: '152',
             'font-size': '10',
-            fill: 'var(--muted, #64748b)',
+            fill: 'var(--ink-soft)',
             'text-anchor': 'middle',
           });
           txt.textContent = `${m}m`;

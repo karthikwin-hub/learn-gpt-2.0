@@ -119,8 +119,8 @@ export function createDivisibilityScreen(): ScreenMeta {
           style: {
             width: '100%',
             maxWidth: '420px',
-            backgroundColor: 'var(--bg-surface, #ffffff)',
-            border: '1px solid var(--border-subtle, #e0e0e0)',
+            backgroundColor: 'var(--paper-raised)',
+            border: '1px solid var(--hair)',
             borderRadius: '12px',
             padding: '16px',
             display: 'flex',
@@ -189,7 +189,7 @@ export function createDivisibilityScreen(): ScreenMeta {
         const lastDigitBadge = el('div', {
           class: 'units-badge',
           text: t('divisibility.unitsBadge', { d: digits[digits.length - 1] ?? 0 }),
-          style: { fontSize: '13px', fontWeight: '600', color: '#ff6f00' },
+          style: { fontSize: '13px', fontWeight: '600', color: 'var(--kumkum)' },
         });
 
         // Divisor selector: 2, 5, 10
@@ -266,8 +266,8 @@ export function createDivisibilityScreen(): ScreenMeta {
           style: {
             width: '100%',
             maxWidth: '420px',
-            backgroundColor: 'var(--bg-surface, #ffffff)',
-            border: '1px solid var(--border-subtle, #e0e0e0)',
+            backgroundColor: 'var(--paper-raised)',
+            border: '1px solid var(--hair)',
             borderRadius: '12px',
             padding: '16px',
             display: 'flex',
@@ -414,8 +414,8 @@ export function createDivisibilityScreen(): ScreenMeta {
           style: {
             width: '100%',
             maxWidth: '420px',
-            backgroundColor: 'var(--bg-surface, #ffffff)',
-            border: '1px solid var(--border-subtle, #e0e0e0)',
+            backgroundColor: 'var(--paper-raised)',
+            border: '1px solid var(--hair)',
             borderRadius: '12px',
             padding: '16px',
             display: 'flex',

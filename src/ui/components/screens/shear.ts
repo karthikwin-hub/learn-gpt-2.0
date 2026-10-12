@@ -132,9 +132,9 @@ export function createShearScreen(): ScreenMeta {
             display: 'flex',
             justifyContent: 'center',
             alignItems: 'center',
-            background: 'var(--card-bg, #ffffff)',
+            background: 'var(--paper-raised)',
             borderRadius: '12px',
-            border: '1px solid var(--border, #e5e7eb)',
+            border: '1px solid var(--hair)',
           },
         });
 
@@ -252,9 +252,9 @@ export function createShearScreen(): ScreenMeta {
             display: 'flex',
             flexDirection: 'column',
             gap: '14px',
-            background: 'var(--card-bg, #ffffff)',
+            background: 'var(--paper-raised)',
             borderRadius: '12px',
-            border: '1px solid var(--border, #e5e7eb)',
+            border: '1px solid var(--hair)',
           },
         });
 
@@ -446,7 +446,7 @@ export function createShearScreen(): ScreenMeta {
             padding: '12px',
             textAlign: 'center',
             background: 'rgba(99, 102, 241, 0.08)',
-            border: '2px solid var(--accent, #6366f1)',
+            border: '2px solid var(--thread)',
             borderRadius: '10px',
           },
         });
@@ -457,7 +457,7 @@ export function createShearScreen(): ScreenMeta {
             style: {
               fontSize: '22px',
               fontWeight: 'bold',
-              color: 'var(--accent, #6366f1)',
+              color: 'var(--indigo)',
               margin: '4px 0',
             },
             text: `${area} cm²`,
@@ -474,8 +474,8 @@ export function createShearScreen(): ScreenMeta {
           style: {
             padding: '12px',
             textAlign: 'center',
-            background: 'var(--card-bg, #ffffff)',
-            border: '1px solid var(--border, #e5e7eb)',
+            background: 'var(--paper-raised)',
+            border: '1px solid var(--hair)',
             borderRadius: '10px',
           },
         });
@@ -498,8 +498,8 @@ export function createShearScreen(): ScreenMeta {
           style: {
             padding: '12px',
             textAlign: 'center',
-            background: 'var(--card-bg, #ffffff)',
-            border: '1px solid var(--border, #e5e7eb)',
+            background: 'var(--paper-raised)',
+            border: '1px solid var(--hair)',
             borderRadius: '10px',
           },
         });

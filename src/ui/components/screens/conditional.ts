@@ -79,7 +79,7 @@ export function createConditionalScreen(): ScreenMeta {
         text: t('conditional.lead'),
         style: {
           fontSize: '0.9rem',
-          color: 'var(--muted, #4b5563)',
+          color: 'var(--ink-soft)',
           marginBottom: '1rem',
         },
       });
@@ -116,9 +116,9 @@ export function createConditionalScreen(): ScreenMeta {
           class: 'card statement-card',
           style: {
             padding: '1rem',
-            background: 'var(--card-bg, #ffffff)',
+            background: 'var(--paper-raised)',
             borderRadius: '8px',
-            border: '1px solid var(--border, #e5e7eb)',
+            border: '1px solid var(--hair)',
           },
         });
 
@@ -139,7 +139,7 @@ export function createConditionalScreen(): ScreenMeta {
             minHeight: '44px',
             flex: '1',
             borderRadius: '6px',
-            border: '1px solid var(--border, #cbd5e1)',
+            border: '1px solid var(--hair)',
             fontWeight: currentMode === 'forward' ? 'bold' : 'normal',
             background: currentMode === 'forward' ? 'var(--ink, #1f2937)' : 'transparent',
             color: currentMode === 'forward' ? '#fff' : 'inherit',
@@ -159,7 +159,7 @@ export function createConditionalScreen(): ScreenMeta {
             minHeight: '44px',
             flex: '1',
             borderRadius: '6px',
-            border: '1px solid var(--border, #cbd5e1)',
+            border: '1px solid var(--hair)',
             fontWeight: currentMode === 'reverse' ? 'bold' : 'normal',
             background: currentMode === 'reverse' ? 'var(--ink, #1f2937)' : 'transparent',
             color: currentMode === 'reverse' ? '#fff' : 'inherit',
@@ -182,10 +182,10 @@ export function createConditionalScreen(): ScreenMeta {
           style: {
             padding: '1rem',
             borderRadius: '6px',
-            background: 'var(--canvas, #f8fafc)',
+            background: 'var(--paper)',
             borderLeft: `4px solid ${
               currentMode === 'forward' || currentStatement.converseTrue
-                ? 'var(--emerald, #10b981)'
+                ? 'var(--leaf)'
                 : 'var(--kumkum, #b91c1c)'
             }`,
             marginBottom: '1rem',
@@ -344,9 +344,9 @@ export function createConditionalScreen(): ScreenMeta {
           class: 'card diagram-card',
           style: {
             padding: '1rem',
-            background: 'var(--card-bg, #ffffff)',
+            background: 'var(--paper-raised)',
             borderRadius: '8px',
-            border: '1px solid var(--border, #e5e7eb)',
+            border: '1px solid var(--hair)',
           },
         });
 
@@ -483,7 +483,7 @@ export function createConditionalScreen(): ScreenMeta {
             minHeight: '44px',
             padding: '10px 16px',
             borderRadius: '6px',
-            border: '1px solid var(--border, #cbd5e1)',
+            border: '1px solid var(--hair)',
             background: 'transparent',
           },
           onClick() {
@@ -515,10 +515,8 @@ export function createConditionalScreen(): ScreenMeta {
               minHeight: '44px',
               padding: '8px 14px',
               borderRadius: '9999px',
-              border: isSelected
-                ? '2px solid var(--indigo, #4f46e5)'
-                : '1px solid var(--border, #cbd5e1)',
-              background: isSelected ? 'var(--lavender, #e0e7ff)' : 'var(--card-bg, #ffffff)',
+              border: isSelected ? '2px solid var(--indigo, #4f46e5)' : '1px solid var(--hair)',
+              background: isSelected ? 'var(--indigo-soft)' : 'var(--paper-raised)',
               color: isSelected ? 'var(--indigo, #4f46e5)' : 'inherit',
               fontWeight: isSelected ? 'bold' : 'normal',
               cursor: 'pointer',

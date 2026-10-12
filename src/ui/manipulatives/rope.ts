@@ -42,7 +42,7 @@ export function createRopeManipulative(opts: RopeOptions): RopeManipulative {
 
   const root = svg('svg', {
     viewBox: `0 0 ${W} ${H}`,
-    role: 'img',
+    role: 'group',
     class: 'rope-manipulative',
   });
 
@@ -310,6 +310,7 @@ export function renderAreaHill(
     viewBox: `0 0 ${W_HILL} ${H_HILL + 22}`,
     role: 'img',
     class: 'area-hill',
+    'aria-label': options.map((r) => `${r.w} × ${r.h} = ${r.area}`).join(', '),
   });
 
   options.forEach((r, i) => {

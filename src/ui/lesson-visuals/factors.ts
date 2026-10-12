@@ -141,7 +141,7 @@ function f1Mistake(reveal: boolean): SVGSVGElement {
     missing.forEach((f, i) => {
       s.appendChild(
         figRect(210 + i * 44, 40, 36, 36, {
-          fill: 'var(--kumkum-soft, var(--paper-sunk))',
+          fill: 'var(--thread-soft)',
           stroke: KUM,
           sw: 2,
           rx: 6,

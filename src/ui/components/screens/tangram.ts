@@ -288,8 +288,8 @@ export function createTangramScreen(): ScreenMeta {
             maxWidth: '340px',
             aspectRatio: '1',
             borderRadius: '16px',
-            background: 'var(--card-bg, rgba(255, 255, 255, 0.03))',
-            border: '1px solid var(--border-color, rgba(255, 255, 255, 0.1))',
+            background: 'var(--paper-raised)',
+            border: '1px solid var(--hair)',
             overflow: 'hidden',
             display: 'flex',
             alignItems: 'center',
@@ -512,8 +512,8 @@ export function createTangramScreen(): ScreenMeta {
             borderRadius: '8px',
             fontSize: '0.85rem',
             lineHeight: '1.5',
-            backgroundColor: 'var(--card-bg, rgba(255, 255, 255, 0.02))',
-            border: '1px solid var(--border-color, rgba(255, 255, 255, 0.08))',
+            backgroundColor: 'var(--paper-raised)',
+            border: '1px solid var(--hair)',
           },
         });
 

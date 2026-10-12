@@ -120,8 +120,8 @@ export function createPrimesScreen(): ScreenMeta {
           style: {
             width: '100%',
             maxWidth: '420px',
-            backgroundColor: 'var(--bg-surface, #ffffff)',
-            border: '1px solid var(--border-subtle, #e0e0e0)',
+            backgroundColor: 'var(--paper-raised)',
+            border: '1px solid var(--hair)',
             borderRadius: '12px',
             padding: '16px',
             display: 'flex',
@@ -339,8 +339,8 @@ export function createPrimesScreen(): ScreenMeta {
           style: {
             width: '100%',
             maxWidth: '460px',
-            backgroundColor: 'var(--bg-surface, #ffffff)',
-            border: '1px solid var(--border-subtle, #e0e0e0)',
+            backgroundColor: 'var(--paper-raised)',
+            border: '1px solid var(--hair)',
             borderRadius: '12px',
             padding: '16px',
             display: 'flex',
@@ -528,8 +528,8 @@ export function createPrimesScreen(): ScreenMeta {
           style: {
             width: '100%',
             maxWidth: '420px',
-            backgroundColor: 'var(--bg-surface, #ffffff)',
-            border: '1px solid var(--border-subtle, #e0e0e0)',
+            backgroundColor: 'var(--paper-raised)',
+            border: '1px solid var(--hair)',
             borderRadius: '12px',
             padding: '16px',
             display: 'flex',

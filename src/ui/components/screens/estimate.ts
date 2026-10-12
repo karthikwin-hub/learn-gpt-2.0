@@ -97,8 +97,8 @@ export function createEstimateScreen(): ScreenMeta {
             width: 340,
             height: 140,
             rx: 10,
-            fill: 'var(--warm-bg, #fbf7ee)',
-            stroke: 'var(--border, #d8d0c0)',
+            fill: 'var(--paper)',
+            stroke: 'var(--hair)',
             'stroke-width': 2,
           })
         );
@@ -110,7 +110,7 @@ export function createEstimateScreen(): ScreenMeta {
             y1: 80,
             x2: 320,
             y2: 80,
-            stroke: 'var(--border, #d8d0c0)',
+            stroke: 'var(--hair)',
             'stroke-width': 4,
           })
         );
@@ -148,7 +148,7 @@ export function createEstimateScreen(): ScreenMeta {
             cx: markerX,
             cy: 80,
             r: 10,
-            fill: 'var(--accent, #a66a38)',
+            fill: 'var(--thread)',
           })
         );
 
@@ -158,7 +158,7 @@ export function createEstimateScreen(): ScreenMeta {
           'text-anchor': 'middle',
           'font-size': '13',
           'font-weight': 'bold',
-          fill: 'var(--accent, #a66a38)',
+          fill: 'var(--thread)',
         });
         mText.textContent = snapped48 ? t('estimate.snapArrow') : '48';
         s.appendChild(mText);
@@ -182,8 +182,8 @@ export function createEstimateScreen(): ScreenMeta {
             width: 340,
             height: 140,
             rx: 10,
-            fill: 'var(--warm-bg, #fbf7ee)',
-            stroke: 'var(--border, #d8d0c0)',
+            fill: 'var(--paper)',
+            stroke: 'var(--hair)',
             'stroke-width': 2,
           })
         );
@@ -219,7 +219,7 @@ export function createEstimateScreen(): ScreenMeta {
             cx: 180,
             cy: 80,
             r: 5,
-            fill: 'var(--accent, #a66a38)',
+            fill: 'var(--thread)',
           })
         );
 

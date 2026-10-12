@@ -14,6 +14,7 @@ import {
 } from '../../domain/math/sequences';
 import { triangularNumber, squareNumber, generateTriangularDots } from '../../domain/math/growing';
 import { figSvg, figText, figRect, figLine, figCircle, figPath, figGrid } from '../diagrams/fig';
+import { svg } from '../util/dom';
 import type { CardKey, LessonVisuals, VisualsTable } from './types';
 
 const W = 360;
@@ -164,16 +165,24 @@ function clockFace(h24: number, m: number, label: string): SVGSVGElement {
   return s;
 }
 
+/* Draws a clock face inside an existing picture, so the picture stays one SVG. */
+function placeClock(
+  s: SVGSVGElement,
+  h24: number,
+  m: number,
+  x: number,
+  y: number,
+  scale = 1
+): void {
+  const face = clockFace(h24, m, '');
+  const g = svg('g', { transform: `translate(${x} ${y}) scale(${scale})` });
+  while (face.firstChild) g.appendChild(face.firstChild);
+  s.appendChild(g);
+}
+
 function u3Prashna(): SVGSVGElement {
   const s = figSvg(W, 130, t('prashna.U3.q'));
-  const inner = clockFace(21, 30, formatTime24(21, 30));
-  inner.setAttribute('x', '110');
-  inner.setAttribute('y', '0');
-  inner.setAttribute('width', '140');
-  inner.setAttribute('height', '140');
-  while (inner.firstChild) {
-    s.appendChild(inner.firstChild);
-  }
+  placeClock(s, 21, 30, 135, 0, 0.65);
   const t12 = to12Hour(21, 30);
   s.appendChild(figText(180, 115, t12.formatted, { size: 14, color: 'var(--teal)' }));
   return s;
@@ -203,14 +212,16 @@ const U3: LessonVisuals = {
   cards: cardFig({
     what: () => {
       const s = figSvg(W, H, t('bodha.U3.what'));
-      s.appendChild(clockFace(14, 0, '24h'));
+      placeClock(s, 14, 0, 20, 0);
       s.appendChild(figText(250, 70, '00:00–23:59', { size: 12, color: 'var(--indigo)' }));
       return s;
     },
     idea: () => {
       const s = figSvg(W, 90, t('bodha.U3.idea'));
       s.appendChild(figText(100, 45, '15:00', { size: 18, color: 'var(--indigo)' }));
-      s.appendChild(figText(220, 45, '3 PM', { size: 18, color: 'var(--teal)' }));
+      s.appendChild(
+        figText(220, 45, to12Hour(15, 0).formatted, { size: 18, color: 'var(--teal)' })
+      );
       s.appendChild(figText(160, 70, '−12', { size: 14, color: 'var(--kumkum)' }));
       return s;
     },

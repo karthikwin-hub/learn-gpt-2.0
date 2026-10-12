@@ -118,8 +118,8 @@ export function createHcfScreen(): ScreenMeta {
           style: {
             width: '100%',
             maxWidth: '440px',
-            backgroundColor: 'var(--bg-surface, #ffffff)',
-            border: '1px solid var(--border-subtle, #e0e0e0)',
+            backgroundColor: 'var(--paper-raised)',
+            border: '1px solid var(--hair)',
             borderRadius: '12px',
             padding: '16px',
             display: 'flex',
@@ -238,7 +238,7 @@ export function createHcfScreen(): ScreenMeta {
         const centerHeader = el('span', {
           class: 'intersection-title',
           text: t('hcf.commonTitle'),
-          style: { fontSize: '13px', fontWeight: '700', color: '#f57f17' },
+          style: { fontSize: '13px', fontWeight: '700', color: 'var(--kumkum)' },
         });
         const centerTokens = el('div', {
           style: { display: 'flex', gap: '6px', flexWrap: 'wrap', justifyContent: 'center' },
@@ -313,11 +313,11 @@ export function createHcfScreen(): ScreenMeta {
           style: {
             padding: '10px 14px',
             borderRadius: '8px',
-            backgroundColor: '#fff8e1',
+            backgroundColor: 'var(--thread-soft)',
             border: '1px solid #ffe082',
             fontWeight: '700',
             fontSize: '14px',
-            color: '#e65100',
+            color: 'var(--ink)',
             textAlign: 'center',
             width: '100%',
             boxSizing: 'border-box',
@@ -344,8 +344,8 @@ export function createHcfScreen(): ScreenMeta {
           style: {
             width: '100%',
             maxWidth: '440px',
-            backgroundColor: 'var(--bg-surface, #ffffff)',
-            border: '1px solid var(--border-subtle, #e0e0e0)',
+            backgroundColor: 'var(--paper-raised)',
+            border: '1px solid var(--hair)',
             borderRadius: '12px',
             padding: '16px',
             display: 'flex',
@@ -531,8 +531,8 @@ export function createHcfScreen(): ScreenMeta {
           style: {
             width: '100%',
             maxWidth: '440px',
-            backgroundColor: 'var(--bg-surface, #ffffff)',
-            border: '1px solid var(--border-subtle, #e0e0e0)',
+            backgroundColor: 'var(--paper-raised)',
+            border: '1px solid var(--hair)',
             borderRadius: '12px',
             padding: '16px',
             display: 'flex',

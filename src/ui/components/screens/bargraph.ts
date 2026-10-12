@@ -102,10 +102,8 @@ export function createBargraphScreen(): ScreenMeta {
             minHeight: '44px',
             borderRadius: '6px',
             border:
-              stepNum === cfg.num
-                ? '2px solid var(--ink, #1f2937)'
-                : '1px solid var(--sand, #d1d5db)',
-            background: stepNum === cfg.num ? 'var(--parchment, #fff)' : 'transparent',
+              stepNum === cfg.num ? '2px solid var(--ink, #1f2937)' : '1px solid var(--paper-sunk)',
+            background: stepNum === cfg.num ? 'var(--paper)' : 'transparent',
             fontWeight: stepNum === cfg.num ? 'bold' : 'normal',
             cursor: 'pointer',
           },
@@ -137,8 +135,8 @@ export function createBargraphScreen(): ScreenMeta {
           (b as HTMLElement).style.fontWeight = isActive ? 'bold' : 'normal';
           (b as HTMLElement).style.border = isActive
             ? '2px solid var(--ink, #1f2937)'
-            : '1px solid var(--sand, #d1d5db)';
-          (b as HTMLElement).style.background = isActive ? 'var(--parchment, #fff)' : 'transparent';
+            : '1px solid var(--paper-sunk)';
+          (b as HTMLElement).style.background = isActive ? 'var(--paper)' : 'transparent';
         });
 
         clear(workspaceContainer);
@@ -165,7 +163,7 @@ export function createBargraphScreen(): ScreenMeta {
             width: '100%',
             padding: '12px 16px',
             borderRadius: '8px',
-            border: '2px solid var(--accent, #3b82f6)',
+            border: '2px solid var(--thread)',
             background: 'rgba(59, 130, 246, 0.06)',
             flexWrap: 'wrap',
             gap: '8px',
@@ -189,9 +187,9 @@ export function createBargraphScreen(): ScreenMeta {
               padding: '6px 12px',
               borderRadius: '6px',
               fontWeight: stepInterval === st ? 'bold' : 'normal',
-              background: stepInterval === st ? '#2563eb' : 'var(--card-bg, #fff)',
+              background: stepInterval === st ? '#2563eb' : 'var(--paper-raised)',
               color: stepInterval === st ? '#fff' : 'var(--ink, #1f2937)',
-              border: '1px solid var(--sand, #d1d5db)',
+              border: '1px solid var(--paper-sunk)',
             },
             onClick() {
               stepInterval = st;
@@ -215,8 +213,8 @@ export function createBargraphScreen(): ScreenMeta {
             width: '100%',
             padding: '16px',
             borderRadius: '12px',
-            border: '1px solid var(--sand, #e5e7eb)',
-            background: 'var(--card-bg, #fff)',
+            border: '1px solid var(--paper-sunk)',
+            background: 'var(--paper-raised)',
           },
         });
 
@@ -351,8 +349,8 @@ export function createBargraphScreen(): ScreenMeta {
             width: '100%',
             padding: '12px',
             borderRadius: '8px',
-            border: '1px solid var(--sand, #e5e7eb)',
-            background: 'var(--card-bg, #fafafa)',
+            border: '1px solid var(--paper-sunk)',
+            background: 'var(--paper-raised)',
           },
         });
 
@@ -428,8 +426,8 @@ export function createBargraphScreen(): ScreenMeta {
             width: '100%',
             padding: '16px',
             borderRadius: '12px',
-            border: '1px solid var(--sand, #e5e7eb)',
-            background: 'var(--card-bg, #fff)',
+            border: '1px solid var(--paper-sunk)',
+            background: 'var(--paper-raised)',
           },
         });
 
@@ -558,8 +556,8 @@ export function createBargraphScreen(): ScreenMeta {
             width: '100%',
             padding: '16px',
             borderRadius: '12px',
-            border: '1px solid var(--sand, #e5e7eb)',
-            background: 'var(--card-bg, #fff)',
+            border: '1px solid var(--paper-sunk)',
+            background: 'var(--paper-raised)',
           },
         });
 
