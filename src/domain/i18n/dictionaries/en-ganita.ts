@@ -953,4 +953,23 @@ export const dictionary: Record<string, string> = {
   'explain.G1.hint':
     'Does an angle measure turn or length, and what kind of angle is a quarter turn?',
   'know.G1': 'An angle is how far you turn, not how long the arms are.',
+
+  /* G2 */
+  'prashna.G2.q':
+    'A 24-metre rope fences a rectangular vegetable garden. Does changing the shape of the rectangle change how much ground it holds?',
+  'prashna.G2.c1': 'No, 24 metres of rope always holds the exact same area',
+  'prashna.G2.c2': 'Yes, squarer shapes hold more ground (a square holds the most)',
+  'prashna.G2.c3': 'Yes, longer thin shapes hold more ground',
+  'prashna.G2.a':
+    'Yes! The same 24 m perimeter can hold as little as 11 m² (11 × 1) or as much as 36 m² (6 × 6 square). A square encloses the most area!',
+  'mistake.G2.intro':
+    'Neha was comparing two gardens fenced with 24 metres of rope. One step went wrong. Which one?',
+  'mistake.G2.s1': 'Garden A is 10 m by 2 m: perimeter is 10 + 2 + 10 + 2 = 24 m (area = 20 m²).',
+  'mistake.G2.s2': 'Garden B is 6 m by 6 m: perimeter is 6 + 6 + 6 + 6 = 24 m (area = 36 m²).',
+  'mistake.G2.s3':
+    'She said both gardens hold the same amount of ground because both fences are 24 m long.',
+  'mistake.G2.fine1': 'Sound calculation: 10 by 2 gives perimeter 24 m and area 20 m².',
+  'mistake.G2.fine2': 'Sound calculation: 6 by 6 gives perimeter 24 m and area 36 m².',
+  'mistake.G2.found':
+    'Here! Both fences are 24 m, but Garden B holds 36 m² while Garden A holds only 20 m². Same perimeter does NOT mean same area!',
 };

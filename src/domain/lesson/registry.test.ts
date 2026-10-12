@@ -155,4 +155,14 @@ describe('Lesson registry', () => {
     expect(g1?.mistake?.wrong).toBe(2);
     expect(g1?.stateKey).toBe('angles');
   });
+
+  it('retrieves G2 Rope and pegs lesson', () => {
+    const g2 = getLesson('G2');
+    expect(g2).not.toBeNull();
+    expect(g2?.cards).toHaveLength(6);
+    expect(g2?.explain).toHaveLength(2);
+    expect(g2?.mistake?.steps).toBe(3);
+    expect(g2?.mistake?.wrong).toBe(2);
+    expect(g2?.stateKey).toBe('rope');
+  });
 });
