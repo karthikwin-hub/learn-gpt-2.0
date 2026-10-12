@@ -29,6 +29,7 @@ import { createPlaceScreen } from './ui/components/screens/place';
 import { createRomanScreen } from './ui/components/screens/roman';
 import { createFractionsScreen } from './ui/components/screens/fractions';
 import { createCollectionScreen } from './ui/components/screens/collection';
+import { createDecimalsScreen } from './ui/components/screens/decimals';
 import { createMoneyScreen } from './ui/components/screens/money';
 import { createDigestScreen } from './ui/components/screens/digest';
 import { createRampScreen } from './ui/components/screens/ramp';
@@ -77,6 +78,7 @@ export function initApp(): void {
   router.register(createRomanScreen());
   router.register(createFractionsScreen());
   router.register(createCollectionScreen());
+  router.register(createDecimalsScreen());
   router.register(createMoneyScreen());
   router.register(createDigestScreen());
   router.register(createRampScreen());

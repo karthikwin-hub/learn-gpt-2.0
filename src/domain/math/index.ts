@@ -29,3 +29,4 @@ export {
   type CollectionFraction,
   type SetPartition,
 } from './collection';
+export * from './decimals';
