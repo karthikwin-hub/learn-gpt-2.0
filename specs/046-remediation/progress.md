@@ -15,9 +15,6 @@ Branch `fix/046-remediation` from `main@ee6e54e`. New features frozen (product o
 - `BANNED_WORDS` flagged ordinary words (en point/star/coins, hi अंक, bn তারা); refined to praise and score terms only. Its own test is unchanged and passes.
 - The stop screen shows `bodha.<K>.sutra` without stripping glossary markup.
 
-## Next action
-T006: lesson-visuals registry (refactor first, existing figures unchanged).
-
 ## Engine (T006-T009) done
 - Visuals registry `src/ui/lesson-visuals/` (Prashna art, card figures, mistake picture per knot); Phase 1 figures moved unchanged into `ported.ts`.
 - No silent fallbacks: Bodha/Prashna/mistake/explain show `lesson.missing` and log an error for a knot without data. A bare `/#/mistake` or `/#/explain` (no knot, no thread) still opens M4, the Phase 1 lesson (002 acceptance and mockup tests).
@@ -25,3 +22,13 @@ T006: lesson-visuals registry (refactor first, existing figures unchanged).
 - Explain: hint on first mismatch, Keep anyway, writes `done`, Pothi page carries the bench route. M2 explain template moved from the screen into `m2.ts`.
 - FR-006: `gcd` is `calculateHCF` (hcf.ts); angles.ts uses it. FR-007: storage warns once per operation; `readStep` validates `?step=`; digest demo interval cleared on leave.
 - Acceptance + mockup: 994 run, all pass after fixes (roman text keeps "assembled", S2 per spec 040).
+
+## Groups, translations, review (T010-T021) done
+- Lessons 013-045 and the ported lessons: pictures for every card, mistake and Prashna; bench text in dictionaries; no innerHTML; keyboard-operable benches.
+- Every string translated into hi/te/bn/ta; machine-quality te and bn files retranslated in full; English lesson bugs fixed (N2, L3, growing contrast note).
+- New sensors: glued Latin/other-script letters inside words, informal address for the child, `fine<n>` for every mistake step, per-bench keyboard audit.
+- Reviewer findings fixed (`3150a29`); skipped items listed in `docs/reports/REMEDIATION_046.md`.
+- Full verify 12/12 PASS at `34c3324`. Branch pushed; draft PR open, not merged.
+
+## Next action
+Native-teacher review of the translations (Telugu first), then the product owner reviews and merges the PR. Feature freeze stays until then.

@@ -9,15 +9,15 @@
 - [x] T007 [US3] Remove silent fallbacks (FR-003); explain hint and keep-anyway
 - [x] T008 [US2] Translated mistake equations with safe markup (FR-005); term regex (FR-004)
 - [x] T009 Engine fixes FR-006, FR-007
-- [ ] T010 [US2] Group number: figures, mistake pictures, bench text, content review
-- [ ] T011 [US2] Group factors
-- [ ] T012 [US2] Group geometry
-- [ ] T013 [US2] Group measure-data-patterns
-- [ ] T014 [US2] Group sets-logic
-- [ ] T015 [US2] Group ported (N1 N3 U1 B3 R1 K2; Prashna art for ported knots)
-- [ ] T016 [US1] Translations hi
-- [ ] T017 [US1] Translations te
-- [ ] T018 [US1] Translations bn
-- [ ] T019 [US1] Translations ta
-- [ ] T020 Full verify, screenshots, independent review, fixes
-- [ ] T021 Remediation report, checks.md, lessons
+- [x] T010 [US2] Group number: figures, mistake pictures, bench text, content review
+- [x] T011 [US2] Group factors
+- [x] T012 [US2] Group geometry
+- [x] T013 [US2] Group measure-data-patterns
+- [x] T014 [US2] Group sets-logic
+- [x] T015 [US2] Group ported (N1 N3 U1 B3 R1 K2; Prashna art for ported knots)
+- [x] T016 [US1] Translations hi
+- [x] T017 [US1] Translations te
+- [x] T018 [US1] Translations bn
+- [x] T019 [US1] Translations ta
+- [x] T020 Full verify, screenshots, independent review, fixes
+- [x] T021 Remediation report, checks.md, lessons
