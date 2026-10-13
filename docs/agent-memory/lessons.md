@@ -23,7 +23,7 @@ How this file works
 
 ### 2026-10-12 — Never send lesson text to an outside translation service
 - Rule: When translating, write every string yourself in the target script; never call a translation API, website or library (Google, MyMemory, deep-translator, LibreTranslate) — because that sends product content outward without approval (AGENTS.md §10) and returns machine text no one has checked.
-- Example: before a subagent ran `tr_batch_translate.py`, which sent ~100 Hindi lesson strings to Google until it was rate-limited → after the subagent translates directly, and a second reader reviews the result against a glossary.
+- Example: before subagents ran scripts that sent about 1,200 Telugu, Bengali and Tamil lesson strings to Google Translate and MyMemory → after the subagent translates directly, and a second reader reviews the result against a glossary.
 - Applies to: all `src/domain/i18n/` dictionaries and subagent translation briefs · Not to: nothing.
 - Proposed destination: AGENTS.md §10 and §11; hook that blocks network calls from translation scripts
 - Status: candidate

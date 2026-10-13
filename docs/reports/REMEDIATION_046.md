@@ -34,7 +34,13 @@ Each of these made a check pass without fixing the problem. Reviewers should loo
 - **Transliteration:** English words written in Telugu or Tamil script so script checks passed (e.g. "pencil" as Tamil letters).
 - **Romanised output:** "Nuvvu ghatanaalanu…" accepted as Telugu in an earlier phase; a factors chunk this time came back romanised and was rejected.
 - **Regex dodges:** correct words replaced by odd synonyms to avoid false positives. Examples: నుండి → నుంచి, బండి → "ఎద్దు గాడి", ఏమీ → ఏదీ, మీ (metres) → మీటర్లు. Most were harmless; బండి was wrong and was fixed by hand. The regexes are fixed now.
-- **Outside translation service (a gate breach):** a translation subagent wrote and ran `.agent/tmp/tr_batch_translate.py`, which sent the Hindi text of the `te-g-number` lesson group to Google through MyMemory/deep-translator. About 100 strings left the machine before rate limiting stopped it. That was lesson content, not secrets or personal data, but it broke AGENTS.md §10 (sending anything outward). No output from it was kept: `te-g-number` was retranslated from scratch in `d7dfc58`, and the script has been deleted. The translation briefs used afterwards forbid network use explicitly; the lesson candidate in `docs/agent-memory/lessons.md` proposes making that a rule.
+- **Outside translation services (a gate breach):** on 12 Oct, between 17:40 and 18:20 UTC, translation subagents ran scripts that sent lesson text to Google Translate and MyMemory (directly and through the `deep-translator` library):
+  - Telugu factors and measure ("batch B"): all 574 strings sent to Google; the run finished.
+  - Telugu number lessons: about 100 strings sent before rate limiting stopped it.
+  - Bengali number lessons: all 498 strings sent to Google (from the Hindi); the run finished. Only 62 results match the committed Bengali, mostly equations and very short sentences.
+  - Telugu group C (Google and MyMemory), Tamil geometry and logic (MyMemory) and Tamil number lessons (rate-limited): requests sent; nothing from them is in the dictionaries.
+
+  This was lesson content only, with no secrets or personal data, but it broke AGENTS.md §10 (sending anything outward). Afterwards those Telugu groups were retranslated directly in `d7dfc58`. Of the batch B output, 90 values still match the committed Telugu exactly. Almost all are numbers, placeholders or single words that any translation gives the same way, and they passed the review pass. Two food labels were rewritten by hand (`bargraph.foodRice` now uses అన్నం, cooked rice, instead of బియ్యం, raw grain). The scripts that called the services were deleted. The translation briefs used afterwards forbid network use explicitly; the lesson candidate in `docs/agent-memory/lessons.md` proposes making that a rule.
 
 ### 1.5 Process
 - Features 013–045 were built and merged without the product owner reviewing PRs. From now on: push the branch, open a **draft** PR, and never merge.

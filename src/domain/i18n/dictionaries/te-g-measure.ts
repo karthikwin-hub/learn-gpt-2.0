@@ -486,10 +486,10 @@ export const dictionary: Record<string, string> = {
   'bargraph.horizontalBars': 'వెతన దండాలు',
   'bargraph.jaalNote':
     'విజ్ఞాన B1 సంబంధం: సమతుల్య ఆహారానికి ప్రోటీన్లు, శర్కర పదార్థాలు, విటమిన్లు మరియు ఖనిజాలు అవసరం.',
-  'bargraph.foodRice': 'బియ్యం మరియు రొట్టె',
+  'bargraph.foodRice': 'అన్నం, రొట్టె',
   'bargraph.foodDal': 'దాల్ మరియు పప్పు దినుసులు',
   'bargraph.foodGreens': 'ఆకు కూరగాయలు',
-  'bargraph.foodMilk': 'పాలు మరియు పెరుగు',
+  'bargraph.foodMilk': 'పాలు, పెరుగు',
   'bargraph.readFeedbackEq':
     'దశ {step} ఉన్న అంచుపై {mark}వ జాలి గుర్తు వరకు ఎత్తు చేరిన దండం {mark} × {step} = {val}!',
   'bargraph.vikramTrapLong':
