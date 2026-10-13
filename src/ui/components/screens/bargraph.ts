@@ -15,7 +15,7 @@ import {
   FOOD_INTAKE_DATASET,
 } from '../../../domain/math/bargraph';
 import { t } from '../../../domain/i18n/core';
-import { clear, el } from '../../util/dom';
+import { clear, el, svg } from '../../util/dom';
 import { enterThread } from '../../util/thread';
 import { router, type ScreenMeta } from '../app/router';
 
@@ -44,13 +44,18 @@ export function createBargraphScreen(): ScreenMeta {
       let stepInterval = typeof state.stepInterval === 'number' ? state.stepInterval : 5;
 
       const defaultBars: BarData[] = [
-        { category: 'Footballs', gridUnits: 3, color: '#3b82f6' },
-        { category: 'Cricket Bats', gridUnits: 4, color: '#10b981' },
-        { category: 'Rackets', gridUnits: 2, color: '#f59e0b' },
-        { category: 'Helmets', gridUnits: 5, color: '#8b5cf6' },
+        { category: 'footballs', gridUnits: 3, color: '#3b82f6' },
+        { category: 'cricketBats', gridUnits: 4, color: '#10b981' },
+        { category: 'rackets', gridUnits: 2, color: '#f59e0b' },
+        { category: 'helmets', gridUnits: 5, color: '#8b5cf6' },
       ];
 
-      let bars: BarData[] = Array.isArray(state.bars) ? (state.bars as BarData[]) : defaultBars;
+      const CATEGORIES = defaultBars.map((b) => b.category);
+      let bars: BarData[] =
+        Array.isArray(state.bars) &&
+        (state.bars as BarData[]).every((b) => CATEGORIES.includes(b.category))
+          ? (state.bars as BarData[])
+          : defaultBars;
 
       let expMark = typeof state.expMark === 'number' ? state.expMark : 4;
       let expStep = typeof state.expStep === 'number' ? state.expStep : 10;
@@ -87,9 +92,9 @@ export function createBargraphScreen(): ScreenMeta {
       });
 
       const stepsConfig = [
-        { num: 1, label: '1. Standard Bar Graph' },
-        { num: 2, label: '2. Scale Multipliers' },
-        { num: 3, label: '3. Jaal B1 Food Intake' },
+        { num: 1, label: t('bargraph.tab1') },
+        { num: 2, label: t('bargraph.tab2') },
+        { num: 3, label: t('bargraph.tab3') },
       ];
 
       stepsConfig.forEach((cfg) => {
@@ -102,10 +107,8 @@ export function createBargraphScreen(): ScreenMeta {
             minHeight: '44px',
             borderRadius: '6px',
             border:
-              stepNum === cfg.num
-                ? '2px solid var(--ink, #1f2937)'
-                : '1px solid var(--sand, #d1d5db)',
-            background: stepNum === cfg.num ? 'var(--parchment, #fff)' : 'transparent',
+              stepNum === cfg.num ? '2px solid var(--ink, #1f2937)' : '1px solid var(--paper-sunk)',
+            background: stepNum === cfg.num ? 'var(--paper)' : 'transparent',
             fontWeight: stepNum === cfg.num ? 'bold' : 'normal',
             cursor: 'pointer',
           },
@@ -137,8 +140,8 @@ export function createBargraphScreen(): ScreenMeta {
           (b as HTMLElement).style.fontWeight = isActive ? 'bold' : 'normal';
           (b as HTMLElement).style.border = isActive
             ? '2px solid var(--ink, #1f2937)'
-            : '1px solid var(--sand, #d1d5db)';
-          (b as HTMLElement).style.background = isActive ? 'var(--parchment, #fff)' : 'transparent';
+            : '1px solid var(--paper-sunk)';
+          (b as HTMLElement).style.background = isActive ? 'var(--paper)' : 'transparent';
         });
 
         clear(workspaceContainer);
@@ -153,7 +156,7 @@ export function createBargraphScreen(): ScreenMeta {
       }
 
       function renderStandardGraph() {
-        feedbackEl.textContent = `Axis step interval is ${stepInterval}. Each grid mark increases value by ${stepInterval}!`;
+        feedbackEl.textContent = t('bargraph.axisFeedback', { step: String(stepInterval) });
 
         // Scale Selector Bar
         const scaleBar = el('div', {
@@ -165,7 +168,7 @@ export function createBargraphScreen(): ScreenMeta {
             width: '100%',
             padding: '12px 16px',
             borderRadius: '8px',
-            border: '2px solid var(--accent, #3b82f6)',
+            border: '2px solid var(--thread)',
             background: 'rgba(59, 130, 246, 0.06)',
             flexWrap: 'wrap',
             gap: '8px',
@@ -174,7 +177,7 @@ export function createBargraphScreen(): ScreenMeta {
 
         scaleBar.appendChild(
           el('span', {
-            text: `Axis Step: ${stepInterval} units / mark`,
+            text: t('bargraph.axisStepLabel', { step: String(stepInterval) }),
             style: { fontWeight: 'bold', fontSize: '1.05rem', color: '#1d4ed8' },
           })
         );
@@ -183,15 +186,15 @@ export function createBargraphScreen(): ScreenMeta {
         [1, 2, 5, 10].forEach((st) => {
           const b = el('button', {
             class: `btn scale-step-btn ${stepInterval === st ? 'active' : ''}`,
-            text: `Step ${st}`,
+            text: t('bargraph.stepBtn', { st: String(st) }),
             style: {
               minHeight: '44px',
               padding: '6px 12px',
               borderRadius: '6px',
               fontWeight: stepInterval === st ? 'bold' : 'normal',
-              background: stepInterval === st ? '#2563eb' : 'var(--card-bg, #fff)',
+              background: stepInterval === st ? '#2563eb' : 'var(--paper-raised)',
               color: stepInterval === st ? '#fff' : 'var(--ink, #1f2937)',
-              border: '1px solid var(--sand, #d1d5db)',
+              border: '1px solid var(--paper-sunk)',
             },
             onClick() {
               stepInterval = st;
@@ -215,8 +218,8 @@ export function createBargraphScreen(): ScreenMeta {
             width: '100%',
             padding: '16px',
             borderRadius: '12px',
-            border: '1px solid var(--sand, #e5e7eb)',
-            background: 'var(--card-bg, #fff)',
+            border: '1px solid var(--paper-sunk)',
+            background: 'var(--paper-raised)',
           },
         });
 
@@ -233,18 +236,63 @@ export function createBargraphScreen(): ScreenMeta {
         const maxUnits = 6;
         const ticks = generateAxisTicks(maxUnits * stepInterval, stepInterval);
 
-        let gridLinesSvg = '';
+        const barSlotW = plotW / bars.length;
+        const barWidth = Math.min(48, barSlotW * 0.6);
+
+        const chartSvg = svg('svg', {
+          width: '100%',
+          height: String(svgH),
+          viewBox: `0 0 ${svgW} ${svgH}`,
+          'aria-hidden': 'true',
+        });
+
         ticks.forEach((val) => {
           const u = val / stepInterval;
           const y = padT + plotH - (u / maxUnits) * plotH;
-          gridLinesSvg += `<line x1="${padL}" y1="${y}" x2="${padL + plotW}" y2="${y}" stroke="#e2e8f0" stroke-width="1" stroke-dasharray="2,2"/>`;
-          gridLinesSvg += `<text x="${padL - 8}" y="${y + 4}" font-size="11" font-weight="600" text-anchor="end" fill="#64748b">${val}</text>`;
+          chartSvg.appendChild(
+            svg('line', {
+              x1: String(padL),
+              y1: String(y),
+              x2: String(padL + plotW),
+              y2: String(y),
+              stroke: '#e2e8f0',
+              'stroke-width': '1',
+              'stroke-dasharray': '2,2',
+            })
+          );
+          chartSvg.appendChild(
+            svg('text', {
+              x: String(padL - 8),
+              y: String(y + 4),
+              'font-size': '11',
+              'font-weight': '600',
+              'text-anchor': 'end',
+              fill: '#64748b',
+              text: String(val),
+            })
+          );
         });
 
-        // Bars
-        const barSlotW = plotW / bars.length;
-        const barWidth = Math.min(48, barSlotW * 0.6);
-        let barsSvg = '';
+        chartSvg.appendChild(
+          svg('line', {
+            x1: String(padL),
+            y1: String(padT),
+            x2: String(padL),
+            y2: String(padT + plotH),
+            stroke: '#334155',
+            'stroke-width': '2',
+          })
+        );
+        chartSvg.appendChild(
+          svg('line', {
+            x1: String(padL),
+            y1: String(padT + plotH),
+            x2: String(padL + plotW),
+            y2: String(padT + plotH),
+            stroke: '#334155',
+            'stroke-width': '2',
+          })
+        );
 
         bars.forEach((b, idx) => {
           const x = padL + idx * barSlotW + (barSlotW - barWidth) / 2;
@@ -253,25 +301,47 @@ export function createBargraphScreen(): ScreenMeta {
           const y = padT + plotH - barH;
           const trueVal = readBarValue(b.gridUnits, stepInterval);
 
-          barsSvg += `<rect class="bar-rect" data-category="${b.category}" x="${x}" y="${y}" width="${barWidth}" height="${barH}" fill="${b.color}" rx="3"/>`;
-          barsSvg += `<text class="bar-value-label" x="${x + barWidth / 2}" y="${Math.max(padT + 12, y - 6)}" font-size="11" font-weight="bold" text-anchor="middle" fill="#1e293b">${trueVal}</text>`;
-          barsSvg += `<text class="bar-category-label" x="${x + barWidth / 2}" y="${padT + plotH + 20}" font-size="11" font-weight="500" text-anchor="middle" fill="#475569">${b.category.split(' ')[0]}</text>`;
+          chartSvg.appendChild(
+            svg('rect', {
+              class: 'bar-rect',
+              x: String(x),
+              y: String(y),
+              width: String(barWidth),
+              height: String(barH),
+              fill: b.color,
+              rx: '3',
+            })
+          );
+          chartSvg.appendChild(
+            svg('text', {
+              class: 'bar-value-label',
+              x: String(x + barWidth / 2),
+              y: String(Math.max(padT + 12, y - 6)),
+              'font-size': '11',
+              'font-weight': 'bold',
+              'text-anchor': 'middle',
+              fill: '#1e293b',
+              text: String(trueVal),
+            })
+          );
+          chartSvg.appendChild(
+            svg('text', {
+              class: 'bar-category-label',
+              x: String(x + barWidth / 2),
+              y: String(padT + plotH + 20),
+              'font-size': '11',
+              'font-weight': '500',
+              'text-anchor': 'middle',
+              fill: '#475569',
+              text: t(`bargraph.cat.${b.category}`),
+            })
+          );
         });
-
-        const svgHtml = `<svg width="100%" height="${svgH}" viewBox="0 0 ${svgW} ${svgH}" aria-label="Vertical Bar Graph">
-          <!-- Grid lines and axis labels -->
-          ${gridLinesSvg}
-          <!-- Axes -->
-          <line x1="${padL}" y1="${padT}" x2="${padL}" y2="${padT + plotH}" stroke="#334155" stroke-width="2"/>
-          <line x1="${padL}" y1="${padT + plotH}" x2="${padL + plotW}" y2="${padT + plotH}" stroke="#334155" stroke-width="2"/>
-          <!-- Bars -->
-          ${barsSvg}
-        </svg>`;
 
         const svgWrap = el('div', {
           style: { width: '100%', overflowX: 'auto' },
         });
-        svgWrap.innerHTML = svgHtml;
+        svgWrap.appendChild(chartSvg);
         graphCard.appendChild(svgWrap);
         workspaceContainer.appendChild(graphCard);
 
@@ -284,8 +354,8 @@ export function createBargraphScreen(): ScreenMeta {
             width: '100%',
             padding: '12px',
             borderRadius: '8px',
-            border: '1px solid var(--sand, #e5e7eb)',
-            background: 'var(--card-bg, #fafafa)',
+            border: '1px solid var(--paper-sunk)',
+            background: 'var(--paper-raised)',
           },
         });
 
@@ -303,14 +373,18 @@ export function createBargraphScreen(): ScreenMeta {
           });
 
           const label = el('span', {
-            text: `${b.category}: ${readBarValue(b.gridUnits, stepInterval)} (${b.gridUnits} grid marks)`,
+            text: t('bargraph.barLabel', {
+              category: t(`bargraph.cat.${b.category}`),
+              value: String(readBarValue(b.gridUnits, stepInterval)),
+              grid: String(b.gridUnits),
+            }),
             style: { fontWeight: '600' },
           });
 
           const btnGrp = el('div', { style: { display: 'flex', gap: '6px' } });
           const decBtn = el('button', {
             class: 'btn',
-            text: '-1 line',
+            text: t('bargraph.lineDown'),
             style: { minHeight: '44px', padding: '4px 10px' },
             onClick() {
               b.gridUnits = Math.max(0, b.gridUnits - 1);
@@ -320,7 +394,7 @@ export function createBargraphScreen(): ScreenMeta {
           });
           const incBtn = el('button', {
             class: 'btn',
-            text: '+1 line',
+            text: t('bargraph.lineUp'),
             style: { minHeight: '44px', padding: '4px 10px' },
             onClick() {
               b.gridUnits = Math.min(maxUnits, b.gridUnits + 1);
@@ -342,7 +416,11 @@ export function createBargraphScreen(): ScreenMeta {
       function renderScaleMultipliers() {
         const val = readBarValue(expMark, expStep);
 
-        feedbackEl.textContent = `A bar reaching grid mark ${expMark} on an axis with step ${expStep} represents ${expMark} × ${expStep} = ${val}!`;
+        feedbackEl.textContent = t('bargraph.readFeedbackEq', {
+          mark: String(expMark),
+          step: String(expStep),
+          val: String(val),
+        });
 
         const expCard = el('div', {
           class: 'multiplier-card',
@@ -353,8 +431,8 @@ export function createBargraphScreen(): ScreenMeta {
             width: '100%',
             padding: '16px',
             borderRadius: '12px',
-            border: '1px solid var(--sand, #e5e7eb)',
-            background: 'var(--card-bg, #fff)',
+            border: '1px solid var(--paper-sunk)',
+            background: 'var(--paper-raised)',
           },
         });
 
@@ -373,7 +451,7 @@ export function createBargraphScreen(): ScreenMeta {
 
         readout.appendChild(
           el('span', {
-            text: `Line Mark ${expMark} × Step ${expStep} =`,
+            text: t('bargraph.lineMark', { mark: String(expMark), step: String(expStep) }),
             style: { fontWeight: '600', fontSize: '1.1rem', color: '#1d4ed8' },
           })
         );
@@ -381,7 +459,7 @@ export function createBargraphScreen(): ScreenMeta {
         readout.appendChild(
           el('span', {
             class: 'stat-pill multiplier-total-pill',
-            text: `${val} Units`,
+            text: t('bargraph.unitsVal', { val: String(val) }),
             style: {
               fontWeight: 'bold',
               fontSize: '1.3rem',
@@ -406,7 +484,7 @@ export function createBargraphScreen(): ScreenMeta {
         vikramBox.appendChild(
           el('p', {
             style: { margin: '0', fontSize: '0.95rem' },
-            text: `Vikram's Mistake Trap: Vikram looked at footballs on line mark 3 with axis step 5, and thought there were only 3 footballs! But 3 grid marks × 5 units = 15 footballs! Always read the side axis scale.`,
+            text: t('bargraph.vikramTrapLong'),
           })
         );
         expCard.appendChild(vikramBox);
@@ -426,11 +504,13 @@ export function createBargraphScreen(): ScreenMeta {
         const markGrp = el('div', {
           style: { display: 'flex', gap: '6px', alignItems: 'center' },
         });
-        markGrp.appendChild(el('span', { text: 'Line Mark: ', style: { fontWeight: '600' } }));
+        markGrp.appendChild(
+          el('span', { text: t('bargraph.lineMarkLabel'), style: { fontWeight: '600' } })
+        );
         [1, 2, 3, 4, 5].forEach((m) => {
           const b = el('button', {
             class: `btn ${expMark === m ? 'active' : ''}`,
-            text: `Line ${m}`,
+            text: t('bargraph.lineN', { m: String(m) }),
             style: { minHeight: '44px', padding: '6px 10px' },
             onClick() {
               expMark = m;
@@ -445,11 +525,13 @@ export function createBargraphScreen(): ScreenMeta {
         const stepGrp = el('div', {
           style: { display: 'flex', gap: '6px', alignItems: 'center' },
         });
-        stepGrp.appendChild(el('span', { text: 'Axis Step: ', style: { fontWeight: '600' } }));
+        stepGrp.appendChild(
+          el('span', { text: t('bargraph.axisStepShort'), style: { fontWeight: '600' } })
+        );
         [1, 2, 5, 10].forEach((st) => {
           const b = el('button', {
             class: `btn ${expStep === st ? 'active' : ''}`,
-            text: `Step ${st}`,
+            text: t('bargraph.stepBtn', { st: String(st) }),
             style: { minHeight: '44px', padding: '6px 10px' },
             onClick() {
               expStep = st;
@@ -468,7 +550,7 @@ export function createBargraphScreen(): ScreenMeta {
       }
 
       function renderJaalFoodIntake() {
-        feedbackEl.textContent = `Jaal Link (Vijnana B1 Digestion ↔ Ganita H2 Bar Graphs): Daily nutrient intake comparison.`;
+        feedbackEl.textContent = t('bargraph.jaalFeedbackShort');
 
         const jaalCard = el('div', {
           class: 'jaal-food-card',
@@ -479,8 +561,8 @@ export function createBargraphScreen(): ScreenMeta {
             width: '100%',
             padding: '16px',
             borderRadius: '12px',
-            border: '1px solid var(--sand, #e5e7eb)',
-            background: 'var(--card-bg, #fff)',
+            border: '1px solid var(--paper-sunk)',
+            background: 'var(--paper-raised)',
           },
         });
 
@@ -490,7 +572,7 @@ export function createBargraphScreen(): ScreenMeta {
         });
         const vertBtn = el('button', {
           class: `btn ${jaalOrientation === 'vertical' ? 'active' : ''}`,
-          text: 'Vertical Bars',
+          text: t('bargraph.verticalBars'),
           style: {
             minHeight: '44px',
             padding: '6px 14px',
@@ -504,7 +586,7 @@ export function createBargraphScreen(): ScreenMeta {
         });
         const horizBtn = el('button', {
           class: `btn ${jaalOrientation === 'horizontal' ? 'active' : ''}`,
-          text: 'Horizontal Bars',
+          text: t('bargraph.horizontalBars'),
           style: {
             minHeight: '44px',
             padding: '6px 14px',
@@ -544,14 +626,14 @@ export function createBargraphScreen(): ScreenMeta {
           });
           titleRow.appendChild(
             el('span', {
-              text: `${item.category} (${item.nutrient})`,
+              text: t('bargraph.foodRow', { category: item.category, nutrient: item.nutrient }),
               style: { fontWeight: '600' },
             })
           );
           titleRow.appendChild(
             el('span', {
               class: 'stat-pill food-amount-pill',
-              text: `${item.count}g`,
+              text: t('bargraph.foodCount', { count: String(item.count) }),
               style: { fontWeight: 'bold' },
             })
           );
@@ -597,7 +679,7 @@ export function createBargraphScreen(): ScreenMeta {
         insight.appendChild(
           el('p', {
             style: { margin: '0', fontSize: '0.95rem' },
-            text: `Vijnana B1 Connection: A balanced diet requires proteins, carbs, and vitamins in proportion. Bar graphs help dieticians visualize whether food intake is balanced!`,
+            text: t('bargraph.jaalNoteLong'),
           })
         );
         jaalCard.appendChild(insight);
@@ -626,10 +708,10 @@ export function createBargraphScreen(): ScreenMeta {
         onClick() {
           stepInterval = 5;
           bars = [
-            { category: 'Footballs', gridUnits: 3, color: '#3b82f6' },
-            { category: 'Cricket Bats', gridUnits: 4, color: '#10b981' },
-            { category: 'Rackets', gridUnits: 2, color: '#f59e0b' },
-            { category: 'Helmets', gridUnits: 5, color: '#8b5cf6' },
+            { category: 'footballs', gridUnits: 3, color: '#3b82f6' },
+            { category: 'cricketBats', gridUnits: 4, color: '#10b981' },
+            { category: 'rackets', gridUnits: 2, color: '#f59e0b' },
+            { category: 'helmets', gridUnits: 5, color: '#8b5cf6' },
           ];
           expMark = 4;
           expStep = 10;
@@ -645,7 +727,7 @@ export function createBargraphScreen(): ScreenMeta {
 
       const nextBtn = el('button', {
         class: 'btn btn-primary',
-        text: 'Spot the Mistake →',
+        text: t('bench.toMistake'),
         style: {
           minHeight: '44px',
           padding: '10px 20px',

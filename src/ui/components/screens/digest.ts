@@ -5,13 +5,13 @@
 
 import {
   DIGESTIVE_TRACT_ORDER,
-  ORGANS,
   isValidDigestiveSequence,
   isMainNutrientAbsorptionSite,
   type OrganId,
 } from '../../../domain/science/digest';
 import { t } from '../../../domain/i18n/core';
 import { clear, el, svg } from '../../util/dom';
+import { readStep } from '../../util/bench';
 import { enterThread } from '../../util/thread';
 import { router, type ScreenMeta } from '../app/router';
 
@@ -25,13 +25,7 @@ export function createDigestScreen(): ScreenMeta {
     render(view, state, params = {}) {
       enterThread('B3', 'digest', params);
 
-      const parsedStep = params.step ? parseInt(params.step, 10) : NaN;
-      let currentStep =
-        !isNaN(parsedStep) && parsedStep >= 1
-          ? parsedStep
-          : typeof state.step === 'number'
-            ? state.step
-            : 1;
+      let currentStep = readStep(params.step, state.step, 3);
       const placed: OrganId[] = Array.isArray(state.placed) ? [...state.placed] : [];
       let currentAt: OrganId | null = (state.at as OrganId) || null;
       let done = Boolean(state.done);
@@ -96,9 +90,9 @@ export function createDigestScreen(): ScreenMeta {
         svgEl.appendChild(
           svg('path', {
             d: 'M180 6 C 140 6, 130 40, 150 60 L 112 90 C 96 140, 100 240, 116 300 L 244 300 C 260 240, 264 140, 248 90 L 210 60 C 230 40, 220 6, 180 6 Z',
-            stroke: 'var(--border, #cbd5e1)',
+            stroke: 'var(--hair)',
             'stroke-width': '2',
-            fill: 'var(--card-bg, #f8fafc)',
+            fill: 'var(--paper-raised)',
           })
         );
 
@@ -112,7 +106,7 @@ export function createDigestScreen(): ScreenMeta {
             d: sh.d,
             class: `organ-path organ-${id}`,
             stroke: isHigh
-              ? 'var(--thread-ganita, #8b5cf6)'
+              ? 'var(--indigo)'
               : isDone
                 ? 'var(--leaf, #10b981)'
                 : 'var(--ink-soft, #94a3b8)',
@@ -128,11 +122,11 @@ export function createDigestScreen(): ScreenMeta {
             x: String(sh.label[0]),
             y: String(sh.label[1]),
             'font-size': '12',
-            fill: isHigh ? 'var(--ink, #0f172a)' : 'var(--muted, #64748b)',
+            fill: isHigh ? 'var(--ink, #0f172a)' : 'var(--ink-soft)',
             'text-anchor': 'middle',
             'font-weight': isHigh ? 'bold' : 'normal',
           });
-          labelText.textContent = t(`dig.o.${id}`) || ORGANS[id].name;
+          labelText.textContent = t(`dig.o.${id}`);
           svgEl.appendChild(labelText);
         }
 
@@ -157,7 +151,7 @@ export function createDigestScreen(): ScreenMeta {
               cx: String(p[0]),
               cy: String(p[1]),
               r: currentAt === 'large' ? '4' : '8',
-              fill: 'var(--thread-ganita, #8b5cf6)',
+              fill: 'var(--indigo)',
               stroke: 'var(--ink, #0f172a)',
               'stroke-width': '1.5',
             })
@@ -179,7 +173,7 @@ export function createDigestScreen(): ScreenMeta {
           const demoBtn = el('button', {
             class: 'btn primary block btn-follow',
             type: 'button',
-            text: t('dig.showMe') || 'Follow the roti',
+            text: t('dig.showMe'),
             onclick: runDemo,
           });
           actionsCard.appendChild(demoBtn);
@@ -193,7 +187,7 @@ export function createDigestScreen(): ScreenMeta {
               el('button', {
                 class: `btn chip${placed.includes(id) ? ' active' : ''}`,
                 type: 'button',
-                text: t(`dig.o.${id}`) || ORGANS[id].name,
+                text: t(`dig.o.${id}`),
                 onclick: () => handleTap(id),
               })
             );
@@ -203,14 +197,14 @@ export function createDigestScreen(): ScreenMeta {
           if (placed.length > 0) {
             const list = el('ol', { class: 'placed-list', style: { paddingLeft: '20px' } });
             for (const id of placed) {
-              list.appendChild(el('li', { text: t(`dig.o.${id}`) || ORGANS[id].name }));
+              list.appendChild(el('li', { text: t(`dig.o.${id}`) }));
             }
             actionsCard.appendChild(list);
           }
         } else if (currentStep === 3) {
           const choiceNotice = el('p', {
             class: 'muted small',
-            text: t('dig.s3') || 'Tap where most food passes into the blood.',
+            text: t('dig.s3'),
           });
           actionsCard.appendChild(choiceNotice);
 
@@ -223,7 +217,7 @@ export function createDigestScreen(): ScreenMeta {
               el('button', {
                 class: `btn chip btn-organ-${id}`,
                 type: 'button',
-                text: t(`dig.o.${id}`) || ORGANS[id].name,
+                text: t(`dig.o.${id}`),
                 onclick: () => handleTap(id),
               })
             );
@@ -235,16 +229,19 @@ export function createDigestScreen(): ScreenMeta {
           const nextBtn = el('button', {
             class: 'btn primary block btn-next',
             type: 'button',
-            text: t('bench.toMistake') || 'Spot the mistake',
+            text: t('bench.toMistake'),
             onclick: () => router.go('mistake'),
           });
           actionsCard.appendChild(nextBtn);
         }
       }
 
+      let interval: ReturnType<typeof setInterval> | undefined;
+
       function runDemo(): void {
+        clearInterval(interval);
         let idx = 0;
-        const interval = setInterval(() => {
+        interval = setInterval(() => {
           if (idx < DIGESTIVE_TRACT_ORDER.length) {
             const organId = DIGESTIVE_TRACT_ORDER[idx]!;
             currentAt = organId;
@@ -298,6 +295,7 @@ export function createDigestScreen(): ScreenMeta {
       view.appendChild(actionsCard);
 
       paint();
+      return () => clearInterval(interval);
     },
   };
 }

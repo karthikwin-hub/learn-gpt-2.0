@@ -5,6 +5,7 @@
  * Rings can be moved, pulled apart (producing homeless blocks outlined in kumkum), or placed inside.
  */
 
+import { t } from '../../domain/i18n/core';
 import {
   createBlocks,
   getRegion,
@@ -137,7 +138,7 @@ export function createCourtyard(opts: CourtyardOptions): CourtyardManipulative {
 
   const root = svg('svg', {
     viewBox: `0 0 ${W} ${H}`,
-    role: 'img',
+    role: 'group',
     class: 'courtyard-manipulative',
   }) as SVGSVGElement;
 
@@ -209,7 +210,8 @@ export function createCourtyard(opts: CourtyardOptions): CourtyardManipulative {
       class: 'handle',
       style: { cursor: 'grab' },
       role: 'group',
-      'aria-label': `Ring ${idx === 0 ? 'A' : 'B'}`,
+      tabindex: 0,
+      'aria-label': t('sets.ringLabel', { name: idx === 0 ? 'A' : 'B' }),
     }) as SVGGElement;
     const disk = svg('circle', { fill: 'transparent' }) as SVGCircleElement;
     const ropeA = svg('circle', {
@@ -268,6 +270,30 @@ export function createCourtyard(opts: CourtyardOptions): CourtyardManipulative {
       chip.removeEventListener('keydown', onChipKey as EventListener);
     });
 
+    const moveRingTo = (x: number, y: number) => {
+      const cur = rings[idx]!;
+      cur.x = Math.max(YARD.x + cur.r * 0.6, Math.min(YARD.x + YARD.w - cur.r * 0.6, x));
+      cur.y = Math.max(YARD.y + cur.r * 0.6, Math.min(YARD.y + YARD.h - cur.r * 0.6, y));
+      paintRings();
+      placeItems(false);
+    };
+    const ARROWS: Record<string, [number, number]> = {
+      ArrowLeft: [-1, 0],
+      ArrowRight: [1, 0],
+      ArrowUp: [0, -1],
+      ArrowDown: [0, 1],
+    };
+    const onRingKey = (e: KeyboardEvent) => {
+      const dir = ARROWS[e.key];
+      if (!dir) return;
+      e.preventDefault();
+      const cur = rings[idx]!;
+      moveRingTo(cur.x + dir[0] * 10, cur.y + dir[1] * 10);
+      if (opts.onMove) opts.onMove(rings);
+    };
+    g.addEventListener('keydown', onRingKey as EventListener);
+    cleanupFns.push(() => g.removeEventListener('keydown', onRingKey as EventListener));
+
     let start: { px: number; py: number; x: number; y: number } | null = null;
     const offDrag = drag(g, {
       start: (e) => {
@@ -282,17 +308,7 @@ export function createCourtyard(opts: CourtyardOptions): CourtyardManipulative {
       move: (e) => {
         if (!start) return;
         const p = svgPoint(root, e);
-        const cur = rings[idx]!;
-        cur.x = Math.max(
-          YARD.x + cur.r * 0.6,
-          Math.min(YARD.x + YARD.w - cur.r * 0.6, start.x + p.x - start.px)
-        );
-        cur.y = Math.max(
-          YARD.y + cur.r * 0.6,
-          Math.min(YARD.y + YARD.h - cur.r * 0.6, start.y + p.y - start.py)
-        );
-        paintRings();
-        placeItems(false);
+        moveRingTo(start.x + p.x - start.px, start.y + p.y - start.py);
       },
       end: () => {
         if (opts.onMove) opts.onMove(rings);

@@ -19,7 +19,6 @@ export const F4_LESSON: LessonData = {
   mistake: {
     steps: 3,
     wrong: 1,
-    eq: () => 'Factors of 8 and 12 share 1, 2, and <span class="r-txt">4</span>: HCF is 4, not 2',
   },
   explain: [
     { tiles: ['largest', 'smallest', 'equal'], expect: 'largest' },

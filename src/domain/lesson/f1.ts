@@ -19,8 +19,6 @@ export const F1_LESSON: LessonData = {
   mistake: {
     steps: 3,
     wrong: 1,
-    eq: () =>
-      'Factors of 18: 1, 2, 3, 6, <span class="r-txt">9, 18</span> (never forget the partners!)',
   },
   explain: [
     { tiles: ['pairs', 'single', 'multiples'], expect: 'pairs' },

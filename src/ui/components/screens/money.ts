@@ -44,17 +44,17 @@ export function createMoneyScreen(): ScreenMeta {
       const titleEl = el('h2', { class: 'screen-title', text: t('money.title') });
       const subEl = el('p', {
         class: 'screen-sub',
-        text: t('money.s1') || 'Count coins and exchange 100 paise for ₹1.',
+        text: t('money.s1'),
       });
 
       const displayCard = el('section', { class: 'card money-display', 'aria-live': 'polite' });
       const totalAmount = el('div', {
         class: 'money-total',
-        style: { fontSize: '28px', fontWeight: 'bold', color: 'var(--thread-ganita, #8b5cf6)' },
+        style: { fontSize: '28px', fontWeight: 'bold', color: 'var(--indigo)' },
       });
       const paiseNotice = el('div', {
         class: 'paise-notice',
-        style: { color: 'var(--muted)', fontSize: '14px', marginTop: '4px' },
+        style: { color: 'var(--ink-soft)', fontSize: '14px', marginTop: '4px' },
       });
       displayCard.appendChild(totalAmount);
       displayCard.appendChild(paiseNotice);
@@ -67,7 +67,7 @@ export function createMoneyScreen(): ScreenMeta {
       const exchangeBtn = el('button', {
         class: 'btn primary block btn-exchange',
         type: 'button',
-        text: 'Exchange 100p → ₹1',
+        text: t('money.exchange'),
         onclick: () => {
           const res = exchangePaiseToRupee(drawer);
           if (res.exchanged) {
@@ -88,7 +88,7 @@ export function createMoneyScreen(): ScreenMeta {
         state.drawer = drawer;
         const totalPaise = calculateTotalPaise(drawer);
         totalAmount.textContent = formatRupees(totalPaise);
-        paiseNotice.textContent = `${totalPaise} paise · (100p = ₹1)`;
+        paiseNotice.textContent = t('money.paiseSummary', { n: totalPaise });
 
         const canEx = canExchangePaiseToRupee(drawer);
         exchangeBtn.disabled = !canEx;
@@ -101,8 +101,8 @@ export function createMoneyScreen(): ScreenMeta {
         const notes = DENOMINATIONS.filter((d) => d.type === 'note');
 
         const groups = [
-          { name: t('money.coins') || 'Coins', items: coins },
-          { name: t('money.notes') || 'Notes', items: notes },
+          { name: t('money.coins'), items: coins },
+          { name: t('money.notes'), items: notes },
         ];
 
         for (const grp of groups) {
@@ -127,11 +127,11 @@ export function createMoneyScreen(): ScreenMeta {
             const itemBox = el('div', {
               class: `denom-box item-${item.id}`,
               style: {
-                border: '1px solid var(--border)',
+                border: '1px solid var(--hair)',
                 borderRadius: '8px',
                 padding: '8px',
                 textAlign: 'center',
-                background: 'var(--card-bg, #fff)',
+                background: 'var(--paper-raised)',
               },
             });
 
@@ -149,8 +149,7 @@ export function createMoneyScreen(): ScreenMeta {
                 fontWeight: 'bold',
                 fontSize: '12px',
                 marginBottom: '6px',
-                background:
-                  item.type === 'coin' ? 'var(--sand-soft, #fef3c7)' : 'var(--sage-soft, #d1fae5)',
+                background: item.type === 'coin' ? 'var(--paper-sunk)' : 'var(--leaf-soft)',
               },
               text: item.label,
             });
@@ -168,7 +167,7 @@ export function createMoneyScreen(): ScreenMeta {
             const plusBtn = el('button', {
               class: 'btn icon mini',
               type: 'button',
-              'aria-label': `Add ${item.label}`,
+              'aria-label': t('money.addDenom', { label: item.label }),
               text: '+',
               onclick: () => {
                 drawer = modifyDrawer(drawer, item.id, 1);
@@ -179,7 +178,7 @@ export function createMoneyScreen(): ScreenMeta {
             const minusBtn = el('button', {
               class: 'btn icon mini',
               type: 'button',
-              'aria-label': `Remove ${item.label}`,
+              'aria-label': t('money.removeDenom', { label: item.label }),
               text: '−',
               onclick: () => {
                 drawer = modifyDrawer(drawer, item.id, -1);
@@ -209,7 +208,7 @@ export function createMoneyScreen(): ScreenMeta {
 
       const examples = [
         {
-          label: '₹1.50 (Exchangeable)',
+          label: t('money.chipExchange'),
           apply: () => {
             drawer = createEmptyDrawer();
             drawer = modifyDrawer(drawer, 'p50', 3);
@@ -255,7 +254,7 @@ export function createMoneyScreen(): ScreenMeta {
         class: 'btn ghost',
         id: 'btn-reset',
         type: 'button',
-        text: t('action.reset') || 'Reset',
+        text: t('common.reset'),
         onclick: () => {
           drawer = createEmptyDrawer();
           update();

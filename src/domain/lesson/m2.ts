@@ -22,4 +22,6 @@ export const M2_LESSON: LessonData = {
     { key: 'where' },
     { key: 'sutra' },
   ],
+  mistakeFrom: 'M4',
+  explainFrom: 'M4',
 };

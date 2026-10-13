@@ -7,6 +7,7 @@
 import { executeLongDivisionSteps, verifyLongDivision } from '../../../domain/math/longdiv';
 import { t } from '../../../domain/i18n/core';
 import { clear, el } from '../../util/dom';
+import { readStep } from '../../util/bench';
 import { enterThread } from '../../util/thread';
 import { router, type ScreenMeta } from '../app/router';
 
@@ -20,11 +21,7 @@ export function createLongdivScreen(): ScreenMeta {
     render(view, state, params = {}) {
       enterThread('D4', 'longdiv', params);
 
-      let stepNum = params.step
-        ? Number(params.step)
-        : typeof state.step === 'number'
-          ? state.step
-          : 1;
+      let stepNum = readStep(params.step, state.step, 3);
 
       let subStep1 = typeof state.subStep1 === 'number' ? state.subStep1 : 0;
       let zeroGateAnswer = state.zeroGateAnswer !== undefined ? String(state.zeroGateAnswer) : '';
@@ -46,17 +43,17 @@ export function createLongdivScreen(): ScreenMeta {
 
       const tab1 = el('button', {
         class: `step-tab ${stepNum === 1 ? 'active' : ''}`,
-        text: '1. Four-Beat Rhythm (824 ÷ 4)',
+        text: t('longdiv.tab1'),
         style: { minHeight: '44px', padding: '8px 12px' },
       });
       const tab2 = el('button', {
         class: `step-tab ${stepNum === 2 ? 'active' : ''}`,
-        text: '2. The Zero Gate (612 ÷ 3)',
+        text: t('longdiv.tab2'),
         style: { minHeight: '44px', padding: '8px 12px' },
       });
       const tab3 = el('button', {
         class: `step-tab ${stepNum === 3 ? 'active' : ''}`,
-        text: '3. Inverse Check',
+        text: t('longdiv.tab3'),
         style: { minHeight: '44px', padding: '8px 12px' },
       });
 
@@ -125,8 +122,8 @@ export function createLongdivScreen(): ScreenMeta {
           class: 'math-banner',
           style: { fontSize: '1.2rem', fontWeight: 'bold', marginBottom: '12px' },
           text: isComplete
-            ? '824 ÷ 4 = 206 (Complete!)'
-            : `Dividing 824 by 4 · Column ${subStep1 + 1} of 3`,
+            ? t('longdiv.rhythmDone')
+            : t('longdiv.rhythmProgress', { col: String(subStep1 + 1) }),
         });
         card.appendChild(mathBanner);
 
@@ -139,10 +136,10 @@ export function createLongdivScreen(): ScreenMeta {
             lineHeight: '1.6',
             display: 'inline-block',
             textAlign: 'left',
-            background: 'var(--color-surface-soft, #f7f2ea)',
+            background: 'var(--paper-sunk)',
             padding: '16px 24px',
             borderRadius: '8px',
-            border: '1px solid var(--color-border, #d1c7bd)',
+            border: '1px solid var(--hair)',
             marginBottom: '16px',
           },
         });
@@ -153,30 +150,68 @@ export function createLongdivScreen(): ScreenMeta {
         if (subStep1 >= 2) quotientDisplay += '0';
         if (subStep1 >= 3) quotientDisplay += '6';
 
-        bracketBox.innerHTML = `
-          <div style="color: var(--color-accent, #c2410c); font-weight: bold; margin-left: 45px;">
-            ${quotientDisplay || '&nbsp;'}
-          </div>
-          <div style="border-top: 2px solid currentColor; margin-left: 30px;">
-            <span style="border-right: 2px solid currentColor; padding-right: 8px; margin-left: -30px;">4</span>
-            <span style="letter-spacing: 4px;">824</span>
-          </div>
-          ${
-            subStep1 >= 1
-              ? '<div style="margin-left: 34px; color: #666;">- 8 (2 × 4)</div><div style="margin-left: 34px; border-top: 1px solid #aaa;">&nbsp; 02 (bring down 2)</div>'
-              : ''
-          }
-          ${
-            subStep1 >= 2
-              ? '<div style="margin-left: 42px; color: #666;">- 0 (0 × 4)</div><div style="margin-left: 42px; border-top: 1px solid #aaa;">&nbsp; 24 (bring down 4)</div>'
-              : ''
-          }
-          ${
-            subStep1 >= 3
-              ? '<div style="margin-left: 42px; color: #666;">- 24 (6 × 4)</div><div style="margin-left: 42px; border-top: 1px solid #aaa; font-weight: bold;">&nbsp; 00 (remainder)</div>'
-              : ''
-          }
-        `;
+        bracketBox.appendChild(
+          el('div', {
+            style: {
+              color: 'var(--indigo)',
+              fontWeight: 'bold',
+              marginLeft: '45px',
+            },
+            text: quotientDisplay || ' ',
+          })
+        );
+        bracketBox.appendChild(
+          el(
+            'div',
+            {
+              style: { borderTop: '2px solid currentColor', marginLeft: '30px' },
+            },
+            [
+              el('span', {
+                style: {
+                  borderRight: '2px solid currentColor',
+                  paddingRight: '8px',
+                  marginLeft: '-30px',
+                },
+                text: '4',
+              }),
+              el('span', { style: { letterSpacing: '4px' }, text: '824' }),
+            ]
+          )
+        );
+        if (subStep1 >= 1) {
+          bracketBox.appendChild(
+            el('div', { style: { marginLeft: '34px', color: '#666' }, text: t('longdiv.sub8') })
+          );
+          bracketBox.appendChild(
+            el('div', {
+              style: { marginLeft: '34px', borderTop: '1px solid #aaa' },
+              text: t('longdiv.bring2'),
+            })
+          );
+        }
+        if (subStep1 >= 2) {
+          bracketBox.appendChild(
+            el('div', { style: { marginLeft: '42px', color: '#666' }, text: t('longdiv.sub0') })
+          );
+          bracketBox.appendChild(
+            el('div', {
+              style: { marginLeft: '42px', borderTop: '1px solid #aaa' },
+              text: t('longdiv.bring4'),
+            })
+          );
+        }
+        if (subStep1 >= 3) {
+          bracketBox.appendChild(
+            el('div', { style: { marginLeft: '42px', color: '#666' }, text: t('longdiv.sub24') })
+          );
+          bracketBox.appendChild(
+            el('div', {
+              style: { marginLeft: '42px', borderTop: '1px solid #aaa', fontWeight: 'bold' },
+              text: t('longdiv.rem0'),
+            })
+          );
+        }
 
         card.appendChild(bracketBox);
 
@@ -185,13 +220,18 @@ export function createLongdivScreen(): ScreenMeta {
           style: { display: 'flex', gap: '8px', justifyContent: 'center', marginBottom: '16px' },
         });
 
-        const beats = ['1. Divide', '2. Multiply', '3. Subtract', '4. Bring down'];
+        const beats = [
+          t('longdiv.beat1'),
+          t('longdiv.beat2'),
+          t('longdiv.beat3'),
+          t('longdiv.beat4'),
+        ];
         beats.forEach((b) => {
           const chip = el('span', {
             class: 'beat-chip',
             style: {
               background: '#fff',
-              border: '1px solid var(--color-border, #ccc)',
+              border: '1px solid var(--hair)',
               borderRadius: '12px',
               padding: '4px 8px',
               fontSize: '0.85rem',
@@ -209,7 +249,7 @@ export function createLongdivScreen(): ScreenMeta {
 
         const nextStepBtn = el('button', {
           class: 'btn btn-primary',
-          text: isComplete ? 'Reset Rhythm' : 'Next Column House →',
+          text: isComplete ? t('longdiv.resetRhythm') : t('longdiv.nextColumn'),
           style: { minHeight: '44px', padding: '10px 18px' },
         });
 
@@ -244,9 +284,7 @@ export function createLongdivScreen(): ScreenMeta {
         const mathBanner = el('div', {
           class: 'math-banner',
           style: { fontSize: '1.2rem', fontWeight: 'bold', marginBottom: '12px' },
-          text: isCorrectZero
-            ? '612 ÷ 3 = 204 (Zero Gate Guarded!)'
-            : 'Tens House Gate: 3 does not fit into 1 ten!',
+          text: isCorrectZero ? t('longdiv.zeroDone') : t('longdiv.zeroPrompt'),
         });
         card.appendChild(mathBanner);
 
@@ -259,25 +297,46 @@ export function createLongdivScreen(): ScreenMeta {
             lineHeight: '1.6',
             display: 'inline-block',
             textAlign: 'left',
-            background: 'var(--color-surface-soft, #f7f2ea)',
+            background: 'var(--paper-sunk)',
             padding: '16px 24px',
             borderRadius: '8px',
-            border: '1px solid var(--color-border, #d1c7bd)',
+            border: '1px solid var(--hair)',
             marginBottom: '16px',
           },
         });
 
-        bracketBox.innerHTML = `
-          <div style="color: var(--color-accent, #c2410c); font-weight: bold; margin-left: 45px;">
-            2${isCorrectZero ? '04' : '<span style="color:#b45309;">?</span>'}
-          </div>
-          <div style="border-top: 2px solid currentColor; margin-left: 30px;">
-            <span style="border-right: 2px solid currentColor; padding-right: 8px; margin-left: -30px;">3</span>
-            <span style="letter-spacing: 4px;">612</span>
-          </div>
-          <div style="margin-left: 34px; color: #666;">- 6 (2 × 3)</div>
-          <div style="margin-left: 34px; border-top: 1px solid #aaa;">&nbsp; 01 (brought down 1)</div>
-        `;
+        bracketBox.appendChild(
+          el('div', {
+            style: {
+              color: 'var(--indigo)',
+              fontWeight: 'bold',
+              marginLeft: '45px',
+            },
+            text: isCorrectZero ? '204' : '2?',
+          })
+        );
+        bracketBox.appendChild(
+          el('div', { style: { borderTop: '2px solid currentColor', marginLeft: '30px' } }, [
+            el('span', {
+              style: {
+                borderRight: '2px solid currentColor',
+                paddingRight: '8px',
+                marginLeft: '-30px',
+              },
+              text: '3',
+            }),
+            el('span', { style: { letterSpacing: '4px' }, text: '612' }),
+          ])
+        );
+        bracketBox.appendChild(
+          el('div', { style: { marginLeft: '34px', color: '#666' }, text: t('longdiv.sub6') })
+        );
+        bracketBox.appendChild(
+          el('div', {
+            style: { marginLeft: '34px', borderTop: '1px solid #aaa' },
+            text: t('longdiv.bring1'),
+          })
+        );
         card.appendChild(bracketBox);
 
         // Prompt question
@@ -288,9 +347,7 @@ export function createLongdivScreen(): ScreenMeta {
             fontWeight: 'bold',
             color: isCorrectZero ? '#15803d' : '#b45309',
           },
-          text: isCorrectZero
-            ? '3 fits into 1 zero times! Wrote 0, brought down 2 ones to make 12 ÷ 3 = 4.'
-            : 'Can 3 divide 1 ten? What digit must you write in the tens quotient house?',
+          text: isCorrectZero ? t('longdiv.zeroExplain') : t('longdiv.zeroAsk'),
         });
         card.appendChild(promptEl);
 
@@ -300,13 +357,13 @@ export function createLongdivScreen(): ScreenMeta {
 
         const btnZero = el('button', {
           class: `btn ${isCorrectZero ? 'btn-primary' : 'btn-secondary'}`,
-          text: 'Write 0',
+          text: t('longdiv.writeZero'),
           style: { minHeight: '44px', padding: '10px 20px', minWidth: '100px' },
         });
 
         const btnSkip = el('button', {
           class: 'btn btn-secondary',
-          text: 'Skip & pull down 2 directly (write nothing)',
+          text: t('longdiv.skipZero'),
           style: { minHeight: '44px', padding: '10px 16px' },
         });
 
@@ -319,10 +376,8 @@ export function createLongdivScreen(): ScreenMeta {
         btnSkip.addEventListener('click', () => {
           zeroGateAnswer = 'skip';
           state.zeroGateAnswer = 'skip';
-          say.textContent =
-            'Every house must share! If 3 cannot divide 1, write 0 before opening the next door!';
-          promptEl.textContent =
-            'Omitting 0 turns 204 into 24! You must write 0 in the tens house.';
+          say.textContent = t('longdiv.skipWarn');
+          promptEl.textContent = t('longdiv.omitWarn');
         });
 
         choiceGroup.appendChild(btnZero);
@@ -345,38 +400,34 @@ export function createLongdivScreen(): ScreenMeta {
         const mathBanner = el('div', {
           class: 'math-banner',
           style: { fontSize: '1.2rem', fontWeight: 'bold', marginBottom: '12px' },
-          text: verifiedStep3
-            ? 'Verified: 204 × 3 = 612 (Inverse Multiplication)'
-            : 'Check quotient using inverse multiplication',
+          text: verifiedStep3 ? t('longdiv.verifyDone') : t('longdiv.verifyPrompt'),
         });
         card.appendChild(mathBanner);
 
         const formulaCard = el('div', {
           class: 'formula-card',
           style: {
-            background: 'var(--color-surface-soft, #f7f2ea)',
+            background: 'var(--paper-sunk)',
             padding: '16px',
             borderRadius: '8px',
             margin: '12px 0',
             fontFamily: 'monospace',
             fontSize: '1.1rem',
           },
-          text: '(Quotient × Divisor) + Remainder = Dividend',
+          text: t('longdiv.inverseFormula'),
         });
         card.appendChild(formulaCard);
 
         const calculationDisplay = el('div', {
           class: 'calc-display',
           style: { fontSize: '1.2rem', margin: '16px 0', fontWeight: 'bold' },
-          text: verifiedStep3
-            ? '(204 × 3) + 0 = 612 + 0 = 612 ✓'
-            : '204 × 3 = ? (Does it equal 612?)',
+          text: verifiedStep3 ? t('longdiv.verifyCalcDone') : t('longdiv.verifyCalc'),
         });
         card.appendChild(calculationDisplay);
 
         const verifyBtn = el('button', {
           class: 'btn btn-primary',
-          text: verifiedStep3 ? 'Check Again' : 'Verify (204 × 3)',
+          text: verifiedStep3 ? t('longdiv.checkAgain') : t('longdiv.verifyBtn'),
           style: { minHeight: '44px', padding: '10px 20px' },
         });
 
@@ -407,7 +458,7 @@ export function createLongdivScreen(): ScreenMeta {
 
       const bodhaBtn = el('button', {
         class: 'btn btn-subtle',
-        text: '← Back to Bodha',
+        text: t('number.backBodha'),
         style: { minHeight: '44px', padding: '10px 16px' },
       });
       bodhaBtn.addEventListener('click', () => {
@@ -416,7 +467,7 @@ export function createLongdivScreen(): ScreenMeta {
 
       const mistakeBtn = el('button', {
         class: 'btn btn-primary',
-        text: 'Spot the Mistake →',
+        text: t('number.forwardMistake'),
         style: { minHeight: '44px', padding: '10px 16px' },
       });
       mistakeBtn.addEventListener('click', () => {

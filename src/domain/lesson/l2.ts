@@ -18,8 +18,6 @@ export const L2_LESSON: LessonData = {
   mistake: {
     steps: 3,
     wrong: 1,
-    eq: () =>
-      'OR is inclusive: if both switches are open, the marble rolls freely through <span class="r-txt">both parallel paths</span>',
   },
   explain: [
     { tiles: ['both', 'one', 'neither'], expect: 'both' },

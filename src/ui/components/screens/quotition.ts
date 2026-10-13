@@ -7,6 +7,7 @@
 import { repeatedSubtractionSteps } from '../../../domain/math/quotition';
 import { t } from '../../../domain/i18n/core';
 import { clear, el, svg } from '../../util/dom';
+import { readStep } from '../../util/bench';
 import { enterThread } from '../../util/thread';
 import { router, type ScreenMeta } from '../app/router';
 
@@ -20,11 +21,7 @@ export function createQuotitionScreen(): ScreenMeta {
     render(view, state, params = {}) {
       enterThread('D2', 'quotition', params);
 
-      let stepNum = params.step
-        ? Number(params.step)
-        : typeof state.step === 'number'
-          ? state.step
-          : 1;
+      let stepNum = readStep(params.step, state.step, 3);
 
       let hopsDoneStep1 = typeof state.hopsDoneStep1 === 'number' ? state.hopsDoneStep1 : 0;
       let hopsDoneStep2 = typeof state.hopsDoneStep2 === 'number' ? state.hopsDoneStep2 : 0;
@@ -46,17 +43,17 @@ export function createQuotitionScreen(): ScreenMeta {
 
       const tab1 = el('button', {
         class: `step-tab ${stepNum === 1 ? 'active' : ''}`,
-        text: '1. Group Pack (20 ÷ 4)',
+        text: t('quotition.tab1'),
         style: { minHeight: '44px', padding: '8px 12px' },
       });
       const tab2 = el('button', {
         class: `step-tab ${stepNum === 2 ? 'active' : ''}`,
-        text: '2. With Remainder (22 ÷ 5)',
+        text: t('quotition.tab2'),
         style: { minHeight: '44px', padding: '8px 12px' },
       });
       const tab3 = el('button', {
         class: `step-tab ${stepNum === 3 ? 'active' : ''}`,
-        text: '3. Sharing vs Grouping',
+        text: t('quotition.tab3'),
         style: { minHeight: '44px', padding: '8px 12px' },
       });
 
@@ -128,8 +125,12 @@ export function createQuotitionScreen(): ScreenMeta {
           class: 'math-banner',
           style: { fontSize: '1.2rem', fontWeight: 'bold', marginBottom: '6px' },
           text: isComplete
-            ? '20 ÷ 4 = 5 (5 boxes packed, 0 left)'
-            : `Total: ${total} | Packed: ${hopsDoneStep1} boxes | Position: ${currentPos}`,
+            ? t('quotition.step1BannerDone')
+            : t('quotition.step1Banner', {
+                total: String(total),
+                packed: String(hopsDoneStep1),
+                pos: String(currentPos),
+              }),
         });
         infoCard.appendChild(mathDisplay);
 
@@ -148,7 +149,7 @@ export function createQuotitionScreen(): ScreenMeta {
             y1: '70',
             x2: '320',
             y2: '70',
-            stroke: 'var(--color-border, #8c827a)',
+            stroke: 'var(--hair)',
             'stroke-width': '3',
           })
         );
@@ -163,7 +164,7 @@ export function createQuotitionScreen(): ScreenMeta {
               y1: isMajor ? '60' : '65',
               x2: String(x),
               y2: '75',
-              stroke: isMajor ? 'var(--color-fg, #2b2523)' : '#aaa',
+              stroke: isMajor ? 'var(--ink)' : '#aaa',
               'stroke-width': isMajor ? '2' : '1',
             })
           );
@@ -176,7 +177,7 @@ export function createQuotitionScreen(): ScreenMeta {
                   y: '90',
                   'text-anchor': 'middle',
                   'font-size': '11',
-                  fill: 'var(--color-fg, #2b2523)',
+                  fill: 'var(--ink)',
                 },
                 String(i)
               )
@@ -197,7 +198,7 @@ export function createQuotitionScreen(): ScreenMeta {
             svg('path', {
               d: arcD,
               fill: 'none',
-              stroke: 'var(--color-accent, #c2410c)',
+              stroke: 'var(--thread)',
               'stroke-width': '2.5',
               'stroke-dasharray': '2 1',
             })
@@ -209,7 +210,7 @@ export function createQuotitionScreen(): ScreenMeta {
               cx: String(xEnd),
               cy: '65',
               r: '4',
-              fill: 'var(--color-accent, #c2410c)',
+              fill: 'var(--thread)',
             })
           );
         }
@@ -232,14 +233,14 @@ export function createQuotitionScreen(): ScreenMeta {
           const box = el('div', {
             class: 'packed-box',
             style: {
-              background: 'var(--color-surface-soft, #f7f2ea)',
-              border: '2px solid var(--color-accent, #c2410c)',
+              background: 'var(--paper-sunk)',
+              border: '2px solid var(--thread)',
               borderRadius: '6px',
               padding: '6px 10px',
               fontWeight: 'bold',
-              color: 'var(--color-accent, #c2410c)',
+              color: 'var(--indigo)',
             },
-            text: `Box #${i} (4)`,
+            text: t('quotition.boxLabel', { n: String(i), size: '4' }),
           });
           shelf.appendChild(box);
         }
@@ -253,7 +254,7 @@ export function createQuotitionScreen(): ScreenMeta {
 
         const hopBtn = el('button', {
           class: 'btn btn-primary',
-          text: isComplete ? 'Reset' : 'Take group of 4 (−4)',
+          text: isComplete ? t('common.reset') : t('quotition.take4'),
           style: { minHeight: '44px', padding: '10px 18px' },
         });
 
@@ -297,8 +298,12 @@ export function createQuotitionScreen(): ScreenMeta {
           class: 'math-banner',
           style: { fontSize: '1.2rem', fontWeight: 'bold', marginBottom: '6px' },
           text: isComplete
-            ? '22 ÷ 5 = 4 R 2 (4 boxes packed, 2 remainder)'
-            : `Total: ${total} | Packed: ${hopsDoneStep2} boxes | Position: ${currentPos}`,
+            ? t('quotition.step2BannerDone')
+            : t('quotition.step1Banner', {
+                total: String(total),
+                packed: String(hopsDoneStep2),
+                pos: String(currentPos),
+              }),
         });
         infoCard.appendChild(mathDisplay);
 
@@ -317,7 +322,7 @@ export function createQuotitionScreen(): ScreenMeta {
             y1: '70',
             x2: '320',
             y2: '70',
-            stroke: 'var(--color-border, #8c827a)',
+            stroke: 'var(--hair)',
             'stroke-width': '3',
           })
         );
@@ -332,7 +337,7 @@ export function createQuotitionScreen(): ScreenMeta {
               y1: isMajor ? '60' : '65',
               x2: String(x),
               y2: '75',
-              stroke: isMajor ? 'var(--color-fg, #2b2523)' : '#aaa',
+              stroke: isMajor ? 'var(--ink)' : '#aaa',
               'stroke-width': isMajor ? '2' : '1',
             })
           );
@@ -345,7 +350,7 @@ export function createQuotitionScreen(): ScreenMeta {
                   y: '90',
                   'text-anchor': 'middle',
                   'font-size': '11',
-                  fill: 'var(--color-fg, #2b2523)',
+                  fill: 'var(--ink)',
                 },
                 String(i)
               )
@@ -366,7 +371,7 @@ export function createQuotitionScreen(): ScreenMeta {
             svg('path', {
               d: arcD,
               fill: 'none',
-              stroke: 'var(--color-accent, #c2410c)',
+              stroke: 'var(--thread)',
               'stroke-width': '2.5',
             })
           );
@@ -375,7 +380,7 @@ export function createQuotitionScreen(): ScreenMeta {
               cx: String(xEnd),
               cy: '65',
               r: '4',
-              fill: 'var(--color-accent, #c2410c)',
+              fill: 'var(--thread)',
             })
           );
         }
@@ -396,14 +401,14 @@ export function createQuotitionScreen(): ScreenMeta {
           const box = el('div', {
             class: 'packed-box',
             style: {
-              background: 'var(--color-surface-soft, #f7f2ea)',
-              border: '2px solid var(--color-accent, #c2410c)',
+              background: 'var(--paper-sunk)',
+              border: '2px solid var(--thread)',
               borderRadius: '6px',
               padding: '6px 10px',
               fontWeight: 'bold',
-              color: 'var(--color-accent, #c2410c)',
+              color: 'var(--indigo)',
             },
-            text: `Box #${i} (5)`,
+            text: t('quotition.boxLabel', { n: String(i), size: '5' }),
           });
           shelf.appendChild(box);
         }
@@ -414,7 +419,7 @@ export function createQuotitionScreen(): ScreenMeta {
           const remainderTray = el('div', {
             class: 'remainder-tray',
             style: {
-              background: 'var(--color-surface-soft, #fff5eb)',
+              background: 'var(--paper-sunk)',
               border: '2px dashed #b45309',
               borderRadius: '8px',
               padding: '10px',
@@ -424,11 +429,11 @@ export function createQuotitionScreen(): ScreenMeta {
           });
           const trayTitle = el('div', {
             style: { fontWeight: 'bold', color: '#b45309', marginBottom: '4px' },
-            text: 'Remainder Tray (2 left over)',
+            text: t('quotition.remainderTray'),
           });
           const trayDesc = el('div', {
             style: { fontSize: '0.9rem' },
-            text: '2 < 5, so no more full boxes can be packed!',
+            text: t('quotition.remainderNote'),
           });
           remainderTray.appendChild(trayTitle);
           remainderTray.appendChild(trayDesc);
@@ -444,7 +449,7 @@ export function createQuotitionScreen(): ScreenMeta {
 
         const hopBtn = el('button', {
           class: 'btn btn-primary',
-          text: isComplete ? 'Reset' : 'Take group of 5 (−5)',
+          text: isComplete ? t('common.reset') : t('quotition.take5'),
           style: { minHeight: '44px', padding: '10px 18px' },
         });
 
@@ -482,8 +487,8 @@ export function createQuotitionScreen(): ScreenMeta {
           style: { fontSize: '1.2rem', fontWeight: 'bold', marginBottom: '12px' },
           text:
             dualityMode === 'sharing'
-              ? 'Partitive (Sharing): 20 ÷ 4 = 5 on each plate'
-              : 'Quotitive (Grouping): 20 ÷ 4 = 5 boxes packed',
+              ? t('quotition.dualitySharing')
+              : t('quotition.dualityGrouping'),
         });
         card.appendChild(dualityTitle);
 
@@ -516,11 +521,17 @@ export function createQuotitionScreen(): ScreenMeta {
               },
             });
             plate.appendChild(
-              el('div', { style: { fontWeight: 'bold', color: '#0284c7' }, text: `Plate ${p}` })
+              el('div', {
+                style: { fontWeight: 'bold', color: '#0284c7' },
+                text: t('quotition.plate', { n: String(p) }),
+              })
             );
             plate.appendChild(el('div', { style: { fontSize: '1.2rem' }, text: '●●●●●' }));
             plate.appendChild(
-              el('div', { style: { fontSize: '0.8rem', color: '#555' }, text: '5 laddoos' })
+              el('div', {
+                style: { fontSize: '0.8rem', color: '#555' },
+                text: t('quotition.plateShare'),
+              })
             );
             visualBoard.appendChild(plate);
           }
@@ -542,11 +553,17 @@ export function createQuotitionScreen(): ScreenMeta {
               },
             });
             box.appendChild(
-              el('div', { style: { fontWeight: 'bold', color: '#c2410c' }, text: `Box ${b}` })
+              el('div', {
+                style: { fontWeight: 'bold', color: '#c2410c' },
+                text: t('quotition.boxHold', { n: String(b) }),
+              })
             );
             box.appendChild(el('div', { style: { fontSize: '1.2rem' }, text: '■■■■' }));
             box.appendChild(
-              el('div', { style: { fontSize: '0.8rem', color: '#555' }, text: 'holds 4' })
+              el('div', {
+                style: { fontSize: '0.8rem', color: '#555' },
+                text: t('quotition.boxHolds'),
+              })
             );
             visualBoard.appendChild(box);
           }
@@ -558,8 +575,8 @@ export function createQuotitionScreen(): ScreenMeta {
           class: 'btn btn-secondary',
           text:
             dualityMode === 'sharing'
-              ? 'Switch to Grouping Mode (Boxes of 4)'
-              : 'Switch to Sharing Mode (4 Plates)',
+              ? t('quotition.switchGrouping')
+              : t('quotition.switchSharing'),
           style: { minHeight: '44px', padding: '10px 18px' },
         });
 
@@ -591,7 +608,7 @@ export function createQuotitionScreen(): ScreenMeta {
 
       const bodhaBtn = el('button', {
         class: 'btn btn-subtle',
-        text: '← Back to Bodha',
+        text: t('number.backBodha'),
         style: { minHeight: '44px', padding: '10px 16px' },
       });
       bodhaBtn.addEventListener('click', () => {
@@ -600,7 +617,7 @@ export function createQuotitionScreen(): ScreenMeta {
 
       const mistakeBtn = el('button', {
         class: 'btn btn-primary',
-        text: 'Spot the Mistake →',
+        text: t('number.forwardMistake'),
         style: { minHeight: '44px', padding: '10px 16px' },
       });
       mistakeBtn.addEventListener('click', () => {

@@ -31,6 +31,7 @@ export interface BridgeHop {
   from: string;
   to: string;
   minutes: number;
+  kind: 'bridge' | 'leap' | 'rest';
   description: string;
 }
 
@@ -142,6 +143,7 @@ export function calculateDuration(
       from: formatTime24(Math.floor(currTime / 60) % 24, currTime % 60),
       to: formatTime24(Math.floor(nextHourTotal / 60) % 24, nextHourTotal % 60),
       minutes: remMinsToHour,
+      kind: 'bridge',
       description: `Bridge ${remMinsToHour} min to next whole hour`,
     });
     currTime = nextHourTotal;
@@ -155,6 +157,7 @@ export function calculateDuration(
       from: formatTime24(Math.floor(currTime / 60) % 24, currTime % 60),
       to: formatTime24(Math.floor(endHourBase / 60) % 24, endHourBase % 60),
       minutes: leapMins,
+      kind: 'leap',
       description: `Leap ${Math.floor(leapMins / 60)} hour(s) across whole hours`,
     });
     currTime = endHourBase;
@@ -167,6 +170,7 @@ export function calculateDuration(
       from: formatTime24(Math.floor(currTime / 60) % 24, currTime % 60),
       to: formatTime24(Math.floor(endTotal / 60) % 24, endTotal % 60),
       minutes: finalMins,
+      kind: 'rest',
       description: `Add remaining ${finalMins} min to reach destination`,
     });
   }

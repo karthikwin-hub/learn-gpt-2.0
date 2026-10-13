@@ -17,9 +17,14 @@ export async function checkNoHorizontalOverflow(page: Page): Promise<void> {
 }
 
 export async function checkNoRawKeysOrPlaceholders(page: Page): Promise<void> {
+  /* Each text node is checked on its own: a raw key always sits inside one node, while joining
+     neighbouring nodes (a unit label next to a number) can fake a dotted key. */
   const textContent = await page.evaluate(() => {
     const view = document.querySelector('#view') || document.body;
-    return view.textContent || '';
+    const walker = document.createTreeWalker(view, NodeFilter.SHOW_TEXT);
+    const parts: string[] = [];
+    for (let n = walker.nextNode(); n; n = walker.nextNode()) parts.push(n.nodeValue || '');
+    return parts.join(' ');
   });
 
   // Regex matches raw untranslated dotted keys like 'bodha.M2.idea' or 'prashna.N1.q'

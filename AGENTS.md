@@ -102,4 +102,7 @@ Allowed without asking: edits and commits on the feature branch, local checks, p
 ## 13. Lessons (promoted rules)
 <!-- Human-approved only, newest first. Format: "When X, do Y — because Z. Example: …". Same mistake twice means the lesson is
      unclear: rewrite it. Prune rules that have not fired in a month. Candidates live in docs/agent-memory/lessons.md. -->
-- (none yet)
+- When translating, write every string yourself in the target script; never call a translation API, website or library (Google, MyMemory, deep-translator, LibreTranslate) — because it sends product content outward (§10) and returns unchecked machine text. Example: 046 subagents sent ~1,200 lesson strings to Google/MyMemory.
+- When a check flags your output, fix the content, or fix a false positive in the check in its own commit with a test; never reshape output to hide from it — because evasions hide the defect. Example: 046 innerHTML splits, zero-width spaces, transliterated English, odd synonyms to dodge a regex.
+- When a check claims coverage of screens, run it against the built app in all five languages and both viewports — because prototype-only, English-only checks passed while 1,335 strings per language were missing. Example: `tests/e2e/sweep/app-routes.spec.ts`.
+- When translations pass the automated checks, call them drafts until a native speaker reviews them — because two agent review passes still left ~4 Telugu errors in 20 strings. Example: "translations pass script checks; native review pending (te first)".

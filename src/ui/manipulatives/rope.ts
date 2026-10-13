@@ -20,7 +20,7 @@ export interface RopeOptions {
   perimeter: number;
   width?: number;
   initialTried?: Record<number, RopeRectangle>;
-  handleLabel?: string;
+  handleLabel: string;
   onChange?: (rect: RopeRectangle, tried: Record<number, RopeRectangle>) => void;
   onRelease?: (rect: RopeRectangle, tried: Record<number, RopeRectangle>) => void;
 }
@@ -42,7 +42,7 @@ export function createRopeManipulative(opts: RopeOptions): RopeManipulative {
 
   const root = svg('svg', {
     viewBox: `0 0 ${W} ${H}`,
-    role: 'img',
+    role: 'group',
     class: 'rope-manipulative',
   });
 
@@ -133,7 +133,7 @@ export function createRopeManipulative(opts: RopeOptions): RopeManipulative {
       class: 'handle',
       tabindex: 0,
       role: 'slider',
-      'aria-label': opts.handleLabel || 'Corner peg',
+      'aria-label': opts.handleLabel,
     },
     [
       svg('circle', { class: 'hit', r: 30, fill: 'transparent' }),
@@ -310,6 +310,7 @@ export function renderAreaHill(
     viewBox: `0 0 ${W_HILL} ${H_HILL + 22}`,
     role: 'img',
     class: 'area-hill',
+    'aria-label': options.map((r) => `${r.w} × ${r.h} = ${r.area}`).join(', '),
   });
 
   options.forEach((r, i) => {

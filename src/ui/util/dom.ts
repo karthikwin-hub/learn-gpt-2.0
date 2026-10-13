@@ -6,7 +6,6 @@ const SVG_NS = 'http://www.w3.org/2000/svg';
 
 export interface Attrs {
   text?: string;
-  html?: string;
   class?: string;
   style?: Partial<CSSStyleDeclaration> | Record<string, string>;
   role?: string;
@@ -35,8 +34,6 @@ export function applyAttrs(node: Element, attrs?: Attrs): void {
     if (v === undefined || v === null || v === false) continue;
     if (k === 'text') {
       node.textContent = String(v);
-    } else if (k === 'html') {
-      node.innerHTML = String(v);
     } else if (k === 'class') {
       node.setAttribute('class', String(v));
     } else if (k === 'style' && typeof v === 'object' && node instanceof HTMLElement) {

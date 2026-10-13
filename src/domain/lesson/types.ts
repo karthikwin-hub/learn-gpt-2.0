@@ -9,24 +9,16 @@ export type LessonStep =
 
 export type BodhaCardKey = 'what' | 'idea' | 'why' | 'example' | 'where' | 'sutra';
 
+/* Pictures live in src/ui/lesson-visuals; text lives in the dictionaries. Lesson data holds plain values only. */
 export interface BodhaCard {
   key: BodhaCardKey;
   steps?: number;
-  fig?: (step: number, state?: unknown) => SVGElement | null;
 }
 
-export interface PrashnaData {
-  art?: () => SVGElement;
-  questionKey?: string;
-  choices?: string[];
-  answerKey?: string;
-}
-
+/* Strings: mistake.<K>.intro, .s1….s<steps>, .fine<n>, .found, .eq (<s> struck, <r> highlighted). */
 export interface MistakeData {
   steps: number;
   wrong: number;
-  picture?: (reveal: boolean) => unknown;
-  eq?: () => string;
 }
 
 export interface ExplainBlank {
@@ -40,8 +32,10 @@ export interface LessonData {
   knotId: string;
   content?: string;
   cards: BodhaCard[];
-  prashna?: PrashnaData;
   mistake?: MistakeData;
+  /** Phase 1 lessons without their own Spot-the-mistake or Explain sentence use this knot's (the prototype's flow). */
+  mistakeFrom?: string;
+  explainFrom?: string;
   explain?: ExplainTemplate;
   stateKey?: string;
 }

@@ -19,7 +19,6 @@ export const D4_LESSON: LessonData = {
   mistake: {
     steps: 3,
     wrong: 1,
-    eq: () => '824 ÷ 4 = 206 (not <span class="r-txt">26</span>)',
   },
   explain: [
     { tiles: ['zero', 'one', 'ten'], expect: 'zero' },

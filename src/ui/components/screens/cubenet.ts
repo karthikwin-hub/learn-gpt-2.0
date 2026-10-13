@@ -10,9 +10,10 @@ import {
   type CubeNetAnalysis,
 } from '../../../domain/math/cubenet';
 import { t } from '../../../domain/i18n/core';
-import { clear, el } from '../../util/dom';
+import { clear, el, reducedMotion, svg } from '../../util/dom';
+import { readStep, toMistakeButton } from '../../util/bench';
 import { enterThread } from '../../util/thread';
-import { router, type ScreenMeta } from '../app/router';
+import { type ScreenMeta } from '../app/router';
 
 const PRESET_T_NET: GridSquare[] = [
   { x: 1, y: 0 },
@@ -51,11 +52,7 @@ export function createCubenetScreen(): ScreenMeta {
     render(view, state, params = {}) {
       enterThread('G5', 'cubenet', params);
 
-      let stepNum = params.step
-        ? Number(params.step)
-        : typeof state.step === 'number'
-          ? state.step
-          : 1;
+      let stepNum = readStep(params.step, state.step, 3);
 
       let squares: GridSquare[] =
         Array.isArray(state.squares) && state.squares.length > 0
@@ -91,9 +88,9 @@ export function createCubenetScreen(): ScreenMeta {
       });
 
       const stepsConfig = [
-        { num: 1, label: '1. Arrange 6 squares' },
-        { num: 2, label: '2. Fold 3D Box' },
-        { num: 3, label: '3. Find 11 Nets' },
+        { num: 1, label: t('cubenet.tab1') },
+        { num: 2, label: t('cubenet.tab2') },
+        { num: 3, label: t('cubenet.tab3') },
       ];
 
       stepsConfig.forEach((cfg) => {
@@ -161,9 +158,9 @@ export function createCubenetScreen(): ScreenMeta {
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'center',
-            background: 'var(--card-bg, #ffffff)',
+            background: 'var(--paper-raised)',
             borderRadius: '12px',
-            border: '1px solid var(--border, #e5e7eb)',
+            border: '1px solid var(--hair)',
           },
         });
 
@@ -191,10 +188,10 @@ export function createCubenetScreen(): ScreenMeta {
           },
           text:
             squares.length !== 6
-              ? `Selected: ${squares.length} of 6 squares`
+              ? t('cubenet.squares', { count: squares.length })
               : analysis.valid
-                ? '✓ Valid Cube Net (Closed 3D Box)'
-                : '✗ Faces Collide / Open Holes',
+                ? t('cubenet.valid')
+                : t('cubenet.invalid'),
         });
         canvasCard.appendChild(badgeEl);
 
@@ -209,71 +206,70 @@ export function createCubenetScreen(): ScreenMeta {
           const xOffset = (svgW - cols * cellSize) / 2;
           const yOffset = (svgH - rows * cellSize) / 2;
 
-          let svgHtml = `
-            <svg viewBox="0 0 ${svgW} ${svgH}" width="100%" height="220" role="img" aria-label="Interactive 2D hexomino grid editor">
-              <g transform="translate(${xOffset}, ${yOffset})">
-          `;
-
-          // Grid cells
+          const diagram = svg('svg', {
+            viewBox: `0 0 ${svgW} ${svgH}`,
+            width: '100%',
+            height: '220',
+            role: 'group',
+            'aria-label': t('cubenet.title'),
+          });
+          const g = svg('g', { transform: `translate(${xOffset}, ${yOffset})` });
           for (let r = 0; r < rows; r++) {
             for (let c = 0; c < cols; c++) {
               const sqIdx = squares.findIndex((s) => s.x === c && s.y === r);
               const isSelected = sqIdx !== -1;
               const isOverlapping = isSelected && analysis.overlaps.includes(sqIdx);
-
-              const fillColor = isSelected
-                ? isOverlapping
-                  ? 'rgba(239, 68, 68, 0.4)'
-                  : 'rgba(99, 102, 241, 0.35)'
-                : 'var(--bg, #f8fafc)';
-
-              const strokeColor = isSelected
-                ? isOverlapping
-                  ? 'var(--kumkum, #dc2626)'
-                  : 'var(--accent, #6366f1)'
-                : 'var(--border, #cbd5e1)';
-
-              svgHtml += `
-                <rect x="${c * cellSize}" y="${r * cellSize}" width="${cellSize}" height="${cellSize}"
-                      class="grid-cell" data-col="${c}" data-row="${r}"
-                      fill="${fillColor}" stroke="${strokeColor}" stroke-width="${isSelected ? '2.5' : '1'}"
-                      rx="4" ry="4" style="cursor: pointer;" />
-              `;
-
-              if (isSelected) {
-                const faceName = analysis.faceAssignments[sqIdx] || '';
-                svgHtml += `
-                  <text x="${c * cellSize + cellSize / 2}" y="${r * cellSize + cellSize / 2 + 4}"
-                        text-anchor="middle" font-size="10" font-weight="bold"
-                        fill="${isOverlapping ? '#b91c1c' : '#4338ca'}">${faceName.substring(0, 3)}</text>
-                `;
-              }
+              const rect = svg('rect', {
+                x: String(c * cellSize),
+                y: String(r * cellSize),
+                width: String(cellSize),
+                height: String(cellSize),
+                class: 'grid-cell',
+                'data-col': String(c),
+                'data-row': String(r),
+                fill: isSelected
+                  ? isOverlapping
+                    ? 'rgba(239, 68, 68, 0.4)'
+                    : 'rgba(99, 102, 241, 0.35)'
+                  : 'var(--paper-sunk)',
+                stroke: isSelected
+                  ? isOverlapping
+                    ? 'var(--kumkum)'
+                    : 'var(--indigo)'
+                  : 'var(--ink-soft)',
+                'stroke-width': isSelected ? '2.5' : '1',
+                rx: '4',
+                role: 'button',
+                tabindex: 0,
+                'aria-pressed': String(isSelected),
+                'aria-label': `${c + 1}, ${r + 1}`,
+              });
+              rect.style.cursor = 'pointer';
+              const toggle = () => {
+                const foundIdx = squares.findIndex((s) => s.x === c && s.y === r);
+                if (foundIdx !== -1) squares.splice(foundIdx, 1);
+                else if (squares.length < 6) squares.push({ x: c, y: r });
+                state.squares = squares;
+                renderContent();
+                contentBox
+                  .querySelector<SVGRectElement>(`.grid-cell[data-col="${c}"][data-row="${r}"]`)
+                  ?.focus();
+              };
+              rect.addEventListener('click', toggle);
+              rect.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                  e.preventDefault();
+                  toggle();
+                }
+              });
+              g.appendChild(rect);
             }
           }
-
-          svgHtml += `</g></svg>`;
-
+          diagram.appendChild(g);
           const svgWrap = el('div', {
             style: { width: '100%', display: 'flex', justifyContent: 'center' },
           });
-          svgWrap.innerHTML = svgHtml;
-
-          // Attach grid toggle click handlers
-          svgWrap.querySelectorAll('.grid-cell').forEach((rect) => {
-            const col = Number(rect.getAttribute('data-col'));
-            const row = Number(rect.getAttribute('data-row'));
-            rect.addEventListener('click', () => {
-              const foundIdx = squares.findIndex((s) => s.x === col && s.y === row);
-              if (foundIdx !== -1) {
-                squares.splice(foundIdx, 1);
-              } else if (squares.length < 6) {
-                squares.push({ x: col, y: row });
-              }
-              state.squares = squares;
-              renderContent();
-            });
-          });
-
+          svgWrap.appendChild(diagram);
           canvasCard.appendChild(svgWrap);
         } else {
           // 3D Isometric Folding Representation
@@ -281,49 +277,33 @@ export function createCubenetScreen(): ScreenMeta {
           const cy = svgH / 2;
           const s = 50; // cube size
 
-          let svgHtml = `
-            <svg viewBox="0 0 ${svgW} ${svgH}" width="100%" height="220" role="img" aria-label="3D Isometric folded cube visualization">
-          `;
-
-          if (analysis.valid) {
-            // Isometric cube faces
-            // Top face
-            svgHtml += `
-              <polygon points="${cx},${cy - s} ${cx + s * 0.866},${cy - s * 0.5} ${cx},${cy} ${cx - s * 0.866},${cy - s * 0.5}"
-                       fill="rgba(99, 102, 241, 0.45)" stroke="var(--ink, #1e293b)" stroke-width="2" />
-              <!-- Front-Right face -->
-              <polygon points="${cx},${cy} ${cx + s * 0.866},${cy - s * 0.5} ${cx + s * 0.866},${cy + s * 0.5} ${cx},${cy + s}"
-                       fill="rgba(99, 102, 241, 0.3)" stroke="var(--ink, #1e293b)" stroke-width="2" />
-              <!-- Front-Left face -->
-              <polygon points="${cx - s * 0.866},${cy - s * 0.5} ${cx},${cy} ${cx},${cy + s} ${cx - s * 0.866},${cy + s * 0.5}"
-                       fill="rgba(99, 102, 241, 0.2)" stroke="var(--ink, #1e293b)" stroke-width="2" />
-              <text x="${cx}" y="${cy + s + 22}" text-anchor="middle" font-size="13" font-weight="bold" fill="#047857">
-                Closed 3D Cube (0 Collisions, 6 Faces Sealed)
-              </text>
-            `;
-          } else {
-            // Broken cube with collision warning & open gap
-            svgHtml += `
-              <!-- Colliding overlapping faces in Kumkum -->
-              <polygon points="${cx},${cy - s} ${cx + s * 0.866},${cy - s * 0.5} ${cx},${cy} ${cx - s * 0.866},${cy - s * 0.5}"
-                       fill="rgba(239, 68, 68, 0.5)" stroke="var(--kumkum, #b91c1c)" stroke-width="2.5" />
-              <!-- Open void gap (dashed line) -->
-              <polygon points="${cx},${cy} ${cx + s * 0.866},${cy - s * 0.5} ${cx + s * 0.866},${cy + s * 0.5} ${cx},${cy + s}"
-                       fill="none" stroke="var(--kumkum, #b91c1c)" stroke-width="2" stroke-dasharray="4 4" />
-              <polygon points="${cx - s * 0.866},${cy - s * 0.5} ${cx},${cy} ${cx},${cy + s} ${cx - s * 0.866},${cy + s * 0.5}"
-                       fill="rgba(239, 68, 68, 0.3)" stroke="var(--kumkum, #b91c1c)" stroke-width="2" />
-              <text x="${cx}" y="${cy + s + 22}" text-anchor="middle" font-size="13" font-weight="bold" fill="var(--kumkum, #b91c1c)">
-                Collision! Faces Overlap &amp; Leaves Hole
-              </text>
-            `;
-          }
-
-          svgHtml += `</svg>`;
+          const iso = svg('svg', {
+            viewBox: `0 0 ${svgW} ${svgH}`,
+            width: '100%',
+            height: '220',
+            role: 'img',
+            'aria-label': t('cubenet.foldTest'),
+          });
+          const faceA = `${cx},${cy - s} ${cx + s * 0.866},${cy - s * 0.5} ${cx},${cy} ${cx - s * 0.866},${cy - s * 0.5}`;
+          iso.appendChild(
+            svg('polygon', {
+              points: faceA,
+              fill: analysis.valid ? 'rgba(99, 102, 241, 0.45)' : 'rgba(239, 68, 68, 0.5)',
+              stroke: analysis.valid ? 'var(--ink)' : 'var(--kumkum)',
+              'stroke-width': '2',
+            })
+          );
           const svgWrap = el('div', {
             style: { width: '100%', display: 'flex', justifyContent: 'center' },
           });
-          svgWrap.innerHTML = svgHtml;
+          svgWrap.appendChild(iso);
           canvasCard.appendChild(svgWrap);
+          canvasCard.appendChild(
+            el('p', {
+              class: 'small',
+              text: analysis.valid ? t('cubenet.closedCube') : t('cubenet.collisionCube'),
+            })
+          );
         }
 
         contentBox.appendChild(canvasCard);
@@ -337,9 +317,9 @@ export function createCubenetScreen(): ScreenMeta {
             display: 'flex',
             flexDirection: 'column',
             gap: '14px',
-            background: 'var(--card-bg, #ffffff)',
+            background: 'var(--paper-raised)',
             borderRadius: '12px',
-            border: '1px solid var(--border, #e5e7eb)',
+            border: '1px solid var(--hair)',
           },
         });
 
@@ -357,7 +337,10 @@ export function createCubenetScreen(): ScreenMeta {
             fontSize: '14px',
           },
         });
-        foldLabel.innerHTML = `<span>${t('cubenet.foldSlider')} (0° Flat → 90° Closed Box)</span> <span>${foldAngle}°</span>`;
+        foldLabel.appendChild(
+          el('span', { text: `${t('cubenet.foldSlider')} ${t('cubenet.foldHint')}` })
+        );
+        foldLabel.appendChild(el('span', { text: `${foldAngle}°` }));
 
         const foldSlider = el('input', {
           id: 'fold-slider',
@@ -370,7 +353,7 @@ export function createCubenetScreen(): ScreenMeta {
           style: { width: '100%', minHeight: '44px', cursor: 'pointer' },
           oninput: (e: Event) => {
             const target = e.target as HTMLInputElement;
-            foldAngle = parseInt(target.value, 10);
+            foldAngle = reducedMotion() ? parseInt(target.value, 10) : parseInt(target.value, 10);
             state.foldAngle = foldAngle;
             renderContent();
           },
@@ -383,7 +366,9 @@ export function createCubenetScreen(): ScreenMeta {
         const presetBox = el('div', {
           style: { display: 'flex', flexDirection: 'column', gap: '6px' },
         });
-        presetBox.appendChild(el('span', { class: 'small muted', text: 'Quick Test Presets:' }));
+        presetBox.appendChild(
+          el('span', { class: 'small muted', text: t('cubenet.presetsLabel') })
+        );
 
         const presetBtns = el('div', {
           style: { display: 'flex', gap: '8px', flexWrap: 'wrap' },
@@ -447,22 +432,12 @@ export function createCubenetScreen(): ScreenMeta {
         contentBox.appendChild(controlPanel);
 
         // Navigation forward to Spot the Mistake
-        const navRow = el('div', {
-          class: 'nav-row',
-          style: { width: '100%', marginTop: '8px' },
-        });
-        const mistakeBtn = el('button', {
-          id: 'btn-to-mistake',
-          class: 'btn primary block',
-          type: 'button',
-          text: 'Next: Spot the Mistake →',
-          style: { minHeight: '44px' },
-          onclick: () => {
-            router.go('mistake', { k: 'G5' });
-          },
-        });
-        navRow.appendChild(mistakeBtn);
-        contentBox.appendChild(navRow);
+        const mistakeBtn = toMistakeButton('G5');
+        mistakeBtn.id = 'btn-to-mistake';
+        mistakeBtn.style.minHeight = '44px';
+        mistakeBtn.style.width = '100%';
+        mistakeBtn.style.marginTop = '8px';
+        contentBox.appendChild(mistakeBtn);
       }
 
       view.appendChild(titleEl);

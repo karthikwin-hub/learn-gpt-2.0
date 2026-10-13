@@ -3,6 +3,7 @@
  * Strictly domain logic with zero DOM or UI dependencies.
  */
 
+import { calculateHCF } from './hcf';
 export interface TensOnes {
   tens: number;
   ones: number;
@@ -107,12 +108,8 @@ export function multiples(n: number, upTo: number): number[] {
   return out;
 }
 
-/**
- * Greatest common divisor using Euclid's algorithm.
- */
-export function gcd(a: number, b: number): number {
-  return b === 0 ? a : gcd(b, a % b);
-}
+/** Greatest common divisor; the one implementation is calculateHCF in hcf.ts. */
+export const gcd = calculateHCF;
 
 /**
  * Least common multiple of two integers.

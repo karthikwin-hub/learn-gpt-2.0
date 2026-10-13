@@ -17,6 +17,7 @@ import {
 } from '../../../domain/math/growing';
 import { t } from '../../../domain/i18n/core';
 import { clear, el } from '../../util/dom';
+import { readStep } from '../../util/bench';
 import { enterThread } from '../../util/thread';
 import { router, type ScreenMeta } from '../app/router';
 
@@ -30,11 +31,7 @@ export function createGrowingScreen(): ScreenMeta {
     render(view, state, params = {}) {
       enterThread('P1', 'growing', params);
 
-      let stepNum = params.step
-        ? Number(params.step)
-        : typeof state.step === 'number'
-          ? state.step
-          : 1;
+      let stepNum = readStep(params.step, state.step, 3);
 
       let triStage = typeof state.triStage === 'number' ? state.triStage : 4;
       let sqStage = typeof state.sqStage === 'number' ? state.sqStage : 3;
@@ -66,9 +63,9 @@ export function createGrowingScreen(): ScreenMeta {
       });
 
       const stepsConfig = [
-        { num: 1, label: '1. Dot Triangle Layers' },
-        { num: 2, label: '2. Square Gnomon Grid' },
-        { num: 3, label: '3. Growth Table & Lab' },
+        { num: 1, label: t('growing.tab1') },
+        { num: 2, label: t('growing.tab2') },
+        { num: 3, label: t('growing.tab3') },
       ];
 
       stepsConfig.forEach((cfg) => {
@@ -81,10 +78,8 @@ export function createGrowingScreen(): ScreenMeta {
             minHeight: '44px',
             borderRadius: '6px',
             border:
-              stepNum === cfg.num
-                ? '2px solid var(--ink, #1f2937)'
-                : '1px solid var(--sand, #d1d5db)',
-            background: stepNum === cfg.num ? 'var(--parchment, #fff)' : 'transparent',
+              stepNum === cfg.num ? '2px solid var(--ink, #1f2937)' : '1px solid var(--paper-sunk)',
+            background: stepNum === cfg.num ? 'var(--paper)' : 'transparent',
             fontWeight: stepNum === cfg.num ? 'bold' : 'normal',
             cursor: 'pointer',
           },
@@ -116,8 +111,8 @@ export function createGrowingScreen(): ScreenMeta {
           (b as HTMLElement).style.fontWeight = isActive ? 'bold' : 'normal';
           (b as HTMLElement).style.border = isActive
             ? '2px solid var(--ink, #1f2937)'
-            : '1px solid var(--sand, #d1d5db)';
-          (b as HTMLElement).style.background = isActive ? 'var(--parchment, #fff)' : 'transparent';
+            : '1px solid var(--paper-sunk)';
+          (b as HTMLElement).style.background = isActive ? 'var(--paper)' : 'transparent';
         });
 
         clear(workspaceContainer);
@@ -139,7 +134,12 @@ export function createGrowingScreen(): ScreenMeta {
           formulaParts.push(String(r));
         }
 
-        feedbackEl.textContent = `Stage ${triStage} adds a bottom row of ${addedRow} dots! Total dots = ${formulaParts.join(' + ')} = ${totalDots}!`;
+        feedbackEl.textContent = t('growing.triFeedbackLong', {
+          stage: String(triStage),
+          added: String(addedRow),
+          sum: formulaParts.join(' + '),
+          total: String(totalDots),
+        });
 
         const triCard = el('div', {
           class: 'triangular-card',
@@ -152,7 +152,7 @@ export function createGrowingScreen(): ScreenMeta {
             padding: '20px',
             borderRadius: '12px',
             border: '1px solid #e5e7eb',
-            background: 'var(--card-bg, #fff)',
+            background: 'var(--paper-raised)',
           },
         });
 
@@ -168,7 +168,7 @@ export function createGrowingScreen(): ScreenMeta {
         });
         const decBtn = el('button', {
           class: 'btn',
-          text: '-1 Stage',
+          text: t('growing.stageDown'),
           style: { minHeight: '44px', padding: '6px 14px' },
           onClick() {
             triStage = Math.max(1, triStage - 1);
@@ -178,7 +178,7 @@ export function createGrowingScreen(): ScreenMeta {
         });
         const stagePill = el('span', {
           class: 'stat-pill tri-stage-pill',
-          text: `Stage ${triStage} Triangle`,
+          text: t('growing.stageTitle', { stage: String(triStage) }),
           style: {
             fontWeight: 'bold',
             fontSize: '1.15rem',
@@ -190,7 +190,7 @@ export function createGrowingScreen(): ScreenMeta {
         });
         const incBtn = el('button', {
           class: 'btn',
-          text: '+1 Stage',
+          text: t('growing.stageUp'),
           style: { minHeight: '44px', padding: '6px 14px' },
           onClick() {
             triStage = Math.min(6, triStage + 1);
@@ -262,14 +262,14 @@ export function createGrowingScreen(): ScreenMeta {
         });
         readout.appendChild(
           el('span', {
-            text: `Bottom Row Added: +${addedRow} dots`,
+            text: t('growing.bottomRow', { added: String(addedRow) }),
             style: { fontWeight: '600', color: '#0f766e' },
           })
         );
         readout.appendChild(
           el('span', {
             class: 'stat-pill tri-total-pill',
-            text: `Total: ${totalDots} Dots`,
+            text: t('growing.totalDotsLabel', { total: String(totalDots) }),
             style: {
               fontWeight: 'bold',
               fontSize: '1.2rem',
@@ -289,7 +289,11 @@ export function createGrowingScreen(): ScreenMeta {
         const totalTiles = squareNumber(sqStage);
         const gnomon = gnomonSize(sqStage);
 
-        feedbackEl.textContent = `A square of side ${sqStage} has ${sqStage} × ${sqStage} = ${totalTiles} tiles! The added outer L-shaped border has ${gnomon} tiles!`;
+        feedbackEl.textContent = t('growing.sqFeedbackBorder', {
+          side: String(sqStage),
+          total: String(totalTiles),
+          gnomon: String(gnomon),
+        });
 
         const sqCard = el('div', {
           class: 'square-card',
@@ -302,7 +306,7 @@ export function createGrowingScreen(): ScreenMeta {
             padding: '20px',
             borderRadius: '12px',
             border: '1px solid #e5e7eb',
-            background: 'var(--card-bg, #fff)',
+            background: 'var(--paper-raised)',
           },
         });
 
@@ -318,7 +322,7 @@ export function createGrowingScreen(): ScreenMeta {
         });
         const decBtn = el('button', {
           class: 'btn',
-          text: '-1 Side',
+          text: t('growing.sideDown'),
           style: { minHeight: '44px', padding: '6px 14px' },
           onClick() {
             sqStage = Math.max(1, sqStage - 1);
@@ -328,7 +332,7 @@ export function createGrowingScreen(): ScreenMeta {
         });
         const stagePill = el('span', {
           class: 'stat-pill sq-stage-pill',
-          text: `Side ${sqStage} Square (${sqStage} × ${sqStage})`,
+          text: t('growing.sideTitle', { side: String(sqStage) }),
           style: {
             fontWeight: 'bold',
             fontSize: '1.15rem',
@@ -340,7 +344,7 @@ export function createGrowingScreen(): ScreenMeta {
         });
         const incBtn = el('button', {
           class: 'btn',
-          text: '+1 Side',
+          text: t('growing.sideUp'),
           style: { minHeight: '44px', padding: '6px 14px' },
           onClick() {
             sqStage = Math.min(6, sqStage + 1);
@@ -401,14 +405,14 @@ export function createGrowingScreen(): ScreenMeta {
         });
         readout.appendChild(
           el('span', {
-            text: `Added L-Gnomon: +${gnomon} tiles`,
+            text: t('growing.gnomonLabel', { gnomon: String(gnomon) }),
             style: { fontWeight: '600', color: '#b45309' },
           })
         );
         readout.appendChild(
           el('span', {
             class: 'stat-pill sq-total-pill',
-            text: `Total: ${totalTiles} Tiles`,
+            text: t('growing.totalTilesLabel', { total: String(totalTiles) }),
             style: {
               fontWeight: 'bold',
               fontSize: '1.2rem',
@@ -425,7 +429,7 @@ export function createGrowingScreen(): ScreenMeta {
       }
 
       function renderGrowthTable() {
-        feedbackEl.textContent = `Contrast: Triangular numbers grow by +n; Square numbers grow quadratically (n × n). Don't confuse side × 2 with side × side!`;
+        feedbackEl.textContent = t('growing.contrastNote');
 
         const tableCard = el('div', {
           class: 'growth-table-card',
@@ -437,7 +441,7 @@ export function createGrowingScreen(): ScreenMeta {
             padding: '20px',
             borderRadius: '12px',
             border: '1px solid #e5e7eb',
-            background: 'var(--card-bg, #fff)',
+            background: 'var(--paper-raised)',
           },
         });
 
@@ -452,14 +456,26 @@ export function createGrowingScreen(): ScreenMeta {
         });
 
         const thead = el('thead');
-        thead.innerHTML = `
-          <tr style="background: #f1f5f9; border-bottom: 2px solid #cbd5e1;">
-            <th style="padding: 10px 8px;">Stage (n)</th>
-            <th style="padding: 10px 8px; color: #0f766e;">Triangle T_n</th>
-            <th style="padding: 10px 8px; color: #b45309;">Square n²</th>
-            <th style="padding: 10px 8px; color: #ef4444;">Amit's Guess (2n)</th>
-          </tr>
-        `;
+        const headRow = el('tr', {
+          style: { background: '#f1f5f9', borderBottom: '2px solid #cbd5e1' },
+        });
+        [
+          t('growing.tableStage'),
+          t('growing.tableTri'),
+          t('growing.tableSq'),
+          t('growing.tableAmit'),
+        ].forEach((label, i) => {
+          headRow.appendChild(
+            el('th', {
+              text: label,
+              style: {
+                padding: '10px 8px',
+                color: i === 1 ? '#0f766e' : i === 2 ? '#b45309' : i === 3 ? '#ef4444' : undefined,
+              },
+            })
+          );
+        });
+        thead.appendChild(headRow);
         table.appendChild(thead);
 
         const tbody = el('tbody');
@@ -476,12 +492,21 @@ export function createGrowingScreen(): ScreenMeta {
               fontWeight: isTrapRow ? 'bold' : 'normal',
             },
           });
-          tr.innerHTML = `
-            <td style="padding: 10px 8px;">Stage ${n}</td>
-            <td style="padding: 10px 8px; color: #0f766e;">${tN}</td>
-            <td style="padding: 10px 8px; color: #b45309;">${sN}</td>
-            <td style="padding: 10px 8px; color: #dc2626;">${amit}</td>
-          `;
+          tr.appendChild(
+            el('td', {
+              text: t('growing.tableRowStage', { n: String(n) }),
+              style: { padding: '10px 8px' },
+            })
+          );
+          tr.appendChild(
+            el('td', { text: String(tN), style: { padding: '10px 8px', color: '#0f766e' } })
+          );
+          tr.appendChild(
+            el('td', { text: String(sN), style: { padding: '10px 8px', color: '#b45309' } })
+          );
+          tr.appendChild(
+            el('td', { text: String(amit), style: { padding: '10px 8px', color: '#dc2626' } })
+          );
           tbody.appendChild(tr);
         });
         table.appendChild(tbody);
@@ -500,7 +525,7 @@ export function createGrowingScreen(): ScreenMeta {
         trapBox.appendChild(
           el('p', {
             style: { margin: '0', fontSize: '0.95rem', color: '#991b1b' },
-            text: `Amit's Mistake Trap: Amit looked at Stage 5 and computed 5 × 2 = 10! But a square is a 2D shape with 5 rows and 5 columns: 5 × 5 = 25 tiles, not 10!`,
+            text: t('growing.amitTrapLong'),
           })
         );
         tableCard.appendChild(trapBox);
@@ -537,7 +562,7 @@ export function createGrowingScreen(): ScreenMeta {
 
       const nextBtn = el('button', {
         class: 'btn btn-primary',
-        text: 'Spot the Mistake →',
+        text: t('bench.toMistake'),
         style: {
           minHeight: '44px',
           padding: '10px 20px',

@@ -33,7 +33,7 @@ export function createFractionsScreen(): ScreenMeta {
       const titleEl = el('h2', { class: 'screen-title', text: t('frac.title') });
       const subEl = el('p', {
         class: 'screen-sub',
-        text: t('frac.s1') || 'Fold and align strips to find equal parts.',
+        text: t('frac.s1'),
       });
 
       const displayCard = el('section', { class: 'card frac-display', 'aria-live': 'polite' });
@@ -43,7 +43,7 @@ export function createFractionsScreen(): ScreenMeta {
       });
       const eqReadout = el('div', {
         class: 'frac-equivalents',
-        style: { color: 'var(--muted)', fontSize: '14px' },
+        style: { color: 'var(--ink-soft)', fontSize: '14px' },
       });
       displayCard.appendChild(fracReadout);
       displayCard.appendChild(eqReadout);
@@ -72,7 +72,7 @@ export function createFractionsScreen(): ScreenMeta {
 
         fracReadout.textContent = `${selCount}/${selDenom}`;
         const eqStrings = equivalents.map((eq) => `${eq.count}/${eq.denominator}`);
-        eqReadout.textContent = `${t('frac.same') || 'Equivalent'}: ${eqStrings.join(' = ')}`;
+        eqReadout.textContent = `${t('frac.same')}: ${eqStrings.join(' = ')}`;
 
         clear(stripsContainer);
         for (const row of rows) {
@@ -95,10 +95,10 @@ export function createFractionsScreen(): ScreenMeta {
               flex: '1',
               display: 'flex',
               height: '42px',
-              border: '2px solid var(--border)',
+              border: '2px solid var(--hair)',
               borderRadius: '8px',
               overflow: 'hidden',
-              background: 'var(--card-bg, #fff)',
+              background: 'var(--paper-raised)',
             },
           });
 
@@ -118,9 +118,8 @@ export function createFractionsScreen(): ScreenMeta {
               style: {
                 flex: '1',
                 border: 'none',
-                borderRight:
-                  i < row.segments.length - 1 ? '1px dashed var(--border-dark, #cbd5e1)' : 'none',
-                background: isActive ? 'var(--thread-ganita, #8b5cf6)' : 'transparent',
+                borderRight: i < row.segments.length - 1 ? '1px dashed var(--ink-soft)' : 'none',
+                background: isActive ? 'var(--indigo)' : 'transparent',
                 color: isActive ? '#fff' : 'var(--ink)',
                 cursor: 'pointer',
                 fontSize: '12px',
@@ -150,10 +149,10 @@ export function createFractionsScreen(): ScreenMeta {
       });
 
       const examples = [
-        { label: '1/2 (Half)', denom: 2, count: 1 },
-        { label: '2/4 (Two Fourths)', denom: 4, count: 2 },
-        { label: '3/4 (Three Fourths)', denom: 4, count: 3 },
-        { label: '4/8 (Four Eighths)', denom: 8, count: 4 },
+        { label: t('frac.chipHalf'), denom: 2, count: 1 },
+        { label: t('frac.chipTwoFourths'), denom: 4, count: 2 },
+        { label: t('frac.chipThreeFourths'), denom: 4, count: 3 },
+        { label: t('frac.chipFourEighths'), denom: 8, count: 4 },
       ];
 
       for (const ex of examples) {
@@ -180,7 +179,7 @@ export function createFractionsScreen(): ScreenMeta {
         class: 'btn ghost',
         id: 'btn-reset',
         type: 'button',
-        text: t('action.reset') || 'Reset',
+        text: t('common.reset'),
         onclick: () => {
           selDenom = 2;
           selCount = 1;

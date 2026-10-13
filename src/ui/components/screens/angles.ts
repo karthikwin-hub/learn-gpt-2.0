@@ -9,11 +9,27 @@ import {
   isArmLengthInvariant,
   arcCoordinates,
   type AngleInfo,
+  type AngleType,
 } from '../../../domain/math/angles';
 import { t } from '../../../domain/i18n/core';
 import { clear, el } from '../../util/dom';
+import { readStep, toMistakeButton } from '../../util/bench';
 import { enterThread } from '../../util/thread';
-import { router, type ScreenMeta } from '../app/router';
+import { type ScreenMeta } from '../app/router';
+
+function angleTypeText(type: AngleType): string {
+  return t(`angles.type.${type}`);
+}
+
+function turnLabel(info: AngleInfo): string {
+  const tf = info.turnFraction;
+  if (tf.label.startsWith('1/4')) return t('angles.turnQuarter');
+  if (tf.label.startsWith('1/2')) return t('angles.turnHalf');
+  if (tf.label.startsWith('3/4')) return t('angles.turnThreeQuarter');
+  if (tf.label === 'Full turn') return t('angles.turnFull');
+  if (tf.label === '0 turn') return t('angles.turnZero');
+  return t('angles.turnGeneric', { num: tf.num, den: tf.den });
+}
 
 export function createAnglesScreen(): ScreenMeta {
   return {
@@ -25,11 +41,7 @@ export function createAnglesScreen(): ScreenMeta {
     render(view, state, params = {}) {
       enterThread('G1', 'angles', params);
 
-      let stepNum = params.step
-        ? Number(params.step)
-        : typeof state.step === 'number'
-          ? state.step
-          : 1;
+      let stepNum = readStep(params.step, state.step, 3);
 
       let angleDeg = typeof state.angleDeg === 'number' ? state.angleDeg : 45;
       let armLength = typeof state.armLength === 'number' ? state.armLength : 100;
@@ -62,9 +74,9 @@ export function createAnglesScreen(): ScreenMeta {
       });
 
       const stepsConfig = [
-        { num: 1, label: '1. Turn the ray' },
-        { num: 2, label: '2. Arm length' },
-        { num: 3, label: '3. Clock hands' },
+        { num: 1, label: t('angles.tab1') },
+        { num: 2, label: t('angles.tab2') },
+        { num: 3, label: t('angles.tab3') },
       ];
 
       stepsConfig.forEach((cfg) => {
@@ -130,9 +142,9 @@ export function createAnglesScreen(): ScreenMeta {
         svgBox.style.width = '100%';
         svgBox.style.maxWidth = '280px';
         svgBox.style.height = '240px';
-        svgBox.style.background = 'var(--bg-card, #f8fafc)';
+        svgBox.style.background = 'var(--paper-raised)';
         svgBox.style.borderRadius = '12px';
-        svgBox.style.border = '1px solid var(--border, #cbd5e1)';
+        svgBox.style.border = '1px solid var(--hair)';
 
         const cx = 140;
         const cy = 150;
@@ -202,27 +214,27 @@ export function createAnglesScreen(): ScreenMeta {
             width: '100%',
             textAlign: 'center',
             padding: '12px',
-            background: 'var(--bg-card, #f8fafc)',
+            background: 'var(--paper-raised)',
             borderRadius: '8px',
           },
         });
 
         const degreesText = el('div', {
           class: 'angle-degrees',
-          style: { fontSize: '1.5rem', fontWeight: 'bold', color: 'var(--primary, #4338ca)' },
+          style: { fontSize: '1.5rem', fontWeight: 'bold', color: 'var(--indigo)' },
           text: `${angleDeg}°`,
         });
 
         const typeBadge = el('div', {
           class: 'angle-type-badge',
           style: { fontSize: '1rem', marginTop: '4px' },
-          text: angleInfo.typeLabel,
+          text: angleTypeText(angleInfo.type),
         });
 
         const turnFractionText = el('div', {
           class: 'angle-turn-fraction',
           style: { fontSize: '0.9rem', color: '#64748b', marginTop: '2px' },
-          text: angleInfo.turnFraction.label,
+          text: turnLabel(angleInfo),
         });
 
         readoutCard.appendChild(degreesText);
@@ -246,7 +258,7 @@ export function createAnglesScreen(): ScreenMeta {
         const decBtn = el('button', {
           class: 'btn btn-outline',
           id: 'btn-dec-angle',
-          text: '- 15°',
+          text: t('angles.dec15'),
           style: { minHeight: '44px', minWidth: '44px' },
           onclick: () => {
             angleDeg = Math.max(0, angleDeg - 15);
@@ -262,6 +274,7 @@ export function createAnglesScreen(): ScreenMeta {
           step: '5',
           value: String(angleDeg),
           id: 'angle-slider',
+          'aria-label': t('angles.slider'),
           style: { flex: '1', minWidth: '140px', minHeight: '44px' },
           oninput: (e: Event) => {
             angleDeg = Number((e.target as HTMLInputElement).value);
@@ -278,7 +291,7 @@ export function createAnglesScreen(): ScreenMeta {
         const incBtn = el('button', {
           class: 'btn btn-outline',
           id: 'btn-inc-angle',
-          text: '+ 15°',
+          text: t('angles.inc15'),
           style: { minHeight: '44px', minWidth: '44px' },
           onclick: () => {
             angleDeg = Math.min(360, angleDeg + 15);
@@ -299,10 +312,10 @@ export function createAnglesScreen(): ScreenMeta {
         });
 
         [
-          { label: '45° (Half right)', deg: 45 },
-          { label: '90° (Quarter)', deg: 90 },
-          { label: '180° (Straight)', deg: 180 },
-          { label: '360° (Full)', deg: 360 },
+          { label: t('angles.preset45'), deg: 45 },
+          { label: t('angles.preset90'), deg: 90 },
+          { label: t('angles.preset180'), deg: 180 },
+          { label: t('angles.preset360'), deg: 360 },
         ].forEach((p) => {
           const btn = el('button', {
             class: `btn ${angleDeg === p.deg ? 'btn-active' : 'btn-outline'}`,
@@ -323,7 +336,7 @@ export function createAnglesScreen(): ScreenMeta {
           const nextBtn = el('button', {
             class: 'btn btn-primary',
             id: 'btn-step1-next',
-            text: 'Next: Test Arm Length →',
+            text: t('angles.nextArm'),
             style: { minHeight: '44px', marginTop: '12px' },
             onclick: () => {
               stepNum = 2;
@@ -345,9 +358,9 @@ export function createAnglesScreen(): ScreenMeta {
         svgBox.style.width = '100%';
         svgBox.style.maxWidth = '280px';
         svgBox.style.height = '240px';
-        svgBox.style.background = 'var(--bg-card, #f8fafc)';
+        svgBox.style.background = 'var(--paper-raised)';
         svgBox.style.borderRadius = '12px';
-        svgBox.style.border = '1px solid var(--border, #cbd5e1)';
+        svgBox.style.border = '1px solid var(--hair)';
 
         const cx = 80;
         const cy = 180;
@@ -403,7 +416,7 @@ export function createAnglesScreen(): ScreenMeta {
             width: '100%',
             textAlign: 'center',
             padding: '12px',
-            background: 'var(--bg-card, #f8fafc)',
+            background: 'var(--paper-raised)',
             borderRadius: '8px',
           },
         });
@@ -411,15 +424,13 @@ export function createAnglesScreen(): ScreenMeta {
         const statusText = el('div', {
           class: 'invariance-status',
           style: { fontSize: '1.2rem', fontWeight: 'bold', color: '#16a34a' },
-          text: `Arm Length: ${armLength}px  |  Angle: 90° (Constant!)`,
+          text: t('angles.invariance', { len: armLength }),
         });
 
         const proofText = el('p', {
           class: 'invariance-proof',
           style: { fontSize: '0.9rem', color: '#64748b', marginTop: '6px' },
-          text: isArmLengthInvariant(90, armLength, 90, 60)
-            ? 'Stretching or shortening the arms does NOT change the turn.'
-            : '',
+          text: isArmLengthInvariant(90, armLength, 90, 60) ? t('angles.invarianceNote') : '',
         });
 
         card.appendChild(statusText);
@@ -432,7 +443,7 @@ export function createAnglesScreen(): ScreenMeta {
           style: { display: 'flex', gap: '8px', width: '100%', alignItems: 'center' },
         });
 
-        const shortLabel = el('span', { text: 'Short (60px)' });
+        const shortLabel = el('span', { text: t('angles.shortArm') });
         const armSlider = el('input', {
           type: 'range',
           min: '60',
@@ -452,7 +463,7 @@ export function createAnglesScreen(): ScreenMeta {
             renderWorkbenchContent();
           },
         });
-        const longLabel = el('span', { text: 'Long (160px)' });
+        const longLabel = el('span', { text: t('angles.longArm') });
 
         sliderRow.appendChild(shortLabel);
         sliderRow.appendChild(armSlider);
@@ -466,7 +477,7 @@ export function createAnglesScreen(): ScreenMeta {
         const nextBtn = el('button', {
           class: 'btn btn-primary',
           id: 'btn-step2-next',
-          text: 'Next: Compare Clock Hands →',
+          text: t('angles.nextClock'),
           style: { minHeight: '44px', marginTop: '12px' },
           onclick: () => {
             stepNum = 3;
@@ -540,10 +551,10 @@ export function createAnglesScreen(): ScreenMeta {
 
         towerClockCard.appendChild(towerSvg);
         towerClockCard.appendChild(
-          el('div', { text: 'Giant Tower Clock', style: { fontWeight: 'bold' } })
+          el('div', { text: t('angles.towerLabel'), style: { fontWeight: 'bold' } })
         );
         towerClockCard.appendChild(
-          el('div', { text: 'Hands: 60 cm | Angle: 90°', style: { color: '#64748b' } })
+          el('div', { text: t('angles.towerDetail'), style: { color: '#64748b' } })
         );
         clockContainer.appendChild(towerClockCard);
 
@@ -594,10 +605,10 @@ export function createAnglesScreen(): ScreenMeta {
 
         watchCard.appendChild(watchSvg);
         watchCard.appendChild(
-          el('div', { text: 'Tiny Wristwatch', style: { fontWeight: 'bold' } })
+          el('div', { text: t('angles.watchLabel'), style: { fontWeight: 'bold' } })
         );
         watchCard.appendChild(
-          el('div', { text: 'Hands: 1 cm | Angle: 90°', style: { color: '#64748b' } })
+          el('div', { text: t('angles.watchDetail'), style: { color: '#64748b' } })
         );
         clockContainer.appendChild(watchCard);
 
@@ -617,15 +628,10 @@ export function createAnglesScreen(): ScreenMeta {
         });
         contentBox.appendChild(compareConclusion);
 
-        const mistakeBtn = el('button', {
-          class: 'btn btn-primary',
-          id: 'btn-to-mistake',
-          text: 'Spot the mistake →',
-          style: { minHeight: '44px', marginTop: '12px' },
-          onclick: () => {
-            router.go('mistake', { k: 'G1' });
-          },
-        });
+        const mistakeBtn = toMistakeButton('G1');
+        mistakeBtn.id = 'btn-to-mistake';
+        mistakeBtn.className = 'btn btn-primary';
+        mistakeBtn.style.marginTop = '12px';
         contentBox.appendChild(mistakeBtn);
       }
 

@@ -7,8 +7,9 @@
 import { classifyVennFactors, testTileFit, simplifyFractionByHCF } from '../../../domain/math/hcf';
 import { t } from '../../../domain/i18n/core';
 import { clear, el } from '../../util/dom';
+import { readStep, toMistakeButton } from '../../util/bench';
 import { enterThread } from '../../util/thread';
-import { router, type ScreenMeta } from '../app/router';
+import { type ScreenMeta } from '../app/router';
 
 export function createHcfScreen(): ScreenMeta {
   return {
@@ -20,11 +21,7 @@ export function createHcfScreen(): ScreenMeta {
     render(view, state, params = {}) {
       enterThread('F4', 'hcf', params);
 
-      let stepNum = params.step
-        ? Number(params.step)
-        : typeof state.step === 'number'
-          ? state.step
-          : 1;
+      let stepNum = readStep(params.step, state.step, 3);
 
       let pairNumA = typeof state.pairNumA === 'number' ? state.pairNumA : 12;
       let pairNumB = typeof state.pairNumB === 'number' ? state.pairNumB : 18;
@@ -61,17 +58,17 @@ export function createHcfScreen(): ScreenMeta {
 
       const tab1 = el('button', {
         class: `step-tab ${stepNum === 1 ? 'active' : ''}`,
-        text: '1. Venn Factor Rings',
+        text: t('hcf.tab1'),
         style: { minHeight: '44px', padding: '8px 12px' },
       });
       const tab2 = el('button', {
         class: `step-tab ${stepNum === 2 ? 'active' : ''}`,
-        text: '2. Dual-Beam Tile Fitting',
+        text: t('hcf.tab2'),
         style: { minHeight: '44px', padding: '8px 12px' },
       });
       const tab3 = el('button', {
         class: `step-tab ${stepNum === 3 ? 'active' : ''}`,
-        text: '3. One-Step Fraction Reducer',
+        text: t('hcf.tab3'),
         style: { minHeight: '44px', padding: '8px 12px' },
       });
 
@@ -121,8 +118,8 @@ export function createHcfScreen(): ScreenMeta {
           style: {
             width: '100%',
             maxWidth: '440px',
-            backgroundColor: 'var(--bg-surface, #ffffff)',
-            border: '1px solid var(--border-subtle, #e0e0e0)',
+            backgroundColor: 'var(--paper-raised)',
+            border: '1px solid var(--hair)',
             borderRadius: '12px',
             padding: '16px',
             display: 'flex',
@@ -198,7 +195,7 @@ export function createHcfScreen(): ScreenMeta {
           },
         });
         const leftHeader = el('span', {
-          text: `Only ${pairNumA}`,
+          text: t('hcf.onlyA', { n: pairNumA }),
           style: { fontSize: '12px', fontWeight: '700', color: '#1565c0' },
         });
         const leftTokens = el('div', {
@@ -240,8 +237,8 @@ export function createHcfScreen(): ScreenMeta {
         });
         const centerHeader = el('span', {
           class: 'intersection-title',
-          text: 'Common Factors',
-          style: { fontSize: '13px', fontWeight: '700', color: '#f57f17' },
+          text: t('hcf.commonTitle'),
+          style: { fontSize: '13px', fontWeight: '700', color: 'var(--kumkum)' },
         });
         const centerTokens = el('div', {
           style: { display: 'flex', gap: '6px', flexWrap: 'wrap', justifyContent: 'center' },
@@ -281,7 +278,7 @@ export function createHcfScreen(): ScreenMeta {
           },
         });
         const rightHeader = el('span', {
-          text: `Only ${pairNumB}`,
+          text: t('hcf.onlyA', { n: pairNumB }),
           style: { fontSize: '12px', fontWeight: '700', color: '#7b1fa2' },
         });
         const rightTokens = el('div', {
@@ -309,15 +306,18 @@ export function createHcfScreen(): ScreenMeta {
         // Result Banner
         const resultBanner = el('div', {
           class: 'hcf-result-banner',
-          text: `Common Factors: {${venn.common.join(', ')}} → Highest Common Factor is ${venn.hcf}`,
+          text: t('hcf.resultBanner', {
+            list: `{${venn.common.join(', ')}}`,
+            hcf: venn.hcf,
+          }),
           style: {
             padding: '10px 14px',
             borderRadius: '8px',
-            backgroundColor: '#fff8e1',
+            backgroundColor: 'var(--thread-soft)',
             border: '1px solid #ffe082',
             fontWeight: '700',
             fontSize: '14px',
-            color: '#e65100',
+            color: 'var(--ink)',
             textAlign: 'center',
             width: '100%',
             boxSizing: 'border-box',
@@ -326,7 +326,7 @@ export function createHcfScreen(): ScreenMeta {
 
         const nextBtn = el('button', {
           class: 'btn-next-step primary-button',
-          text: 'Go to Dual-Beam Tile Fitting →',
+          text: t('hcf.toTiles'),
           style: { minHeight: '44px', padding: '10px 16px', marginTop: '8px' },
         });
         nextBtn.onclick = () => switchStep(2);
@@ -344,8 +344,8 @@ export function createHcfScreen(): ScreenMeta {
           style: {
             width: '100%',
             maxWidth: '440px',
-            backgroundColor: 'var(--bg-surface, #ffffff)',
-            border: '1px solid var(--border-subtle, #e0e0e0)',
+            backgroundColor: 'var(--paper-raised)',
+            border: '1px solid var(--hair)',
             borderRadius: '12px',
             padding: '16px',
             display: 'flex',
@@ -363,7 +363,7 @@ export function createHcfScreen(): ScreenMeta {
         [2, 3, 4, 6].forEach((sz) => {
           const btn = el('button', {
             class: `btn-tile-size ${selectedTileSize === sz ? 'active' : ''}`,
-            text: `Tile ${sz}`,
+            text: t('hcf.tileChoice', { n: sz }),
             style: {
               minWidth: '44px',
               minHeight: '44px',
@@ -405,7 +405,7 @@ export function createHcfScreen(): ScreenMeta {
           style: { display: 'flex', flexDirection: 'column', gap: '4px' },
         });
         const beam12Label = el('span', {
-          text: `Beam A (12 m):`,
+          text: t('hcf.beamA'),
           style: { fontSize: '13px', fontWeight: '600' },
         });
         const tiles12Row = el('div', {
@@ -430,7 +430,7 @@ export function createHcfScreen(): ScreenMeta {
         }
         if (rem12 > 0) {
           const remPiece = el('div', {
-            text: `+${rem12}`,
+            text: t('hcf.remainderPiece', { rem: rem12 }),
             style: {
               padding: '6px 8px',
               backgroundColor: '#ef5350',
@@ -449,7 +449,7 @@ export function createHcfScreen(): ScreenMeta {
           style: { display: 'flex', flexDirection: 'column', gap: '4px' },
         });
         const beam18Label = el('span', {
-          text: `Beam B (18 m):`,
+          text: t('hcf.beamB'),
           style: { fontSize: '13px', fontWeight: '600' },
         });
         const tiles18Row = el('div', {
@@ -474,7 +474,7 @@ export function createHcfScreen(): ScreenMeta {
         }
         if (rem18 > 0) {
           const remPiece = el('div', {
-            text: `+${rem18}`,
+            text: t('hcf.remainderPiece', { rem: rem18 }),
             style: {
               padding: '6px 8px',
               backgroundColor: '#ef5350',
@@ -493,10 +493,10 @@ export function createHcfScreen(): ScreenMeta {
         const fitStatus = el('div', {
           class: `fit-status-banner ${fit.isHCF ? 'is-hcf' : fit.isCommonFactor ? 'common-factor' : 'invalid-factor'}`,
           text: fit.isHCF
-            ? `Tile ${selectedTileSize} is the HCF! Fits both 12 and 18 with ZERO gaps: 12 = 2 × 6, 18 = 3 × 6.`
+            ? t('hcf.fitHcf', { t: selectedTileSize })
             : fit.isCommonFactor
-              ? `Tile ${selectedTileSize} fits both, but a LARGER tile also fits!`
-              : `Tile ${selectedTileSize} leaves leftovers on 18 (remainder ${rem18}) — Not a common factor!`,
+              ? t('hcf.fitCommon', { t: selectedTileSize })
+              : t('hcf.fitBad', { t: selectedTileSize, rem: rem18 }),
           style: {
             padding: '10px 14px',
             borderRadius: '8px',
@@ -513,7 +513,7 @@ export function createHcfScreen(): ScreenMeta {
 
         const nextBtn = el('button', {
           class: 'btn-next-step primary-button',
-          text: 'Go to One-Step Fraction Reducer →',
+          text: t('hcf.toFraction'),
           style: { minHeight: '44px', padding: '10px 16px', marginTop: '8px' },
         });
         nextBtn.onclick = () => switchStep(3);
@@ -531,8 +531,8 @@ export function createHcfScreen(): ScreenMeta {
           style: {
             width: '100%',
             maxWidth: '440px',
-            backgroundColor: 'var(--bg-surface, #ffffff)',
-            border: '1px solid var(--border-subtle, #e0e0e0)',
+            backgroundColor: 'var(--paper-raised)',
+            border: '1px solid var(--hair)',
             borderRadius: '12px',
             padding: '16px',
             display: 'flex',
@@ -580,7 +580,7 @@ export function createHcfScreen(): ScreenMeta {
         origFrac.append(num12, bar1, den18);
 
         const opSymbol = el('span', {
-          text: fractionReduced ? '÷ 6  =' : '÷ HCF(6) ?',
+          text: fractionReduced ? t('hcf.fracOpDone') : t('hcf.fracOpAsk'),
           style: { fontSize: '16px', fontWeight: '700', color: '#2e7d32' },
         });
 
@@ -608,7 +608,7 @@ export function createHcfScreen(): ScreenMeta {
         // Action button to reduce fraction
         const reduceBtn = el('button', {
           class: 'btn-reduce-fraction primary-button',
-          text: 'Divide by HCF (6)',
+          text: t('hcf.reduceBtn'),
           style: {
             minHeight: '44px',
             padding: '10px 18px',
@@ -627,28 +627,12 @@ export function createHcfScreen(): ScreenMeta {
 
         const explanationBanner = el('p', {
           class: 'fraction-reduction-explanation',
-          text: fractionReduced
-            ? 'Reduced in a single clean leap: 12 ÷ 6 = 2 and 18 ÷ 6 = 3 → 2/3 is in lowest terms!'
-            : 'Dividing numerator and denominator by their HCF guarantees simplest form in ONE step.',
+          text: fractionReduced ? t('hcf.fracDone') : t('hcf.fracHint'),
           style: { fontSize: '13px', textAlign: 'center', margin: '0', color: '#333' },
         });
 
-        const doneBtn = el('button', {
-          class: 'btn-hcf-done primary-button',
-          text: 'Complete & Continue →',
-          style: {
-            minHeight: '44px',
-            padding: '10px 18px',
-            backgroundColor: '#2e7d32',
-            color: '#ffffff',
-            borderRadius: '8px',
-            fontWeight: '700',
-            cursor: 'pointer',
-          },
-        });
-        doneBtn.onclick = () => {
-          router.go('mistake', { k: 'F4' });
-        };
+        const doneBtn = toMistakeButton('F4');
+        doneBtn.classList.add('btn-hcf-done', 'primary-button');
 
         card.append(fracBox, reduceBtn, explanationBanner, doneBtn);
         contentBox.appendChild(card);

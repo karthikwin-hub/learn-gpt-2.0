@@ -18,7 +18,6 @@ export const N5_LESSON: LessonData = {
   mistake: {
     steps: 4,
     wrong: 1,
-    eq: () => '0.7 (70 hundredths) > <span class="r-txt">0.15</span>',
   },
   explain: [
     { tiles: ['tenths', 'hundredths', 'wholes'], expect: 'tenths' },

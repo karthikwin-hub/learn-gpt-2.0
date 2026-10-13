@@ -16,8 +16,9 @@ import {
 } from '../../../domain/math/sequences';
 import { t } from '../../../domain/i18n/core';
 import { clear, el } from '../../util/dom';
+import { readStep, toMistakeButton } from '../../util/bench';
 import { enterThread } from '../../util/thread';
-import { router, type ScreenMeta } from '../app/router';
+import type { ScreenMeta } from '../app/router';
 
 export function createSequencesScreen(): ScreenMeta {
   return {
@@ -29,11 +30,7 @@ export function createSequencesScreen(): ScreenMeta {
     render(view, state, params = {}) {
       enterThread('L4', 'sequences', params);
 
-      let stepNum = params.step
-        ? Number(params.step)
-        : typeof state.step === 'number'
-          ? state.step
-          : 1;
+      let stepNum = readStep(params.step, state.step, 3);
 
       let currentTerms: number[] = Array.isArray(state.terms)
         ? (state.terms as number[])
@@ -68,9 +65,9 @@ export function createSequencesScreen(): ScreenMeta {
       });
 
       const stepsConfig = [
-        { num: 1, label: '1. Arithmetic Ladders (+4, +5, -3)' },
-        { num: 2, label: '2. Doubling Tree vs Adding Trap' },
-        { num: 3, label: '3. Distant Term Predictor (10th Term)' },
+        { num: 1, label: t('sequences.tab1') },
+        { num: 2, label: t('sequences.tab2') },
+        { num: 3, label: t('sequences.tab3') },
       ];
 
       stepsConfig.forEach((cfg) => {
@@ -83,10 +80,8 @@ export function createSequencesScreen(): ScreenMeta {
             minHeight: '44px',
             borderRadius: '6px',
             border:
-              stepNum === cfg.num
-                ? '2px solid var(--ink, #1f2937)'
-                : '1px solid var(--sand, #d1d5db)',
-            background: stepNum === cfg.num ? 'var(--parchment, #fff)' : 'transparent',
+              stepNum === cfg.num ? '2px solid var(--ink, #1f2937)' : '1px solid var(--paper-sunk)',
+            background: stepNum === cfg.num ? 'var(--paper)' : 'transparent',
             fontWeight: stepNum === cfg.num ? 'bold' : 'normal',
             cursor: 'pointer',
           },
@@ -124,8 +119,8 @@ export function createSequencesScreen(): ScreenMeta {
           (b as HTMLElement).style.fontWeight = isActive ? 'bold' : 'normal';
           (b as HTMLElement).style.border = isActive
             ? '2px solid var(--ink, #1f2937)'
-            : '1px solid var(--sand, #d1d5db)';
-          (b as HTMLElement).style.background = isActive ? 'var(--parchment, #fff)' : 'transparent';
+            : '1px solid var(--paper-sunk)';
+          (b as HTMLElement).style.background = isActive ? 'var(--paper)' : 'transparent';
         });
 
         clear(workspaceContainer);
@@ -145,8 +140,12 @@ export function createSequencesScreen(): ScreenMeta {
         const next = predictNextTerm(currentTerms);
 
         feedbackEl.textContent = arith.valid
-          ? `The difference between every term is constant (${arith.commonDifference! >= 0 ? '+' : ''}${arith.commonDifference}). The next term is ${currentTerms[currentTerms.length - 1]} + ${arith.commonDifference} = ${next}!`
-          : `Differences are not uniform. Check the steps carefully.`;
+          ? t('sequences.arithFeedback', {
+              diff: `${arith.commonDifference! >= 0 ? '+' : ''}${arith.commonDifference}`,
+              last: String(currentTerms[currentTerms.length - 1]),
+              next: String(next),
+            })
+          : t('sequences.nonArithFeedback');
 
         // Preset buttons
         const presetBar = el('div', {
@@ -167,7 +166,7 @@ export function createSequencesScreen(): ScreenMeta {
 
           const pBtn = el('button', {
             class: `btn preset-btn ${isSel ? 'active' : ''}`,
-            text: `${preset.name} (${preset.ruleName})`,
+            text: `${t(`sequences.preset.${preset.id}`)} (${preset.ruleName})`,
             style: {
               minHeight: '44px',
               padding: '6px 14px',
@@ -199,7 +198,7 @@ export function createSequencesScreen(): ScreenMeta {
             padding: '20px',
             borderRadius: '12px',
             border: '1px solid #e5e7eb',
-            background: 'var(--card-bg, #fff)',
+            background: 'var(--paper-raised)',
           },
         });
 
@@ -258,7 +257,7 @@ export function createSequencesScreen(): ScreenMeta {
         // Next term preview bubble
         const arrow = el('span', {
           text: '→',
-          style: { fontSize: '1.4rem', color: '#64748b', fontWeight: 'bold' },
+          style: { fontSize: '1.4rem', color: 'var(--ink-soft)', fontWeight: 'bold' },
         });
         const nextCircle = el('div', {
           class: 'term-bubble next-bubble',
@@ -267,8 +266,8 @@ export function createSequencesScreen(): ScreenMeta {
             width: '54px',
             height: '54px',
             borderRadius: '50%',
-            background: '#10b981',
-            color: '#fff',
+            background: 'var(--teal)',
+            color: 'var(--paper)',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
@@ -298,14 +297,16 @@ export function createSequencesScreen(): ScreenMeta {
         });
         ladderBox.appendChild(
           el('span', {
-            text: `Difference Ladder Jumps: [ ${diffs.map((d) => (d >= 0 ? `+${d}` : `${d}`)).join(', ')} ]`,
+            text: t('sequences.diffJumps', {
+              jumps: diffs.map((d) => (d >= 0 ? `+${d}` : `${d}`)).join(', '),
+            }),
             style: { fontWeight: '600', color: '#1e40af' },
           })
         );
         ladderBox.appendChild(
           el('span', {
             class: 'stat-pill sequence-next-pill',
-            text: `Next = ${next}`,
+            text: t('sequences.nextLabel', { next: String(next) }),
             style: {
               fontWeight: 'bold',
               fontSize: '1.1rem',
@@ -324,7 +325,7 @@ export function createSequencesScreen(): ScreenMeta {
         });
         const addBtn = el('button', {
           class: 'btn',
-          text: '+ Append Next Step',
+          text: t('sequences.appendStep'),
           style: { minHeight: '44px', padding: '6px 12px' },
           onClick() {
             if (currentTerms.length < 7) {
@@ -336,7 +337,7 @@ export function createSequencesScreen(): ScreenMeta {
         });
         const popBtn = el('button', {
           class: 'btn',
-          text: '- Remove Last Step',
+          text: t('sequences.removeStep'),
           style: { minHeight: '44px', padding: '6px 12px' },
           onClick() {
             if (currentTerms.length > 2) {
@@ -358,7 +359,7 @@ export function createSequencesScreen(): ScreenMeta {
         const diffs = findFirstDifferences(terms);
         const next = predictNextTerm(terms);
 
-        feedbackEl.textContent = `Differences change (+2, +4, +8), but the multiplier is constant (×2)! The next term is 16 × 2 = ${next}!`;
+        feedbackEl.textContent = t('sequences.doublingFeedback', { next: String(next) });
 
         const geomCard = el('div', {
           class: 'doubling-card',
@@ -370,7 +371,7 @@ export function createSequencesScreen(): ScreenMeta {
             padding: '20px',
             borderRadius: '12px',
             border: '1px solid #e5e7eb',
-            background: 'var(--card-bg, #fff)',
+            background: 'var(--paper-raised)',
           },
         });
 
@@ -429,8 +430,8 @@ export function createSequencesScreen(): ScreenMeta {
             width: '52px',
             height: '52px',
             borderRadius: '50%',
-            background: '#10b981',
-            color: '#fff',
+            background: 'var(--teal)',
+            color: 'var(--paper)',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
@@ -457,13 +458,17 @@ export function createSequencesScreen(): ScreenMeta {
         });
         compBox.appendChild(
           el('div', {
-            text: `Difference Ladder: +${diffs[0] ?? 2}, +${diffs[1] ?? 4}, +${diffs[2] ?? 8} (Not an arithmetic jump!)`,
-            style: { color: '#64748b', fontSize: '0.95rem' },
+            text: t('sequences.diffLadderNotArith', {
+              d1: String(diffs[0] ?? 2),
+              d2: String(diffs[1] ?? 4),
+              d3: String(diffs[2] ?? 8),
+            }),
+            style: { color: 'var(--ink-soft)', fontSize: '0.95rem' },
           })
         );
         compBox.appendChild(
           el('div', {
-            text: `Multiplier Ladder: 2 × 2 = 4, 4 × 2 = 8, 8 × 2 = 16 (Invariant Rule: ×2)`,
+            text: t('sequences.multLadderInvariant'),
             style: { color: '#5b21b6', fontWeight: 'bold' },
           })
         );
@@ -482,7 +487,7 @@ export function createSequencesScreen(): ScreenMeta {
         trapBox.appendChild(
           el('p', {
             style: { margin: '0', fontSize: '0.95rem', color: '#991b1b' },
-            text: `Gita's Mistake Trap: Gita noticed 16 and added 8 to guess 24! But 8 was just the previous jump. The invariant rule is multiplying by 2 at every step: 16 × 2 = 32!`,
+            text: t('sequences.gitaTrapLong'),
           })
         );
         geomCard.appendChild(trapBox);
@@ -495,7 +500,10 @@ export function createSequencesScreen(): ScreenMeta {
         const diff = 4;
         const predictedVal = predictNthTerm(firstTerm, diff, targetN);
 
-        feedbackEl.textContent = `Predicting term #${targetN} without writing every step: ${firstTerm} + (${targetN} - 1) × ${diff} = ${predictedVal}!`;
+        feedbackEl.textContent = t('sequences.distantFeedback', {
+          n: String(targetN),
+          formula: `${firstTerm} + (${targetN} - 1) × ${diff} = ${predictedVal}`,
+        });
 
         const distCard = el('div', {
           class: 'distant-card',
@@ -507,14 +515,14 @@ export function createSequencesScreen(): ScreenMeta {
             padding: '20px',
             borderRadius: '12px',
             border: '1px solid #e5e7eb',
-            background: 'var(--card-bg, #fff)',
+            background: 'var(--paper-raised)',
           },
         });
 
         // Sequence header
         distCard.appendChild(
           el('div', {
-            text: `Base Sequence: 3, 7, 11, 15... (Starts at 3, jump is +4)`,
+            text: t('sequences.baseSequence'),
             style: {
               fontWeight: '600',
               fontSize: '1.05rem',
@@ -535,7 +543,7 @@ export function createSequencesScreen(): ScreenMeta {
         });
         const decBtn = el('button', {
           class: 'btn',
-          text: '-1 Term',
+          text: t('sequences.termDown'),
           style: { minHeight: '44px', padding: '6px 14px' },
           onClick() {
             targetN = Math.max(1, targetN - 1);
@@ -545,7 +553,7 @@ export function createSequencesScreen(): ScreenMeta {
         });
         const nDisplay = el('span', {
           class: 'stat-pill target-n-pill',
-          text: `Term #${targetN}`,
+          text: t('sequences.termLabel', { n: String(targetN) }),
           style: {
             fontWeight: 'bold',
             fontSize: '1.25rem',
@@ -557,7 +565,7 @@ export function createSequencesScreen(): ScreenMeta {
         });
         const incBtn = el('button', {
           class: 'btn',
-          text: '+1 Term',
+          text: t('sequences.termUp'),
           style: { minHeight: '44px', padding: '6px 14px' },
           onClick() {
             targetN = Math.min(50, targetN + 1);
@@ -585,14 +593,14 @@ export function createSequencesScreen(): ScreenMeta {
         });
         formulaBox.appendChild(
           el('div', {
-            text: `Formula: 3 + (${targetN} - 1) × 4 = 3 + ${targetN - 1} × 4`,
+            text: t('sequences.formulaLine', { n: String(targetN), nm1: String(targetN - 1) }),
             style: { fontSize: '1rem', color: '#065f46', fontWeight: '500' },
           })
         );
         formulaBox.appendChild(
           el('div', {
             class: 'stat-pill distant-result-pill',
-            text: `Term #${targetN} = ${predictedVal}`,
+            text: t('sequences.termResult', { n: String(targetN), val: String(predictedVal) }),
             style: {
               fontSize: '1.35rem',
               fontWeight: 'bold',
@@ -636,21 +644,10 @@ export function createSequencesScreen(): ScreenMeta {
         },
       });
 
-      const nextBtn = el('button', {
-        class: 'btn btn-primary',
-        text: 'Spot the Mistake →',
-        style: {
-          minHeight: '44px',
-          padding: '10px 20px',
-          borderRadius: '6px',
-          background: 'var(--ink, #1f2937)',
-          color: '#fff',
-          fontWeight: 'bold',
-        },
-        onClick() {
-          router.go('mistake', { k: 'L4' });
-        },
-      });
+      const nextBtn = toMistakeButton('L4');
+      nextBtn.classList.add('btn-primary');
+      nextBtn.style.minHeight = '44px';
+      nextBtn.style.padding = '10px 20px';
 
       actionRow.appendChild(resetBtn);
       actionRow.appendChild(nextBtn);

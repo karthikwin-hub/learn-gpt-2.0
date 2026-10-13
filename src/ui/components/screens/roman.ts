@@ -11,8 +11,9 @@ import {
 } from '../../../domain/math/roman';
 import { t } from '../../../domain/i18n/core';
 import { clear, el, svg } from '../../util/dom';
+import { readStep, toMistakeButton } from '../../util/bench';
 import { enterThread } from '../../util/thread';
-import { router, type ScreenMeta } from '../app/router';
+import { type ScreenMeta } from '../app/router';
 
 interface BuildChallenge {
   n: number;
@@ -37,11 +38,7 @@ export function createRomanScreen(): ScreenMeta {
     render(view, state, params = {}) {
       enterThread('N2', 'roman', params);
 
-      let stepNum = params.step
-        ? Number(params.step)
-        : typeof state.step === 'number'
-          ? state.step
-          : 1;
+      let stepNum = readStep(params.step, state.step, 3);
       let tiles: RomanSymbol[] = Array.isArray(state.tiles)
         ? [...state.tiles]
         : stepNum === 3
@@ -74,13 +71,16 @@ export function createRomanScreen(): ScreenMeta {
         let breakdown = '';
 
         if (tiles.length === 0) {
-          breakdown = 'Empty slate';
+          breakdown = t('roman.emptySlate');
         } else if (valid) {
           value = fromRoman(romanStr);
           const tokens = parseRomanTokens(romanStr);
-          breakdown = `${tokens.map((tok) => `${tok.text} (${tok.type === 'subtractive' ? '' : '+'}${tok.value})`).join(' + ')} = ${value}`;
+          const parts = tokens
+            .map((tok) => `${tok.text} (${tok.type === 'subtractive' ? '' : '+'}${tok.value})`)
+            .join(' + ');
+          breakdown = t('roman.breakdown', { parts, value: String(value) });
         } else {
-          breakdown = 'Not a valid Roman numeral';
+          breakdown = t('roman.invalid');
         }
 
         const s = svg('svg', {
@@ -255,7 +255,7 @@ export function createRomanScreen(): ScreenMeta {
 
           const clearBtn = el('button', {
             class: 'btn-action btn-quiet',
-            text: 'Clear slate',
+            text: t('roman.clearSlate'),
             onClick: () => {
               tiles = [];
               say.textContent = '';
@@ -267,7 +267,7 @@ export function createRomanScreen(): ScreenMeta {
           if (stepNum === 1) {
             const nextBtn = el('button', {
               class: 'btn-action btn-primary',
-              text: 'Build numbers →',
+              text: t('roman.toBuild'),
               onClick: () => {
                 stepNum = 2;
                 targetIdx = 0;
@@ -300,8 +300,7 @@ export function createRomanScreen(): ScreenMeta {
                 } else if (c === 'XXXX') {
                   say.textContent = t('roman.s3tryRepeat');
                 } else {
-                  say.textContent =
-                    'The symbols V, L, and D are never subtracted. Think of 50 (L) minus 10 (X): XL.';
+                  say.textContent = t('roman.vldHint');
                 }
               },
             });
@@ -312,13 +311,7 @@ export function createRomanScreen(): ScreenMeta {
         }
 
         if (done) {
-          const nextBtn = el('button', {
-            class: 'btn-action btn-primary',
-            text: t('bench.toMistake'),
-            style: { marginTop: '16px' },
-            onClick: () => router.go('mistake', { knot: 'N2' }),
-          });
-          actionsCard.appendChild(nextBtn);
+          actionsCard.appendChild(toMistakeButton('N2'));
         }
       }
 

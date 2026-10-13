@@ -18,7 +18,6 @@ export const A1_LESSON: LessonData = {
   mistake: {
     steps: 4,
     wrong: 1,
-    eq: () => '704 - 358 = <span class="r-txt">346</span>',
   },
   explain: [
     { tiles: ['unbundle', 'add', 'multiply'], expect: 'unbundle' },

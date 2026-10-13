@@ -18,8 +18,6 @@ export const G5_LESSON: LessonData = {
   mistake: {
     steps: 3,
     wrong: 0,
-    eq: () =>
-      'A cube needs 6 faces without collisions; a 2 × 3 block <span class="r-txt">overlaps</span> and leaves two faces open',
   },
   explain: [
     { tiles: ['six', 'eight', 'four'], expect: 'six' },

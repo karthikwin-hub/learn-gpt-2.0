@@ -366,9 +366,15 @@ export function createFilmScreen(): ScreenMeta {
           (atBreak ? ` · ${t('film.tapContinue')}` : '');
         lineText.textContent = beatText(shownBeat);
 
-        playBtn.innerHTML = state.playing
-          ? '<svg viewBox="0 0 24 24"><rect x="6" y="5" width="4" height="14" rx="1"/><rect x="14" y="5" width="4" height="14" rx="1"/></svg>'
-          : '<svg viewBox="0 0 24 24"><path d="M8 5l11 7-11 7z"/></svg>';
+        clear(playBtn);
+        const playIcon = svg('svg', { viewBox: '0 0 24 24' });
+        if (state.playing) {
+          playIcon.appendChild(svg('rect', { x: '6', y: '5', width: '4', height: '14', rx: '1' }));
+          playIcon.appendChild(svg('rect', { x: '14', y: '5', width: '4', height: '14', rx: '1' }));
+        } else {
+          playIcon.appendChild(svg('path', { d: 'M8 5l11 7-11 7z' }));
+        }
+        playBtn.appendChild(playIcon);
         playBtn.setAttribute(
           'aria-label',
           state.playing ? t('film.pause') : time >= T_END ? t('film.replay') : t('film.play')

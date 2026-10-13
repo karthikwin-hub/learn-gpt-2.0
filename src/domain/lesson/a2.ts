@@ -18,7 +18,6 @@ export const A2_LESSON: LessonData = {
   mistake: {
     steps: 4,
     wrong: 3,
-    eq: () => '21 × 39 ≈ 800 (not <span class="r-txt">8190</span>)',
   },
   explain: [
     { tiles: ['estimate', 'exact', 'zero'], expect: 'estimate' },

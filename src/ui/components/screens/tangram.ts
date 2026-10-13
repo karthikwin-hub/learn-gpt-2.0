@@ -18,9 +18,10 @@ import {
   type TangramPieceType,
 } from '../../../domain/math/tangram';
 import { t } from '../../../domain/i18n/core';
-import { clear, el } from '../../util/dom';
+import { clear, el, reducedMotion } from '../../util/dom';
+import { readStep, toMistakeButton } from '../../util/bench';
 import { enterThread } from '../../util/thread';
-import { router, type ScreenMeta } from '../app/router';
+import { type ScreenMeta } from '../app/router';
 
 // SVG polygon coordinates for standard 200x200 canvas
 const SILHOUETTE_PATHS: Record<string, Record<TangramPieceType, string>> = {
@@ -62,6 +63,13 @@ const SILHOUETTE_PATHS: Record<string, Record<TangramPieceType, string>> = {
   },
 };
 
+const PRESET_LABEL: Record<string, string> = {
+  square: 'tangram.presetSquare',
+  candle: 'tangram.presetCandle',
+  boat: 'tangram.presetBoat',
+  swan: 'tangram.presetSwan',
+};
+
 const PIECE_COLORS: Record<TangramPieceType, string> = {
   large_triangle_1: '#3b82f6',
   large_triangle_2: '#10b981',
@@ -82,11 +90,11 @@ export function createTangramScreen(): ScreenMeta {
     render(view, state, params = {}) {
       enterThread('G7', 'tangram', params);
 
-      let stepNum = params.step
-        ? Number(params.step)
-        : typeof state.step === 'number'
-          ? state.step
-          : 1;
+      let stepNum = readStep(params.step, state.step, 3);
+      const focusedPiece =
+        typeof state.focusedPiece === 'string' ? state.focusedPiece : 'large_triangle_1';
+      const pieceOffset =
+        (state.pieceOffset as Record<string, { x: number; y: number; rot: number }>) || {};
 
       let currentSilhouette = typeof state.silhouette === 'string' ? state.silhouette : 'square';
       let eqMode = Boolean(state.eqMode);
@@ -118,9 +126,9 @@ export function createTangramScreen(): ScreenMeta {
       });
 
       const stepsConfig = [
-        { num: 1, label: '1. Square Dissection' },
-        { num: 2, label: '2. Silhouettes & Balance' },
-        { num: 3, label: '3. Small Triangle Equivalence' },
+        { num: 1, label: t('tangram.tab1') },
+        { num: 2, label: t('tangram.tab2') },
+        { num: 3, label: t('tangram.tab3') },
       ];
 
       stepsConfig.forEach((cfg) => {
@@ -170,9 +178,8 @@ export function createTangramScreen(): ScreenMeta {
         if (stepNum === 1) {
           feedbackEl.textContent = t('tangram.s1done');
         } else if (stepNum === 2) {
-          const sil = SILHOUETTES.find((s) => s.id === currentSilhouette);
           feedbackEl.textContent = t('tangram.s2done', {
-            name: sil ? sil.name : currentSilhouette,
+            name: t(PRESET_LABEL[currentSilhouette] || 'tangram.presetSquare'),
           });
         } else {
           feedbackEl.textContent = t('tangram.s3done');
@@ -201,13 +208,13 @@ export function createTangramScreen(): ScreenMeta {
         const piecesBadge = el('div', {
           class: 'stat-pill pieces-pill',
           id: 'pieces-count',
-          text: 'Pieces: 7 of 7',
+          text: t('tangram.piecesCount'),
           style: {
             padding: '6px 14px',
             borderRadius: '999px',
             background: 'rgba(59, 130, 246, 0.15)',
             border: '1px solid rgba(59, 130, 246, 0.4)',
-            color: 'var(--c-teal, #0284c7)',
+            color: 'var(--ink)',
             fontWeight: '600',
             fontSize: '0.9rem',
           },
@@ -216,13 +223,13 @@ export function createTangramScreen(): ScreenMeta {
         const unitsBadge = el('div', {
           class: 'stat-pill units-pill',
           id: 'units-count',
-          text: `Total Units: ${units} / 16 (100%)`,
+          text: t('tangram.unitsCount', { u: units }),
           style: {
             padding: '6px 14px',
             borderRadius: '999px',
             background: 'rgba(34, 197, 94, 0.15)',
             border: '1px solid rgba(34, 197, 94, 0.4)',
-            color: 'var(--c-green, #16a34a)',
+            color: 'var(--ink)',
             fontWeight: '600',
             fontSize: '0.9rem',
           },
@@ -231,13 +238,13 @@ export function createTangramScreen(): ScreenMeta {
         const areaBadge = el('div', {
           class: 'stat-pill area-pill',
           id: 'area-display',
-          text: `Total Area: ${areaCm2} cm²`,
+          text: t('tangram.areaDisplay', { a: areaCm2 }),
           style: {
             padding: '6px 14px',
             borderRadius: '999px',
             background: 'rgba(245, 158, 11, 0.15)',
             border: '1px solid rgba(245, 158, 11, 0.4)',
-            color: '#d97706',
+            color: 'var(--ink)',
             fontWeight: '600',
             fontSize: '0.9rem',
           },
@@ -262,14 +269,12 @@ export function createTangramScreen(): ScreenMeta {
           },
         });
 
-        const curSil = SILHOUETTES.find((s) => s.id === currentSilhouette);
-        const silName = curSil ? curSil.name : 'Silhouette';
+        const silName = t(PRESET_LABEL[currentSilhouette] || 'tangram.presetSquare');
 
-        if (stepNum === 3) {
-          statusCard.innerHTML = `<strong>Piece Decomposition Equivalence</strong>: 2 Small Triangles (1 + 1 = 2 units) exactly equal 1 Square, 1 Parallelogram, or 1 Medium Triangle!`;
-        } else {
-          statusCard.innerHTML = `<strong>Area Strictly Conserved (${silName})</strong>: Rearranging 7 pieces creates a new silhouette, but the total area is still <strong>16 units (100 cm²)</strong> with zero change!`;
-        }
+        statusCard.textContent =
+          stepNum === 3
+            ? t('tangram.statusEquiv')
+            : t('tangram.statusConserved', { name: silName });
         contentBox.appendChild(statusCard);
 
         // SVG Canvas
@@ -281,8 +286,8 @@ export function createTangramScreen(): ScreenMeta {
             maxWidth: '340px',
             aspectRatio: '1',
             borderRadius: '16px',
-            background: 'var(--card-bg, rgba(255, 255, 255, 0.03))',
-            border: '1px solid var(--border-color, rgba(255, 255, 255, 0.1))',
+            background: 'var(--paper-raised)',
+            border: '1px solid var(--hair)',
             overflow: 'hidden',
             display: 'flex',
             alignItems: 'center',
@@ -296,7 +301,7 @@ export function createTangramScreen(): ScreenMeta {
         svg.setAttribute('width', '100%');
         svg.setAttribute('height', '100%');
         svg.setAttribute('role', 'img');
-        svg.setAttribute('aria-label', `Tangram silhouette ${silName}`);
+        svg.setAttribute('aria-label', t('tangram.silhouetteAria', { name: silName }));
 
         if (stepNum === 3) {
           // Equivalence Demonstration Canvas
@@ -348,7 +353,7 @@ export function createTangramScreen(): ScreenMeta {
           lbl1.setAttribute('text-anchor', 'middle');
           lbl1.setAttribute('font-size', '11px');
           lbl1.setAttribute('fill', 'currentColor');
-          lbl1.textContent = '2 Small Triangles (1 + 1) = 1 Square (2)';
+          lbl1.textContent = t('tangram.eqLabel1');
           gEq.appendChild(lbl1);
 
           // Row 2: Medium triangle
@@ -388,7 +393,7 @@ export function createTangramScreen(): ScreenMeta {
           lbl2.setAttribute('text-anchor', 'middle');
           lbl2.setAttribute('font-size', '11px');
           lbl2.setAttribute('fill', 'currentColor');
-          lbl2.textContent = '2 Small Triangles (1 + 1) = 1 Medium Triangle (2)';
+          lbl2.textContent = t('tangram.eqLabel2');
           gEq.appendChild(lbl2);
 
           svg.appendChild(gEq);
@@ -404,6 +409,11 @@ export function createTangramScreen(): ScreenMeta {
             poly.setAttribute('stroke', '#ffffff');
             poly.setAttribute('stroke-width', '2');
             poly.setAttribute('data-piece', p.id);
+            const off = pieceOffset[p.id] || { x: 0, y: 0, rot: 0 };
+            poly.setAttribute(
+              'transform',
+              `translate(${off.x} ${off.y}) rotate(${off.rot} 100 100)`
+            );
             gPieces.appendChild(poly);
           });
 
@@ -411,6 +421,33 @@ export function createTangramScreen(): ScreenMeta {
         }
 
         svgBox.appendChild(svg);
+        svgBox.setAttribute('tabindex', '0');
+        svgBox.setAttribute('role', 'application');
+        svgBox.setAttribute('aria-label', t('tangram.movePiece'));
+        svgBox.addEventListener('keydown', (ev) => {
+          const id = focusedPiece as TangramPieceType;
+          const off = pieceOffset[id] || { x: 0, y: 0, rot: 0 };
+          const k = ev.key;
+          if (k === 'r' || k === 'R') {
+            ev.preventDefault();
+            off.rot = (off.rot + 45) % 360;
+            pieceOffset[id] = off;
+            state.pieceOffset = pieceOffset;
+            renderContent();
+            return;
+          }
+          const step = reducedMotion() ? 8 : 4;
+          if (k === 'ArrowLeft') off.x -= step;
+          if (k === 'ArrowRight') off.x += step;
+          if (k === 'ArrowUp') off.y -= step;
+          if (k === 'ArrowDown') off.y += step;
+          if (k.startsWith('Arrow')) {
+            ev.preventDefault();
+            pieceOffset[id] = off;
+            state.pieceOffset = pieceOffset;
+            renderContent();
+          }
+        });
         contentBox.appendChild(svgBox);
 
         // Silhouette Selector Buttons
@@ -426,7 +463,7 @@ export function createTangramScreen(): ScreenMeta {
         });
 
         const presetsLabel = el('label', {
-          text: 'Choose Silhouette Preset:',
+          text: t('tangram.presetsLabel'),
           style: { fontWeight: '600', fontSize: '0.9rem' },
         });
         presetContainer.appendChild(presetsLabel);
@@ -445,7 +482,7 @@ export function createTangramScreen(): ScreenMeta {
           const btn = el('button', {
             class: `btn ${currentSilhouette === sil.id && stepNum !== 3 ? 'btn-active' : ''}`,
             id: `preset-${sil.id}-btn`,
-            text: sil.name,
+            text: t(PRESET_LABEL[sil.id] || 'tangram.presetSquare'),
             style: { minHeight: '44px', minWidth: '44px' },
             onclick: () => {
               currentSilhouette = sil.id;
@@ -473,22 +510,42 @@ export function createTangramScreen(): ScreenMeta {
             borderRadius: '8px',
             fontSize: '0.85rem',
             lineHeight: '1.5',
-            backgroundColor: 'var(--card-bg, rgba(255, 255, 255, 0.02))',
-            border: '1px solid var(--border-color, rgba(255, 255, 255, 0.08))',
+            backgroundColor: 'var(--paper-raised)',
+            border: '1px solid var(--hair)',
           },
         });
 
-        legendCard.innerHTML = `
-          <strong>7 Dissection Pieces (Total = 16 units)</strong>:
-          <ul style="margin: 6px 0 0 16px; padding: 0;">
-            <li>2 Large Triangles: 4 units each (8 units total, 50% of square)</li>
-            <li>1 Medium Triangle: 2 units (12.5% of square)</li>
-            <li>2 Small Triangles: 1 unit each (2 units total)</li>
-            <li>1 Square: 2 units (12.5% of square)</li>
-            <li>1 Parallelogram: 2 units (12.5% of square)</li>
-          </ul>
-        `;
+        legendCard.appendChild(el('strong', { text: t('tangram.legendTitle') }));
+        const legendList = el('ul', { style: { margin: '6px 0 0 16px', padding: '0' } });
+        [
+          'tangram.legendL1',
+          'tangram.legendL2',
+          'tangram.legendL3',
+          'tangram.legendL4',
+          'tangram.legendL5',
+        ].forEach((key) => {
+          legendList.appendChild(el('li', { text: t(key) }));
+        });
+        legendCard.appendChild(legendList);
         contentBox.appendChild(legendCard);
+
+        if (stepNum !== 3) {
+          const rotateBtn = el('button', {
+            type: 'button',
+            class: 'btn outline',
+            text: t('tangram.rotatePiece'),
+            style: { minHeight: '44px' },
+            onclick: () => {
+              const id = focusedPiece as TangramPieceType;
+              const off = pieceOffset[id] || { x: 0, y: 0, rot: 0 };
+              off.rot = (off.rot + 45) % 360;
+              pieceOffset[id] = off;
+              state.pieceOffset = pieceOffset;
+              renderContent();
+            },
+          });
+          contentBox.appendChild(rotateBtn);
+        }
 
         // Continue Button
         const actionRow = el('div', {
@@ -500,20 +557,11 @@ export function createTangramScreen(): ScreenMeta {
           },
         });
 
-        const continueBtn = el('button', {
-          class: 'btn btn-primary',
-          id: 'continue-btn',
-          text: 'Continue to Spot Mistake',
-          style: {
-            minHeight: '44px',
-            padding: '10px 24px',
-            fontWeight: '600',
-          },
-          onclick: () => {
-            router.go('mistake', { k: 'G7' });
-          },
-        });
-
+        const continueBtn = toMistakeButton('G7');
+        continueBtn.id = 'continue-btn';
+        continueBtn.className = 'btn btn-primary';
+        continueBtn.style.minHeight = '44px';
+        continueBtn.style.padding = '10px 24px';
         actionRow.appendChild(continueBtn);
         contentBox.appendChild(actionRow);
       }

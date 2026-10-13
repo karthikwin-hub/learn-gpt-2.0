@@ -2,6 +2,7 @@
  * Bodha diagram generators for geometry knots G2 (Rope & Pegs) and G4 (Kolam Flower Petals).
  */
 
+import { t } from '../../domain/i18n/core';
 import { figCircle, figLine, figPath, figRect, figSvg, figText } from './fig';
 
 const THREAD = 'var(--thread)';
@@ -76,7 +77,7 @@ export function renderG4Flower(
   showMirror: boolean,
   showTurn: boolean
 ): SVGSVGElement {
-  const s = figSvg(360, 180, mirrorable ? 'mirror and turn' : 'turn only');
+  const s = figSvg(360, 180, mirrorable ? t('kolam.mirror') : t('kolam.turn'));
   const cx = 180;
   const cy = 90;
 

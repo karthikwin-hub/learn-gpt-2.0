@@ -18,8 +18,6 @@ export const G6_LESSON: LessonData = {
   mistake: {
     steps: 3,
     wrong: 1,
-    eq: () =>
-      'A diameter must pass directly through the centre; a chord away from the centre is <span class="r-txt">shorter</span> than 2 × radius',
   },
   explain: [
     { tiles: ['radius', 'diameter', 'chord'], expect: 'radius' },

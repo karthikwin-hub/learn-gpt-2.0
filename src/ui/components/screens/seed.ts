@@ -9,6 +9,7 @@ import {
   type GerminationConditions,
   type SeedPartId,
 } from '../../../domain/science/seed';
+import { t } from '../../../domain/i18n/core';
 import { clear, el } from '../../util/dom';
 import { enterThread } from '../../util/thread';
 import type { ScreenMeta } from '../app/router';
@@ -19,7 +20,7 @@ export function createSeedScreen(): ScreenMeta {
     stage: 'manana',
     step: 'abhyasa',
     bench: true,
-    title: () => 'Seed & Germination',
+    title: 'seed.title',
     render(view, state, params = {}) {
       enterThread('J2', 'seed', params);
 
@@ -32,7 +33,7 @@ export function createSeedScreen(): ScreenMeta {
       state.conditions = conditions;
       state.day = day;
 
-      const titleEl = el('h2', { class: 'screen-title', text: 'Seed & Germination' });
+      const titleEl = el('h2', { class: 'screen-title', text: t('seed.title') });
       const displayCard = el('section', {
         class: 'card seed-display',
         style: { textAlign: 'center' },
@@ -53,18 +54,16 @@ export function createSeedScreen(): ScreenMeta {
           class: 'seed-stage-title',
           style: {
             textTransform: 'capitalize',
-            color: 'var(--thread-ganita, #8b5cf6)',
+            color: 'var(--indigo)',
             margin: '0 0 10px 0',
           },
-          text: `Stage: ${stage}`,
+          text: t('seed.stage', { stage }),
         });
 
         const statusNotice = el('p', {
           class: 'seed-status-notice',
-          style: { fontSize: '14px', color: 'var(--muted)' },
-          text: canGerminate(conditions)
-            ? `Day ${day}: All conditions favorable for living growth.`
-            : 'Growth halted: Seed requires water, air, and warmth to germinate.',
+          style: { fontSize: '14px', color: 'var(--ink-soft)' },
+          text: canGerminate(conditions) ? t('seed.statusReady', { n: day }) : t('seed.statusHalt'),
         });
 
         displayCard.appendChild(stageLabel);
@@ -85,13 +84,19 @@ export function createSeedScreen(): ScreenMeta {
           const p = SEED_PARTS[key];
           const partBox = el('div', {
             class: `card part-${p.id}`,
-            style: { padding: '8px', border: '1px solid var(--border)', borderRadius: '8px' },
+            style: { padding: '8px', border: '1px solid var(--hair)', borderRadius: '8px' },
           });
           partBox.appendChild(
-            el('strong', { style: { display: 'block', fontSize: '13px' }, text: p.name })
+            el('strong', {
+              style: { display: 'block', fontSize: '13px' },
+              text: t(`seed.part.${p.id}.name`),
+            })
           );
           partBox.appendChild(
-            el('span', { style: { fontSize: '11px', color: 'var(--muted)' }, text: p.role })
+            el('span', {
+              style: { fontSize: '11px', color: 'var(--ink-soft)' },
+              text: t(`seed.part.${p.id}.role`),
+            })
           );
           partsGrid.appendChild(partBox);
         }
@@ -102,7 +107,7 @@ export function createSeedScreen(): ScreenMeta {
 
         const condTitle = el('h4', {
           style: { margin: '0 0 8px 0' },
-          text: 'Environmental Conditions',
+          text: t('seed.conditionsTitle'),
         });
         actionsCard.appendChild(condTitle);
 
@@ -111,9 +116,9 @@ export function createSeedScreen(): ScreenMeta {
         });
 
         const toggles: { key: keyof GerminationConditions; label: string }[] = [
-          { key: 'water', label: '💧 Water' },
-          { key: 'air', label: '💨 Air' },
-          { key: 'warmth', label: '☀️ Warmth' },
+          { key: 'water', label: t('seed.water') },
+          { key: 'air', label: t('seed.air') },
+          { key: 'warmth', label: t('seed.warmth') },
         ];
 
         for (const tg of toggles) {
@@ -138,7 +143,7 @@ export function createSeedScreen(): ScreenMeta {
             style: { display: 'flex', gap: '12px', justifyContent: 'center', alignItems: 'center' },
           },
           [
-            el('span', { text: 'Time:' }),
+            el('span', { text: t('seed.timeLabel') }),
             el('button', {
               class: 'btn icon mini',
               type: 'button',
@@ -148,7 +153,7 @@ export function createSeedScreen(): ScreenMeta {
                 paint();
               },
             }),
-            el('span', { style: { fontWeight: 'bold' }, text: `Day ${day}` }),
+            el('span', { style: { fontWeight: 'bold' }, text: t('seed.day', { n: day }) }),
             el('button', {
               class: 'btn icon mini',
               type: 'button',

@@ -16,8 +16,20 @@ import {
 } from '../../../domain/math/views';
 import { t } from '../../../domain/i18n/core';
 import { clear, el } from '../../util/dom';
+import { readStep, toMistakeButton } from '../../util/bench';
 import { enterThread } from '../../util/thread';
-import { router, type ScreenMeta } from '../app/router';
+import { type ScreenMeta } from '../app/router';
+
+const PRESET_LABEL: Record<string, string> = {
+  staircase: 'views.presetStair',
+  tower: 'views.presetTower',
+  l_shape: 'views.presetCorner',
+  bridge: 'views.presetBridge',
+};
+
+function presetName(preset: { id: string }): string {
+  return t(PRESET_LABEL[preset.id] || 'views.presetStair');
+}
 
 export function createViewsScreen(): ScreenMeta {
   return {
@@ -29,11 +41,7 @@ export function createViewsScreen(): ScreenMeta {
     render(view, state, params = {}) {
       enterThread('G8', 'views', params);
 
-      let stepNum = params.step
-        ? Number(params.step)
-        : typeof state.step === 'number'
-          ? state.step
-          : 1;
+      let stepNum = readStep(params.step, state.step, 3);
 
       let currentPresetId = typeof state.preset === 'string' ? state.preset : 'staircase';
       let jaalActive = Boolean(state.jaal);
@@ -65,9 +73,9 @@ export function createViewsScreen(): ScreenMeta {
       });
 
       const stepsConfig = [
-        { num: 1, label: '1. Staircase Views' },
-        { num: 2, label: '2. Compare 3D Shapes' },
-        { num: 3, label: '3. Jaal E4 Map Link' },
+        { num: 1, label: t('views.tab1') },
+        { num: 2, label: t('views.tab2') },
+        { num: 3, label: t('views.tab3') },
       ];
 
       stepsConfig.forEach((cfg) => {
@@ -112,7 +120,7 @@ export function createViewsScreen(): ScreenMeta {
         if (stepNum === 1) {
           feedbackEl.textContent = t('views.s1done');
         } else if (stepNum === 2) {
-          feedbackEl.textContent = t('views.s2done', { name: preset.name });
+          feedbackEl.textContent = t('views.s2done', { name: presetName(preset) });
         } else {
           feedbackEl.textContent = t('views.s3done');
         }
@@ -143,13 +151,13 @@ export function createViewsScreen(): ScreenMeta {
         const structureBadge = el('div', {
           class: 'stat-pill structure-pill',
           id: 'structure-name',
-          text: `Structure: ${preset.name}`,
+          text: t('views.structureLabel', { name: presetName(preset) }),
           style: {
             padding: '6px 14px',
             borderRadius: '999px',
-            background: 'rgba(59, 130, 246, 0.15)',
+            background: 'var(--teal-soft)',
             border: '1px solid rgba(59, 130, 246, 0.4)',
-            color: 'var(--c-teal, #0284c7)',
+            color: 'var(--teal)',
             fontWeight: '600',
             fontSize: '0.9rem',
           },
@@ -158,13 +166,13 @@ export function createViewsScreen(): ScreenMeta {
         const countBadge = el('div', {
           class: 'stat-pill blocks-pill',
           id: 'blocks-count',
-          text: `Total Blocks: ${blockCount}`,
+          text: t('views.blocks', { count: blockCount }),
           style: {
             padding: '6px 14px',
             borderRadius: '999px',
             background: 'rgba(168, 85, 247, 0.15)',
             border: '1px solid rgba(168, 85, 247, 0.4)',
-            color: 'var(--c-purple, #9333ea)',
+            color: 'var(--indigo)',
             fontWeight: '600',
             fontSize: '0.9rem',
           },
@@ -188,13 +196,12 @@ export function createViewsScreen(): ScreenMeta {
           },
         });
 
-        if (stepNum === 3 || jaalActive) {
-          statusCard.innerHTML = `<strong>Jaal Link (E4 Maps ↔ G8 Top View)</strong>: Looking straight down from the ceiling collapses all heights into a flat layout — this is <em>exactly</em> how maps and architectural blueprints represent 3D land!`;
-        } else if (preset.id === 'staircase') {
-          statusCard.innerHTML = `<strong>Top View Collapses Drops</strong>: Looking straight down at the 3-step staircase hides vertical drops. You see 3 flat adjacent squares in a line!`;
-        } else {
-          statusCard.innerHTML = `<strong>Orthographic Views (${preset.name})</strong>: Top view sees ground footprint; Front view sees width & height; Side view sees depth & height.`;
-        }
+        statusCard.textContent =
+          stepNum === 3 || jaalActive
+            ? t('views.statusJaal')
+            : preset.id === 'staircase'
+              ? t('views.statusStairTop')
+              : t('views.statusOrtho', { name: presetName(preset) });
         contentBox.appendChild(statusCard);
 
         // 3 Viewports Grid Container
@@ -222,7 +229,7 @@ export function createViewsScreen(): ScreenMeta {
             style: {
               padding: '12px',
               borderRadius: '12px',
-              background: 'var(--card-bg, rgba(255, 255, 255, 0.03))',
+              background: 'var(--paper-raised)',
               border: `1px solid ${color}40`,
               display: 'flex',
               flexDirection: 'column',
@@ -276,7 +283,7 @@ export function createViewsScreen(): ScreenMeta {
             text: subtitle,
             style: {
               fontSize: '0.75rem',
-              color: 'var(--text-muted, #94a3b8)',
+              color: 'var(--ink-soft)',
               textAlign: 'center',
             },
           });
@@ -289,29 +296,29 @@ export function createViewsScreen(): ScreenMeta {
 
         // Top View Card (Plan)
         const topCard = createViewportCard(
-          'Top View (Plan)',
+          t('views.top'),
           views.top,
           'top-view-card',
-          '#0284c7',
-          "Bird's Eye (Map)"
+          'var(--teal)',
+          t('views.subTop')
         );
 
         // Front View Card (Elevation)
         const frontCard = createViewportCard(
-          'Front View (Elevation)',
+          t('views.front'),
           views.front,
           'front-view-card',
-          '#16a34a',
-          'Width × Height'
+          'var(--leaf)',
+          t('views.subFront')
         );
 
         // Side View Card (Profile)
         const sideCard = createViewportCard(
-          'Side View (Profile)',
+          t('views.side'),
           views.side,
           'side-view-card',
-          '#d97706',
-          'Depth × Height'
+          'var(--kumkum)',
+          t('views.subSide')
         );
 
         viewportsContainer.appendChild(topCard);
@@ -332,7 +339,7 @@ export function createViewsScreen(): ScreenMeta {
         });
 
         const presetLabel = el('label', {
-          text: 'Select 3D Structure Preset:',
+          text: t('views.presetsLabel'),
           style: { fontWeight: '600', fontSize: '0.9rem' },
         });
         presetGroup.appendChild(presetLabel);
@@ -351,7 +358,7 @@ export function createViewsScreen(): ScreenMeta {
           const btn = el('button', {
             class: `btn ${currentPresetId === p.id ? 'btn-active' : ''}`,
             id: `preset-${p.id}-btn`,
-            text: p.name,
+            text: presetName(p),
             style: { minHeight: '44px', minWidth: '44px' },
             onclick: () => {
               currentPresetId = p.id;
@@ -375,20 +382,11 @@ export function createViewsScreen(): ScreenMeta {
           },
         });
 
-        const continueBtn = el('button', {
-          class: 'btn btn-primary',
-          id: 'continue-btn',
-          text: 'Continue to Spot Mistake',
-          style: {
-            minHeight: '44px',
-            padding: '10px 24px',
-            fontWeight: '600',
-          },
-          onclick: () => {
-            router.go('mistake', { k: 'G8' });
-          },
-        });
-
+        const continueBtn = toMistakeButton('G8');
+        continueBtn.id = 'continue-btn';
+        continueBtn.className = 'btn btn-primary';
+        continueBtn.style.minHeight = '44px';
+        continueBtn.style.padding = '10px 24px';
         actionRow.appendChild(continueBtn);
         contentBox.appendChild(actionRow);
       }

@@ -42,6 +42,20 @@ test.describe('Mockup Parity: Feature 001 Shell vs Prototype', () => {
     await expect(page.locator('button.knot')).toHaveCount(42);
   });
 
+  test('ganita shala crossings are dashed thread notes, not plain buttons', async ({ page }) => {
+    await page.addInitScript(() => {
+      localStorage.setItem('gurukul:lang', 'en');
+    });
+    await page.goto('/#/shala?s=ganita');
+    const crossings = page.locator('button.crossing');
+    await expect(crossings).toHaveCount(3);
+    for (const crossing of await crossings.all()) {
+      await expect(crossing).toHaveCSS('border-top-style', 'dashed');
+      await expect(crossing).toHaveCSS('background-color', 'rgba(0, 0, 0, 0)');
+      await expect(crossing).toHaveCSS('text-align', 'left');
+    }
+  });
+
   test('vijnana shala renders wave spine with 6 domains and 14 knots', async ({ page }) => {
     await page.addInitScript(() => {
       localStorage.setItem('gurukul:lang', 'en');

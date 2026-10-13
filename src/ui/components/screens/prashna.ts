@@ -3,12 +3,15 @@
  * Commits to a prediction before BodhaDirect teaching confirms or refutes it.
  */
 
+import { findKnot } from '../../../domain/curriculum/curriculum';
 import { t } from '../../../domain/i18n/core';
 import { storage } from '../../../persistence/storage';
 import { el } from '../../util/dom';
 import { enterThread } from '../../util/thread';
 import { router, type ScreenMeta } from '../app/router';
 import { voice } from '../voice/voice';
+import { getVisuals } from '../../lesson-visuals';
+import { renderLessonMissing } from './lesson-missing';
 
 export function createPrashnaScreen(): ScreenMeta {
   return {
@@ -17,12 +20,19 @@ export function createPrashnaScreen(): ScreenMeta {
     step: 'prashna',
     title: 'prashna.title',
     render(view, state, params) {
-      const knotId = params.k || 'N1';
+      const knotId = params.k || '';
+      if (!findKnot(knotId)?.prashna) {
+        renderLessonMissing(view, knotId, 'prashna');
+        return;
+      }
       enterThread(knotId, 'prashna', { k: knotId });
 
       const storedGuess = storage.get<number | null>(`guess:${knotId}`, null);
+      const art = getVisuals(knotId).prashna;
+      if (!art) console.error(`No Prashna picture for ${knotId}`);
 
       view.appendChild(el('p', { class: 'muted small', text: t(`knot.${knotId}.t`) }));
+      if (art) view.appendChild(el('div', { class: 'wonder-art prashna-art' }, [art()]));
       view.appendChild(el('h2', { class: 'screen-title', text: t(`prashna.${knotId}.q`) }));
       view.appendChild(el('p', { class: 'muted', text: t('prashna.sub') }));
 

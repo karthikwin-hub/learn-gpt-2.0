@@ -18,8 +18,6 @@ export const G4_LESSON: LessonData = {
   mistake: {
     steps: 3,
     wrong: 1,
-    eq: () =>
-      'Rotational symmetry spins onto itself (90°); it does <span class="r-txt">not</span> require mirror fold lines',
   },
   explain: [
     { tiles: ['folds', 'grows', 'hides'], expect: 'folds' },

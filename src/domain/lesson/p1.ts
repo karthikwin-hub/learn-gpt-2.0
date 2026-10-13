@@ -18,8 +18,6 @@ export const P1_LESSON: LessonData = {
   mistake: {
     steps: 3,
     wrong: 1,
-    eq: () =>
-      'A square of side 5 has 5 rows of 5 tiles: 5 × 5 = <span class="r-txt">25 tiles</span>, not 10',
   },
   explain: [
     { tiles: ['layer', 'border', 'corner'], expect: 'layer' },

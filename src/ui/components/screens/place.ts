@@ -36,7 +36,7 @@ export function createPlaceScreen(): ScreenMeta {
       const titleEl = el('h2', { class: 'screen-title', text: t('place.title') });
       const subEl = el('p', {
         class: 'screen-sub',
-        text: t('place.s1') || 'Slide digits into their houses to see how big numbers grow.',
+        text: t('place.s1'),
       });
 
       const displayCard = el('section', { class: 'card place-display', 'aria-live': 'polite' });
@@ -59,26 +59,26 @@ export function createPlaceScreen(): ScreenMeta {
         state.num = currentVal;
         const dec = decomposePlaceValue(currentVal);
         numLabel.textContent = dec.formatted;
-        expandedLabel.textContent = `${t('place.expanded') || 'Expanded'}: ${dec.expandedTerms.join(' + ')}`;
+        expandedLabel.textContent = `${t('place.expandedLabel')}: ${dec.expandedTerms.join(' + ')}`;
 
         clear(housesContainer);
         for (const house of dec.houses) {
           const houseCard = el('div', {
             class: `card place-house house-${house.id}`,
             style: {
-              border: '2px solid var(--border)',
+              border: '2px solid var(--hair)',
               borderRadius: '12px',
               padding: '12px',
               textAlign: 'center',
-              background: 'var(--card-bg, #fff)',
+              background: 'var(--paper-raised)',
             },
           });
 
           houseCard.appendChild(
             el('h4', {
               class: 'house-name',
-              text: house.name,
-              style: { margin: '0 0 8px 0', color: 'var(--thread-ganita, #8b5cf6)' },
+              text: t(`place.house.${house.id}`),
+              style: { margin: '0 0 8px 0', color: 'var(--indigo)' },
             })
           );
 
@@ -96,15 +96,15 @@ export function createPlaceScreen(): ScreenMeta {
             digitCol.appendChild(
               el('span', {
                 class: 'digit-name',
-                text: d.name,
-                style: { fontSize: '11px', color: 'var(--muted)' },
+                text: t(`place.digit.${d.id}`),
+                style: { fontSize: '11px', color: 'var(--ink-soft)' },
               })
             );
 
             const incBtn = el('button', {
               class: 'btn icon mini',
               type: 'button',
-              'aria-label': `Increase ${d.name}`,
+              'aria-label': t('place.increase', { place: t(`place.digit.${d.id}`) }),
               text: '▲',
               onclick: () => {
                 currentVal = adjustDigit(currentVal, d.multiplier, 1);
@@ -126,7 +126,7 @@ export function createPlaceScreen(): ScreenMeta {
             const decBtn = el('button', {
               class: 'btn icon mini',
               type: 'button',
-              'aria-label': `Decrease ${d.name}`,
+              'aria-label': t('place.decrease', { place: t(`place.digit.${d.id}`) }),
               text: '▼',
               onclick: () => {
                 currentVal = adjustDigit(currentVal, d.multiplier, -1);
@@ -152,7 +152,7 @@ export function createPlaceScreen(): ScreenMeta {
       });
 
       const examples = [
-        { label: '99,999 (Bundle)', val: 99999 },
+        { label: t('place.chipBundle'), val: 99999 },
         { label: '3,05,200', val: 305200 },
         { label: '1,25,00,000', val: 12500000 },
       ];
@@ -179,7 +179,7 @@ export function createPlaceScreen(): ScreenMeta {
       const addOneBtn = el('button', {
         class: 'btn primary',
         type: 'button',
-        text: t('place.addOne') || '+1 Bead',
+        text: t('place.addOne'),
         onclick: () => {
           currentVal = Math.min(999999999, currentVal + 1);
           update();
@@ -190,7 +190,7 @@ export function createPlaceScreen(): ScreenMeta {
         class: 'btn ghost',
         id: 'btn-reset',
         type: 'button',
-        text: t('action.reset') || 'Reset',
+        text: t('common.reset'),
         onclick: () => {
           currentVal = 0;
           update();

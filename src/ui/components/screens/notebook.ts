@@ -7,6 +7,7 @@
 import { t } from '../../../domain/i18n/core';
 import { pothi, type NotebookPage } from '../../../persistence/pothi';
 import { clear, el } from '../../util/dom';
+import { plainText } from '../../util/markup';
 import { router, type ScreenMeta } from '../app/router';
 import { renderSentence } from './explain';
 import { renderThumbnail } from '../notebook/thumbs';
@@ -78,7 +79,7 @@ export function createNotebookScreen(): ScreenMeta {
               [
                 el('span', {}, [
                   el('span', { class: 'meta', text: t(`knot.${id}.t`) }),
-                  el('span', { class: 'sutra-line', text: t(`bodha.${id}.sutra`) }),
+                  el('span', { class: 'sutra-line', text: plainText(t(`bodha.${id}.sutra`)) }),
                 ]),
               ]
             )

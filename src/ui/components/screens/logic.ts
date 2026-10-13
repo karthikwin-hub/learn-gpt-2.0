@@ -12,16 +12,10 @@ import {
   isTableComplete,
 } from '../../../domain/math/logic';
 import { clear, el } from '../../util/dom';
+import { createStepGuide, toMistakeButton } from '../../util/bench';
 import { createMarbles, type MarblesManipulative } from '../../manipulatives/marbles';
 import { enterThread } from '../../util/thread';
-import { router, type ScreenMeta } from '../app/router';
-
-function createStepGuide(num: number, text: string): HTMLElement {
-  return el('div', { class: 'step-guide' }, [
-    el('span', { class: 'num', text: String(num) }),
-    el('p', { text }),
-  ]);
-}
+import { type ScreenMeta } from '../app/router';
 
 function createChips<T extends string>(
   items: { value: T; label: string }[],
@@ -258,16 +252,6 @@ export function createLogicScreen(): ScreenMeta {
         },
       });
 
-      const nextBtn = el('button', {
-        type: 'button',
-        class: 'btn primary block',
-        style: { minHeight: '44px' },
-        text: 'Spot the Mistake →',
-        onclick: () => {
-          router.go('mistake', { k: 'L2' });
-        },
-      });
-
       view.appendChild(el('h2', { class: 'screen-title', text: t('logic.title') }));
       view.appendChild(createStepGuide(1, t('logic.s1')));
       view.appendChild(gateRow);
@@ -276,7 +260,7 @@ export function createLogicScreen(): ScreenMeta {
       view.appendChild(el('div', { class: 'btn-row' }, [dropBtn]));
       view.appendChild(say);
       view.appendChild(tableCard);
-      view.appendChild(el('div', { class: 'btn-row' }, [nextBtn]));
+      view.appendChild(el('div', { class: 'btn-row' }, [toMistakeButton('L2')]));
 
       paintGates();
       paintDoors();

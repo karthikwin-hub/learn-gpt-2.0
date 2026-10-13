@@ -8,6 +8,7 @@
 import { t } from '../../../domain/i18n/core';
 import { pothi, type NotebookPage } from '../../../persistence/pothi';
 import { clear, el } from '../../util/dom';
+import { plainText } from '../../util/markup';
 import { clearThread } from '../../util/thread';
 import { router, type ScreenMeta } from '../app/router';
 import { voice } from '../voice/voice';
@@ -47,7 +48,7 @@ export function createStopScreen(): ScreenMeta {
         wrap.appendChild(
           el('p', {
             class: 'sutra-line',
-            text: t(`bodha.${page.thread}.sutra`),
+            text: plainText(t(`bodha.${page.thread}.sutra`)),
           })
         );
       } else {

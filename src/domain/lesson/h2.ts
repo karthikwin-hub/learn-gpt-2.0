@@ -18,8 +18,6 @@ export const H2_LESSON: LessonData = {
   mistake: {
     steps: 3,
     wrong: 1,
-    eq: () =>
-      'Multiply the line height by the axis step: 3 grid lines × 5 units = <span class="r-txt">15 units</span>, not 3',
   },
   explain: [
     { tiles: ['scale', 'color', 'width'], expect: 'scale' },

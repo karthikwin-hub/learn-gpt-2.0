@@ -18,8 +18,6 @@ export const S2_LESSON: LessonData = {
   mistake: {
     steps: 3,
     wrong: 1,
-    eq: () =>
-      '12 is a multiple of both 4 and 3 (4 × 3 = 12): it belongs in the <span class="r-txt">overlap</span> region',
   },
   explain: [
     { tiles: ['both', 'neither', 'one'], expect: 'both' },

@@ -18,8 +18,6 @@ export const L1_LESSON: LessonData = {
   mistake: {
     steps: 3,
     wrong: 1,
-    eq: () =>
-      '5 × 1 = 5 (equal) and 5 × 0 = 0 (smaller): a single <span class="r-txt">counterexample</span> disproves always',
   },
   explain: [
     { tiles: ['one', 'many', 'ten'], expect: 'one' },

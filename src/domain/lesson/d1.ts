@@ -15,7 +15,8 @@ export const D1_LESSON: LessonData = {
     { key: 'sutra' },
   ],
   explain: [
-    { tiles: ['same', 'different', 'more'], expect: 'same' },
-    { tiles: ['multiply', 'subtract', 'add'], expect: 'multiply' },
+    { tiles: ['more', 'same', 'any'], expect: 'same' },
+    { tiles: ['multiply', 'add', 'divide'], expect: 'multiply' },
   ],
+  mistakeFrom: 'M4',
 };

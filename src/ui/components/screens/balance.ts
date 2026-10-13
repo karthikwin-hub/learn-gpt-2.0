@@ -3,6 +3,7 @@
  */
 
 import { calculateBalanceTilt, isBalanced } from '../../../domain/science/balance';
+import { t } from '../../../domain/i18n/core';
 import { clear, el, svg } from '../../util/dom';
 import { enterThread } from '../../util/thread';
 import type { ScreenMeta } from '../app/router';
@@ -13,7 +14,7 @@ export function createBalanceScreen(): ScreenMeta {
     stage: 'manana',
     step: 'abhyasa',
     bench: true,
-    title: () => 'Two-Pan Balance',
+    title: 'balance.title',
     render(view, state, params = {}) {
       enterThread('K1', 'balance', params);
 
@@ -25,7 +26,7 @@ export function createBalanceScreen(): ScreenMeta {
       state.right = rightGrams;
       state.tare = tare;
 
-      const titleEl = el('h2', { class: 'screen-title', text: 'Two-Pan Balance' });
+      const titleEl = el('h2', { class: 'screen-title', text: t('balance.title') });
       const displayCard = el('section', {
         class: 'card balance-display',
         style: { textAlign: 'center' },
@@ -51,13 +52,13 @@ export function createBalanceScreen(): ScreenMeta {
             fontSize: '18px',
             fontWeight: 'bold',
             marginBottom: '12px',
-            color: balanced ? 'var(--leaf, #10b981)' : 'var(--thread-ganita, #8b5cf6)',
+            color: balanced ? 'var(--leaf, #10b981)' : 'var(--indigo)',
           },
           text: balanced
-            ? '⚖️ In Equilibrium (Equal Mass)'
+            ? t('balance.equilibrium')
             : leftGrams + tare > rightGrams
-              ? 'Left side is heavier'
-              : 'Right side is heavier',
+              ? t('balance.leftHeavier')
+              : t('balance.rightHeavier'),
         });
         displayCard.appendChild(statusNotice);
 
@@ -95,7 +96,7 @@ export function createBalanceScreen(): ScreenMeta {
             cx: '160',
             cy: '60',
             r: '6',
-            fill: 'var(--thread-ganita, #8b5cf6)',
+            fill: 'var(--indigo)',
           })
         );
 
@@ -160,7 +161,11 @@ export function createBalanceScreen(): ScreenMeta {
         const readout = el('div', {
           class: 'balance-readout',
           style: { marginTop: '8px', fontSize: '15px' },
-          text: `Left: ${leftGrams}g ${tare ? `(+${tare}g tare)` : ''} · Right: ${rightGrams}g`,
+          text: t('balance.readout', {
+            left: leftGrams,
+            tare: tare ? t('balance.readoutTare', { tare }) : '',
+            right: rightGrams,
+          }),
         });
         displayCard.appendChild(readout);
 
@@ -173,7 +178,7 @@ export function createBalanceScreen(): ScreenMeta {
 
         // Left Pan Controls
         const leftBox = el('div', { style: { textAlign: 'center' } }, [
-          el('h4', { style: { margin: '0 0 6px 0' }, text: 'Left Pan' }),
+          el('h4', { style: { margin: '0 0 6px 0' }, text: t('balance.leftPan') }),
           el('div', { style: { display: 'flex', gap: '6px', justifyContent: 'center' } }, [
             el('button', {
               class: 'btn icon mini',
@@ -199,7 +204,7 @@ export function createBalanceScreen(): ScreenMeta {
 
         // Right Pan Controls
         const rightBox = el('div', { style: { textAlign: 'center' } }, [
-          el('h4', { style: { margin: '0 0 6px 0' }, text: 'Right Pan' }),
+          el('h4', { style: { margin: '0 0 6px 0' }, text: t('balance.rightPan') }),
           el('div', { style: { display: 'flex', gap: '6px', justifyContent: 'center' } }, [
             el('button', {
               class: 'btn icon mini',
@@ -235,7 +240,7 @@ export function createBalanceScreen(): ScreenMeta {
           el('button', {
             class: 'btn ghost',
             type: 'button',
-            text: 'Tare Zero',
+            text: t('balance.tareZero'),
             onclick: () => {
               tare = rightGrams - leftGrams;
               paint();
@@ -246,7 +251,7 @@ export function createBalanceScreen(): ScreenMeta {
           el('button', {
             class: 'btn ghost',
             type: 'button',
-            text: 'Reset (10g / 10g)',
+            text: t('balance.reset'),
             onclick: () => {
               leftGrams = 10;
               rightGrams = 10;

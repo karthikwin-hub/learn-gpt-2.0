@@ -18,8 +18,6 @@ export const H1_LESSON: LessonData = {
   mistake: {
     steps: 3,
     wrong: 1,
-    eq: () =>
-      'Multiply the icon count by the key scale: 3 icons × 10 bicycles = <span class="r-txt">30 bicycles</span>, not 3',
   },
   explain: [
     { tiles: ['key', 'title', 'border'], expect: 'key' },

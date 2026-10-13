@@ -18,8 +18,6 @@ export const G8_LESSON: LessonData = {
   mistake: {
     steps: 3,
     wrong: 1,
-    eq: () =>
-      'A top view looks straight down from above; vertical steps collapse into a <span class="r-txt">flat grid of squares</span>',
   },
   explain: [
     { tiles: ['map', 'shadow', 'mirror'], expect: 'map' },

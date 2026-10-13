@@ -108,36 +108,21 @@ export const dictionary: Record<string, string> = {
     'Kolams and rangolis at doorways, carved jali windows, flowers, and the blades of a fan.',
   'bodha.G4.sutra':
     'A mirror line folds a pattern onto itself; a turn spins it onto itself. They are different.',
-
-  'bodha.S2.what':
-    'A [[set|set]] is a group of things that follow a rule. Some things belong to two sets at once.',
-  'bodha.S2.can': 'You will be able to sort with two rings and use the words and, or and not.',
+  'bodha.S2.what': 'When two sorting rings overlap on the floor, they create four distinct zones.',
+  'bodha.S2.can':
+    'Sort attribute blocks into two rings, identify the central intersection, and count items across all four regions.',
   'bodha.S2.idea':
-    'Ring A holds yellow blocks. Ring B holds circles. A yellow circle belongs in both, so the rings overlap and it sits in the middle.',
+    'Zone 1: Fits rule A only. Zone 2: Fits rule B only. Zone 3: Fits BOTH rules at once (the overlap). Zone 4: Fits NEITHER rule (outside).',
   'bodha.S2.why':
-    'The middle is “yellow and circle”. Anywhere inside the rings is “yellow or circle”. Outside both is “not yellow and not circle”.',
-  'bodha.S2.example': 'Where does each block go?',
-  'bodha.S2.example1': 'A green circle is a circle but not yellow: ring B only.',
-  'bodha.S2.example2': 'A yellow square is yellow but not a circle: ring A only.',
-  'bodha.S2.example3': 'A black triangle is neither: outside both rings.',
+    'The overlap is the "AND" zone: a red round ball belongs to both sets at once, so it sits in the shared lens!',
+  'bodha.S2.example': 'Sorting with two rules:',
+  'bodha.S2.example1':
+    'Step 1: Rule A: Multiples of 2; Rule B: Multiples of 3. 4 is a multiple of 2 only -> Ring A.',
+  'bodha.S2.example2': 'Step 2: 9 is a multiple of 3 only -> Ring B.',
+  'bodha.S2.example3': 'Step 3: 6 and 12 fit both rules, so they sit in the middle overlap!',
   'bodha.S2.where':
-    'Children who like cricket and children who like football, and the ones who like both. Foods that are sweet, foods that are fried, and foods that are both.',
+    'Search filters (Price < 500 AND Free Delivery), medical symptoms, and sports team rosters.',
   'bodha.S2.sutra': 'Where two rings overlap, a thing belongs to both sets at once.',
-
-  'bodha.L2.what':
-    'The logic words AND, OR and NOT can be built as machines that answer YES or NO.',
-  'bodha.L2.can': 'You will be able to predict what AND, OR and NOT machines do with any doors.',
-  'bodha.L2.idea':
-    'An AND machine says YES only when door A and door B are both open. An OR machine says YES when at least one door is open.',
-  'bodha.L2.why':
-    'A NOT machine flips the answer: open gives NO, shut gives YES. You can check any machine with a [[truth|truth table]] of every try.',
-  'bodha.L2.example': 'Door A is open and door B is shut.',
-  'bodha.L2.example1': 'AND needs both open: the answer is NO.',
-  'bodha.L2.example2': 'OR needs at least one open: the answer is YES.',
-  'bodha.L2.example3': 'NOT on door A flips “open” to NO.',
-  'bodha.L2.where':
-    'A lift moves only if the door is shut AND a button is pressed. “You may go out if it is NOT raining.”',
-  'bodha.L2.sutra': 'AND needs both, OR needs at least one, NOT flips the answer.',
 
   'gloss.rect': 'A flat shape with four straight sides and four square corners.',
   'gloss.rect.en': 'rectangle',

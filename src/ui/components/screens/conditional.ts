@@ -11,8 +11,34 @@ import {
   type ConditionalStatement,
 } from '../../../domain/math/conditional';
 import { clear, el } from '../../util/dom';
+import { toMistakeButton } from '../../util/bench';
 import { enterThread } from '../../util/thread';
-import { router, type ScreenMeta } from '../app/router';
+import { type ScreenMeta } from '../app/router';
+
+function cond(id: string, field: string): string {
+  return t(`conditional.data.${id}.${field}`);
+}
+
+const INNER_ITEM_KEYS: Record<string, string[]> = {
+  'dogs-legs': ['innerItems.lab', 'innerItems.beagle', 'innerItems.poodle'],
+  'squares-4sides': ['innerItems.s2', 'innerItems.s5'],
+  'div-10-ends-0': ['innerItems.10', 'innerItems.20', 'innerItems.50', 'innerItems.100'],
+  'rain-wet': ['innerItems.rain'],
+};
+
+const OUTER_ITEM_KEYS: Record<string, string[]> = {
+  'dogs-legs': ['outerItems.cat', 'outerItems.cow', 'outerItems.tiger', 'outerItems.horse'],
+  'squares-4sides': ['outerItems.rect', 'outerItems.trap', 'outerItems.rhombus', 'outerItems.kite'],
+  'div-10-ends-0': [],
+  'rain-wet': [],
+};
+
+const COUNTER_KEYS: Record<string, string[]> = {
+  'dogs-legs': ['counter.cat', 'counter.cow', 'counter.tiger', 'counter.horse'],
+  'squares-4sides': ['counter.rect', 'counter.trap', 'counter.rhombus', 'counter.kite'],
+  'div-10-ends-0': [],
+  'rain-wet': ['counter.hose', 'counter.sprinkler', 'counter.bucket'],
+};
 
 export function createConditionalScreen(): ScreenMeta {
   return {
@@ -53,7 +79,7 @@ export function createConditionalScreen(): ScreenMeta {
         text: t('conditional.lead'),
         style: {
           fontSize: '0.9rem',
-          color: 'var(--muted, #4b5563)',
+          color: 'var(--ink-soft)',
           marginBottom: '1rem',
         },
       });
@@ -62,7 +88,7 @@ export function createConditionalScreen(): ScreenMeta {
       const chipContainer = el('div', {
         class: 'preset-chips-scroll',
         role: 'group',
-        'aria-label': 'Conditional statements',
+        'aria-label': t('conditional.presetGroup'),
         style: {
           display: 'flex',
           gap: '8px',
@@ -71,13 +97,6 @@ export function createConditionalScreen(): ScreenMeta {
           marginBottom: '1rem',
         },
       });
-
-      const presetLabels: Record<string, string> = {
-        'dogs-legs': '1. Dogs & 4 Legs',
-        'squares-4sides': "2. Squares & 4 Sides (Farhan's Trap)",
-        'div-10-ends-0': '3. Divisible by 10 & Ends in 0',
-        'rain-wet': '4. Rain & Wet Ground',
-      };
 
       // Work courtyard container
       const workspace = el('div', {
@@ -97,9 +116,9 @@ export function createConditionalScreen(): ScreenMeta {
           class: 'card statement-card',
           style: {
             padding: '1rem',
-            background: 'var(--card-bg, #ffffff)',
+            background: 'var(--paper-raised)',
             borderRadius: '8px',
-            border: '1px solid var(--border, #e5e7eb)',
+            border: '1px solid var(--hair)',
           },
         });
 
@@ -120,7 +139,7 @@ export function createConditionalScreen(): ScreenMeta {
             minHeight: '44px',
             flex: '1',
             borderRadius: '6px',
-            border: '1px solid var(--border, #cbd5e1)',
+            border: '1px solid var(--hair)',
             fontWeight: currentMode === 'forward' ? 'bold' : 'normal',
             background: currentMode === 'forward' ? 'var(--ink, #1f2937)' : 'transparent',
             color: currentMode === 'forward' ? '#fff' : 'inherit',
@@ -140,7 +159,7 @@ export function createConditionalScreen(): ScreenMeta {
             minHeight: '44px',
             flex: '1',
             borderRadius: '6px',
-            border: '1px solid var(--border, #cbd5e1)',
+            border: '1px solid var(--hair)',
             fontWeight: currentMode === 'reverse' ? 'bold' : 'normal',
             background: currentMode === 'reverse' ? 'var(--ink, #1f2937)' : 'transparent',
             color: currentMode === 'reverse' ? '#fff' : 'inherit',
@@ -163,10 +182,10 @@ export function createConditionalScreen(): ScreenMeta {
           style: {
             padding: '1rem',
             borderRadius: '6px',
-            background: 'var(--canvas, #f8fafc)',
+            background: 'var(--paper)',
             borderLeft: `4px solid ${
               currentMode === 'forward' || currentStatement.converseTrue
-                ? 'var(--emerald, #10b981)'
+                ? 'var(--leaf)'
                 : 'var(--kumkum, #b91c1c)'
             }`,
             marginBottom: '1rem',
@@ -178,7 +197,10 @@ export function createConditionalScreen(): ScreenMeta {
             el('p', {
               class: 'statement-text',
               style: { fontWeight: 'bold', fontSize: '1rem', marginBottom: '0.25rem' },
-              text: `IF ${currentStatement.premise}, THEN ${currentStatement.conclusion}.`,
+              text: t('conditional.ifThenForward', {
+                premise: cond(activeStatementId, 'premise'),
+                conclusion: cond(activeStatementId, 'conclusion'),
+              }),
             })
           );
           formulaBox.appendChild(
@@ -201,7 +223,10 @@ export function createConditionalScreen(): ScreenMeta {
             el('p', {
               class: 'statement-text',
               style: { fontWeight: 'bold', fontSize: '1rem', marginBottom: '0.25rem' },
-              text: `IF ${currentStatement.conversePremise}, THEN ${currentStatement.converseConclusion}.`,
+              text: t('conditional.ifThenConverse', {
+                premise: cond(activeStatementId, 'conversePremise'),
+                conclusion: cond(activeStatementId, 'converseConclusion'),
+              }),
             })
           );
           if (currentStatement.converseTrue) {
@@ -264,7 +289,7 @@ export function createConditionalScreen(): ScreenMeta {
           const itemsWrap = el('div', {
             style: { display: 'flex', flexWrap: 'wrap', gap: '6px' },
           });
-          currentStatement.counterexamples.forEach((ce) => {
+          (COUNTER_KEYS[activeStatementId] ?? []).forEach((key) => {
             itemsWrap.appendChild(
               el('span', {
                 class: 'stat-pill counter-pill',
@@ -277,7 +302,7 @@ export function createConditionalScreen(): ScreenMeta {
                   fontSize: '0.85rem',
                   fontWeight: 'bold',
                 },
-                text: `✗ ${ce}`,
+                text: t('conditional.counterMark', { item: cond(activeStatementId, key) }),
               })
             );
           });
@@ -300,13 +325,13 @@ export function createConditionalScreen(): ScreenMeta {
           farhanBox.appendChild(
             el('strong', {
               style: { color: '#92400e', display: 'block', marginBottom: '4px' },
-              text: "Farhan's Mistake Trap:",
+              text: t('conditional.farhanTitle'),
             })
           );
           farhanBox.appendChild(
             el('p', {
               style: { fontSize: '0.85rem', color: '#78350f', margin: '0' },
-              text: 'Farhan argues: "All squares have 4 sides, so any 4-sided shape must be a square." But rectangles, rhombuses, and kites also have 4 sides!',
+              text: t('conditional.farhanBody'),
             })
           );
           statementCard.appendChild(farhanBox);
@@ -319,9 +344,9 @@ export function createConditionalScreen(): ScreenMeta {
           class: 'card diagram-card',
           style: {
             padding: '1rem',
-            background: 'var(--card-bg, #ffffff)',
+            background: 'var(--paper-raised)',
             borderRadius: '8px',
-            border: '1px solid var(--border, #e5e7eb)',
+            border: '1px solid var(--hair)',
           },
         });
 
@@ -357,17 +382,20 @@ export function createConditionalScreen(): ScreenMeta {
             fontSize: '0.85rem',
             marginBottom: '4px',
           },
-          text: `Outer Ring: ${currentStatement.outerRingLabel}`,
+          text: t('conditional.outerRingLabel', {
+            label: cond(activeStatementId, 'outerRingLabel'),
+          }),
         });
         vennContainer.appendChild(outerLabel);
 
         // Outer items (counterexamples)
-        if (currentStatement.outerItems.length > 0) {
+        const outerKeys = OUTER_ITEM_KEYS[activeStatementId] ?? [];
+        if (outerKeys.length > 0) {
           const outerList = el('div', {
             class: 'outer-items-row',
             style: { display: 'flex', flexWrap: 'wrap', gap: '4px', marginBottom: '8px' },
           });
-          currentStatement.outerItems.forEach((it) => {
+          outerKeys.forEach((key) => {
             outerList.appendChild(
               el('span', {
                 class: 'stat-pill item-pill',
@@ -378,7 +406,7 @@ export function createConditionalScreen(): ScreenMeta {
                   background: '#e2e8f0',
                   color: '#334155',
                 },
-                text: it,
+                text: cond(activeStatementId, key),
               })
             );
           });
@@ -406,7 +434,9 @@ export function createConditionalScreen(): ScreenMeta {
               fontSize: '0.85rem',
               marginBottom: '4px',
             },
-            text: `Inner Ring: ${currentStatement.innerRingLabel}`,
+            text: t('conditional.innerRingLabel', {
+              label: cond(activeStatementId, 'innerRingLabel'),
+            }),
           })
         );
 
@@ -414,7 +444,7 @@ export function createConditionalScreen(): ScreenMeta {
           class: 'inner-items-row',
           style: { display: 'flex', flexWrap: 'wrap', gap: '4px' },
         });
-        currentStatement.innerItems.forEach((it) => {
+        (INNER_ITEM_KEYS[activeStatementId] ?? []).forEach((key) => {
           innerList.appendChild(
             el('span', {
               class: 'stat-pill inner-item-pill',
@@ -426,7 +456,7 @@ export function createConditionalScreen(): ScreenMeta {
                 color: '#1e40af',
                 fontWeight: '600',
               },
-              text: it,
+              text: cond(activeStatementId, key),
             })
           );
         });
@@ -453,7 +483,7 @@ export function createConditionalScreen(): ScreenMeta {
             minHeight: '44px',
             padding: '10px 16px',
             borderRadius: '6px',
-            border: '1px solid var(--border, #cbd5e1)',
+            border: '1px solid var(--hair)',
             background: 'transparent',
           },
           onClick() {
@@ -466,25 +496,10 @@ export function createConditionalScreen(): ScreenMeta {
           },
         });
 
-        const nextBtn = el('button', {
-          class: 'btn btn-primary',
-          text: 'Spot the Mistake →',
-          style: {
-            minHeight: '44px',
-            flex: '1',
-            padding: '10px 20px',
-            borderRadius: '6px',
-            background: 'var(--ink, #1f2937)',
-            color: '#fff',
-            fontWeight: 'bold',
-          },
-          onClick() {
-            router.go('mistake', { k: 'L3' });
-          },
-        });
-
         actionRow.appendChild(resetBtn);
-        actionRow.appendChild(nextBtn);
+        const mistakeBtn = toMistakeButton('L3');
+        mistakeBtn.style.flex = '1';
+        actionRow.appendChild(mistakeBtn);
         workspace.appendChild(actionRow);
       }
 
@@ -500,17 +515,15 @@ export function createConditionalScreen(): ScreenMeta {
               minHeight: '44px',
               padding: '8px 14px',
               borderRadius: '9999px',
-              border: isSelected
-                ? '2px solid var(--indigo, #4f46e5)'
-                : '1px solid var(--border, #cbd5e1)',
-              background: isSelected ? 'var(--lavender, #e0e7ff)' : 'var(--card-bg, #ffffff)',
+              border: isSelected ? '2px solid var(--indigo, #4f46e5)' : '1px solid var(--hair)',
+              background: isSelected ? 'var(--indigo-soft)' : 'var(--paper-raised)',
               color: isSelected ? 'var(--indigo, #4f46e5)' : 'inherit',
               fontWeight: isSelected ? 'bold' : 'normal',
               cursor: 'pointer',
               whiteSpace: 'nowrap',
               flexShrink: '0',
             },
-            text: presetLabels[preset.id] || preset.premise,
+            text: t(`conditional.preset.${preset.id}`),
             onClick() {
               currentStatement = preset;
               state.statementId = preset.id;

@@ -11,18 +11,10 @@ import {
   type FairShareCounts,
   type FairShareManipulative,
 } from '../../manipulatives/fair-share';
+import { createStepGuide, setStepGuide } from '../../util/bench';
 import { enterThread } from '../../util/thread';
 import { router, type ScreenMeta } from '../app/router';
 import { voice } from '../voice/voice';
-
-function createStepGuide(num: number, text: string): { root: HTMLElement; para: HTMLElement } {
-  const para = el('p', { text });
-  const root = el('div', { class: 'step-guide' }, [
-    el('span', { class: 'num', text: String(num) }),
-    para,
-  ]);
-  return { root, para };
-}
 
 export function createShareScreen(): ScreenMeta {
   return {
@@ -161,17 +153,32 @@ export function createShareScreen(): ScreenMeta {
         if (!c.done) {
           eqCard.appendChild(el('p', { text: t('share.dealt', { n: c.dealt, total: c.total }) }));
         } else {
-          const eqHtml = `<span class="a">${c.total}</span> ÷ <span class="b">${c.plates}</span> = <span class="r">${s.each}</span>${
-            s.remainder
-              ? ` <span class="small muted">r</span> <span style="color:var(--kumkum)">${s.remainder}</span>`
-              : ''
-          }`;
-          eqCard.appendChild(el('div', { class: 'eq', html: eqHtml }));
+          const eqLine = el('div', { class: 'eq' });
+          eqLine.appendChild(el('span', { class: 'a', text: String(c.total) }));
+          eqLine.appendChild(document.createTextNode(' ÷ '));
+          eqLine.appendChild(el('span', { class: 'b', text: String(c.plates) }));
+          eqLine.appendChild(document.createTextNode(' = '));
+          eqLine.appendChild(el('span', { class: 'r', text: String(s.each) }));
+          if (s.remainder) {
+            eqLine.appendChild(document.createTextNode(' '));
+            eqLine.appendChild(el('span', { class: 'small muted', text: 'r' }));
+            eqLine.appendChild(document.createTextNode(' '));
+            eqLine.appendChild(
+              el('span', { style: { color: 'var(--kumkum)' }, text: String(s.remainder) })
+            );
+          }
+          eqCard.appendChild(eqLine);
 
-          const checkHtml = `<span class="b-txt">${c.plates}</span> × <span class="r-txt">${s.each}</span>${
-            s.remainder ? ` + ${s.remainder}` : ''
-          } = <span class="a-txt">${c.total}</span>`;
-          eqCard.appendChild(el('p', { class: 'muted', html: checkHtml }));
+          const checkLine = el('p', { class: 'muted' });
+          checkLine.appendChild(el('span', { class: 'b-txt', text: String(c.plates) }));
+          checkLine.appendChild(document.createTextNode(' × '));
+          checkLine.appendChild(el('span', { class: 'r-txt', text: String(s.each) }));
+          if (s.remainder) {
+            checkLine.appendChild(document.createTextNode(` + ${s.remainder}`));
+          }
+          checkLine.appendChild(document.createTextNode(' = '));
+          checkLine.appendChild(el('span', { class: 'a-txt', text: String(c.total) }));
+          eqCard.appendChild(checkLine);
 
           if (c.cut && s.remainder > 0) {
             const f = leftoverFraction(s.remainder, c.plates);
@@ -179,12 +186,12 @@ export function createShareScreen(): ScreenMeta {
               const fracStr = `${f.num}/${f.den}${
                 f.simpleDen !== f.den ? ` = ${f.simpleNum}/${f.simpleDen}` : ''
               }`;
-              eqCard.appendChild(
-                el('div', {
-                  class: 'eq',
-                  html: `${t('share.eachGets')} <span class="r">${s.each}</span> + <span class="t">${fracStr}</span>`,
-                })
-              );
+              const fracLine = el('div', { class: 'eq' });
+              fracLine.appendChild(document.createTextNode(`${t('share.eachGets')} `));
+              fracLine.appendChild(el('span', { class: 'r', text: String(s.each) }));
+              fracLine.appendChild(document.createTextNode(' + '));
+              fracLine.appendChild(el('span', { class: 't', text: fracStr }));
+              eqCard.appendChild(fracLine);
             }
           }
         }
@@ -306,10 +313,11 @@ export function createShareScreen(): ScreenMeta {
           spoken = false;
           cutSpoken = false;
           say.hidden = true;
-          stepGuide.para.textContent = t(leftover ? 'share.l1' : 'share.s1', {
-            a: v,
-            b: getPlates(),
-          });
+          setStepGuide(
+            stepGuide,
+            1,
+            t(leftover ? 'share.l1' : 'share.s1', { a: v, b: getPlates() })
+          );
           table.setTotal(v);
         },
       });
@@ -326,10 +334,11 @@ export function createShareScreen(): ScreenMeta {
           spoken = false;
           cutSpoken = false;
           say.hidden = true;
-          stepGuide.para.textContent = t(leftover ? 'share.l1' : 'share.s1', {
-            a: getTotal(),
-            b: v,
-          });
+          setStepGuide(
+            stepGuide,
+            1,
+            t(leftover ? 'share.l1' : 'share.s1', { a: getTotal(), b: v })
+          );
           table.setPlates(v);
         },
       });
@@ -343,7 +352,7 @@ export function createShareScreen(): ScreenMeta {
         }),
       ]);
 
-      view.appendChild(stepGuide.root);
+      view.appendChild(stepGuide);
       view.appendChild(el('div', { class: 'model-wrap' }, [table.node]));
       view.appendChild(actions);
       view.appendChild(say);

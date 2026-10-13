@@ -718,6 +718,20 @@ p {
   display: block;
 }
 
+.crossing {
+  margin: 4px 0 4px 52px;
+  padding: 8px 12px;
+  border-radius: 12px;
+  border: 1.5px dashed var(--thread);
+  color: var(--ink-soft);
+  font: inherit;
+  font-size: 14px;
+  background: none;
+  text-align: left;
+  cursor: pointer;
+  width: calc(100% - 52px);
+}
+
 .knot .tag {
   font-size: 12px;
   color: var(--ink-soft);

@@ -2,8 +2,8 @@
  * SVG diagram primitives for Bodha concept cards.
  */
 
-import type { BodhaCard } from '../../domain/lesson/types';
 import { svg as createSvg } from '../util/dom';
+import { plainText } from '../util/markup';
 
 export interface TextOptions {
   anchor?: string;
@@ -46,7 +46,7 @@ export function figSvg(w: number, h: number, label?: string): SVGSVGElement {
   return createSvg('svg', {
     viewBox: `0 0 ${w} ${h}`,
     role: 'img',
-    'aria-label': label || '',
+    'aria-label': plainText(label || ''),
   }) as SVGSVGElement;
 }
 
@@ -160,23 +160,4 @@ export function figGrid(
     }
   }
   return g;
-}
-
-export interface CardFigs {
-  what?: (step: number, state?: unknown) => SVGElement | null;
-  idea?: (step: number, state?: unknown) => SVGElement | null;
-  why?: (step: number, state?: unknown) => SVGElement | null;
-  example?: (step: number, state?: unknown) => SVGElement | null;
-  where?: (step: number, state?: unknown) => SVGElement | null;
-}
-
-export function createStandardCards(exSteps: number, figs: CardFigs): BodhaCard[] {
-  return [
-    { key: 'what', fig: figs.what },
-    { key: 'idea', fig: figs.idea },
-    { key: 'why', fig: figs.why },
-    { key: 'example', steps: exSteps, fig: figs.example },
-    { key: 'where', fig: figs.where },
-    { key: 'sutra' },
-  ];
 }
