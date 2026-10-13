@@ -217,6 +217,8 @@ export function createBodhaScreen(): ScreenMeta {
       const figSvg = figure ? figure(Number(state.step)) : null;
       if (figSvg) {
         wrap.appendChild(el('div', { class: 'model bodha-fig' }, [figSvg]));
+      } else if (card.key !== 'sutra') {
+        console.error(`Bodha ${knotId}.${card.key} has no picture`);
       }
 
       // Worked example block (if not currently on the example card)

@@ -11,6 +11,7 @@ import {
 } from '../../../domain/science/digest';
 import { t } from '../../../domain/i18n/core';
 import { clear, el, svg } from '../../util/dom';
+import { readStep } from '../../util/bench';
 import { enterThread } from '../../util/thread';
 import { router, type ScreenMeta } from '../app/router';
 
@@ -24,13 +25,7 @@ export function createDigestScreen(): ScreenMeta {
     render(view, state, params = {}) {
       enterThread('B3', 'digest', params);
 
-      const parsedStep = params.step ? parseInt(params.step, 10) : NaN;
-      let currentStep =
-        !isNaN(parsedStep) && parsedStep >= 1
-          ? parsedStep
-          : typeof state.step === 'number'
-            ? state.step
-            : 1;
+      let currentStep = readStep(params.step, state.step, 3);
       const placed: OrganId[] = Array.isArray(state.placed) ? [...state.placed] : [];
       let currentAt: OrganId | null = (state.at as OrganId) || null;
       let done = Boolean(state.done);

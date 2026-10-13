@@ -17,6 +17,7 @@ import {
 } from '../../../domain/math/growing';
 import { t } from '../../../domain/i18n/core';
 import { clear, el } from '../../util/dom';
+import { readStep } from '../../util/bench';
 import { enterThread } from '../../util/thread';
 import { router, type ScreenMeta } from '../app/router';
 
@@ -30,11 +31,7 @@ export function createGrowingScreen(): ScreenMeta {
     render(view, state, params = {}) {
       enterThread('P1', 'growing', params);
 
-      let stepNum = params.step
-        ? Number(params.step)
-        : typeof state.step === 'number'
-          ? state.step
-          : 1;
+      let stepNum = readStep(params.step, state.step, 3);
 
       let triStage = typeof state.triStage === 'number' ? state.triStage : 4;
       let sqStage = typeof state.sqStage === 'number' ? state.sqStage : 3;

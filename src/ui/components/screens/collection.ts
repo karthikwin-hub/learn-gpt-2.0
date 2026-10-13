@@ -195,6 +195,8 @@ export function createCollectionScreen(): ScreenMeta {
             style: 'cursor:pointer;',
             tabindex: 0,
             role: 'button',
+            'data-ring': String(r),
+            'aria-pressed': String(isSelected),
             'aria-label': t('collection.ringAria', {
               n: String(r + 1),
               total: '4',
@@ -203,7 +205,7 @@ export function createCollectionScreen(): ScreenMeta {
             }),
           });
 
-          ringGroup.onclick = () => {
+          const toggle = () => {
             if (selectedRings.includes(r)) {
               selectedRings = selectedRings.filter((idx) => idx !== r);
             } else {
@@ -211,7 +213,15 @@ export function createCollectionScreen(): ScreenMeta {
             }
             state.selectedRings = selectedRings;
             paint();
+            view.querySelector<SVGGElement>(`.ring-group[data-ring="${r}"]`)?.focus();
           };
+          ringGroup.onclick = toggle;
+          ringGroup.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' || e.key === ' ') {
+              e.preventDefault();
+              toggle();
+            }
+          });
 
           // Circle background
           ringGroup.appendChild(
