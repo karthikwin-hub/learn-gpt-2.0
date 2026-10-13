@@ -571,7 +571,8 @@ export const dictionary: Record<string, string> = {
   'growing.sideUp': '+1 Side',
   'growing.gnomonLabel': 'Added L-Gnomon: +{gnomon} tiles',
   'growing.totalTilesLabel': 'Total: {total} Tiles',
-  'growing.contrastNote': 'Contrast: Triangular numbers grow by +n; Square numbers grow by n × n.',
+  'growing.contrastNote':
+    'Contrast: triangular numbers grow by +n at each stage; square numbers reach n × n by adding the odd numbers 1, 3, 5, 7…',
   'growing.amitTrapLong':
     "Amit's Mistake Trap: Amit looked at Stage 5 and computed 5 × 2 = 10! But a square is a 2D shape with 5 rows and 5 columns: 5 × 5 = 25 tiles, not 10!",
   'growing.tableStage': 'Stage (n)',

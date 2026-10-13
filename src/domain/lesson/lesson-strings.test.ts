@@ -21,7 +21,10 @@ function keysFor(id: string, prashna: boolean): string[] {
   const mistake = m ? getLesson(m)?.mistake : undefined;
   if (m && mistake) {
     keys.push(`mistake.${m}.intro`, `mistake.${m}.found`, `mistake.${m}.eq`);
-    for (let s = 1; s <= mistake.steps; s++) keys.push(`mistake.${m}.s${s}`);
+    for (let s = 1; s <= mistake.steps; s++) {
+      keys.push(`mistake.${m}.s${s}`);
+      if (s !== mistake.wrong + 1) keys.push(`mistake.${m}.fine${s}`);
+    }
   }
   const e = explainSource(id);
   for (const blank of (e && getLesson(e)?.explain) || []) {

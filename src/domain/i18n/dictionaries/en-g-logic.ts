@@ -232,9 +232,9 @@ export const dictionary: Record<string, string> = {
     'Think of nested rings: "Dogs" is a small ring inside the giant ring of "Four-legged animals."',
   'bodha.L3.example': 'Forward truth vs Reverse fallacy:',
   'bodha.L3.example1':
-    'Step 1: Statement: "If a number is divisible by 10, it ends in 0." (Always true!).',
+    'Step 1: Statement: "If a number is divisible by 10, it is even." (Always true!)',
   'bodha.L3.example2':
-    'Step 2: Reverse: "If a number ends in 0, it divides by 100." (False! 70 ends in 0 but does not divide by 100).',
+    'Step 2: Reverse: "If a number is even, it is divisible by 10." (False! 4 is even but not divisible by 10.)',
   'bodha.L3.example3':
     'Step 3: Turning an implication backwards creates a new statement that might be false!',
   'bodha.L3.where':

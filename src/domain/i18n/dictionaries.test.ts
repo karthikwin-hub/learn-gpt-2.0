@@ -14,6 +14,14 @@ const SCRIPT: Record<Exclude<LanguageCode, 'en'>, RegExp> = {
   ta: /[\u0B80-\u0BFF]/,
 };
 
+/* Polite "you" pronouns. Lessons talk to a ten-year-old with the familiar form (तुम, నువ్వు, তুমি, நீ). */
+const FORMAL_YOU: Record<Exclude<LanguageCode, 'en'>, RegExp> = {
+  hi: /(?<![\u0900-\u097F])(?<!अपने )आप(?![\u0900-\u097F])/,
+  te: /మీరు|మీకు/,
+  bn: /আপনি|আপনার/,
+  ta: /நீங்கள்|உங்கள்/,
+};
+
 /* Latin tokens a translation may keep: Roman numerals, unit and time symbols, single letters naming
    points or sets, and the AND/OR/NOT gate names printed on the marble machine. */
 const LATIN_ALLOWED =
@@ -83,6 +91,26 @@ describe('046 dictionaries: every English string exists in hi, te, bn, ta (US1-A
           const text = v.replace(/[\u0964\u0965]/g, '');
           return /\p{Cn}/u.test(text) || others.some((o) => SCRIPT[o].test(text));
         })
+        .map(([k, v]) => `${k} = ${v.slice(0, 50)}`);
+      expect(bad, `${bad.length} values in ${lang}: ${bad.slice(0, 10).join(' | ')}`).toEqual([]);
+    });
+
+    it(`${lang}: no Latin letter inside a ${lang} word and no letters from any other script (US1-AS2)`, () => {
+      const own = SCRIPT[lang].source;
+      const glued = new RegExp(`(?![\\u0964\\u0965])${own}[a-z]|[a-z](?![\\u0964\\u0965])${own}`);
+      const bad = Object.entries(DICTIONARIES[lang])
+        .filter(
+          ([, v]) =>
+            glued.test(v) ||
+            [...v].some((c) => /\p{L}/u.test(c) && c > '\u007f' && !SCRIPT[lang].test(c))
+        )
+        .map(([k, v]) => `${k} = ${v.slice(0, 50)}`);
+      expect(bad, `${bad.length} values in ${lang}: ${bad.slice(0, 10).join(' | ')}`).toEqual([]);
+    });
+
+    it(`${lang}: the child is addressed informally; only grown-up screens use the polite form (US1-AS2)`, () => {
+      const bad = Object.entries(DICTIONARIES[lang])
+        .filter(([k, v]) => !/^(?:grown|language)\./.test(k) && FORMAL_YOU[lang].test(v))
         .map(([k, v]) => `${k} = ${v.slice(0, 50)}`);
       expect(bad, `${bad.length} values in ${lang}: ${bad.slice(0, 10).join(' | ')}`).toEqual([]);
     });

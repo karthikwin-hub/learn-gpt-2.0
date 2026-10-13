@@ -41,10 +41,11 @@ export const dictionary: Record<string, string> = {
   'roman.s3try': 'Think of 50 (L) minus 10 (X): XL.',
   'mistake.N2.intro': 'Aman wrote 45 in Roman numerals. One step went wrong. Which one?',
   'mistake.N2.s1': '45 is 40 + 5.',
-  'mistake.N2.s2': 'To make 40, subtract 5 from 50 (50 - 5).',
+  'mistake.N2.s2': 'To make 40, take 10 away from 50: XL.',
   'mistake.N2.s3': 'So 45 is written as VL.',
   'mistake.N2.s4': '45 = VL.',
   'mistake.N2.fine1': 'That is right: breaking 45 into tens and ones is correct.',
+  'mistake.N2.fine2': 'That is right: 40 is 50 - 10, written XL.',
   'mistake.N2.fine4': 'This just writes down the earlier step. Look earlier.',
   'mistake.N2.found':
     'Here. The symbols V, L, D are never subtracted! To make 40, subtract X from L (XL). So 45 is XLV, not VL.',

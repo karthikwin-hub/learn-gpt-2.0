@@ -455,7 +455,8 @@ export const dictionary: Record<string, string> = {
   'growing.sideUp': '+1 পাশ',
   'growing.gnomonLabel': 'L-কিনার: +{gnomon} টাইল',
   'growing.totalTilesLabel': 'মোট: {total} টাইল',
-  'growing.contrastNote': 'তুলনা: ত্রিভুজ +n; বর্গ n×n।',
+  'growing.contrastNote':
+    'তুলনা: ত্রিভুজ সংখ্যা প্রতি ধাপে +n বাড়ে; বর্গ সংখ্যা বিজোড় সংখ্যা 1, 3, 5, 7… যোগ করে n × n-এ পৌঁছায়।',
   'growing.amitTrapLong': 'অমিতের ফাঁদ: 5×2=10 ভুল! 5×5=25 টাইল!',
   'growing.tableStage': 'স্তর (n)',
   'growing.tableTri': 'ত্রিভুজ T_n',

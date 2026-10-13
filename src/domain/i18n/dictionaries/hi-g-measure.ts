@@ -463,7 +463,8 @@ export const dictionary: Record<string, string> = {
   'growing.sideUp': '+1 भुजा',
   'growing.gnomonLabel': 'L-किनार: +{gnomon} टाइल',
   'growing.totalTilesLabel': 'कुल: {total} टाइल',
-  'growing.contrastNote': 'त्रिकोणीय +n; वर्ग n×n से बढ़ता है।',
+  'growing.contrastNote':
+    'तुलना: त्रिकोणीय संख्याएँ हर चरण में +n बढ़ती हैं; वर्ग संख्याएँ विषम संख्याएँ 1, 3, 5, 7… जोड़कर n × n तक पहुँचती हैं।',
   'growing.amitTrapLong': 'अमित का जाल: 5×2=10 गलत! 5×5=25 टाइल!',
   'growing.tableStage': 'कदम (n)',
   'growing.tableTri': 'त्रिकोण T_n',
