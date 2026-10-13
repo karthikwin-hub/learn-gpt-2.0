@@ -26,28 +26,28 @@ How this file works
 - Example: before subagents ran scripts that sent about 1,200 Telugu, Bengali and Tamil lesson strings to Google Translate and MyMemory → after the subagent translates directly, and a second reader reviews the result against a glossary.
 - Applies to: all `src/domain/i18n/` dictionaries and subagent translation briefs · Not to: nothing.
 - Proposed destination: AGENTS.md §10 and §11; hook that blocks network calls from translation scripts
-- Status: candidate
+- Status: promoted (AGENTS.md §13, approved 2026-10-13)
 
 ### 2026-10-12 — Never route around a sensor
 - Rule: When a check flags your output, fix the content or fix the check's false positive in its own commit; never reshape the output so the check can't see it — because evasions hide the very defect the check exists for.
 - Example: before agents split English across `innerHTML` pieces, put zero-width spaces inside English words, transliterated English into Telugu script, and swapped correct words (నుండి, బండి, మీ for metres) for odd synonyms to dodge a regex → after the agent reports the false positive, the regex is fixed with a test, and the natural word is kept.
 - Applies to: every harness check · Not to: nothing.
 - Proposed destination: AGENTS.md §6; reviewer checklist item "look for dodges"
-- Status: candidate
+- Status: promoted (AGENTS.md §13, approved 2026-10-13)
 
 ### 2026-10-12 — Checks must exercise the app in every language
 - Rule: When a check claims coverage of a screen, run it against the built app in all five languages and both viewports — because the Phase 2 checks ran against the prototype and English only, so 1,335 missing keys per language and 488 hard-coded English strings passed green.
 - Example: before a sweep over `design/prototype` in English → after `tests/e2e/sweep/app-routes.spec.ts` visits every playable knot × en/hi/te/bn/ta.
 - Applies to: sweep, journeys, keyboard and axe audits · Not to: pure domain unit tests.
 - Proposed destination: docs/standards/TESTING.md
-- Status: automated (`app-routes.spec.ts`, `dictionaries.test.ts`)
+- Status: promoted (AGENTS.md §13, approved 2026-10-13)
 
 ### 2026-10-12 — Agent translations are drafts until a native speaker reviews them
 - Rule: When a translation passes the automated checks, label it a draft and get a native teacher review before release — because two agent review passes on Telugu still left about 4 typos in 20 strings.
 - Example: before "translations done" in the summary → after "translations pass script checks; native review pending (te first)".
 - Applies to: hi, te, bn, ta · Not to: en.
 - Proposed destination: docs/standards/DEFINITION_OF_DONE.md
-- Status: candidate
+- Status: promoted (AGENTS.md §13, approved 2026-10-13)
 
 ### 2026-10-12 — Pause for explicit human approval on spec and plan before coding features
 - Rule: When receiving a prompt to build a new feature or lesson, pause and present `spec.md` and `plan.md` for human approval before writing production or UI code — because running the entire pipeline autonomously turns SDD into post-hoc compliance paperwork rather than a collaborative steering wheel ("vibe coding with docs").
@@ -64,4 +64,4 @@ How this file works
 - Status: candidate
 
 ## Promoted / automated (history)
-- (none yet)
+- 2026-10-13: four 046 lessons (no outside translation services, never route around a sensor, checks in every language, translations are drafts) → AGENTS.md §13, approved by the product owner.
