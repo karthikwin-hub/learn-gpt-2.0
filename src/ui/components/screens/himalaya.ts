@@ -18,7 +18,8 @@ import { tween } from '../../util/dom';
 import { readStep } from '../../util/bench';
 import { actionButton, lokaFrame, mistakeRow, orderPad, type Choice } from '../../util/loka-bench';
 import { enterThread } from '../../util/thread';
-import { formatHeight, formatTemperature, renderClimb } from '../../diagrams/loka/himalaya';
+import { renderClimb } from '../../diagrams/loka/himalaya';
+import { formatHeight, formatTemperature } from '../../diagrams/loka/parts';
 import type { ScreenMeta } from '../app/router';
 
 /** Shown out of order so the child has to think about height. */

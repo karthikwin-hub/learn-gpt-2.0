@@ -20,3 +20,12 @@ export function house(x: number, y: number, s = 1): SVGGElement {
   );
   return g;
 }
+
+/** A temperature as the child reads it: a true minus sign and no trailing zero. */
+export function formatTemperature(c: number): string {
+  return `${c < 0 ? '−' : ''}${Math.abs(c)}\u00a0°C`;
+}
+
+export function formatHeight(m: number): string {
+  return m.toLocaleString('en-IN');
+}

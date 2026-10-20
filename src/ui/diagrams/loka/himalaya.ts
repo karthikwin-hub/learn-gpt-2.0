@@ -12,6 +12,7 @@ import {
 } from '../../../domain/world/himalaya';
 import { t } from '../../../domain/i18n/core';
 import { figLine, figPath, figRect, figSvg, figText } from '../fig';
+import { formatHeight, formatTemperature } from './parts';
 
 const GROUND = 186;
 const PER_M = 150 / TOP_HEIGHT;
@@ -20,15 +21,6 @@ const GREEN = '#A8B86A';
 const PEAK_X: Record<HimalayanRange, number> = { shivalik: 110, himachal: 196, himadri: 282 };
 
 const yOf = (h: number) => GROUND - h * PER_M;
-
-/** A temperature as the child reads it: a true minus sign and no trailing zero. */
-export function formatTemperature(c: number): string {
-  return `${c < 0 ? '−' : ''}${Math.abs(c)}\u00a0°C`;
-}
-
-export function formatHeight(m: number): string {
-  return m.toLocaleString('en-IN');
-}
 
 export interface ClimbOptions {
   /** Height of the climber in metres; no line when left out. */
