@@ -20,5 +20,5 @@ Verify for every knot task: `npx vitest run src/domain/world src/domain/lesson s
 - [x] T016 US14 C8 Rivers of India (`#rivers`)
 - [x] T017 US15 C9 Unity in diversity (`#unity`)
 - [x] T018 Docs: `WORLD_RULES.md`, `CURRICULUM_PHASE2.md` statuses
-- [ ] T019 Full verify, screenshots at 360 and 390 px, independent review, fixes
-- [ ] T020 Draft PR, `checks.md`, teacher fact list
+- [x] T019 Full verify, screenshots at 360 and 390 px, independent review, fixes
+- [x] T020 Draft PR, `checks.md`, teacher fact list

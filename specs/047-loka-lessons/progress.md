@@ -22,6 +22,8 @@ Branch `feat/047-loka-lessons` from `main@4f77dc0`. Dev server for checks: `npx 
 - T016 C8 (`#rivers`): `world/rivers.ts` (six Ganga places with rounded heights 4,000/300/100/80/50/0 m; snow-fed vs rain-fed levels by month), `diagrams/loka/rivers.ts` (Ganga map flowing east; two-river year chart reusing `farms.m<n>`), five languages, `047-c8.spec.ts`.
 - T017 C9 (`#unity`): `world/unity.ts` (four mid-January harvest festivals and their states; five greetings with BCP 47 tags; 22 scheduled languages), `diagrams/loka/unity.ts` (greeting cards, 3+2 so each script is readable), `Choice.lang` in `loka-bench.ts` so greeting chips carry their own `lang`, five languages, `047-c9.spec.ts`.
 - T018 docs: `WORLD_RULES.md` lists the 15 new world modules and five known values; `CURRICULUM_PHASE2.md` §5 marks the 15 knots **P2**.
+- T019 full verify 12/12 PASS at `96899e7`; screenshot sweep (bn 390 px, te 360 px) clean; reviewer: Q3 step-2 restore fixed (`96899e7`), minors skipped (see PR).
+- T020 `checks.md` with the teacher fact list; draft PR opened.
 - Note: SVG text does not wrap; long picture captions go in the `aria-label` only.
 - Note: after a miss the chosen chip stays chosen; tapping it again un-chooses it (tests check `aria-pressed`).
 
@@ -35,4 +37,4 @@ Branch `feat/047-loka-lessons` from `main@4f77dc0`. Dev server for checks: `npx 
 7. `tests/acceptance/047-<k>.spec.ts`; run sweep/journey/keyboard `-g "<K>:|<route>"` (a bare `-g E2` also matches unrelated tests); screenshots with `node .agent/tmp/shots.mjs <K> <route> <lang>` (WRONG=<index>).
 
 ## Next action
-T019 full `verify.py`, screenshot sweep at 360 and 390 px, independent review and fixes; then T020 draft PR and `checks.md`.
+Human: native-speaker review (te first) and teacher fact check in `checks.md`; then decide on merge. No agent work pending.
