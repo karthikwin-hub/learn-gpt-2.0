@@ -441,4 +441,81 @@ export const dictionary: Record<string, string> = {
   'explain.C4.hint': 'Think of the white peaks: where does the snow stay all year?',
   'know.C4':
     'The Himalaya rise in three ranges, Shivalik, Himachal and Himadri; the higher you climb, the colder it gets, about 6.5 °C for every 1,000 metres.',
+
+  /* C5 */
+  'prashna.C5.q': 'The northern plains of India have deep, soft soil. Where did it come from?',
+  'prashna.C5.c1': 'It was always there',
+  'prashna.C5.c2': 'Rivers carried it down from the mountains',
+  'prashna.C5.c3': 'The wind blew it in from the sea',
+  'prashna.C5.a':
+    'Rivers carried it down from the mountains. For thousands of years the Ganga, the Indus, the Brahmaputra and their branches brought silt from the Himalaya and dropped it, layer on layer, building the plains.',
+  'bodha.C5.what':
+    'The northern [[plain|plains]] are the wide, flat lands between the Himalaya and the plateau, where the Ganga and other big rivers flow. Their soil is [[silt|silt]] that the rivers brought down from the mountains.',
+  'bodha.C5.can':
+    'You can explain how rivers built the northern plains, and why their soil is good for farming.',
+  'bodha.C5.idea':
+    'Rain washes soil off the mountains, and the river carries it as silt. When the river [[flood|floods]], the water spreads out, slows down and drops the silt. Flood after flood, layer on layer, the low land filled up into a flat plain.',
+  'bodha.C5.why':
+    'This is why the northern plains have some of the best farmland in India, and why so many people live there. Rivers do not only wash soil away: they also bring it.',
+  'bodha.C5.example': 'One flood season on the plain.',
+  'bodha.C5.example1':
+    'The monsoon rain falls on the Himalaya, and the river turns muddy with silt.',
+  'bodha.C5.example2': 'The river floods, spreads over the fields and slows down.',
+  'bodha.C5.example3':
+    'When the water goes, a thin new layer of silt is left on the fields, ready for crops.',
+  'bodha.C5.where':
+    'Fields of wheat, rice and sugarcane cover the plains of Punjab, Uttar Pradesh, Bihar and West Bengal. After a flood, farmers there find fresh silt on their land.',
+  'bodha.C5.sutra':
+    'Rivers carry silt down, and floods spread it out: layer on layer, they built the flat, rich northern plains.',
+  'gloss.silt': 'Fine bits of soil and rock that moving water carries and then drops.',
+  'gloss.silt.en': 'silt',
+  'gloss.flood': 'When a river rises over its banks and spreads across the land.',
+  'gloss.flood.en': 'flood',
+  'plains.title': 'Build the plains',
+  'plains.mountains': 'Himalaya',
+  'plains.low': 'Low land',
+  'plains.silt': 'Silt',
+  'plains.moving': 'Rain on the mountains; the river carries silt down to the low land.',
+  'plains.layers': 'Layers of silt in the low land: {n} of 4.',
+  'plains.flat': 'A flat plain of silt, with crops and a house.',
+  'plains.s1': 'Let it rain on the mountains and watch what the river carries.',
+  'plains.showMe': 'Let it rain',
+  'plains.s1done':
+    'The rain ran down the slopes, and the river carried bits of soil and rock, called silt, down to the low land.',
+  'plains.toFloods': 'Send floods',
+  'plains.s2': 'In the rainy season the river floods. Send floods until the low land is full.',
+  'plains.flood': 'Send a flood',
+  'plains.layered': 'Flood {n}: the water spreads out, slows down and drops a layer of silt.',
+  'plains.s2done': 'Four floods, four layers: the low land is now a flat plain of soft, rich soil.',
+  'plains.s3': 'Put the five links of the chain in order.',
+  'plains.link.rain': 'Rain falls on the mountains',
+  'plains.link.pickup': 'The river picks up soil',
+  'plains.link.flood': 'A flood spreads it out',
+  'plains.link.layer': 'A new layer of silt settles',
+  'plains.link.crops': 'Crops grow well',
+  'plains.chainHint': 'Start where the water starts: in the sky. Then follow the soil.',
+  'plains.s3done':
+    'Rain, river, flood, layer, crops: that is how rivers built the northern plains.',
+  'mistake.C5.intro': 'Om is watching a river in flood. One step slipped. Which one?',
+  'mistake.C5.s1': 'Om sees a muddy river in flood.',
+  'mistake.C5.s2': 'The river is carrying soil with it.',
+  'mistake.C5.s3': 'So rivers only take soil away from the land.',
+  'mistake.C5.s4': 'So the land beside the river must be poor for farming.',
+  'mistake.C5.fine1': 'This is true: flood water is often muddy.',
+  'mistake.C5.fine2': 'This is true: the mud is soil.',
+  'mistake.C5.fine4': 'This follows from the step before. Look earlier.',
+  'mistake.C5.found':
+    'Here. The river takes soil from the mountains, but when it floods it drops that soil on the plains. River land gets a fresh layer of silt, so it is rich, not poor.',
+  'mistake.C5.eq': '<s>river → soil gone</s>   flood → <r>new layer of silt</r>',
+  'explain.C5.s':
+    'The northern plains were built by {0} that dropped silt. This soil is {1} for farming.',
+  'explain.C5.rivers': 'rivers',
+  'explain.C5.winds': 'winds',
+  'explain.C5.people': 'people',
+  'explain.C5.good': 'good',
+  'explain.C5.useless': 'useless',
+  'explain.C5.salty': 'salty',
+  'explain.C5.hint': 'Think of the muddy flood: what did it leave on the fields?',
+  'know.C5':
+    'Rivers carried silt down from the Himalaya, and floods spread it in layers, building the flat, fertile northern plains.',
 };

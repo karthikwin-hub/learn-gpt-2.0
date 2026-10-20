@@ -18,3 +18,4 @@ export * from './states';
 export * from './farming';
 export * from './settlements';
 export * from './himalaya';
+export * from './plains';

@@ -9,6 +9,7 @@ import type { SettlementSize } from '../../domain/world/settlements';
 import { renderLand } from '../diagrams/loka/cities';
 import { renderYear } from '../diagrams/loka/farms';
 import { renderClimb } from '../diagrams/loka/himalaya';
+import { renderPlain } from '../diagrams/loka/plains';
 import type { HimalayanRange } from '../../domain/world/himalaya';
 import { renderIndia } from '../diagrams/loka/states';
 import type { VisualsTable } from './types';
@@ -43,6 +44,19 @@ const C4_STOPS: readonly (readonly [number | null, HimalayanRange | null])[] = [
 ];
 
 export const LOKA_BHARATA: VisualsTable = {
+  C5: {
+    prashna: () => renderPlain({ layers: 4 }),
+    cards: {
+      what: () => renderPlain({ layers: 4, crops: true }),
+      idea: () => renderPlain({ layers: 2 }),
+      why: () => renderPlain({ layers: 4, crops: true }),
+      example: (step) =>
+        step === 1 ? renderPlain({ silt: 0.4 }) : renderPlain({ layers: step === 3 ? 4 : 3 }),
+      where: () => renderPlain({ layers: 4, crops: true }),
+    },
+    mistake: (reveal) =>
+      reveal ? renderPlain({ layers: 4, crops: true }) : renderPlain({ silt: 0.7 }),
+  },
   C4: {
     prashna: () => renderClimb(),
     cards: {
