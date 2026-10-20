@@ -14,6 +14,7 @@ Branch `feat/047-loka-lessons` from `main@4f77dc0`. Dev server for checks: `npx 
 - T008 E3 (`#landforms`): `world/landforms.ts`, `diagrams/loka/landforms.ts` (rising section, height-and-top shape), five languages, `047-e3.spec.ts`. Fixed broken te/bn Loka knot titles (e.g. te "ఆభార" for భారత, bn "মেসা" for মালভূমি).
 - T009 C1 (`#states`): `world/states.ts` (36 regions, capitals via strings, main language, symmetric borders, grid tile), `diagrams/loka/states.ts` (schematic tile map, not to scale), native `<select>` for "my state", five languages, `047-c1.spec.ts`. Teacher check: AP capital Amaravati, A&N capital Sri Vijaya Puram, Uttarakhand Dehradun, HP–UP border left out.
 - T010 C2 (`#farms`): `world/farming.ts` (kharif/rabi/zaid sowing months, six crops, three fields), `diagrams/loka/farms.ts` (year wheel with legend), five languages, `047-c2.spec.ts`. te uses సంక్రాంతి and bn adds নবান্ন as local harvest festivals.
+- T011 C3 (`#cities`): `world/settlements.ts` (three needs: water, flat land, travel; size by count; four cities), `diagrams/loka/cities.ts` (land from above, six numbered sites), five languages, `047-c3.spec.ts`. Teacher check: Bengaluru about 900 m.
 - Note: SVG text does not wrap; long picture captions go in the `aria-label` only.
 - Note: after a miss the chosen chip stays chosen; tapping it again un-chooses it (tests check `aria-pressed`).
 
@@ -27,4 +28,4 @@ Branch `feat/047-loka-lessons` from `main@4f77dc0`. Dev server for checks: `npx 
 7. `tests/acceptance/047-<k>.spec.ts`; run sweep/journey/keyboard `-g "<K>:|<route>"` (a bare `-g E2` also matches unrelated tests); screenshots with `node .agent/tmp/shots.mjs <K> <route> <lang>` (WRONG=<index>).
 
 ## Next action
-T011 C3 Cities of India (`#cities`).
+T012 C4 The Himalaya (`#himalaya`).

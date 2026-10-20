@@ -208,7 +208,7 @@ export const SECTIONS: Section[] = [
         knots: [
           k('C1', { prashna: true, bench: bench('states') }),
           k('C2', { prashna: true, bench: bench('farms') }),
-          k('C3'),
+          k('C3', { prashna: true, bench: bench('cities') }),
           k('C4'),
           k('C5'),
           k('C6'),

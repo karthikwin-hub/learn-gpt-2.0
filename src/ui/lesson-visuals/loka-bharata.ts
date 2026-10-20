@@ -5,6 +5,8 @@
 import { t } from '../../domain/i18n/core';
 import { BIGGEST_CITY_EXAMPLE, EXAMPLE_REGION, regionOf } from '../../domain/world/states';
 import { FIELDS } from '../../domain/world/farming';
+import type { SettlementSize } from '../../domain/world/settlements';
+import { renderLand } from '../diagrams/loka/cities';
 import { renderYear } from '../diagrams/loka/farms';
 import { renderIndia } from '../diagrams/loka/states';
 import type { VisualsTable } from './types';
@@ -28,7 +30,28 @@ const c1Example = (step: number) => {
 /** The worked example's field through one year: nothing yet, then rice, wheat and watermelon. */
 const C2_STEPS = [null, ...FIELDS] as const;
 
+const C3_GROWTH: readonly (SettlementSize | null)[] = [null, 'village', 'town', 'city'];
+
 export const LOKA_BHARATA: VisualsTable = {
+  C3: {
+    prashna: () => renderLand({ grown: { riverbank: 'city' } }),
+    cards: {
+      what: () =>
+        renderLand({ grown: { valley: 'village', crossroads: 'town', riverbank: 'city' } }),
+      idea: () => renderLand({ grown: { riverbank: 'city' }, chosen: 'riverbank' }),
+      why: () => renderLand({ grown: { hilltop: 'none', riverbank: 'city' }, chosen: 'hilltop' }),
+      example: (step) => {
+        const size = C3_GROWTH[step] ?? null;
+        return renderLand({ grown: size ? { riverbank: size } : {}, chosen: 'riverbank' });
+      },
+      where: () =>
+        renderLand({ grown: { crossroads: 'town', lakeside: 'town', riverbank: 'city' } }),
+    },
+    mistake: (reveal) =>
+      reveal
+        ? renderLand({ grown: { hilltop: 'none', riverbank: 'city' }, chosen: 'riverbank' })
+        : renderLand({ grown: { hilltop: 'none' }, chosen: 'hilltop' }),
+  },
   C2: {
     prashna: () => renderYear({ month: 6 }),
     cards: {
