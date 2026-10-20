@@ -784,4 +784,84 @@ export const dictionary: Record<string, string> = {
   'rivers.p.varanasi': 'Varanasi',
   'rivers.p.patna': 'Patna',
   'rivers.p.sundarbans': 'Sundarbans',
+
+  /* C9 */
+  'prashna.C9.q':
+    'Pongal, Lohri, Bihu and Uttarayan all come in the middle of January. What do they celebrate?',
+  'prashna.C9.c1': 'Four quite different things',
+  'prashna.C9.c2': 'The harvest and the Sun',
+  'prashna.C9.c3': 'The start of the school year',
+  'prashna.C9.a':
+    'The harvest and the Sun. In mid-January the Sun begins its journey north and the days start to grow longer, and farmers give thanks for the harvest. Tamil Nadu, Punjab, Assam and Gujarat each give this moment their own name.',
+  'bodha.C9.what':
+    'India is a land of many languages, foods, clothes and festivals. The Constitution lists 22 [[scheduled-language|scheduled languages]], and hundreds more are spoken. No one language is spoken by everyone, and yet people across India share a great deal: this is [[unity-in-diversity|unity in diversity]].',
+  'bodha.C9.can':
+    'You can name harvest festivals from different states, and greet a friend in more than one Indian language.',
+  'bodha.C9.idea':
+    'Different does not mean separate. In the same week of January, Tamil Nadu celebrates Pongal, Punjab Lohri, Assam Bihu and Gujarat Uttarayan: four names for one moment, when the harvest is in and the Sun turns north. Languages share words too: namaste, namaskaram and nomoshkar come from one root.',
+  'bodha.C9.why':
+    'Knowing this helps you make friends anywhere in India, enjoy their festivals and food, and see that your own way is one good way among many.',
+  'bodha.C9.example': 'One week in January, across India.',
+  'bodha.C9.example1':
+    'In Punjab, families light a bonfire for Lohri and share peanuts and sweets made with jaggery.',
+  'bodha.C9.example2':
+    'In Tamil Nadu, new rice is boiled with milk and jaggery until it bubbles over: that is Pongal.',
+  'bodha.C9.example3':
+    'In Gujarat the sky fills with kites for Uttarayan, and in Assam people feast for Bihu.',
+  'bodha.C9.where':
+    'Look at a rupee note: on the back, a panel writes its value in 15 languages. Your own state may call the January festival Sankranti, Makar Sankranti or Maghi.',
+  'bodha.C9.sutra':
+    'India has many languages and festivals, and they share a great deal: different names can celebrate the same harvest.',
+  'gloss.scheduled-language': 'One of the 22 languages listed in the Constitution of India.',
+  'gloss.scheduled-language.en': 'scheduled language',
+  'gloss.unity-in-diversity': 'Being one people while keeping many languages, foods and festivals.',
+  'gloss.unity-in-diversity.en': 'unity in diversity',
+  'unity.title': 'One harvest, many names',
+  'unity.january': 'Mid-January',
+  'unity.cards': 'Five greetings, each in its own script.',
+  'unity.s1': 'Light up the harvest festivals of mid-January.',
+  'unity.showMe': 'Light up January',
+  'unity.s1done':
+    'Four states light up in the same week. Each festival thanks the Sun and celebrates the harvest.',
+  'unity.toMatch': 'Match the festivals',
+  'unity.s2': 'Match each festival to its state.',
+  'unity.hint.pongal': 'Pongal is the harvest festival of the Tamil people, in the far south.',
+  'unity.hint.lohri': 'Lohri bonfires are lit in the north-west, in the land of five rivers.',
+  'unity.hint.bihu': 'Bihu is danced in the valley of the Brahmaputra, in the north-east.',
+  'unity.hint.uttarayan':
+    'Uttarayan fills the sky with kites in the west, where Gujarati is spoken.',
+  'unity.s2done': 'Four festivals, four states, one harvest.',
+  'unity.s3': 'Five greetings in five scripts. Match each one to its language.',
+  'unity.greetHint': 'Look closely at the letters. Each language has its own script.',
+  'unity.greeted': 'Yes, that is {language}.',
+  'unity.s3done':
+    'Five greetings, five scripts. Namaste, namaskaram and nomoshkar even share one root.',
+  'mistake.C9.intro': 'Rohan is thinking about two festivals. One step slipped. Which one?',
+  'mistake.C9.s1':
+    'Rohan celebrates Lohri in Amritsar; his friend Meena celebrates Pongal in Chennai.',
+  'mistake.C9.s2': 'They speak different languages, Punjabi and Tamil.',
+  'mistake.C9.s3': 'People who speak different languages share nothing.',
+  'mistake.C9.s4': 'So Lohri and Pongal can have nothing in common.',
+  'mistake.C9.fine1': 'This is fine: both are real festivals in those cities.',
+  'mistake.C9.fine2': 'This is true: Punjabi and Tamil are different languages.',
+  'mistake.C9.fine4': 'This follows from the step before. Look earlier.',
+  'mistake.C9.found':
+    'Here. Different languages do not mean nothing is shared. Lohri and Pongal come in the same week of January, and both thank the Sun and celebrate the harvest, with a fire, sweets and the new crop.',
+  'mistake.C9.eq': '<s>different languages → nothing shared</s>   same week → <r>same harvest</r>',
+  'explain.C9.s':
+    'India has {0} scheduled languages. Different festivals can celebrate the {1} harvest.',
+  'explain.C9.22': '22',
+  'explain.C9.2': '2',
+  'explain.C9.1000': '1000',
+  'explain.C9.same': 'same',
+  'explain.C9.wrong': 'wrong',
+  'explain.C9.missing': 'missing',
+  'explain.C9.hint':
+    'Think of the Constitution, and of what Pongal and Lohri both give thanks for.',
+  'know.C9':
+    'India has 22 scheduled languages and no one language for all; different festivals like Pongal, Lohri, Bihu and Uttarayan celebrate the same harvest.',
+  'unity.f.pongal': 'Pongal',
+  'unity.f.lohri': 'Lohri',
+  'unity.f.bihu': 'Bihu',
+  'unity.f.uttarayan': 'Uttarayan',
 };

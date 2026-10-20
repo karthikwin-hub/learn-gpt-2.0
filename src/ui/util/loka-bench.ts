@@ -62,6 +62,8 @@ export function mistakeRow(knotId: string): HTMLElement {
 export interface Choice {
   id: string;
   text: string;
+  /** BCP 47 tag when the text is in another language than the screen. */
+  lang?: string;
 }
 
 /** One row of choices; `pressed` marks the current one (for toggles). */
@@ -110,6 +112,7 @@ export function pairPad(p: PairPad): HTMLElement {
         type: 'button',
         'data-focus': `item:${o.id}`,
         'aria-pressed': String(p.selected === o.id),
+        lang: o.lang,
         text: o.text,
         onclick: () => p.onSelect(p.selected === o.id ? null : o.id),
       })
@@ -132,7 +135,9 @@ export function pairPad(p: PairPad): HTMLElement {
         },
         [
           el('span', { class: 'loka-place-name', text: pl.text }),
-          ...(p.placed[pl.id] || []).map((c) => el('span', { class: 'loka-placed', text: c.text })),
+          ...(p.placed[pl.id] || []).map((c) =>
+            el('span', { class: 'loka-placed', lang: c.lang, text: c.text })
+          ),
         ]
       )
     )

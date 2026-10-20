@@ -9,6 +9,8 @@ import type { SettlementSize } from '../../domain/world/settlements';
 import { renderLand } from '../diagrams/loka/cities';
 import { renderYear } from '../diagrams/loka/farms';
 import { renderClimb } from '../diagrams/loka/himalaya';
+import { renderGreetings } from '../diagrams/loka/unity';
+import { FESTIVALS, FESTIVAL_REGION, GREETINGS } from '../../domain/world/unity';
 import { renderFlow, renderGanga } from '../diagrams/loka/rivers';
 import { GANGA_PLACES } from '../../domain/world/rivers';
 import { renderPlateau } from '../diagrams/loka/plateau';
@@ -61,7 +63,33 @@ const C7_ALL_EAST = { godavari: 1, krishna: 1, kaveri: 1 } as const;
 /** The worked example: the source, the edge of the plains, then all the way to the sea. */
 const C8_REACHED = [0, 1, 2, 6] as const;
 
+const C9_FESTIVAL_STATES = FESTIVALS.map((f) => FESTIVAL_REGION[f]);
+const C9_LANGUAGES = GREETINGS.map((g) => g.language);
+/** The worked example lights Punjab, then Tamil Nadu, then Gujarat and Assam. */
+const C9_EXAMPLE: readonly (readonly string[])[] = [
+  [],
+  [FESTIVAL_REGION.lohri],
+  [FESTIVAL_REGION.lohri, FESTIVAL_REGION.pongal],
+  C9_FESTIVAL_STATES,
+];
+
 export const LOKA_BHARATA: VisualsTable = {
+  C9: {
+    prashna: () => renderIndia({ found: C9_FESTIVAL_STATES, caption: t('unity.january') }),
+    cards: {
+      what: () => renderGreetings(),
+      idea: () => renderIndia({ found: C9_FESTIVAL_STATES, caption: t('unity.january') }),
+      why: () => renderGreetings({ matched: C9_LANGUAGES }),
+      example: (step) =>
+        renderIndia({ found: C9_EXAMPLE[step] ?? [], caption: t('unity.january') }),
+      where: () => renderGreetings({ matched: C9_LANGUAGES }),
+    },
+    mistake: (reveal) =>
+      renderIndia({
+        found: [FESTIVAL_REGION.pongal, FESTIVAL_REGION.lohri],
+        caption: reveal ? t('unity.january') : undefined,
+      }),
+  },
   C8: {
     prashna: () => renderGanga({ drawn: 1 }),
     cards: {
