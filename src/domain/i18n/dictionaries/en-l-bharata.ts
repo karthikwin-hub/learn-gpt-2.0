@@ -614,4 +614,92 @@ export const dictionary: Record<string, string> = {
   'desert.h.15': '3 in the afternoon',
   'desert.h.18': '6 in the evening',
   'desert.h.21': '9 at night',
+
+  /* C7 */
+  'prashna.C7.q':
+    'The Godavari begins only about 80 km from the Arabian Sea. Which sea does it reach?',
+  'prashna.C7.c1': 'The Arabian Sea, the nearest one',
+  'prashna.C7.c2': 'The Bay of Bengal',
+  'prashna.C7.c3': 'It never reaches a sea',
+  'prashna.C7.a':
+    'The Bay of Bengal. The Deccan plateau is high in the west and slopes down to the east, so the Godavari runs nearly 1,500 km east across India, downhill all the way.',
+  'bodha.C7.what':
+    'The Deccan [[plateau|plateau]] is the high, flat land that makes up most of southern India. Its western edge, the [[western-ghats|Western Ghats]], is high; from there the land slopes gently down to the east.',
+  'bodha.C7.can':
+    'You can say which way most rivers of the plateau flow, and name the two big rivers that flow the other way.',
+  'bodha.C7.idea':
+    'Water always flows downhill. The Deccan tilts down to the east, so the Godavari, the Krishna and the Kaveri start near the west coast but cross the whole plateau to the Bay of Bengal. The Narmada and the Tapi flow west, because they run in [[rift-valley|rift valleys]] that slope west.',
+  'bodha.C7.why':
+    'This is why the big river deltas of the south, with their rich rice fields, are on the east coast, and why the short rivers of the west coast rush steeply down the Ghats.',
+  'bodha.C7.example': 'Following the Krishna.',
+  'bodha.C7.example1':
+    'It starts at Mahabaleshwar in the Western Ghats, not far from the Arabian Sea.',
+  'bodha.C7.example2':
+    'It flows east, downhill, across Maharashtra, Karnataka, Telangana and Andhra Pradesh.',
+  'bodha.C7.example3': 'It reaches the Bay of Bengal in a wide, rich delta.',
+  'bodha.C7.where':
+    'On the east coast, the deltas of the Godavari, the Krishna and the Kaveri are full of rice fields. On the west coast, the Narmada reaches the sea near Bharuch in Gujarat.',
+  'bodha.C7.sutra':
+    'Rivers follow the slope, not the nearest sea. The Deccan tilts east, so most of its rivers flow east; the Narmada and the Tapi flow west, in rift valleys.',
+  'gloss.western-ghats': 'The long line of high hills along the west coast of India.',
+  'gloss.western-ghats.en': 'Western Ghats',
+  'gloss.rift-valley':
+    'A long, low valley where the land has cracked and sunk between two lines of hills.',
+  'gloss.rift-valley.en': 'rift valley',
+  'plateau.title': 'Rivers of the Deccan',
+  'plateau.map':
+    'A map of the peninsula: the Western Ghats along the west coast, and the land sloping down to the east.',
+  'plateau.high': 'High',
+  'plateau.low': 'Low',
+  'plateau.sea.arabian': 'Arabian Sea',
+  'plateau.sea.bengal': 'Bay of Bengal',
+  'plateau.s1': 'Pour rain on the Western Ghats and watch which way it runs.',
+  'plateau.showMe': 'Pour the rain',
+  'plateau.s1done':
+    'The rain ran east, down the tilt of the plateau, all the way to the Bay of Bengal.',
+  'plateau.toSeas': 'Choose the seas',
+  'plateau.s2': 'Three rivers start near the west coast. Choose the sea each one reaches.',
+  'plateau.which': 'Which sea does the {river} reach?',
+  'plateau.why.bengal':
+    'The {river} starts near the Arabian Sea, but the plateau slopes down to the east. Water flows downhill, so it runs east.',
+  'plateau.why.arabian':
+    'The {river} runs in a rift valley, a long crack in the land that slopes west, so it flows west.',
+  'plateau.ran': 'The {river} reaches the {sea}.',
+  'plateau.s2done':
+    'Godavari, Krishna, Kaveri: all three start near the west coast and run east to the Bay of Bengal.',
+  'plateau.s3': 'Two rivers flow the other way. Choose the sea for each.',
+  'plateau.s3done':
+    'The Narmada and the Tapi flow west, through rift valleys. Rivers follow the slope, not the nearest sea.',
+  'mistake.C7.intro': 'Sana is working out where the Godavari goes. One step slipped. Which one?',
+  'mistake.C7.s1': 'Sana reads that the Godavari starts near Nashik.',
+  'mistake.C7.s2': 'Nashik is only about 80 km from the Arabian Sea.',
+  'mistake.C7.s3': 'A river flows to the sea nearest its start.',
+  'mistake.C7.s4': 'So the Godavari must flow west, into the Arabian Sea.',
+  'mistake.C7.fine1': 'This is true: it starts at Trimbak, near Nashik.',
+  'mistake.C7.fine2': 'This is true: Nashik is close to the west coast.',
+  'mistake.C7.fine4': 'This follows from the step before. Look earlier.',
+  'mistake.C7.found':
+    'Here. A river flows downhill, wherever that leads. The Deccan plateau slopes down to the east, so the Godavari runs nearly 1,500 km across India to the Bay of Bengal.',
+  'mistake.C7.eq': '<s>nearest sea</s>   downhill → <r>Bay of Bengal</r>',
+  'explain.C7.s':
+    'The Deccan plateau slopes down to the {0}. Rivers flow {1}, not to the nearest sea.',
+  'explain.C7.east': 'east',
+  'explain.C7.west': 'west',
+  'explain.C7.north': 'north',
+  'explain.C7.downhill': 'downhill',
+  'explain.C7.uphill': 'uphill',
+  'explain.C7.sideways': 'sideways',
+  'explain.C7.hint': 'Think of the rain on the Western Ghats: which way did it run?',
+  'know.C7':
+    'The Deccan plateau tilts down to the east, so the Godavari, Krishna and Kaveri flow east to the Bay of Bengal; the Narmada and Tapi flow west, in rift valleys.',
+  'plateau.r.godavari': 'Godavari',
+  'plateau.flows.godavari': 'The Godavari flows east to the Bay of Bengal.',
+  'plateau.r.krishna': 'Krishna',
+  'plateau.flows.krishna': 'The Krishna flows east to the Bay of Bengal.',
+  'plateau.r.kaveri': 'Kaveri',
+  'plateau.flows.kaveri': 'The Kaveri flows east to the Bay of Bengal.',
+  'plateau.r.narmada': 'Narmada',
+  'plateau.flows.narmada': 'The Narmada flows west to the Arabian Sea.',
+  'plateau.r.tapi': 'Tapi',
+  'plateau.flows.tapi': 'The Tapi flows west to the Arabian Sea.',
 };

@@ -9,6 +9,7 @@ import type { SettlementSize } from '../../domain/world/settlements';
 import { renderLand } from '../diagrams/loka/cities';
 import { renderYear } from '../diagrams/loka/farms';
 import { renderClimb } from '../diagrams/loka/himalaya';
+import { renderPlateau } from '../diagrams/loka/plateau';
 import { renderDay } from '../diagrams/loka/desert';
 import type { DesertSeason } from '../../domain/world/desert';
 import { renderPlain } from '../diagrams/loka/plains';
@@ -53,7 +54,25 @@ const C6_STEPS: readonly (readonly [DesertSeason, number])[] = [
   ['winter', 6],
 ];
 
+const C7_ALL_EAST = { godavari: 1, krishna: 1, kaveri: 1 } as const;
+
 export const LOKA_BHARATA: VisualsTable = {
+  C7: {
+    prashna: () => renderPlateau({ highlight: 'godavari' }),
+    cards: {
+      what: () => renderPlateau({ rain: true }),
+      idea: () => renderPlateau({ run: { ...C7_ALL_EAST, narmada: 1, tapi: 1 }, rifts: true }),
+      why: () => renderPlateau({ run: C7_ALL_EAST }),
+      example: (step) =>
+        renderPlateau({
+          run: { krishna: step === 0 ? 0 : step === 1 ? 0.1 : step === 2 ? 0.6 : 1 },
+          highlight: 'krishna',
+        }),
+      where: () => renderPlateau({ run: { ...C7_ALL_EAST, narmada: 1 }, highlight: 'narmada' }),
+    },
+    mistake: (reveal) =>
+      renderPlateau({ run: { godavari: reveal ? 1 : 0.1 }, highlight: 'godavari' }),
+  },
   C6: {
     prashna: () => renderDay({ season: 'summer', hour: 15 }),
     cards: {

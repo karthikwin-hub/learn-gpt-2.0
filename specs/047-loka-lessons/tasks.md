@@ -16,7 +16,7 @@ Verify for every knot task: `npx vitest run src/domain/world src/domain/lesson s
 - [x] T012 US10 C4 The Himalaya (`#himalaya`)
 - [x] T013 US11 C5 The northern plains (`#plains`)
 - [x] T014 US12 C6 The Thar Desert (`#desert`)
-- [ ] T015 US13 C7 The peninsular plateau (`#plateau`)
+- [x] T015 US13 C7 The peninsular plateau (`#plateau`)
 - [ ] T016 US14 C8 Rivers of India (`#rivers`)
 - [ ] T017 US15 C9 Unity in diversity (`#unity`)
 - [ ] T018 Docs: `WORLD_RULES.md`, `CURRICULUM_PHASE2.md` statuses

@@ -212,7 +212,7 @@ export const SECTIONS: Section[] = [
           k('C4', { prashna: true, bench: bench('himalaya') }),
           k('C5', { prashna: true, bench: bench('plains') }),
           k('C6', { prashna: true, bench: bench('desert') }),
-          k('C7'),
+          k('C7', { prashna: true, bench: bench('plateau') }),
           k('C8'),
           k('C9'),
         ],

@@ -20,3 +20,4 @@ export * from './settlements';
 export * from './himalaya';
 export * from './plains';
 export * from './desert';
+export * from './plateau';
