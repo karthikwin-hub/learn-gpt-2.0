@@ -31,8 +31,9 @@ export function createRiverScreen(): ScreenMeta {
     render(view, state, params = {}) {
       enterThread('Q3', 'river', params);
       let step = readStep(params.step, state.step, 3);
+      const saved = state.active as PollutionCause[] | undefined;
       let active: PollutionCause[] =
-        step === 1 ? [] : (state.active as PollutionCause[]) || [...POLLUTION_CAUSES];
+        step === 1 ? [] : saved && !isAllClean(saved) ? saved : [...POLLUTION_CAUSES];
       const sorted = (state.sorted as Partial<Record<WasteItem, WasteBin>>) || {};
       let selected: string | null = null;
       let playing = false;

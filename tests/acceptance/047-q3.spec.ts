@@ -47,6 +47,17 @@ test.describe('047 US4 Q3 Pollution and us (#river)', () => {
     await expect(page.locator('.say')).toContainText('All four readings are clean');
   });
 
+  test('US4-AS2: coming back to step 2 after cleaning starts with every cause on again', async ({
+    page,
+  }) => {
+    await showDay(page);
+    await switchAllOff(page);
+    await page.goto('/#/river?step=2');
+    for (const c of CAUSES) {
+      await expect(page.getByRole('button', { name: c })).toHaveAttribute('aria-pressed', 'true');
+    }
+  });
+
   test('US4-AS3: a wrong bin gets a reason; all six sorted completes the bench', async ({
     page,
   }) => {
