@@ -10,3 +10,4 @@ export * from './earth';
 export * from './map';
 export * from './sources';
 export * from './civics';
+export * from './citizenship';

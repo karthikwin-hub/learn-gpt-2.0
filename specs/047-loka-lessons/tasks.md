@@ -2,11 +2,11 @@
 
 Verify for every knot task: `npx vitest run src/domain/world src/domain/lesson src/domain/i18n src/ui` and `npx playwright test tests/acceptance/047-<k>.spec.ts tests/e2e/sweep tests/e2e/journeys -g "<K>:" --project=chromium-390x844`, then `python3 scripts/harness/verify.py --fast`.
 
-- [ ] T001 Spec, plan, tasks, progress
-- [ ] T002 Shared pieces: `loka-bench.ts`, `l-loka.css`, per-thread dictionaries and visuals files wired in
-- [ ] T003 US1 I1 Clues from the past (`#dig`)
-- [ ] T004 US2 Q1 What is civics? (`#govern`)
-- [ ] T005 US3 Q2 A good citizen (`#citizen`)
+- [x] T001 Spec, plan, tasks, progress
+- [x] T002 Shared pieces: `loka-bench.ts`, `l-loka.css`, per-thread dictionaries and visuals files wired in
+- [x] T003 US1 I1 Clues from the past (`#dig`)
+- [x] T004 US2 Q1 What is civics? (`#govern`)
+- [x] T005 US3 Q2 A good citizen (`#citizen`)
 - [ ] T006 US4 Q3 Pollution and us (`#river`)
 - [ ] T007 US5 E2 Four domains (`#domains`)
 - [ ] T008 US6 E3 Landforms (`#landforms`)

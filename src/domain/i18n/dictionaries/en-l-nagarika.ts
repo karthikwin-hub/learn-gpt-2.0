@@ -99,4 +99,112 @@ export const dictionary: Record<string, string> = {
     'Look at the three levels: which one is closest to your lane? Which one looks after the whole country?',
   'know.Q1':
     'Government works at three levels, local, state and union, each with its own jobs, and the people elect all three.',
+
+  /* Q2 */
+  'prashna.Q2.q': 'Everyone may use the public park. So may you pick its flowers?',
+  'prashna.Q2.c1': 'Yes: it is everyone’s, so it is mine too',
+  'prashna.Q2.c2': 'No: using it means caring for it',
+  'prashna.Q2.c3': 'Only if nobody is watching',
+  'prashna.Q2.a':
+    'No. The park is for everyone, so you may enjoy it, and you look after it so that everyone else can enjoy it too.',
+  'bodha.Q2.what':
+    'A [[citizen|citizen]] is a person who belongs to a country. Citizens of India have [[right|rights]], things they may have or do, and [[responsibility|responsibilities]], things they do for others.',
+  'bodha.Q2.can':
+    'You will be able to pair a right with its responsibility, and choose what a good citizen does in everyday places.',
+  'bodha.Q2.idea':
+    'Every right comes with a responsibility. You have the right to go to school, so you learn. You may use the park, so you look after it.',
+  'bodha.Q2.why':
+    'A right works only when everyone does their part. If each of a thousand visitors picks one flower, the park has none left. The park belongs to all of us, so caring for it belongs to all of us too.',
+  'bodha.Q2.example': 'Three rights, and the responsibility that keeps each one working.',
+  'bodha.Q2.example1': 'Every child from 6 to 14 may go to school for free: so go, and learn.',
+  'bodha.Q2.example2': 'Everyone may have a clean place to live: so put rubbish in the bin.',
+  'bodha.Q2.example3': 'Everyone may use parks, buses and roads: so take care of them.',
+  'bodha.Q2.where':
+    'In your classroom, at the park, on the bus, at the village tap, and on voting day, when grown-ups of 18 and over choose carefully.',
+  'bodha.Q2.sutra':
+    'A right is something I may have; a responsibility is what I do so that everyone can have it too.',
+  'gloss.citizen': 'A person who belongs to a country, with its rights and its responsibilities.',
+  'gloss.citizen.en': 'citizen',
+  'gloss.right': 'Something every person may have or do, which the law protects.',
+  'gloss.right.en': 'right',
+  'gloss.responsibility':
+    'Something you do, for yourself and for others, because it is yours to do.',
+  'gloss.responsibility.en': 'responsibility',
+
+  'citizen.title': 'Rights and duties',
+  'citizen.art': 'A public park.',
+  'citizen.parkCared': 'A public park that people care for: flowers, a whole bench, no litter.',
+  'citizen.parkUncared':
+    'A public park nobody cares for: flowers picked, a broken bench, litter on the grass.',
+  'citizen.n.cared': 'Cared for',
+  'citizen.n.uncared': 'Not cared for',
+  'citizen.pairsArt': 'Rights, each with its responsibility.',
+  'citizen.s1': 'Look at the same park twice: once when people care for it, once when they do not.',
+  'citizen.showMe': 'Show the park',
+  'citizen.s1done':
+    'It is the same park, open to the same people. The only difference is whether they looked after it.',
+  'citizen.toPairs': 'Pair the rights',
+  'citizen.s2': 'Choose a responsibility, then the right it goes with.',
+  'citizen.right.education': 'Free school from 6 to 14',
+  'citizen.right.clean': 'A clean place to live',
+  'citizen.right.public': 'Using parks, buses and roads',
+  'citizen.right.vote': 'Voting at 18',
+  'citizen.duty.learn': 'Go to school and learn',
+  'citizen.duty.bin': 'Put rubbish in the bin',
+  'citizen.duty.protect': 'Take care of public things',
+  'citizen.duty.choose': 'Vote, and choose carefully',
+  'citizen.pair.education': 'School is free for you, so the work you do there is yours to do.',
+  'citizen.pair.clean': 'A clean street stays clean only if nobody drops rubbish on it.',
+  'citizen.pair.public': 'A bus or a park belongs to everyone, so everyone looks after it.',
+  'citizen.pair.vote': 'A vote chooses who runs the country, so it is used with care.',
+  'citizen.miss': 'Ask: which right would stop working if nobody did this?',
+  'citizen.s2done': 'All four are paired. Every right comes with a responsibility.',
+  'citizen.s3': 'What does a good citizen do? Choose one action each time.',
+  'citizen.sit.wrapper': 'You finish a snack in the park. What do you do with the wrapper?',
+  'citizen.sit.tap': 'The public tap at the bus stop has been left running.',
+  'citizen.sit.seat': 'A friend starts scratching a name into a bus seat.',
+  'citizen.act.binIt': 'Put it in the bin',
+  'citizen.act.dropIt': 'Drop it on the grass',
+  'citizen.act.hideIt': 'Push it under the bench',
+  'citizen.act.closeTap': 'Close the tap',
+  'citizen.act.walkOn': 'Walk on: it is not my tap',
+  'citizen.act.splash': 'Play in the water',
+  'citizen.act.stopFriend': 'Ask your friend to stop',
+  'citizen.act.join': 'Scratch my name too',
+  'citizen.act.watch': 'Just watch',
+  'citizen.why.binIt': 'The bin keeps the park clean for the next person.',
+  'citizen.why.dropIt': 'Then the grass is dirty for everyone who comes after you.',
+  'citizen.why.hideIt': 'Hidden rubbish is still rubbish in the park.',
+  'citizen.why.closeTap': 'The water belongs to everyone, and it is not wasted now.',
+  'citizen.why.walkOn': 'It is everyone’s tap, so it is yours to close too.',
+  'citizen.why.splash': 'That wastes water that others need.',
+  'citizen.why.stopFriend': 'The seat belongs to everyone who rides the bus.',
+  'citizen.why.join': 'Then two names spoil a seat that belongs to everyone.',
+  'citizen.why.watch': 'Watching lets the seat be spoilt. A kind word can stop it.',
+  'citizen.s3done':
+    'Each time, you looked after something that belongs to everyone. That is what a good citizen does.',
+
+  'mistake.Q2.intro':
+    'Kavya is at the public park. One step of her thinking went wrong. Which one?',
+  'mistake.Q2.s1': 'This park is open to everyone.',
+  'mistake.Q2.s2': 'I am one of everyone.',
+  'mistake.Q2.s3': 'So the flowers are mine to pick.',
+  'mistake.Q2.s4': 'I will take a big bunch home.',
+  'mistake.Q2.fine1': 'That is true: it is a public park.',
+  'mistake.Q2.fine2': 'That is true: Kavya may use the park too.',
+  'mistake.Q2.fine4': 'This follows from the step before. Look earlier.',
+  'mistake.Q2.found':
+    'Here. Everyone’s does not mean mine to take: it means mine to share and look after. If every visitor picked the flowers, nobody would have any left to see.',
+  'mistake.Q2.eq': '<s>everyone’s → mine to take</s>   everyone’s → <r>mine to look after</r>',
+  'explain.Q2.s': 'Every right comes with a {0}. A good citizen uses public things and {1} them.',
+  'explain.Q2.responsibility': 'responsibility',
+  'explain.Q2.price': 'price',
+  'explain.Q2.secret': 'secret',
+  'explain.Q2.cares': 'cares for',
+  'explain.Q2.keeps': 'keeps',
+  'explain.Q2.ignores': 'ignores',
+  'explain.Q2.hint':
+    'Think of the park: what must each visitor do so that it stays there for everyone?',
+  'know.Q2':
+    'Every right comes with a responsibility: using public things means caring for them, so that everyone can use them too.',
 };
