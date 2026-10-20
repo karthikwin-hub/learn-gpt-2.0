@@ -1,6 +1,7 @@
 /**
  * Aggregated multilingual dictionary tables for Gurukul.
- * Merges core, gurukul, bodha, ganita, vijnana, loka and the per-group Ganita (g-*) dictionaries per language.
+ * Merges core, gurukul, bodha, ganita, vijnana, loka, the per-group Ganita (g-*) and per-thread Loka (l-*)
+ * dictionaries per language.
  */
 
 import { dictionary as enCore } from './en';
@@ -15,6 +16,10 @@ import { dictionary as enGGeometry } from './en-g-geometry';
 import { dictionary as enGMeasure } from './en-g-measure';
 import { dictionary as enGLogic } from './en-g-logic';
 import { dictionary as enGPorted } from './en-g-ported';
+import { dictionary as enLItihasa } from './en-l-itihasa';
+import { dictionary as enLNagarika } from './en-l-nagarika';
+import { dictionary as enLBhugola } from './en-l-bhugola';
+import { dictionary as enLBharata } from './en-l-bharata';
 
 import { dictionary as hiCore } from './hi';
 import { dictionary as hiGurukul } from './hi-gurukul';
@@ -28,6 +33,10 @@ import { dictionary as hiGGeometry } from './hi-g-geometry';
 import { dictionary as hiGMeasure } from './hi-g-measure';
 import { dictionary as hiGLogic } from './hi-g-logic';
 import { dictionary as hiGPorted } from './hi-g-ported';
+import { dictionary as hiLItihasa } from './hi-l-itihasa';
+import { dictionary as hiLNagarika } from './hi-l-nagarika';
+import { dictionary as hiLBhugola } from './hi-l-bhugola';
+import { dictionary as hiLBharata } from './hi-l-bharata';
 
 import { dictionary as teCore } from './te';
 import { dictionary as teGurukul } from './te-gurukul';
@@ -41,6 +50,10 @@ import { dictionary as teGGeometry } from './te-g-geometry';
 import { dictionary as teGMeasure } from './te-g-measure';
 import { dictionary as teGLogic } from './te-g-logic';
 import { dictionary as teGPorted } from './te-g-ported';
+import { dictionary as teLItihasa } from './te-l-itihasa';
+import { dictionary as teLNagarika } from './te-l-nagarika';
+import { dictionary as teLBhugola } from './te-l-bhugola';
+import { dictionary as teLBharata } from './te-l-bharata';
 
 import { dictionary as bnCore } from './bn';
 import { dictionary as bnGurukul } from './bn-gurukul';
@@ -54,6 +67,10 @@ import { dictionary as bnGGeometry } from './bn-g-geometry';
 import { dictionary as bnGMeasure } from './bn-g-measure';
 import { dictionary as bnGLogic } from './bn-g-logic';
 import { dictionary as bnGPorted } from './bn-g-ported';
+import { dictionary as bnLItihasa } from './bn-l-itihasa';
+import { dictionary as bnLNagarika } from './bn-l-nagarika';
+import { dictionary as bnLBhugola } from './bn-l-bhugola';
+import { dictionary as bnLBharata } from './bn-l-bharata';
 
 import { dictionary as taCore } from './ta';
 import { dictionary as taGurukul } from './ta-gurukul';
@@ -67,6 +84,10 @@ import { dictionary as taGGeometry } from './ta-g-geometry';
 import { dictionary as taGMeasure } from './ta-g-measure';
 import { dictionary as taGLogic } from './ta-g-logic';
 import { dictionary as taGPorted } from './ta-g-ported';
+import { dictionary as taLItihasa } from './ta-l-itihasa';
+import { dictionary as taLNagarika } from './ta-l-nagarika';
+import { dictionary as taLBhugola } from './ta-l-bhugola';
+import { dictionary as taLBharata } from './ta-l-bharata';
 
 export type LanguageCode = 'en' | 'hi' | 'te' | 'bn' | 'ta';
 
@@ -83,6 +104,10 @@ export const enDict: Record<string, string> = {
   ...enGMeasure,
   ...enGLogic,
   ...enGPorted,
+  ...enLItihasa,
+  ...enLNagarika,
+  ...enLBhugola,
+  ...enLBharata,
 };
 
 export const hiDict: Record<string, string> = {
@@ -98,6 +123,10 @@ export const hiDict: Record<string, string> = {
   ...hiGMeasure,
   ...hiGLogic,
   ...hiGPorted,
+  ...hiLItihasa,
+  ...hiLNagarika,
+  ...hiLBhugola,
+  ...hiLBharata,
 };
 
 export const teDict: Record<string, string> = {
@@ -113,6 +142,10 @@ export const teDict: Record<string, string> = {
   ...teGMeasure,
   ...teGLogic,
   ...teGPorted,
+  ...teLItihasa,
+  ...teLNagarika,
+  ...teLBhugola,
+  ...teLBharata,
 };
 
 export const bnDict: Record<string, string> = {
@@ -128,6 +161,10 @@ export const bnDict: Record<string, string> = {
   ...bnGMeasure,
   ...bnGLogic,
   ...bnGPorted,
+  ...bnLItihasa,
+  ...bnLNagarika,
+  ...bnLBhugola,
+  ...bnLBharata,
 };
 
 export const taDict: Record<string, string> = {
@@ -143,6 +180,10 @@ export const taDict: Record<string, string> = {
   ...taGMeasure,
   ...taGLogic,
   ...taGPorted,
+  ...taLItihasa,
+  ...taLNagarika,
+  ...taLBhugola,
+  ...taLBharata,
 };
 
 export const DICTIONARIES: Record<LanguageCode, Record<string, string>> = {

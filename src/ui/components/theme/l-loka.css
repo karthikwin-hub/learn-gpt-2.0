@@ -1,0 +1,114 @@
+/* Loka benches (feature 047): shared controls from src/ui/util/loka-bench.ts. */
+
+.loka-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.loka-choices {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  justify-content: center;
+}
+
+.loka-chip {
+  min-height: 44px;
+  font-size: 15px;
+}
+
+.loka-places {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 8px;
+}
+
+.loka-place {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 4px;
+  min-height: 64px;
+  padding: 8px 10px;
+  border-radius: 14px;
+  border: 2px dashed var(--hair);
+  background: var(--paper-sunk);
+  color: var(--ink);
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+
+.loka-place:not(:disabled) {
+  border-color: var(--thread);
+}
+
+.loka-place:disabled {
+  cursor: default;
+}
+
+.loka-place:focus-visible {
+  outline: 3px solid var(--thread);
+  outline-offset: 2px;
+}
+
+.loka-place-name {
+  font-weight: 600;
+}
+
+.loka-placed {
+  font-size: 14px;
+  padding: 2px 8px;
+  border-radius: 999px;
+  background: var(--paper-raised);
+  border: 1px solid var(--hair);
+}
+
+.loka-order-done {
+  margin: 0 0 4px;
+  padding-left: 24px;
+}
+
+.loka-order-done:empty {
+  display: none;
+}
+
+.loka-facts {
+  margin: 0;
+  padding: 10px 12px;
+  border-radius: 12px;
+  background: var(--paper-sunk);
+  display: grid;
+  gap: 4px;
+}
+
+.loka-facts dt {
+  font-size: 13px;
+  color: var(--ink-soft);
+}
+
+.loka-facts dd {
+  margin: 0 0 4px;
+  font-weight: 600;
+}
+
+.loka-select {
+  min-height: 48px;
+  width: 100%;
+  padding: 8px 12px;
+  border-radius: 12px;
+  border: 2px solid var(--ink);
+  background: var(--paper-raised);
+  color: var(--ink);
+  font: inherit;
+}
+
+.loka-tile {
+  cursor: pointer;
+}
+
+.loka-tile:focus-visible rect {
+  stroke: var(--thread);
+  stroke-width: 3;
+}
