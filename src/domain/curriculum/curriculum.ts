@@ -181,7 +181,10 @@ export const SECTIONS: Section[] = [
     threads: [
       {
         id: 'itihasa',
-        knots: [k('I1'), k('I2', { prashna: true, bench: bench('timeline') })],
+        knots: [
+          k('I1', { prashna: true, bench: bench('dig') }),
+          k('I2', { prashna: true, bench: bench('timeline') }),
+        ],
       },
       {
         id: 'nagarika',
