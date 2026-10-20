@@ -4,6 +4,8 @@
 
 import { t } from '../../domain/i18n/core';
 import { BIGGEST_CITY_EXAMPLE, EXAMPLE_REGION, regionOf } from '../../domain/world/states';
+import { FIELDS } from '../../domain/world/farming';
+import { renderYear } from '../diagrams/loka/farms';
 import { renderIndia } from '../diagrams/loka/states';
 import type { VisualsTable } from './types';
 
@@ -23,7 +25,25 @@ const c1Example = (step: number) => {
   });
 };
 
+/** The worked example's field through one year: nothing yet, then rice, wheat and watermelon. */
+const C2_STEPS = [null, ...FIELDS] as const;
+
 export const LOKA_BHARATA: VisualsTable = {
+  C2: {
+    prashna: () => renderYear({ month: 6 }),
+    cards: {
+      what: () => renderYear(),
+      idea: () => renderYear({ highlight: 'kharif' }),
+      why: () => renderYear({ highlight: 'rabi' }),
+      example: (step) => {
+        const s = C2_STEPS[step] ?? null;
+        return s ? renderYear({ month: s.month, crop: s.crop }) : renderYear();
+      },
+      where: () => renderYear({ highlight: 'zaid' }),
+    },
+    mistake: (reveal) =>
+      reveal ? renderYear({ month: 6, crop: 'rice' }) : renderYear({ month: 6, crop: 'wheat' }),
+  },
   C1: {
     prashna: () =>
       renderIndia({

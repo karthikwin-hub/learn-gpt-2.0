@@ -15,3 +15,4 @@ export * from './pollution';
 export * from './spheres';
 export * from './landforms';
 export * from './states';
+export * from './farming';

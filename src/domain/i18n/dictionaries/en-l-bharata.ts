@@ -173,4 +173,104 @@ export const dictionary: Record<string, string> = {
   'explain.C1.hint': 'Count the tiles with a solid edge, and think about who works in the capital.',
   'know.C1':
     'India has 28 states and 8 union territories; each state has a capital where its government works, and that is not always its biggest city.',
+
+  /* C2 */
+  'prashna.C2.q': 'The monsoon rain arrives in June. Which crop does a farmer sow now?',
+  'prashna.C2.c1': 'Rice',
+  'prashna.C2.c2': 'Wheat',
+  'prashna.C2.c3': 'Either one: any crop grows at any time',
+  'prashna.C2.a':
+    'Rice. It grows standing in water, so it is sown when the monsoon comes. Wheat needs cool days and is sown in winter.',
+  'bodha.C2.what':
+    'Indian farmers grow crops in three [[crop-season|crop seasons]]: [[kharif|kharif]], sown with the monsoon in June and July; [[rabi|rabi]], sown in the cool winter from October to December; and zaid, a short summer season in March and April.',
+  'bodha.C2.can':
+    'You can name the three crop seasons and their months, and choose the right crop for a field in each of them.',
+  'bodha.C2.idea':
+    'Every crop needs its own mix of water and warmth. Rice and cotton need the heavy monsoon rain. Wheat and mustard need cool, dry days. Watermelon and cucumber need the summer heat and only a little water.',
+  'bodha.C2.why':
+    'A crop sown in the wrong season gets too much water or too little, or the wrong warmth, and the harvest fails. Farmers follow the seasons so that one field can feed a family through the year.',
+  'bodha.C2.example': 'One field through one year.',
+  'bodha.C2.example1':
+    'July: the monsoon fills the field with water, and rice is planted. It is cut in October.',
+  'bodha.C2.example2':
+    'November: the soil is still damp and the days are cool, so wheat is sown. It is cut in March or April.',
+  'bodha.C2.example3':
+    'April: after the wheat is cut, a quick crop of watermelon grows in the summer heat.',
+  'bodha.C2.where':
+    'In the market: new rice after the monsoon, new wheat flour after the spring harvest, and watermelons in the hot summer. Many festivals, such as Pongal and Bihu, come when a harvest is brought in.',
+  'bodha.C2.sutra':
+    'Each crop has its season: kharif with the monsoon, rabi in the winter, zaid in the summer. Sow a crop when its season comes.',
+  'gloss.crop-season': 'The months in which a group of crops is sown, grown and cut.',
+  'gloss.crop-season.en': 'crop season',
+  'gloss.kharif': 'The crop season that starts with the monsoon rain in June and July.',
+  'gloss.kharif.en': 'kharif',
+  'gloss.rabi': 'The crop season sown in the cool winter, from October to December.',
+  'gloss.rabi.en': 'rabi',
+
+  'farms.title': 'A year on the farm',
+  'farms.empty': 'The year as a wheel of twelve months.',
+  'farms.s1': 'Turn the year and watch when each season’s crops are sown.',
+  'farms.showMe': 'Turn the year',
+  'farms.s1done':
+    'Three seasons: kharif with the monsoon, rabi in the cool winter, zaid in the short summer. In the other months, the crops grow and are cut.',
+  'farms.toSow': 'Sow the crops',
+  'farms.s2': 'Choose a crop, then the season it is sown in.',
+  'farms.place': '{season} ({months})',
+  'farms.s2done': 'All six are sown in their seasons.',
+  'farms.s3': 'Three fields in three months. Choose the crop to sow in each.',
+  'farms.field': 'A field in {month}. Which crop do you sow?',
+  'farms.sown': '{month}: {crop}',
+  'farms.s3done':
+    'Rice in July, wheat in November, watermelon in April: each crop in its own season.',
+  'farms.n.kharif': 'Kharif',
+  'farms.n.rabi': 'Rabi',
+  'farms.n.zaid': 'Zaid',
+  'farms.when.kharif': 'June, July',
+  'farms.when.rabi': 'October to December',
+  'farms.when.zaid': 'March, April',
+  'farms.c.rice': 'Rice',
+  'farms.c.cotton': 'Cotton',
+  'farms.c.wheat': 'Wheat',
+  'farms.c.mustard': 'Mustard',
+  'farms.c.watermelon': 'Watermelon',
+  'farms.c.cucumber': 'Cucumber',
+  'farms.c.rice.why': 'Rice grows standing in water: it is sown with the monsoon, in kharif.',
+  'farms.c.cotton.why': 'Cotton needs warm, wet months: it is sown with the monsoon, in kharif.',
+  'farms.c.wheat.why':
+    'Wheat needs cool winter days: it is sown in rabi, from October to December.',
+  'farms.c.mustard.why': 'Mustard grows in the cool, dry winter: it is a rabi crop.',
+  'farms.c.watermelon.why':
+    'Watermelon needs the summer heat: it is sown in zaid, in March and April.',
+  'farms.c.cucumber.why': 'Cucumber grows fast in the summer heat: it is a zaid crop.',
+  'farms.m1': 'January',
+  'farms.m2': 'February',
+  'farms.m3': 'March',
+  'farms.m4': 'April',
+  'farms.m5': 'May',
+  'farms.m6': 'June',
+  'farms.m7': 'July',
+  'farms.m8': 'August',
+  'farms.m9': 'September',
+  'farms.m10': 'October',
+  'farms.m11': 'November',
+  'farms.m12': 'December',
+
+  'mistake.C2.intro': 'Gopal is planning his field. One step in his thinking slipped. Which one?',
+  'mistake.C2.s1': 'The monsoon rain reaches much of India in June.',
+  'mistake.C2.s2': 'Every crop needs water to grow.',
+  'mistake.C2.s3': 'So any crop can be sown when the rain comes.',
+  'mistake.C2.s4': 'So Gopal sows wheat in June.',
+  'mistake.C2.fine1': 'This is true: the monsoon reaches much of India in June.',
+  'mistake.C2.fine2': 'This is true, but crops need different amounts of water and warmth.',
+  'mistake.C2.fine4': 'This follows from the step before. Look earlier.',
+  'mistake.C2.found':
+    'Here. Each crop needs its own season. Rice loves the monsoon rain, but wheat needs cool winter days, so it is sown from October to December.',
+  'mistake.C2.eq': '<s>rain → any crop</s>   monsoon → <r>rice</r>   winter → <r>wheat</r>',
+  'explain.C2.s': 'Rice is a {0} crop, sown with the monsoon. Wheat is a {1} crop, sown in winter.',
+  'explain.C2.kharif': 'kharif',
+  'explain.C2.rabi': 'rabi',
+  'explain.C2.zaid': 'zaid',
+  'explain.C2.hint': 'Think of which season comes with the rain and which with the cold.',
+  'know.C2':
+    'Crops have seasons: kharif crops such as rice are sown with the monsoon, rabi crops such as wheat in winter, and zaid crops such as watermelon in summer.',
 };
