@@ -9,7 +9,7 @@ Verify for every knot task: `npx vitest run src/domain/world src/domain/lesson s
 - [x] T005 US3 Q2 A good citizen (`#citizen`)
 - [x] T006 US4 Q3 Pollution and us (`#river`)
 - [x] T007 US5 E2 Four domains (`#domains`)
-- [ ] T008 US6 E3 Landforms (`#landforms`)
+- [x] T008 US6 E3 Landforms (`#landforms`)
 - [ ] T009 US7 C1 The states of India (`#states`)
 - [ ] T010 US8 C2 Farms of India (`#farms`)
 - [ ] T011 US9 C3 Cities of India (`#cities`)

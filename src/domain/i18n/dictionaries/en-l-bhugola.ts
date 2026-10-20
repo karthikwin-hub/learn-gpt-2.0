@@ -111,4 +111,100 @@ export const dictionary: Record<string, string> = {
   'explain.E2.hint': 'Think of the jug: what was poured out, and what was left?',
   'know.E2':
     'The Earth has four domains, land, water, air and life; about 71 parts in 100 of the surface are water, but only about 1 drop in 100 of the water is fresh.',
+
+  /* E3 */
+  'prashna.E3.q':
+    'Some land stands high above the sea, but its top is wide and flat, like a table. What is it called?',
+  'prashna.E3.c1': 'A mountain',
+  'prashna.E3.c2': 'A plateau',
+  'prashna.E3.c3': 'A plain',
+  'prashna.E3.a':
+    'A plateau: high land with a flat top. A mountain is high too, but its top rises to a peak.',
+  'bodha.E3.what':
+    'A [[landform|landform]] is a shape of the land. Three big ones are mountains, [[plateau|plateaus]] and [[plain|plains]]. Two things tell them apart: how high the land is, and the shape of its top.',
+  'bodha.E3.can':
+    'You will be able to tell a mountain, a plateau and a plain apart, build each from its height and its top, and say why most people live on plains.',
+  'bodha.E3.idea':
+    'A mountain is high, with a peaked top and steep sides. A plateau is high too, but with a wide flat top, like a table. A plain is low, flat land, often beside a river or the sea.',
+  'bodha.E3.why':
+    'Plains are the easiest land to live on. Rivers bring soft, rich soil, the fields are flat to plough, and roads are easy to build. That is why most people in the world live and farm on plains.',
+  'bodha.E3.example': 'Three landforms of India.',
+  'bodha.E3.example1':
+    'The Himalaya: very high, with peaked tops covered in snow. These are mountains.',
+  'bodha.E3.example2':
+    'The Deccan: high land in the south of India with a wide, mostly flat top. This is a plateau.',
+  'bodha.E3.example3':
+    'The land along the Ganga: low, flat and full of farms and towns. This is a plain.',
+  'bodha.E3.where':
+    'From a train window: fields stretching flat to the sky on a plain, a long wall of flat-topped land at the edge of a plateau, and sharp peaks in the mountains.',
+  'bodha.E3.sutra':
+    'Height and top together name a landform: high and peaked is a mountain, high and flat is a plateau, low and flat is a plain.',
+  'gloss.landform': 'A natural shape of the land, such as a mountain, a plateau or a plain.',
+  'gloss.landform.en': 'landform',
+  'gloss.plateau': 'High land with a wide, flat top.',
+  'gloss.plateau.en': 'plateau',
+  'gloss.plain': 'Low, flat land, often beside a river or the sea.',
+  'gloss.plain.en': 'plain',
+
+  'landforms.title': 'Shapes of the land',
+  'landforms.flat': 'Flat land at the level of the sea.',
+  'landforms.table': 'High land with a flat top, like a table.',
+  'landforms.deccan': 'The Deccan',
+  'landforms.n.mountain': 'Mountain',
+  'landforms.n.plateau': 'Plateau',
+  'landforms.n.plain': 'Plain',
+  'landforms.n.hill': 'Hill',
+  'landforms.s1': 'Watch flat land rise from the sea into three shapes.',
+  'landforms.showMe': 'Raise the land',
+  'landforms.s1done':
+    'High and peaked on the left, high and flat in the middle, low and flat beside the sea.',
+  'landforms.toBuild': 'Build the landforms',
+  'landforms.s2': 'Set the height and the top to build each landform you are asked for.',
+  'landforms.height': 'Height',
+  'landforms.top': 'Top',
+  'landforms.h.low': 'Low',
+  'landforms.h.high': 'High',
+  'landforms.t.flat': 'Flat',
+  'landforms.t.peaked': 'Peaked',
+  'landforms.make.plateau': 'Build a plateau.',
+  'landforms.make.mountain': 'Now build a mountain.',
+  'landforms.make.plain': 'Now build a plain.',
+  'landforms.is.plain': 'Low and flat: a plain.',
+  'landforms.is.plateau': 'High and flat: a plateau.',
+  'landforms.is.mountain': 'High and peaked: a mountain.',
+  'landforms.is.hill': 'Low and peaked: a hill, which is not one of the three.',
+  'landforms.s2done': 'All three are built. Height alone is not enough: the top decides too.',
+  'landforms.s3': 'Most people in the world live and farm on one of these. Which one?',
+  'landforms.where': 'Where do most people live and farm?',
+  'landforms.live.mountain':
+    'Mountains are steep and cold, with thin soil: few people can farm there.',
+  'landforms.live.plateau':
+    'Many people do live on plateaus, but the soil is often thin and the rivers run in deep valleys.',
+  'landforms.s3done':
+    'Plains: flat land, deep soil brought by rivers, and easy roads. Most people live and farm there.',
+
+  'mistake.E3.intro':
+    'Leela is looking at a map of India. One step of her thinking went wrong. Which one?',
+  'mistake.E3.s1': 'The Deccan stands high above the sea.',
+  'mistake.E3.s2': 'Its top is wide and mostly flat.',
+  'mistake.E3.s3': 'High land is always a mountain.',
+  'mistake.E3.s4': 'So the Deccan is a mountain.',
+  'mistake.E3.fine1': 'That is true: much of the Deccan is hundreds of metres high.',
+  'mistake.E3.fine2': 'That is true, and it matters.',
+  'mistake.E3.fine4': 'This follows from the step before. Look earlier.',
+  'mistake.E3.found':
+    'Here. High land can be a mountain or a plateau: the top decides. The Deccan is high with a flat top, so it is a plateau.',
+  'mistake.E3.eq': '<s>high → mountain</s>   high + flat top → <r>plateau</r>',
+  'explain.E3.s':
+    'A plateau is high land with a {0} top. Most people live on {1}, where farming is easiest.',
+  'explain.E3.flat': 'flat',
+  'explain.E3.pointed': 'pointed',
+  'explain.E3.frozen': 'frozen',
+  'explain.E3.plains': 'plains',
+  'explain.E3.mountains': 'mountains',
+  'explain.E3.glaciers': 'glaciers',
+  'explain.E3.hint':
+    'Think of the two controls, height and top, and of where rivers leave soft soil.',
+  'know.E3':
+    'A landform is named by its height and its top: mountains are high and peaked, plateaus are high and flat, plains are low and flat, and most people live on plains.',
 };

@@ -199,7 +199,7 @@ export const SECTIONS: Section[] = [
         knots: [
           k('E1', { prashna: true, bench: bench('earth') }),
           k('E2', { prashna: true, bench: bench('domains') }),
-          k('E3'),
+          k('E3', { prashna: true, bench: bench('landforms') }),
           k('E4', { prashna: true, bench: bench('map') }),
         ],
       },

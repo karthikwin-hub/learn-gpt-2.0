@@ -11,6 +11,8 @@ Branch `feat/047-loka-lessons` from `main@4f77dc0`. Dev server for checks: `npx 
 - T005 Q2 (`#citizen`): `world/citizenship.ts`, `diagrams/loka/citizen.ts`, five languages, `047-q2.spec.ts`.
 - T006 Q3 (`#river`): `world/pollution.ts`, `diagrams/loka/river.ts` (village, stream, bins), five languages, `047-q3.spec.ts`. `house` moved to `diagrams/loka/parts.ts`.
 - T007 E2 (`#domains`): `world/spheres.ts`, `diagrams/loka/spheres.ts` (globe, 100 squares, domains scene, 100-drop jug), five languages, `047-e2.spec.ts`.
+- T008 E3 (`#landforms`): `world/landforms.ts`, `diagrams/loka/landforms.ts` (rising section, height-and-top shape), five languages, `047-e3.spec.ts`. Fixed broken te/bn Loka knot titles (e.g. te "ఆభార" for భారత, bn "মেসা" for মালভূমি).
+- Note: SVG text does not wrap; long picture captions go in the `aria-label` only.
 - Note: after a miss the chosen chip stays chosen; tapping it again un-chooses it (tests check `aria-pressed`).
 
 ## Per-knot recipe
@@ -23,4 +25,4 @@ Branch `feat/047-loka-lessons` from `main@4f77dc0`. Dev server for checks: `npx 
 7. `tests/acceptance/047-<k>.spec.ts`; run sweep/journey/keyboard `-g "<K>:|<route>"` (a bare `-g E2` also matches unrelated tests); screenshots with `node .agent/tmp/shots.mjs <K> <route> <lang>` (WRONG=<index>).
 
 ## Next action
-T008 E3 Landforms (`#landforms`).
+T009 C1 The states of India (`#states`).

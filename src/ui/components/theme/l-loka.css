@@ -72,6 +72,14 @@
   text-align: center;
 }
 
+.loka-label {
+  margin: 0 0 -4px;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--ink-soft);
+  text-align: center;
+}
+
 .loka-order-done {
   margin: 0 0 4px;
   padding-left: 24px;

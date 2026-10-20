@@ -13,3 +13,4 @@ export * from './civics';
 export * from './citizenship';
 export * from './pollution';
 export * from './spheres';
+export * from './landforms';
