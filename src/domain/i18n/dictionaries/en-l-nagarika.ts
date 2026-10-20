@@ -207,4 +207,107 @@ export const dictionary: Record<string, string> = {
     'Think of the park: what must each visitor do so that it stays there for everyone?',
   'know.Q2':
     'Every right comes with a responsibility: using public things means caring for them, so that everyone can use them too.',
+
+  /* Q3 */
+  'prashna.Q3.q': 'A stream in the hills looks completely clear. Is its water safe to drink?',
+  'prashna.Q3.c1': 'Yes: clear water is clean water',
+  'prashna.Q3.c2': 'Not always: germs are too small to see',
+  'prashna.Q3.c3': 'Only if it is cold',
+  'prashna.Q3.a':
+    'Not always. Germs and some harmful chemicals are far too small to see. Clear water can still be polluted, so drinking water is boiled or filtered first.',
+  'bodha.Q3.what':
+    '[[pollution|Pollution]] is when harmful things get into the air, the water or the land, or when there is so much noise that it harms people.',
+  'bodha.Q3.can':
+    'You will be able to name four kinds of pollution, say what causes each one, and sort waste into wet and dry.',
+  'bodha.Q3.idea':
+    'Air, water, land and noise can all be polluted. Smoke dirties the air; sewage and factory waste dirty rivers; heaps of plastic dirty the land; horns and loudspeakers make noise. People cause each of these, so people can stop each of them.',
+  'bodha.Q3.why':
+    'Pollution harms living things, often without being seen. Germs in water make people ill, smoke hurts lungs, and plastic in a river can choke fish and cows. Sewage is one of the biggest dangers, because the river looks almost the same.',
+  'bodha.Q3.example': 'A river village cleans up, one change at a time.',
+  'bodha.Q3.example1':
+    'Homes join a drain that goes to a treatment tank: sewage stops reaching the river.',
+  'bodha.Q3.example2':
+    'Families [[compost|compost]] their leaves instead of burning them: the air clears.',
+  'bodha.Q3.example3':
+    'Plastic goes into the blue bin instead of onto the riverbank: the land is clean again.',
+  'bodha.Q3.where':
+    'In your kitchen: a green bin for wet waste that rots, like peels and tea leaves, and a blue bin for dry waste, like paper, bottles and cans.',
+  'bodha.Q3.sutra':
+    'Clear is not always clean. Most pollution is caused by people, so people can stop it.',
+  'gloss.pollution': 'Harmful things, or too much noise, added to the air, the water or the land.',
+  'gloss.pollution.en': 'pollution',
+  'gloss.compost': 'To let plant and food waste rot slowly into rich soil for plants.',
+  'gloss.compost.en': 'compost',
+
+  'river.title': 'A river village',
+  'river.stream': 'A clear stream running over pebbles.',
+  'river.streamMagnified': 'The same clear water under a microscope, full of tiny germs.',
+  'river.k.air': 'Air',
+  'river.k.water': 'Water',
+  'river.k.land': 'Land',
+  'river.k.noise': 'Noise',
+  'river.level0': 'clean',
+  'river.level1': 'a little dirty',
+  'river.level2': 'dirty',
+  'river.level3': 'very dirty',
+  'river.s1': 'Watch one day in a river village. Five things switch on, one after another.',
+  'river.showMe': 'Show the day',
+  'river.s1done':
+    'By evening the air and the water are very dirty, and the land and the quiet are spoilt too. Every cause came from people.',
+  'river.s2': 'Switch the causes off, one at a time, until all four readings are clean.',
+  'river.c.factory': 'Factory smoke and waste',
+  'river.c.sewage': 'Sewage from homes',
+  'river.c.burning': 'Burning leaves',
+  'river.c.dumping': 'Plastic on the bank',
+  'river.c.traffic': 'Trucks and horns',
+  'river.off.factory':
+    'The factory cleans its smoke and waste water: the air and the river get cleaner.',
+  'river.off.sewage': 'Sewage now goes to a treatment tank: the river gets cleaner.',
+  'river.off.burning': 'The leaves go to compost instead: the air gets cleaner.',
+  'river.off.dumping': 'The plastic goes to the blue bin: the land and the river get cleaner.',
+  'river.off.traffic': 'Fewer trucks and no horns: the air clears and the quiet comes back.',
+  'river.onAgain': 'That cause is back on, and its readings rise again.',
+  'river.s2done':
+    'All four readings are clean. People caused the pollution, and people stopped it.',
+  'river.s3': 'Sort the waste. Choose an item, then the bin it goes in.',
+  'river.bin.wet': 'Green: wet waste',
+  'river.bin.dry': 'Blue: dry waste',
+  'river.w.peel': 'banana peel',
+  'river.w.bottle': 'plastic bottle',
+  'river.w.leaves': 'dry leaves',
+  'river.w.paper': 'old newspaper',
+  'river.w.tea': 'used tea leaves',
+  'river.w.can': 'tin can',
+  'river.w.peel.why': 'A banana peel rots into compost, so it is wet waste: the green bin.',
+  'river.w.leaves.why': 'Leaves rot into compost, even dry ones, so they go in the green bin.',
+  'river.w.tea.why': 'Used tea leaves rot quickly, so they are wet waste: the green bin.',
+  'river.w.bottle.why':
+    'A plastic bottle does not rot, but it can be recycled, so it goes in the blue bin.',
+  'river.w.paper.why': 'Paper can be recycled into new paper, so it is dry waste: the blue bin.',
+  'river.w.can.why': 'A tin can is metal that can be melted and used again: the blue bin.',
+  'river.s3done':
+    'All six are sorted. Wet waste becomes compost; dry waste can be recycled. Nothing needs to be burnt.',
+
+  'mistake.Q3.intro':
+    'Rahul wants to clean the yard. One step of his thinking went wrong. Which one?',
+  'mistake.Q3.s1': 'The yard is covered in dry leaves.',
+  'mistake.Q3.s2': 'Leaves are just rubbish, so I will burn them.',
+  'mistake.Q3.s3': 'A fire is quick.',
+  'mistake.Q3.s4': 'Then the yard will look tidy.',
+  'mistake.Q3.fine1': 'That is true: that is the job to do.',
+  'mistake.Q3.fine3': 'That is true: a fire is quick. Look at the reason for lighting it.',
+  'mistake.Q3.fine4': 'The yard would look tidy, but this follows from an earlier step.',
+  'mistake.Q3.found':
+    'Here. Leaves are not rubbish to burn: burning sends smoke into everyone’s air. Leaves are wet waste, and in a compost pit they become rich soil.',
+  'mistake.Q3.eq': '<s>leaves → fire → smoke</s>   leaves → <r>compost</r> → soil',
+  'explain.Q3.s': 'Clear water can still be {0}. Leaves are better {1} than burnt.',
+  'explain.Q3.polluted': 'polluted',
+  'explain.Q3.frozen': 'frozen',
+  'explain.Q3.sweet': 'sweet',
+  'explain.Q3.composted': 'composted',
+  'explain.Q3.thrown': 'thrown away',
+  'explain.Q3.hidden': 'hidden',
+  'explain.Q3.hint': 'Think of the microscope picture, and of what leaves become in a compost pit.',
+  'know.Q3':
+    'Pollution is harmful things added to the air, water or land, or too much noise; clear water can still be polluted, and leaves are better composted than burnt.',
 };

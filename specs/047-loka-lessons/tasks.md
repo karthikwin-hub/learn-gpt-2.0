@@ -7,7 +7,7 @@ Verify for every knot task: `npx vitest run src/domain/world src/domain/lesson s
 - [x] T003 US1 I1 Clues from the past (`#dig`)
 - [x] T004 US2 Q1 What is civics? (`#govern`)
 - [x] T005 US3 Q2 A good citizen (`#citizen`)
-- [ ] T006 US4 Q3 Pollution and us (`#river`)
+- [x] T006 US4 Q3 Pollution and us (`#river`)
 - [ ] T007 US5 E2 Four domains (`#domains`)
 - [ ] T008 US6 E3 Landforms (`#landforms`)
 - [ ] T009 US7 C1 The states of India (`#states`)

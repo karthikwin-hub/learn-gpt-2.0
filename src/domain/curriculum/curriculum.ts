@@ -191,7 +191,7 @@ export const SECTIONS: Section[] = [
         knots: [
           k('Q1', { prashna: true, bench: bench('govern') }),
           k('Q2', { prashna: true, bench: bench('citizen') }),
-          k('Q3'),
+          k('Q3', { prashna: true, bench: bench('river') }),
         ],
       },
       {

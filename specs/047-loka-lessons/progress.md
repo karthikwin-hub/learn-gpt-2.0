@@ -9,6 +9,7 @@ Branch `feat/047-loka-lessons` from `main@4f77dc0`. Dev server for checks: `npx 
 - T003 I1 (`#dig`): domain `world/sources.ts`, drawing `diagrams/loka/dig.ts`, bench `screens/dig.ts`, five languages, `tests/acceptance/047-i1.spec.ts`. Sweep, journey, keyboard pass.
 - T004 Q1 (`#govern`): `world/civics.ts`, `diagrams/loka/govern.ts`, five languages, `047-q1.spec.ts`.
 - T005 Q2 (`#citizen`): `world/citizenship.ts`, `diagrams/loka/citizen.ts`, five languages, `047-q2.spec.ts`.
+- T006 Q3 (`#river`): `world/pollution.ts`, `diagrams/loka/river.ts` (village, stream, bins), five languages, `047-q3.spec.ts`. `house` moved to `diagrams/loka/parts.ts`.
 - Note: after a miss the chosen chip stays chosen; tapping it again un-chooses it (tests check `aria-pressed`).
 
 ## Per-knot recipe
@@ -21,4 +22,4 @@ Branch `feat/047-loka-lessons` from `main@4f77dc0`. Dev server for checks: `npx 
 7. `tests/acceptance/047-<k>.spec.ts`; run sweep/journey/keyboard `-g "<K>:"`; screenshots with `node .agent/tmp/shots.mjs <K> <route> <lang>` (WRONG=<index>).
 
 ## Next action
-T006 Q3 Pollution and us (`#river`).
+T007 E2 Four domains (`#domains`).

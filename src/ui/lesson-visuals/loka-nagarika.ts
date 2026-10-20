@@ -5,7 +5,12 @@
 import { RIGHTS } from '../../domain/world/citizenship';
 import { renderPairs, renderPark, renderParks } from '../diagrams/loka/citizen';
 import { renderLane, renderLevels } from '../diagrams/loka/govern';
+import { POLLUTION_CAUSES, type PollutionCause } from '../../domain/world/pollution';
+import { renderBins, renderStream, renderVillage } from '../diagrams/loka/river';
 import type { VisualsTable } from './types';
+
+/** The order the worked example switches causes off. */
+const Q3_CLEANUP: readonly PollutionCause[] = ['sewage', 'burning', 'dumping'];
 
 export const LOKA_NAGARIKA: VisualsTable = {
   Q1: {
@@ -48,5 +53,23 @@ export const LOKA_NAGARIKA: VisualsTable = {
       where: () => renderPairs(RIGHTS, 'vote'),
     },
     mistake: (reveal) => (reveal ? renderPark(true) : renderPark(false, true)),
+  },
+  Q3: {
+    prashna: () => renderStream(false),
+    cards: {
+      what: () => renderStream(true),
+      idea: () => renderVillage({ active: POLLUTION_CAUSES }),
+      why: () => renderVillage({ active: POLLUTION_CAUSES, highlight: 'sewage' }),
+      example: (step) =>
+        renderVillage({
+          active: POLLUTION_CAUSES.filter((c) => !Q3_CLEANUP.slice(0, step).includes(c)),
+          highlight: Q3_CLEANUP[step - 1] ?? null,
+        }),
+      where: () => renderBins({ wet: ['peel', 'tea'], dry: ['paper', 'bottle', 'can'] }),
+    },
+    mistake: (reveal) =>
+      reveal
+        ? renderBins({ wet: ['leaves'] }, 'leaves')
+        : renderVillage({ active: ['burning'], highlight: 'burning' }),
   },
 };
