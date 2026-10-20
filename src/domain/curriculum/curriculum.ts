@@ -205,7 +205,17 @@ export const SECTIONS: Section[] = [
       },
       {
         id: 'bharata',
-        knots: [k('C1'), k('C2'), k('C3'), k('C4'), k('C5'), k('C6'), k('C7'), k('C8'), k('C9')],
+        knots: [
+          k('C1', { prashna: true, bench: bench('states') }),
+          k('C2'),
+          k('C3'),
+          k('C4'),
+          k('C5'),
+          k('C6'),
+          k('C7'),
+          k('C8'),
+          k('C9'),
+        ],
       },
     ],
   },
