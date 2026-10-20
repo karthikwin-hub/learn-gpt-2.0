@@ -368,4 +368,77 @@ export const dictionary: Record<string, string> = {
     'Think of the river bank: what land is good for fields, and what do boats and roads carry?',
   'know.C3':
     'Settlements grow where there is water, flat land and a way to travel and trade; where all three meet, a village can grow into a city.',
+
+  /* C4 */
+  'prashna.C4.q': 'You climb a very high mountain. Does it get warmer or colder?',
+  'prashna.C4.c1': 'Warmer: you are closer to the Sun',
+  'prashna.C4.c2': 'Colder',
+  'prashna.C4.c3': 'It stays the same',
+  'prashna.C4.a':
+    'Colder. As you climb, the air gets thinner and holds less heat: about 6.5 °C colder for every 1,000 metres. That is why the high peaks are white with snow.',
+  'bodha.C4.what':
+    'The [[himalaya|Himalaya]] are the high mountains along the north of India. They rise in three [[mountain-range|ranges]], one behind another: the low Shivalik nearest the plains, the Himachal behind them, and the Himadri, the highest of all.',
+  'bodha.C4.can':
+    'You can name the three ranges from the plains upward, and say how the temperature changes as you climb.',
+  'bodha.C4.idea':
+    'As you climb, the air gets thinner and holds less heat, so it gets colder: about 6.5 °C for every 1,000 metres. On a 32 °C day on the plains, water freezes at about 5,000 metres.',
+  'bodha.C4.why':
+    'This is why hill towns are cool in summer, why the highest peaks stay white all year, and why climbers carry warm clothes even in May.',
+  'bodha.C4.example': 'Climbing from the plains on a 32 °C day.',
+  'bodha.C4.example1': 'Shivalik, about 1,000 metres: about 25.5 °C, warm and green with forests.',
+  'bodha.C4.example2': 'Himachal, about 4,000 metres: about 6 °C, cold enough for a thick jacket.',
+  'bodha.C4.example3': 'Himadri, about 6,000 metres: about −7 °C, with snow and ice all year.',
+  'bodha.C4.where':
+    'Hill towns such as Shimla, Mussoorie and Darjeeling were built about 2,000 metres up, where summer is cool. Snow on the Himadri melts into rivers such as the Ganga.',
+  'bodha.C4.sutra':
+    'The higher you climb, the colder it gets: about 6.5 °C for every 1,000 metres. The Shivalik are lowest, the Himadri highest.',
+  'gloss.himalaya': 'The highest mountains in the world, along the north of India.',
+  'gloss.himalaya.en': 'Himalaya',
+  'gloss.mountain-range': 'A long line of mountains joined together.',
+  'gloss.mountain-range.en': 'mountain range',
+
+  'himalaya.title': 'Climb the Himalaya',
+  'himalaya.plains': 'Plains',
+  'himalaya.r.shivalik': 'Shivalik',
+  'himalaya.r.himachal': 'Himachal',
+  'himalaya.r.himadri': 'Himadri',
+  'himalaya.at': 'At {h} metres it is {t}.',
+  'himalaya.s1': 'Climb from the plains to the highest range and watch the thermometer.',
+  'himalaya.showMe': 'Climb',
+  'himalaya.s1done':
+    'From 32 °C on the plains to −7 °C at 6,000 metres: the higher you went, the colder it got.',
+  'himalaya.toSteps': 'Climb again, step by step',
+  'himalaya.s2': 'Climb 1,000 metres at a time. Find the height where water freezes.',
+  'himalaya.up': 'Climb 1,000 metres',
+  'himalaya.s2done': 'Below 0 °C: water freezes here. That is why the peaks are white.',
+  'himalaya.s3': 'Put the three ranges in order, starting from the plains.',
+  'himalaya.orderHint':
+    'Start from the plains: the lowest hills come first, the highest snow last.',
+  'himalaya.about.shivalik': 'Shivalik: low, green hills, about 1,000 metres high.',
+  'himalaya.about.himachal': 'Himachal: about 4,000 metres, with cool hill towns and forests.',
+  'himalaya.about.himadri': 'Himadri: about 6,000 metres, always under snow.',
+  'himalaya.s3done':
+    'Shivalik, Himachal, Himadri: the ranges rise from the plains, and the highest is the coldest.',
+
+  'mistake.C4.intro': 'Ravi is packing for a trek. One step slipped. Which one?',
+  'mistake.C4.s1': 'Ravi will trek up to 4,000 metres in the Himalaya.',
+  'mistake.C4.s2': 'It is 32 °C on the plains where he starts.',
+  'mistake.C4.s3': 'Up high he will be closer to the Sun, so it will be warmer.',
+  'mistake.C4.s4': 'So he packs only a T-shirt.',
+  'mistake.C4.fine1': 'This is fine: many treks go that high.',
+  'mistake.C4.fine2': 'This is true: the plains are hot in summer.',
+  'mistake.C4.fine4': 'This follows from the step before. Look earlier.',
+  'mistake.C4.found':
+    'Here. A few kilometres closer makes no difference to the Sun, which is very far away. The air gets colder as you climb, about 6.5 °C for every 1,000 metres, so at 4,000 metres it is only about 6 °C.',
+  'mistake.C4.eq': '<s>higher → warmer</s>   1,000 metres up → <r>6.5 °C colder</r>',
+  'explain.C4.s': 'The higher you climb, the {0} it gets. The highest range is the {1}.',
+  'explain.C4.colder': 'colder',
+  'explain.C4.warmer': 'warmer',
+  'explain.C4.wetter': 'wetter',
+  'explain.C4.himadri': 'Himadri',
+  'explain.C4.shivalik': 'Shivalik',
+  'explain.C4.himachal': 'Himachal',
+  'explain.C4.hint': 'Think of the white peaks: where does the snow stay all year?',
+  'know.C4':
+    'The Himalaya rise in three ranges, Shivalik, Himachal and Himadri; the higher you climb, the colder it gets, about 6.5 °C for every 1,000 metres.',
 };

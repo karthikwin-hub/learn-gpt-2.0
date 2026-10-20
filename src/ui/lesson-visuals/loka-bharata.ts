@@ -8,6 +8,8 @@ import { FIELDS } from '../../domain/world/farming';
 import type { SettlementSize } from '../../domain/world/settlements';
 import { renderLand } from '../diagrams/loka/cities';
 import { renderYear } from '../diagrams/loka/farms';
+import { renderClimb } from '../diagrams/loka/himalaya';
+import type { HimalayanRange } from '../../domain/world/himalaya';
 import { renderIndia } from '../diagrams/loka/states';
 import type { VisualsTable } from './types';
 
@@ -32,7 +34,29 @@ const C2_STEPS = [null, ...FIELDS] as const;
 
 const C3_GROWTH: readonly (SettlementSize | null)[] = [null, 'village', 'town', 'city'];
 
+/** The worked example's climb: the plains, then one stop on each range. */
+const C4_STOPS: readonly (readonly [number | null, HimalayanRange | null])[] = [
+  [null, null],
+  [1000, 'shivalik'],
+  [4000, 'himachal'],
+  [6000, 'himadri'],
+];
+
 export const LOKA_BHARATA: VisualsTable = {
+  C4: {
+    prashna: () => renderClimb(),
+    cards: {
+      what: () => renderClimb(),
+      idea: () => renderClimb({ height: 5000 }),
+      why: () => renderClimb({ height: 2000, highlight: 'himachal' }),
+      example: (step) => {
+        const [height, highlight] = C4_STOPS[step] ?? [null, null];
+        return renderClimb({ height, highlight });
+      },
+      where: () => renderClimb({ height: 6000, highlight: 'himadri' }),
+    },
+    mistake: (reveal) => renderClimb({ height: reveal ? 4000 : 0 }),
+  },
   C3: {
     prashna: () => renderLand({ grown: { riverbank: 'city' } }),
     cards: {

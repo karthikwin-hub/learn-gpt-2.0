@@ -209,7 +209,7 @@ export const SECTIONS: Section[] = [
           k('C1', { prashna: true, bench: bench('states') }),
           k('C2', { prashna: true, bench: bench('farms') }),
           k('C3', { prashna: true, bench: bench('cities') }),
-          k('C4'),
+          k('C4', { prashna: true, bench: bench('himalaya') }),
           k('C5'),
           k('C6'),
           k('C7'),

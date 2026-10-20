@@ -13,7 +13,7 @@ Verify for every knot task: `npx vitest run src/domain/world src/domain/lesson s
 - [x] T009 US7 C1 The states of India (`#states`)
 - [x] T010 US8 C2 Farms of India (`#farms`)
 - [x] T011 US9 C3 Cities of India (`#cities`)
-- [ ] T012 US10 C4 The Himalaya (`#himalaya`)
+- [x] T012 US10 C4 The Himalaya (`#himalaya`)
 - [ ] T013 US11 C5 The northern plains (`#plains`)
 - [ ] T014 US12 C6 The Thar Desert (`#desert`)
 - [ ] T015 US13 C7 The peninsular plateau (`#plateau`)
