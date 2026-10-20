@@ -702,4 +702,86 @@ export const dictionary: Record<string, string> = {
   'plateau.flows.narmada': 'The Narmada flows west to the Arabian Sea.',
   'plateau.r.tapi': 'Tapi',
   'plateau.flows.tapi': 'The Tapi flows west to the Arabian Sea.',
+
+  /* C8 */
+  'prashna.C8.q':
+    'Which is higher: the place where a river starts, or the place where it reaches the sea?',
+  'prashna.C8.c1': 'Where it starts, its source',
+  'prashna.C8.c2': 'Where it reaches the sea, its mouth',
+  'prashna.C8.c3': 'They are the same height',
+  'prashna.C8.a':
+    'The source. Water only flows downhill, so a river always starts higher than it ends. The Ganga starts at about 4,000 metres and reaches the sea at 0 metres.',
+  'bodha.C8.what':
+    "Every river has a [[river-source|source]], where it begins, and a [[river-mouth|mouth]], where it meets the sea or a bigger river. The Ganga's source is the Gangotri glacier in the Himalaya; its mouth is in the Sundarbans, on the Bay of Bengal.",
+  'bodha.C8.can':
+    'You can follow a river from its source to its mouth, and say why some rivers flow all year while others dry up.',
+  'bodha.C8.idea':
+    'A river always flows downhill, from its high source to its low mouth, whichever way on the map that is. Rivers fed by Himalayan snow and ice, like the Ganga, flow all year, because the snow melts in the hot months. Rivers fed only by rain run full in the monsoon and fall very low, or dry up, in the dry months.',
+  'bodha.C8.why':
+    'This is why the northern plains have river water for crops even before the monsoon, and why many rivers of the plateau need dams to store water for the dry months.',
+  'bodha.C8.example': 'Following the Ganga.',
+  'bodha.C8.example1': 'It starts at the Gangotri glacier, about 4,000 metres up.',
+  'bodha.C8.example2': 'At Haridwar, about 300 metres, it leaves the mountains for the plains.',
+  'bodha.C8.example3':
+    'It flows east past Prayagraj, Varanasi and Patna, and reaches the sea in the Sundarbans, at 0 metres.',
+  'bodha.C8.where':
+    'At Prayagraj the Yamuna joins the Ganga. Many old cities stand on the Ganga as it crosses the northern plains, and its water reaches the fields even in the hot, dry months.',
+  'bodha.C8.sutra':
+    'A river flows downhill from its high source to its low mouth. Snow-fed rivers flow all year; rain-fed rivers flow mainly in the rainy season.',
+  'gloss.river-source': 'The place where a river begins.',
+  'gloss.river-source.en': 'source',
+  'gloss.river-mouth': 'The place where a river ends, flowing into the sea or into a bigger river.',
+  'gloss.river-mouth.en': 'mouth',
+  'rivers.title': 'Follow a river',
+  'rivers.map': 'The Ganga, from the Gangotri glacier in the Himalaya east to the sea.',
+  'rivers.north': 'N',
+  'rivers.sea': 'Sea',
+  'rivers.at': '{place}, about {h} metres',
+  'rivers.s1': 'Follow the Ganga from its source to its mouth.',
+  'rivers.showMe': 'Follow the river',
+  'rivers.s1done':
+    'From about 4,000 metres at the Gangotri glacier down to 0 metres at the Sundarbans. It flows east, and downhill all the way.',
+  'rivers.toOrder': 'Put the places in order',
+  'rivers.s2': 'Tap the places in the order the water passes them.',
+  'rivers.downhill': 'Water only flows downhill. Which place comes next, a little lower?',
+  'rivers.s2done':
+    'Gangotri, Haridwar, Prayagraj, Varanasi, Patna, Sundarbans: each one lower than the last. The Ganga flows downhill, not down the map.',
+  'rivers.s3': 'Two rivers through one year. It is April, before the monsoon.',
+  'rivers.which': 'In April, which river still flows?',
+  'rivers.feed.snow': 'Fed by Himalayan snow',
+  'rivers.feed.rain': 'Fed only by rain',
+  'rivers.flowMap':
+    'Water in two rivers, month by month: the snow-fed river flows all year; the rain-fed river flows from June to October.',
+  'rivers.noRain':
+    'In April the monsoon has not come yet, so a river fed only by rain is almost dry.',
+  'rivers.s3done':
+    'The snow-fed river. In April the sun melts Himalayan snow and ice, so it flows all year. A rain-fed river flows mainly in the rainy season.',
+  'mistake.C8.intro': 'Tara is reading a map of India. One step slipped. Which one?',
+  'mistake.C8.s1': 'Tara looks at a map of India with north at the top.',
+  'mistake.C8.s2': 'The Ganga starts in the Himalaya, near the top of the map.',
+  'mistake.C8.s3': 'The bottom of a map is downhill, so rivers flow south.',
+  'mistake.C8.s4': 'So the Ganga must reach the sea in the far south.',
+  'mistake.C8.fine1': 'This is fine: most maps put north at the top.',
+  'mistake.C8.fine2': 'This is true: it starts at the Gangotri glacier.',
+  'mistake.C8.fine4': 'This follows from the step before. Look earlier.',
+  'mistake.C8.found':
+    'Here. North and south on a map show direction, not height. A river flows downhill, whichever way that is. The Ganga flows mostly east, from about 4,000 metres down to the sea at the Sundarbans.',
+  'mistake.C8.eq': '<s>down the map → downhill</s>   high source → <r>low mouth</r>',
+  'explain.C8.s': "A river's source is {0} than its mouth. A snow-fed river flows {1}.",
+  'explain.C8.higher': 'higher',
+  'explain.C8.lower': 'lower',
+  'explain.C8.older': 'older',
+  'explain.C8.allyear': 'all year',
+  'explain.C8.rainy': 'only when it rains',
+  'explain.C8.backwards': 'backwards',
+  'explain.C8.hint':
+    'Think of the Ganga: where was it highest, and what keeps it flowing in April?',
+  'know.C8':
+    'A river flows downhill from its high source to its low mouth; rivers fed by Himalayan snow flow all year, rain-fed rivers mainly in the rainy season.',
+  'rivers.p.gangotri': 'Gangotri',
+  'rivers.p.haridwar': 'Haridwar',
+  'rivers.p.prayagraj': 'Prayagraj',
+  'rivers.p.varanasi': 'Varanasi',
+  'rivers.p.patna': 'Patna',
+  'rivers.p.sundarbans': 'Sundarbans',
 };

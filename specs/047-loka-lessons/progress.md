@@ -19,6 +19,7 @@ Branch `feat/047-loka-lessons` from `main@4f77dc0`. Dev server for checks: `npx 
 - T013 C5 (`#plains`): `world/plains.ts` (one silt layer per flood, four to fill; five-link chain), `diagrams/loka/plains.ts` (mountain and low land cut open), five languages, `047-c5.spec.ts`.
 - T014 C6 (`#desert`): `world/desert.ts` (rounded day ranges: Thar summer 25–45 °C, winter 5–25 °C; seaside 27–34 and 20–30; smooth curve coolest at 6, warmest at 15; only a winter 6 am is 6 °C or below), `diagrams/loka/desert.ts` (two thermometers), five languages, `047-c6.spec.ts`. Step 2 starts at 3 pm so the child must choose the hour.
 - T015 C7 (`#plateau`): `world/plateau.ts` (three rivers east to the Bay of Bengal, Narmada and Tapi west in rift valleys), `diagrams/loka/plateau.ts` (schematic peninsula; rivers drawn as far as they have run via pathLength), five languages, `047-c7.spec.ts`. Native check: hi/te use the textbook loanword for delta.
+- T016 C8 (`#rivers`): `world/rivers.ts` (six Ganga places with rounded heights 4,000/300/100/80/50/0 m; snow-fed vs rain-fed levels by month), `diagrams/loka/rivers.ts` (Ganga map flowing east; two-river year chart reusing `farms.m<n>`), five languages, `047-c8.spec.ts`.
 - Note: SVG text does not wrap; long picture captions go in the `aria-label` only.
 - Note: after a miss the chosen chip stays chosen; tapping it again un-chooses it (tests check `aria-pressed`).
 
@@ -32,4 +33,4 @@ Branch `feat/047-loka-lessons` from `main@4f77dc0`. Dev server for checks: `npx 
 7. `tests/acceptance/047-<k>.spec.ts`; run sweep/journey/keyboard `-g "<K>:|<route>"` (a bare `-g E2` also matches unrelated tests); screenshots with `node .agent/tmp/shots.mjs <K> <route> <lang>` (WRONG=<index>).
 
 ## Next action
-T016 C8 Rivers of India (`#rivers`).
+T017 C9 Unity in diversity (`#unity`).

@@ -9,6 +9,8 @@ import type { SettlementSize } from '../../domain/world/settlements';
 import { renderLand } from '../diagrams/loka/cities';
 import { renderYear } from '../diagrams/loka/farms';
 import { renderClimb } from '../diagrams/loka/himalaya';
+import { renderFlow, renderGanga } from '../diagrams/loka/rivers';
+import { GANGA_PLACES } from '../../domain/world/rivers';
 import { renderPlateau } from '../diagrams/loka/plateau';
 import { renderDay } from '../diagrams/loka/desert';
 import type { DesertSeason } from '../../domain/world/desert';
@@ -56,7 +58,32 @@ const C6_STEPS: readonly (readonly [DesertSeason, number])[] = [
 
 const C7_ALL_EAST = { godavari: 1, krishna: 1, kaveri: 1 } as const;
 
+/** The worked example: the source, the edge of the plains, then all the way to the sea. */
+const C8_REACHED = [0, 1, 2, 6] as const;
+
 export const LOKA_BHARATA: VisualsTable = {
+  C8: {
+    prashna: () => renderGanga({ drawn: 1 }),
+    cards: {
+      what: () => renderGanga({ drawn: 1, shown: ['gangotri', 'sundarbans'] }),
+      idea: () => renderFlow({ month: 4 }),
+      why: () => renderFlow({ month: 5 }),
+      example: (step) => {
+        const n = C8_REACHED[step] ?? 0;
+        const shown = GANGA_PLACES.slice(0, n);
+        return renderGanga({
+          drawn: n <= 1 ? 0 : (n - 1) / (GANGA_PLACES.length - 1),
+          shown,
+          highlight: shown[shown.length - 1] ?? null,
+        });
+      },
+      where: () => renderGanga({ drawn: 1, shown: ['prayagraj', 'varanasi', 'patna'] }),
+    },
+    mistake: (reveal) =>
+      reveal
+        ? renderGanga({ drawn: 1, shown: ['gangotri', 'sundarbans'], highlight: 'sundarbans' })
+        : renderGanga({ shown: ['gangotri'], highlight: 'gangotri' }),
+  },
   C7: {
     prashna: () => renderPlateau({ highlight: 'godavari' }),
     cards: {
