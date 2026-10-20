@@ -188,7 +188,7 @@ export const SECTIONS: Section[] = [
       },
       {
         id: 'nagarika',
-        knots: [k('Q1'), k('Q2'), k('Q3')],
+        knots: [k('Q1', { prashna: true, bench: bench('govern') }), k('Q2'), k('Q3')],
       },
       {
         id: 'bhugola',

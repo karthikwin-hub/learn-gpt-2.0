@@ -9,3 +9,4 @@ export * from './timeline';
 export * from './earth';
 export * from './map';
 export * from './sources';
+export * from './civics';
