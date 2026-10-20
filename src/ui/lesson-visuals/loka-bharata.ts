@@ -9,6 +9,8 @@ import type { SettlementSize } from '../../domain/world/settlements';
 import { renderLand } from '../diagrams/loka/cities';
 import { renderYear } from '../diagrams/loka/farms';
 import { renderClimb } from '../diagrams/loka/himalaya';
+import { renderDay } from '../diagrams/loka/desert';
+import type { DesertSeason } from '../../domain/world/desert';
 import { renderPlain } from '../diagrams/loka/plains';
 import type { HimalayanRange } from '../../domain/world/himalaya';
 import { renderIndia } from '../diagrams/loka/states';
@@ -43,7 +45,29 @@ const C4_STOPS: readonly (readonly [number | null, HimalayanRange | null])[] = [
   [6000, 'himadri'],
 ];
 
+/** The worked example: one summer day, then the same dawn in winter. */
+const C6_STEPS: readonly (readonly [DesertSeason, number])[] = [
+  ['summer', 12],
+  ['summer', 6],
+  ['summer', 15],
+  ['winter', 6],
+];
+
 export const LOKA_BHARATA: VisualsTable = {
+  C6: {
+    prashna: () => renderDay({ season: 'summer', hour: 15 }),
+    cards: {
+      what: () => renderDay({ season: 'summer', hour: 15 }),
+      idea: () => renderDay({ season: 'summer', hour: 6, swing: true }),
+      why: () => renderDay({ season: 'winter', hour: 0 }),
+      example: (step) => {
+        const [season, hour] = C6_STEPS[step] ?? ['summer', 12];
+        return renderDay({ season, hour, swing: step === 3 });
+      },
+      where: () => renderDay({ season: 'winter', hour: 15 }),
+    },
+    mistake: (reveal) => renderDay({ season: 'winter', hour: reveal ? 6 : 12 }),
+  },
   C5: {
     prashna: () => renderPlain({ layers: 4 }),
     cards: {

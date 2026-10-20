@@ -17,6 +17,7 @@ Branch `feat/047-loka-lessons` from `main@4f77dc0`. Dev server for checks: `npx 
 - T011 C3 (`#cities`): `world/settlements.ts` (three needs: water, flat land, travel; size by count; four cities), `diagrams/loka/cities.ts` (land from above, six numbered sites), five languages, `047-c3.spec.ts`. Teacher check: Bengaluru about 900 m.
 - T012 C4 (`#himalaya`): `world/himalaya.ts` (6.5 °C per 1,000 m from 32 °C; freezes at the 5,000 m step; three ranges), `diagrams/loka/himalaya.ts` (side view with height line and thermometer), five languages, `047-c4.spec.ts`. Temperatures use a no-break space before °C.
 - T013 C5 (`#plains`): `world/plains.ts` (one silt layer per flood, four to fill; five-link chain), `diagrams/loka/plains.ts` (mountain and low land cut open), five languages, `047-c5.spec.ts`.
+- T014 C6 (`#desert`): `world/desert.ts` (rounded day ranges: Thar summer 25–45 °C, winter 5–25 °C; seaside 27–34 and 20–30; smooth curve coolest at 6, warmest at 15; only a winter 6 am is 6 °C or below), `diagrams/loka/desert.ts` (two thermometers), five languages, `047-c6.spec.ts`. Step 2 starts at 3 pm so the child must choose the hour.
 - Note: SVG text does not wrap; long picture captions go in the `aria-label` only.
 - Note: after a miss the chosen chip stays chosen; tapping it again un-chooses it (tests check `aria-pressed`).
 
@@ -30,4 +31,4 @@ Branch `feat/047-loka-lessons` from `main@4f77dc0`. Dev server for checks: `npx 
 7. `tests/acceptance/047-<k>.spec.ts`; run sweep/journey/keyboard `-g "<K>:|<route>"` (a bare `-g E2` also matches unrelated tests); screenshots with `node .agent/tmp/shots.mjs <K> <route> <lang>` (WRONG=<index>).
 
 ## Next action
-T014 C6 Thar Desert (`#desert`).
+T015 C7 Peninsular plateau (`#plateau`).

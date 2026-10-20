@@ -30,6 +30,7 @@ import { I2_LESSON } from './i2';
 import { E1_LESSON } from './e1';
 import { E4_LESSON } from './e4';
 import { I1_LESSON } from './i1';
+import { C6_LESSON } from './c6';
 import { C5_LESSON } from './c5';
 import { C4_LESSON } from './c4';
 import { C3_LESSON } from './c3';
@@ -98,6 +99,7 @@ const LESSONS: Record<string, LessonData> = {
   E1: E1_LESSON,
   E4: E4_LESSON,
   I1: I1_LESSON,
+  C6: C6_LESSON,
   C5: C5_LESSON,
   C4: C4_LESSON,
   C3: C3_LESSON,

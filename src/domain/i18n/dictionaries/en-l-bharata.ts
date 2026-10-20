@@ -518,4 +518,100 @@ export const dictionary: Record<string, string> = {
   'explain.C5.hint': 'Think of the muddy flood: what did it leave on the fields?',
   'know.C5':
     'Rivers carried silt down from the Himalaya, and floods spread it in layers, building the flat, fertile northern plains.',
+
+  /* C6 */
+  'prashna.C6.q': 'Is a winter night in the Thar Desert warm or cold?',
+  'prashna.C6.c1': 'Warm: deserts are always hot',
+  'prashna.C6.c2': 'Cold, near freezing',
+  'prashna.C6.c3': 'Just the same as the day',
+  'prashna.C6.a':
+    'Cold, near freezing. Sand heats up fast by day and loses its heat fast at night under a dry, clear sky. On a winter night the Thar can drop to about 5 °C, and sometimes below 0 °C.',
+  'bodha.C6.what':
+    'The Thar is a [[desert|desert]] in the west of India, mostly in Rajasthan. It gets very little rain, it has sand dunes and thorny bushes, and its temperature swings a lot between day and night.',
+  'bodha.C6.can':
+    'You can explain why the Thar is hot by day and cold by night, and how plants, animals and people there live with little water.',
+  'bodha.C6.idea':
+    'Sand heats up fast in the sun and cools down fast at night, and dry, clear air lets the heat escape into the sky. So a desert day and night are very different. Beside the sea, water warms and cools slowly, so the temperature changes much less.',
+  'bodha.C6.why':
+    'This is why people in the desert wear loose clothes that cover them by day and use thick blankets at night, and why their houses have thick walls.',
+  'bodha.C6.example': 'One summer day in the Thar.',
+  'bodha.C6.example1': '6 in the morning: about 25 °C, the coolest time of the day.',
+  'bodha.C6.example2':
+    '3 in the afternoon: about 45 °C, and the sand is too hot to walk on barefoot.',
+  'bodha.C6.example3': 'In winter the same dawn is only about 5 °C: dry, not always hot.',
+  'bodha.C6.where':
+    'In Jaisalmer and Bikaner, houses have thick walls of stone and mud, and many homes keep rain in a covered tank called a [[kund|kund]]. The camel, the ship of the desert, carries people and goods across the sand.',
+  'bodha.C6.sutra':
+    'A desert is dry, not always hot: sand heats up fast and cools down fast, so its days are hot and its nights are cold.',
+  'gloss.desert': 'A dry place that gets very little rain.',
+  'gloss.desert.en': 'desert',
+  'gloss.kund': 'A covered tank in the ground that catches and keeps rainwater in the desert.',
+  'gloss.kund.en': 'kund',
+  'desert.title': 'A day in the Thar',
+  'desert.place.thar': 'Thar',
+  'desert.place.coast': 'Seaside town',
+  'desert.season.summer': 'Summer',
+  'desert.season.winter': 'Winter',
+  'desert.reading': '{season}, {hour}: Thar {thar}, seaside town {coast}.',
+  'desert.swings': 'In one day the Thar swings {thar} °C; the seaside town only {coast} °C.',
+  'desert.s1': 'Run one summer day and watch both thermometers.',
+  'desert.showMe': 'Run the day',
+  'desert.s1done':
+    'In the Thar it went from 25 °C before sunrise to 45 °C in the afternoon: a swing of 20 °C. By the sea it moved only 7 °C.',
+  'desert.toFind': 'Find the coldest time',
+  'desert.s2': 'Choose a season and a time of day. Find when the Thar is 6 °C or colder.',
+  'desert.season': 'Season',
+  'desert.hour': 'Time of day',
+  'desert.s2done':
+    'Deserts are dry, not always hot: a winter dawn in the Thar needs a thick blanket.',
+  'desert.s3': 'Four desert things. Match each one to how it helps.',
+  'desert.thing.camel': "A camel's wide, soft feet",
+  'desert.thing.khejri': "A khejri tree's deep roots",
+  'desert.thing.kund': 'A kund',
+  'desert.thing.walls': 'Thick mud walls',
+  'desert.help.camel': 'Walk on soft sand without sinking',
+  'desert.help.khejri': 'Reach water far under the ground',
+  'desert.help.kund': 'Store rainwater for the dry months',
+  'desert.help.walls': 'Keep a house cool by day and warm by night',
+  'desert.hint.camel': 'Think of what is hard about walking on soft sand.',
+  'desert.hint.khejri': 'In a desert, where is the water, if not on top?',
+  'desert.hint.kund': 'A kund is a covered tank. What would you keep in it?',
+  'desert.hint.walls': 'Think of the big swing between day and night.',
+  'desert.why.camel': "A camel's wide feet spread its weight, so it does not sink into the sand.",
+  'desert.why.khejri':
+    'Khejri roots grow very deep to reach water, so the tree stays green in the dry months.',
+  'desert.why.kund':
+    'A kund catches rain from the ground around it and keeps it covered and clean for months.',
+  'desert.why.walls': 'Thick walls warm up slowly by day and give the heat back slowly at night.',
+  'desert.s3done':
+    'All four matched. Plants, animals and people in the Thar live with little water and a big swing in temperature.',
+  'mistake.C6.intro': 'Kabir is going camping in the Thar. One step slipped. Which one?',
+  'mistake.C6.s1': 'Kabir is camping in the Thar in January.',
+  'mistake.C6.s2': 'At midday the sand is warm, about 20 °C.',
+  'mistake.C6.s3': 'If the days are warm, the nights will be warm too.',
+  'mistake.C6.s4': 'So he leaves his blanket at home.',
+  'mistake.C6.fine1': 'This is fine: many people visit the Thar in winter.',
+  'mistake.C6.fine2': 'This is true: winter days in the Thar are pleasant.',
+  'mistake.C6.fine4': 'This follows from the step before. Look earlier.',
+  'mistake.C6.found':
+    'Here. Sand heats up fast in the sun and cools down fast at night, and the dry, clear air lets the heat escape. A winter night in the Thar can fall to about 5 °C.',
+  'mistake.C6.eq': '<s>warm day → warm night</s>   dry sand at night → <r>about 5 °C</r>',
+  'explain.C6.s': 'A desert gets very little {0}. Sand heats up fast and cools down {1}.',
+  'explain.C6.rain': 'rain',
+  'explain.C6.sunlight': 'sunlight',
+  'explain.C6.wind': 'wind',
+  'explain.C6.fast': 'fast',
+  'explain.C6.never': 'never',
+  'explain.C6.slowly': 'slowly',
+  'explain.C6.hint': 'Think of the Thar thermometer at night: how quickly did it fall?',
+  'know.C6':
+    'A desert is dry, not always hot: the Thar gets very little rain, and its sand heats up fast by day and cools down fast at night.',
+  'desert.h.0': 'Midnight',
+  'desert.h.3': '3 at night',
+  'desert.h.6': '6 in the morning',
+  'desert.h.9': '9 in the morning',
+  'desert.h.12': 'Noon',
+  'desert.h.15': '3 in the afternoon',
+  'desert.h.18': '6 in the evening',
+  'desert.h.21': '9 at night',
 };
