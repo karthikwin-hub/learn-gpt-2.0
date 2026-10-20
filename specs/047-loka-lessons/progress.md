@@ -10,6 +10,7 @@ Branch `feat/047-loka-lessons` from `main@4f77dc0`. Dev server for checks: `npx 
 - T004 Q1 (`#govern`): `world/civics.ts`, `diagrams/loka/govern.ts`, five languages, `047-q1.spec.ts`.
 - T005 Q2 (`#citizen`): `world/citizenship.ts`, `diagrams/loka/citizen.ts`, five languages, `047-q2.spec.ts`.
 - T006 Q3 (`#river`): `world/pollution.ts`, `diagrams/loka/river.ts` (village, stream, bins), five languages, `047-q3.spec.ts`. `house` moved to `diagrams/loka/parts.ts`.
+- T007 E2 (`#domains`): `world/spheres.ts`, `diagrams/loka/spheres.ts` (globe, 100 squares, domains scene, 100-drop jug), five languages, `047-e2.spec.ts`.
 - Note: after a miss the chosen chip stays chosen; tapping it again un-chooses it (tests check `aria-pressed`).
 
 ## Per-knot recipe
@@ -19,7 +20,7 @@ Branch `feat/047-loka-lessons` from `main@4f77dc0`. Dev server for checks: `npx 
 4. `src/domain/lesson/<k>.ts` + `registry.ts`; curriculum `prashna: true, bench: bench('<route>')`; bump the playable count in `src/domain/curriculum/index.test.ts`.
 5. Pictures in `lesson-visuals/loka-<thread>.ts`.
 6. Strings in `<lang>-l-<thread>.ts` for en hi te bn ta.
-7. `tests/acceptance/047-<k>.spec.ts`; run sweep/journey/keyboard `-g "<K>:"`; screenshots with `node .agent/tmp/shots.mjs <K> <route> <lang>` (WRONG=<index>).
+7. `tests/acceptance/047-<k>.spec.ts`; run sweep/journey/keyboard `-g "<K>:|<route>"` (a bare `-g E2` also matches unrelated tests); screenshots with `node .agent/tmp/shots.mjs <K> <route> <lang>` (WRONG=<index>).
 
 ## Next action
-T007 E2 Four domains (`#domains`).
+T008 E3 Landforms (`#landforms`).

@@ -64,6 +64,7 @@ import { createTimelineScreen } from './ui/components/screens/timeline';
 import { createEarthScreen } from './ui/components/screens/earth';
 import { createMapScreen } from './ui/components/screens/map';
 import { createDigScreen } from './ui/components/screens/dig';
+import { createDomainsScreen } from './ui/components/screens/domains';
 import { createRiverScreen } from './ui/components/screens/river';
 import { createCitizenScreen } from './ui/components/screens/citizen';
 import { createGovernScreen } from './ui/components/screens/govern';
@@ -143,6 +144,7 @@ export function initApp(): void {
   router.register({ ...createEarthScreen(), id: 'seasons' });
   router.register(createMapScreen());
   router.register(createDigScreen());
+  router.register(createDomainsScreen());
   router.register(createRiverScreen());
   router.register(createCitizenScreen());
   router.register(createGovernScreen());
