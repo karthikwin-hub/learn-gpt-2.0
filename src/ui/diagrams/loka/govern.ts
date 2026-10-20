@@ -6,23 +6,9 @@ import type { GovLevel } from '../../../domain/world/civics';
 import { t } from '../../../domain/i18n/core';
 import { svg } from '../../util/dom';
 import { figCircle, figLine, figPath, figRect, figSvg, figText } from '../fig';
+import { house } from './parts';
 
 export type CivicIcon = 'streetlight' | 'road' | 'coin';
-
-function house(x: number, y: number, s = 1): SVGGElement {
-  const g = svg('g') as SVGGElement;
-  g.appendChild(
-    figRect(x, y, 22 * s, 16 * s, { fill: 'var(--paper-raised)', stroke: 'var(--ink-soft)', rx: 1 })
-  );
-  g.appendChild(
-    figPath(`M${x - 3 * s} ${y} L${x + 11 * s} ${y - 11 * s} L${x + 25 * s} ${y} Z`, {
-      fill: '#B35C4A',
-      stroke: 'var(--ink-soft)',
-      sw: 1,
-    })
-  );
-  return g;
-}
 
 export function streetlight(x: number, y: number, lit: boolean, h = 60): SVGGElement {
   const g = svg('g') as SVGGElement;
