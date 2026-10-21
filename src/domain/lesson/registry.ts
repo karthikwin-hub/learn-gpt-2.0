@@ -29,6 +29,21 @@ import { M5_LESSON } from './m5';
 import { I2_LESSON } from './i2';
 import { E1_LESSON } from './e1';
 import { E4_LESSON } from './e4';
+import { I1_LESSON } from './i1';
+import { C9_LESSON } from './c9';
+import { C8_LESSON } from './c8';
+import { C7_LESSON } from './c7';
+import { C6_LESSON } from './c6';
+import { C5_LESSON } from './c5';
+import { C4_LESSON } from './c4';
+import { C3_LESSON } from './c3';
+import { C2_LESSON } from './c2';
+import { C1_LESSON } from './c1';
+import { E3_LESSON } from './e3';
+import { E2_LESSON } from './e2';
+import { Q3_LESSON } from './q3';
+import { Q2_LESSON } from './q2';
+import { Q1_LESSON } from './q1';
 import { N2_LESSON } from './n2';
 import { N4_LESSON } from './n4';
 import { N5_LESSON } from './n5';
@@ -86,6 +101,21 @@ const LESSONS: Record<string, LessonData> = {
   I2: I2_LESSON,
   E1: E1_LESSON,
   E4: E4_LESSON,
+  I1: I1_LESSON,
+  C9: C9_LESSON,
+  C8: C8_LESSON,
+  C7: C7_LESSON,
+  C6: C6_LESSON,
+  C5: C5_LESSON,
+  C4: C4_LESSON,
+  C3: C3_LESSON,
+  C2: C2_LESSON,
+  C1: C1_LESSON,
+  E3: E3_LESSON,
+  E2: E2_LESSON,
+  Q3: Q3_LESSON,
+  Q2: Q2_LESSON,
+  Q1: Q1_LESSON,
   N2: N2_LESSON,
   N4: N4_LESSON,
   N5: N5_LESSON,

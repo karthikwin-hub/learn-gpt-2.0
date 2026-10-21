@@ -181,24 +181,41 @@ export const SECTIONS: Section[] = [
     threads: [
       {
         id: 'itihasa',
-        knots: [k('I1'), k('I2', { prashna: true, bench: bench('timeline') })],
+        knots: [
+          k('I1', { prashna: true, bench: bench('dig') }),
+          k('I2', { prashna: true, bench: bench('timeline') }),
+        ],
       },
       {
         id: 'nagarika',
-        knots: [k('Q1'), k('Q2'), k('Q3')],
+        knots: [
+          k('Q1', { prashna: true, bench: bench('govern') }),
+          k('Q2', { prashna: true, bench: bench('citizen') }),
+          k('Q3', { prashna: true, bench: bench('river') }),
+        ],
       },
       {
         id: 'bhugola',
         knots: [
           k('E1', { prashna: true, bench: bench('earth') }),
-          k('E2'),
-          k('E3'),
+          k('E2', { prashna: true, bench: bench('domains') }),
+          k('E3', { prashna: true, bench: bench('landforms') }),
           k('E4', { prashna: true, bench: bench('map') }),
         ],
       },
       {
         id: 'bharata',
-        knots: [k('C1'), k('C2'), k('C3'), k('C4'), k('C5'), k('C6'), k('C7'), k('C8'), k('C9')],
+        knots: [
+          k('C1', { prashna: true, bench: bench('states') }),
+          k('C2', { prashna: true, bench: bench('farms') }),
+          k('C3', { prashna: true, bench: bench('cities') }),
+          k('C4', { prashna: true, bench: bench('himalaya') }),
+          k('C5', { prashna: true, bench: bench('plains') }),
+          k('C6', { prashna: true, bench: bench('desert') }),
+          k('C7', { prashna: true, bench: bench('plateau') }),
+          k('C8', { prashna: true, bench: bench('rivers') }),
+          k('C9', { prashna: true, bench: bench('unity') }),
+        ],
       },
     ],
   },

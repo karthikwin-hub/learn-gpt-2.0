@@ -105,26 +105,26 @@ The book's worksheets, self-checks, STEAM worksheets, case studies and "Go Green
 
 | Thread | Knot | Title | Book theme and chapter | Status |
 |---|---|---|---|---|
-| Itihasa | I1 | Clues from the past (sources) | Theme 1 · 1 History and its Sources | Planned |
+| Itihasa | I1 | Clues from the past (sources) | Theme 1 · 1 History and its Sources | **P2** |
 | Itihasa | I2 | Thread of time (calendars and timelines) | Theme 2 Almanac · 2 Calendars and Timeline | **P2** |
-| Nagarika | Q1 | What is civics? | Theme 3 · 3 Introduction to Civics | Planned |
-| Nagarika | Q2 | A good citizen | Theme 3 · 4 Responsibilities of a Good Citizen | Planned |
+| Nagarika | Q1 | What is civics? | Theme 3 · 3 Introduction to Civics | **P2** |
+| Nagarika | Q2 | A good citizen | Theme 3 · 4 Responsibilities of a Good Citizen | **P2** |
 | Bhugola | E1 | Spin and travel (motions of the Earth) | Theme 4 · 5 Motions of the Earth | **P2** |
-| Bhugola | E2 | Land, water, air and life (the four domains) | Theme 4 · 6 The Four Domains of the Earth | Planned |
-| Bhugola | E3 | Mountains, plateaus and plains (landforms) | Theme 4 · 7 Major Landforms | Planned |
+| Bhugola | E2 | Land, water, air and life (the four domains) | Theme 4 · 6 The Four Domains of the Earth | **P2** |
+| Bhugola | E3 | Mountains, plateaus and plains (landforms) | Theme 4 · 7 Major Landforms | **P2** |
 | Bhugola | E4 | Courtyard from above (maps) | Theme 4 · 8 Maps: Our Guide | **P2** |
-| Bharata | C1 | The states of India | Theme 5 Our State · 9 The States of India | Planned |
-| Bharata | C2 | Farms of India | Theme 6 · 10 Agriculture in India | Planned |
-| Bharata | C3 | Cities of India | Theme 6 · 11 Important Cities | Planned |
-| Bharata | C4 | The Himalaya | Theme 6 · 12 Northern Mountains: The Himalayan Region | Planned |
-| Bharata | C5 | The northern plains | Theme 6 · 13 The Northern Plains | Planned |
-| Bharata | C6 | The Thar Desert | Theme 6 · 14 The Great Indian Desert | Planned |
-| Bharata | C7 | The peninsular plateau | Theme 6 · 15 The Peninsular Plateaus | Planned |
-| Bharata | C8 | Rivers of India | Theme 6 · 16 Major Rivers of India | Planned |
-| Bharata | C9 | Unity in diversity | Theme 6 · 17 Unity in Diversity | Planned |
-| Nagarika | Q3 | Pollution and us | Theme 7 · 18 Environmental Pollution | Planned |
+| Bharata | C1 | The states of India | Theme 5 Our State · 9 The States of India | **P2** |
+| Bharata | C2 | Farms of India | Theme 6 · 10 Agriculture in India | **P2** |
+| Bharata | C3 | Cities of India | Theme 6 · 11 Important Cities | **P2** |
+| Bharata | C4 | The Himalaya | Theme 6 · 12 Northern Mountains: The Himalayan Region | **P2** |
+| Bharata | C5 | The northern plains | Theme 6 · 13 The Northern Plains | **P2** |
+| Bharata | C6 | The Thar Desert | Theme 6 · 14 The Great Indian Desert | **P2** |
+| Bharata | C7 | The peninsular plateau | Theme 6 · 15 The Peninsular Plateaus | **P2** |
+| Bharata | C8 | Rivers of India | Theme 6 · 16 Major Rivers of India | **P2** |
+| Bharata | C9 | Unity in diversity | Theme 6 · 17 Unity in Diversity | **P2** |
+| Nagarika | Q3 | Pollution and us | Theme 7 · 18 Environmental Pollution | **P2** |
 
-"Our State" (theme 5) should show the child's own state first; the prototype shows India as a whole.
+"Our State" (theme 5): C1 shows India as a whole and lets the child pick their own state to see its capital, main language and neighbours (feature 047).
 
 ## 6. Jaal: threads that cross subjects
 
@@ -256,6 +256,6 @@ All 7 maths themes, all 12 science chapters and all 18 social studies chapters a
 
 1. Board alignment: these books look like a CBSE-affiliated private series. Which states or boards must be supported first, and do their Class 5 chapters differ?
 2. Should Tarka (sets and logic) stay as enrichment, or be hidden until the school topics are done?
-3. "Our State" (Loka C1): which states first? The prototype is India-wide.
+3. "Our State" (Loka C1): which states first? The prototype is India-wide; the child picks their own state.
 4. Science facts in B3 (digestion times) and the K2 model distances need a science teacher's sign-off.
 5. Timeline events (I2): are these the right anchors for Class 5, or should the school's history chapter events be used?

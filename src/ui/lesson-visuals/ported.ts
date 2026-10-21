@@ -12,7 +12,7 @@ import { shadowLength, shadowDarkness, STICK_HEIGHT } from '../../domain/science
 import { hourAt, isDay, northernSeason } from '../../domain/world/earth';
 import { COURTYARD, walk } from '../../domain/world/map';
 import { EVENTS } from '../../domain/world/timeline';
-import { figCircle, figLine, figPath, figRect, figSvg, figText } from '../diagrams/fig';
+import { figArrow, figCircle, figLine, figPath, figRect, figSvg, figText } from '../diagrams/fig';
 import { renderG2Ropes, renderG4Flower } from '../diagrams/geometry';
 import { renderM5Beats } from '../diagrams/drums';
 import { renderFairSharePlates } from '../diagrams/share';
@@ -61,26 +61,6 @@ function addOneDigits(d: readonly number[]): { digits: number[]; bundled: number
 
 function groupInternational(n: number): string {
   return String(Math.floor(n)).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
-}
-
-function figArrow(
-  x1: number,
-  y1: number,
-  x2: number,
-  y2: number,
-  color = 'var(--ink)'
-): SVGGElement {
-  const a = Math.atan2(y2 - y1, x2 - x1);
-  const h = 8;
-  const g = createSvg('g') as SVGGElement;
-  g.appendChild(figLine(x1, y1, x2, y2, { stroke: color, sw: 2.2 }));
-  g.appendChild(
-    figPath(
-      `M${x2 - h * Math.cos(a - 0.45)} ${y2 - h * Math.sin(a - 0.45)} L${x2} ${y2} L${x2 - h * Math.cos(a + 0.45)} ${y2 - h * Math.sin(a + 0.45)}`,
-      { stroke: color, sw: 2.2 }
-    )
-  );
-  return g;
 }
 
 function twoLines(top: string, bottom: string, label?: string): SVGSVGElement {

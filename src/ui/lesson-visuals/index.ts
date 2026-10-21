@@ -10,6 +10,10 @@ import { FACTORS } from './factors';
 import { GEOMETRY } from './geometry';
 import { MEASURE } from './measure';
 import { LOGIC } from './logic';
+import { LOKA_ITIHASA } from './loka-itihasa';
+import { LOKA_NAGARIKA } from './loka-nagarika';
+import { LOKA_BHUGOLA } from './loka-bhugola';
+import { LOKA_BHARATA } from './loka-bharata';
 import type { LessonVisuals, VisualsTable } from './types';
 
 export function mergeTables(tables: Record<string, VisualsTable>): VisualsTable {
@@ -35,7 +39,18 @@ export function mergeTables(tables: Record<string, VisualsTable>): VisualsTable 
   return out;
 }
 
-const TABLE = mergeTables({ PORTED, NUMBER, FACTORS, GEOMETRY, MEASURE, LOGIC });
+const TABLE = mergeTables({
+  PORTED,
+  NUMBER,
+  FACTORS,
+  GEOMETRY,
+  MEASURE,
+  LOGIC,
+  LOKA_ITIHASA,
+  LOKA_NAGARIKA,
+  LOKA_BHUGOLA,
+  LOKA_BHARATA,
+});
 
 export function getVisuals(knotId: string): LessonVisuals {
   return TABLE[knotId] || {};
