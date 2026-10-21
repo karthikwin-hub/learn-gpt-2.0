@@ -17,6 +17,7 @@ test.describe('046 J5: every lesson end to end', () => {
   });
 
   for (const { knot, lesson, first, bench } of lessons) {
+    // covers: US16-AS1 (047 knots)
     test(`${knot.id}: the child completes the lesson and the Pothi gains its page (US3-AS1)`, async ({
       page,
     }) => {
