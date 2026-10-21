@@ -61,6 +61,7 @@ for (const lang of LANGUAGES) {
     });
 
     for (const { knot, lesson, bench } of lessons) {
+      // covers: US16-AS2 (047 knots)
       test(`${knot.id}: every lesson screen is in ${lang}, with pictures (US1-AS1, US2-AS1, US2-AS2, US2-AS3)`, async ({
         page,
       }) => {

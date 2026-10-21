@@ -7,6 +7,7 @@ const KEYBOARD_ALTERNATIVE: Record<string, { selector: string; alternative: stri
 };
 
 for (const { knot, bench } of playableLessons()) {
+  // covers: US16-AS3 (047 knots; with the reduced-motion sweep)
   test(`${knot.id}: every bench control can be reached by keyboard (FR-008)`, async ({ page }) => {
     await page.goto(bench);
     await page.locator('#view').waitFor();
