@@ -18,4 +18,5 @@ Use option 1 for state and external boundaries, simplified once by a standard-li
 ## Consequences
 - Positive: a recognisable, official map in every India chapter; no runtime dependency; small generated file.
 - Risks: simplification can make tiny states and islands hard to see; benches keep named buttons for choosing. The source zip is not committed; the generator records its source name and date in the output header.
+- The source (`STATE_BOUNDARY`, data modified 2025-10-16) has 28 states and 8 union territories, plus four areas it marks as disputed between states (Madhya Pradesh–Gujarat, Madhya Pradesh–Rajasthan, Rajasthan–Gujarat, West Bengal–Bihar–Jharkhand). They are drawn as their own neutral layer inside India and given to no state. The source files sit in `docs/Map_India/` (git-ignored).
 - Follow-ups: every map shows "Boundaries: Survey of India"; `india-map.test.ts` checks 36 regions, frame bounds and neighbour contact.
