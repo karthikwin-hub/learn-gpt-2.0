@@ -23,7 +23,7 @@ Branch `feat/047-loka-lessons` from `main@4f77dc0`. Dev server for checks: `npx 
 - T017 C9 (`#unity`): `world/unity.ts` (four mid-January harvest festivals and their states; five greetings with BCP 47 tags; 22 scheduled languages), `diagrams/loka/unity.ts` (greeting cards, 3+2 so each script is readable), `Choice.lang` in `loka-bench.ts` so greeting chips carry their own `lang`, five languages, `047-c9.spec.ts`.
 - T018 docs: `WORLD_RULES.md` lists the 15 new world modules and five known values; `CURRICULUM_PHASE2.md` §5 marks the 15 knots **P2**.
 - T019 full verify 12/12 PASS at `96899e7`; screenshot sweep (bn 390 px, te 360 px) clean; reviewer: Q3 step-2 restore fixed (`96899e7`), minors skipped (see PR).
-- T020 `checks.md` with the teacher fact list. PARTIAL: pushing the branch failed twice in the agent tool (approval prompt error), so there is no PR yet; the PR text is in `.agent/tmp/pr-body.md`.
+- T020 `checks.md` with the teacher fact list; draft PR https://github.com/karthikwin-hub/learn-gpt-2.0/pull/47.
 - Note: SVG text does not wrap; long picture captions go in the `aria-label` only.
 - Note: after a miss the chosen chip stays chosen; tapping it again un-chooses it (tests check `aria-pressed`).
 
@@ -37,4 +37,4 @@ Branch `feat/047-loka-lessons` from `main@4f77dc0`. Dev server for checks: `npx 
 7. `tests/acceptance/047-<k>.spec.ts`; run sweep/journey/keyboard `-g "<K>:|<route>"` (a bare `-g E2` also matches unrelated tests); screenshots with `node .agent/tmp/shots.mjs <K> <route> <lang>` (WRONG=<index>).
 
 ## Next action
-Push `feat/047-loka-lessons` and open the draft PR from `.agent/tmp/pr-body.md`; then native-speaker review (te first) and the teacher fact check in `checks.md` before any merge.
+Human: native-speaker review (te first) and the teacher fact check in `checks.md`, then decide on merging the draft PR. No agent work pending.
