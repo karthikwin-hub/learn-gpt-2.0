@@ -13,5 +13,5 @@ Verify for every task: `npx vitest run src`, the task's acceptance spec, then `p
 - [x] T009 Chapters C1, C2, C3 (map figures added in T004)
 - [x] T010 Chapters C4, C5, C6 (map figures added in T004)
 - [x] T011 Chapters C7, C8, C9, Q3 (map figures added in T004)
-- [ ] T012 US3 Sweep of every chapter; full verify; screenshots at 360 and 390 px; independent review; fixes
-- [ ] T013 `checks.md` with the teacher fact list; draft PR
+- [x] T012 US3 Sweep of every chapter; full verify; screenshots at 360 and 390 px; independent review; fixes
+- [x] T013 `checks.md` with the teacher fact list; draft PR
