@@ -9,7 +9,7 @@ export const C2: Chapter = {
     {
       heading: 'Farming in India',
       paras: [
-        'Nearly half of all working people in India work on farms. India grows more milk and pulses than any other country, and is second only to China for rice and wheat.',
+        'Nearly half of all working people in India work on farms. India grows more milk and pulses than any other country, and India and China are the two biggest growers of rice and of wheat in the world.',
         'A [[crop|crop]] is a plant grown on purpose for food, cloth or other uses. What a farmer can grow depends on the soil, the water and above all the season.',
       ],
     },
