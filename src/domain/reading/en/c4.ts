@@ -68,6 +68,8 @@ export const C4: Chapter = {
       paras: [
         'On a map of India, the Himalaya form a curved band across the top of the country. They pass through Ladakh, Jammu and Kashmir, Himachal Pradesh, Uttarakhand, the north of West Bengal, Sikkim and Arunachal Pradesh. The countries of Nepal and Bhutan lie in the Himalaya too, between parts of India and China.',
       ],
+      figure: 'map:himalaya',
+      caption: 'The Himalayan states and union territories, across the top of India.',
     },
   ],
   words: [

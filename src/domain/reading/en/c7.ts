@@ -61,6 +61,8 @@ export const C7: Chapter = {
       paras: [
         'On a map of India, the Deccan is the big triangle of the south. Find the Western Ghats running down the west coast, close to the sea. Then follow the Godavari, the Krishna and the Kaveri from near that coast all the way across to the east coast. Last, find the Narmada and the Tapi in the north of the plateau, flowing the other way.',
       ],
+      figure: 'C7:where',
+      caption: 'The Deccan plateau, the Western Ghats and the rivers that cross it.',
     },
   ],
   words: [

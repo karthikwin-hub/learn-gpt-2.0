@@ -67,6 +67,8 @@ export const C3: Chapter = {
         'Put the big cities on a map of India and a pattern appears. Delhi stands on the Yamuna. Kolkata is on the Hooghly near the sea. Mumbai and Chennai are on the coast. Hyderabad and Bengaluru, on the high Deccan, grew where old trade roads met, and both built large lakes and tanks to store water.',
         'Now look at the places with few dots: the high Himalaya, the dry west of Rajasthan, and the thick forests of the north-east. The map of where people live follows the map of water and flat land.',
       ],
+      figure: 'map:cities',
+      caption: 'Six big cities: on rivers, on the coast, or on the Deccan where trade roads met.',
     },
   ],
   words: [

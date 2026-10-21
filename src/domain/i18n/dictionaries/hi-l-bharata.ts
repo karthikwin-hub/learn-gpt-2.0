@@ -833,4 +833,15 @@ export const dictionary: Record<string, string> = {
   'unity.f.lohri': 'लोहड़ी',
   'unity.f.bihu': 'बिहू',
   'unity.f.uttarayan': 'उत्तरायण',
+  /* 048 map of India */
+  'map.p.darjeeling': 'दार्जिलिंग',
+  'map.p.jaisalmer': 'जैसलमेर',
+  'map.p.bikaner': 'बीकानेर',
+  'map.p.mahabaleshwar': 'महाबलेश्वर',
+  'map.z.himalaya': 'हिमालय',
+  'map.z.plains': 'उत्तरी मैदान',
+  'map.z.thar': 'थार मरुस्थल',
+  'map.z.deccan': 'दक्कन का पठार',
+  'map.z.ghats': 'पश्चिमी घाट',
+  'map.approx': 'छायांकित क्षेत्र अनुमानित हैं।',
 };

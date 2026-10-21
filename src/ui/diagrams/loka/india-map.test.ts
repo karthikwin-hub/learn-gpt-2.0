@@ -1,6 +1,6 @@
 import { beforeAll, describe, expect, it } from 'vitest';
 import { setLang } from '../../../domain/i18n/core';
-import { renderIndiaMap } from './india-map';
+import { mapPlaces, renderIndiaInset, renderIndiaMap } from './india-map';
 
 describe('renderIndiaMap (048)', () => {
   beforeAll(() => setLang('en'));
@@ -55,5 +55,32 @@ describe('renderIndiaMap (048)', () => {
       renderIndiaMap({ rivers: ['ganga', 'yamuna'] }).querySelectorAll('[data-river]')
     ).toHaveLength(2);
     expect(() => renderIndiaMap({ rivers: ['nile'] })).toThrow(/nile/);
+  });
+
+  it('shades zones inside India, names them and says they are approximate', () => {
+    const s = renderIndiaMap({ zones: ['thar', 'deccan'] });
+    expect(s.querySelectorAll('[data-zone]')).toHaveLength(2);
+    expect(s.querySelector('[data-zone]')?.parentElement?.getAttribute('clip-path')).toMatch(
+      /india-outline/
+    );
+    expect(s.getAttribute('aria-label')).toContain('Thar desert, Deccan plateau');
+    expect(s.textContent).toContain('Shaded areas are approximate.');
+    expect(renderIndiaMap().textContent).not.toContain('approximate');
+  });
+
+  it('names places in the current language', () => {
+    const s = renderIndiaMap({ places: mapPlaces(['jaisalmer', 'patna']) });
+    expect(s.getAttribute('aria-label')).toContain('Jaisalmer, Patna');
+    setLang('hi');
+    expect(mapPlaces(['jaisalmer'])[0]?.label).toBe('जैसलमेर');
+    setLang('en');
+  });
+
+  it('draws a small locator map that screen readers skip', () => {
+    const g = renderIndiaInset({ zones: ['himalaya'] }, 10, 10, 50);
+    expect(g.getAttribute('aria-hidden')).toBe('true');
+    expect(g.querySelectorAll('[data-region]')).toHaveLength(0);
+    expect(g.querySelectorAll('[data-zone]')).toHaveLength(1);
+    expect(g.querySelector('text')).toBeNull();
   });
 });

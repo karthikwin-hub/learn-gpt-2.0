@@ -68,6 +68,8 @@ export const C6: Chapter = {
       paras: [
         'On a map of India, the Thar lies in the far west, mostly in Rajasthan, along the border with Pakistan. The Aravalli hills run across Rajasthan to the east of it, from south-west to north-east.',
       ],
+      figure: 'map:thar',
+      caption: 'The Thar desert, mostly in western Rajasthan.',
     },
   ],
   words: [

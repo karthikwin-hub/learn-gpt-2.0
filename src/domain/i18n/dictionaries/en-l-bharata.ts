@@ -865,4 +865,15 @@ export const dictionary: Record<string, string> = {
   'unity.f.lohri': 'Lohri',
   'unity.f.bihu': 'Bihu',
   'unity.f.uttarayan': 'Uttarayan',
+  /* 048 map of India */
+  'map.p.darjeeling': 'Darjeeling',
+  'map.p.jaisalmer': 'Jaisalmer',
+  'map.p.bikaner': 'Bikaner',
+  'map.p.mahabaleshwar': 'Mahabaleshwar',
+  'map.z.himalaya': 'Himalaya',
+  'map.z.plains': 'Northern plains',
+  'map.z.thar': 'Thar desert',
+  'map.z.deccan': 'Deccan plateau',
+  'map.z.ghats': 'Western Ghats',
+  'map.approx': 'Shaded areas are approximate.',
 };

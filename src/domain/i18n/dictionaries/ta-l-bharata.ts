@@ -872,4 +872,15 @@ export const dictionary: Record<string, string> = {
   'unity.f.lohri': 'லோஹ்ரி',
   'unity.f.bihu': 'பிஹு',
   'unity.f.uttarayan': 'உத்தராயண்',
+  /* 048 map of India */
+  'map.p.darjeeling': 'டார்ஜிலிங்',
+  'map.p.jaisalmer': 'ஜெய்சல்மர்',
+  'map.p.bikaner': 'பிகானேர்',
+  'map.p.mahabaleshwar': 'மகாபலேஷ்வர்',
+  'map.z.himalaya': 'இமயமலை',
+  'map.z.plains': 'வடக்குச் சமவெளி',
+  'map.z.thar': 'தார் பாலைவனம்',
+  'map.z.deccan': 'தக்காணப் பீடபூமி',
+  'map.z.ghats': 'மேற்குத் தொடர்ச்சி மலை',
+  'map.approx': 'நிழலிட்ட பகுதிகள் தோராயமானவை.',
 };

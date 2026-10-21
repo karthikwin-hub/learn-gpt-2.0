@@ -5,6 +5,7 @@
 
 import type { PlateauRiver } from '../../../domain/world/plateau';
 import { t } from '../../../domain/i18n/core';
+import { renderIndiaInset } from './india-map';
 import { figArrow, figLine, figPath, figRect, figSvg, figText } from '../fig';
 
 const SEA = '#BFDDEB';
@@ -61,7 +62,8 @@ export function renderPlateau(o: PlateauOptions = {}): SVGSVGElement {
   s.appendChild(figText(306, 22, t('plateau.low'), { size: 10, weight: 700, anchor: 'end' }));
   s.appendChild(figArrow(120, 19, 250, 19));
   s.appendChild(figText(56, 170, t('plateau.sea.arabian'), { size: 11, weight: 700 }));
-  s.appendChild(figText(296, 170, t('plateau.sea.bengal'), { size: 11, weight: 700 }));
+  s.appendChild(figText(262, 176, t('plateau.sea.bengal'), { size: 11, weight: 700 }));
+  s.appendChild(renderIndiaInset({ zones: ['deccan'] }, 308, 150, 44));
   if (o.rain) {
     for (let i = 0; i < 6; i++) {
       const x = 48 + i * 22;

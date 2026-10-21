@@ -64,6 +64,8 @@ export const C5: Chapter = {
       paras: [
         'On a map of India, the northern plains are the wide band of low land just south of the Himalaya. Follow the Ganga across it with your finger: from Haridwar through Uttar Pradesh and Bihar to West Bengal. In the west, the plains spread into Punjab and Haryana; in the east, the Brahmaputra carries them up into Assam.',
       ],
+      figure: 'map:plains',
+      caption: 'The northern plains, with the Ganga, the Yamuna and the Brahmaputra.',
     },
   ],
   words: [

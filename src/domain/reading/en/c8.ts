@@ -35,7 +35,8 @@ export const C8: Chapter = {
         'In West Bengal the river divides. The main stream flows into Bangladesh, where it is called the Padma. A branch called the Hooghly flows south past Kolkata to the sea.',
       ],
       figure: 'C8:where',
-      caption: 'Prayagraj, about 100 metres; Varanasi, about 80 metres; Patna, about 50 metres.',
+      caption:
+        'The Ganga and the Yamuna meet at Prayagraj; the Ganga flows on past Varanasi and Patna.',
     },
     {
       heading: 'Snow-fed and rain-fed',
@@ -67,6 +68,8 @@ export const C8: Chapter = {
       paras: [
         'On a map of India, the Ganga runs from the mountains of Uttarakhand, across Uttar Pradesh and Bihar, briefly along the edge of Jharkhand, and into West Bengal, before crossing into Bangladesh. Its tributaries spread out like the branches of a tree, from the Himalaya in the north and the plateau in the south.',
       ],
+      figure: 'map:ganga',
+      caption: 'The Ganga from Gangotri to Kolkata, with three of its tributaries.',
     },
   ],
   words: [

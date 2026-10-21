@@ -60,6 +60,8 @@ export const E3: Chapter = {
         'Between mountains lie [[valley|valleys]], low land often with a river at the bottom, such as the Kashmir Valley. Small, rounded mountains are called hills. Land surrounded by water on all sides is an island: India has more than a thousand, including the Andaman and Nicobar Islands and Lakshadweep. And dry land with very little rain, like the Thar in Rajasthan, is a desert.',
         'The Deccan Plateau has raised edges. Along the west coast run the Western Ghats, a long wall of steep, forested hills that catch the monsoon rain. Along the east run the Eastern Ghats, lower and broken into pieces by rivers flowing to the Bay of Bengal.',
       ],
+      figure: 'map:landforms',
+      caption: 'The big landforms of India, shaded roughly.',
     },
   ],
   words: [

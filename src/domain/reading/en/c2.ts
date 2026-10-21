@@ -73,6 +73,8 @@ export const C2: Chapter = {
         'Different crops grow best in different parts of India. Rice grows across the wet east and south and along the rivers: in West Bengal, Uttar Pradesh, Punjab, Odisha, Andhra Pradesh and Telangana. Wheat grows in the cooler north-west: Uttar Pradesh, Punjab, Haryana and Madhya Pradesh.',
         'Cotton likes the black soil of the Deccan, in Gujarat, Maharashtra and Telangana. Tea grows on the rainy hill slopes of Assam and Darjeeling in West Bengal, and coffee in the hills of Karnataka and Kerala.',
       ],
+      figure: 'map:rice',
+      caption: 'Some of the states where rice grows, and the tea hills of Darjeeling.',
     },
   ],
   words: [

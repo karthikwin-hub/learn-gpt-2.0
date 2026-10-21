@@ -67,6 +67,8 @@ export const C1: Chapter = {
         'On a map of India, find your own state first, then trace its border with your finger and name each neighbour you touch. Nine states have a coastline: Gujarat, Maharashtra, Goa, Karnataka and Kerala on the Arabian Sea, and Tamil Nadu, Andhra Pradesh, Odisha and West Bengal on the Bay of Bengal.',
         'Notice how the states of the north-east, Assam, Arunachal Pradesh, Nagaland, Manipur, Mizoram, Tripura and Meghalaya, are joined to the rest of India by a narrow strip of land in West Bengal, sometimes called the Chicken’s Neck.',
       ],
+      figure: 'map:coast',
+      caption: 'The nine coastal states, from Gujarat round to West Bengal.',
     },
   ],
   words: [
