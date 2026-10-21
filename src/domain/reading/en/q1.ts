@@ -39,7 +39,7 @@ export const Q1: Chapter = {
     {
       heading: 'Local government: the closest to you',
       paras: [
-        'In a village, the local government is the gram [[panchayat|panchayat]]. Its members are elected by the villagers, and its head is the sarpanch. The panchayat looks after village roads, wells, drains, streetlights and the cleanliness of the village. All the adults of the village together form the gram sabha, which meets to discuss what the village needs.',
+        'In a village, the local government is the gram [[panchayat|panchayat]]. Its members are elected by the villagers, and its head is the sarpanch. The panchayat looks after village roads, wells, drains, streetlights and the cleanliness of the village. All the adults of the village whose names are on the voters’ list together form the gram sabha, which meets to discuss what the village needs.',
         'In a town there is a municipality, and in a big city a municipal corporation. People elect councillors, one for each ward, and the corporation is led by a mayor. They look after water supply, garbage, parks, markets and local roads.',
       ],
       didYouKnow:

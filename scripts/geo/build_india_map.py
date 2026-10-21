@@ -201,6 +201,9 @@ def load_states(shp: Path, name_field: str | None):
     if (n_state, n_ut) != (28, 8):
         missing = sorted(set(STATE_IDS.values()) - ids)
         sys.exit(f"Expected 28 states and 8 UTs, found {n_state} and {n_ut}; missing {missing}")
+    n_disputed = sum(disputed(r[field]) for r in records)
+    if n_disputed != 4:
+        sys.exit(f"Expected 4 DISPUTED areas, found {n_disputed}; check the source before drawing them.")
     return states
 
 

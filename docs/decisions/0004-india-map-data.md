@@ -1,6 +1,6 @@
 # ADR-0004: Map of India from Survey of India boundary data
 
-- **Status**: Proposed
+- **Status**: Accepted (product owner approved the map, 2026-10-21)
 - **Date**: 2026-10-21 · **Deciders**: product owner · **Related**: specs/048-loka-maps-reading, specs/047-loka-lessons
 
 ## Context
