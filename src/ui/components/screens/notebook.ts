@@ -4,7 +4,9 @@
  * Replaces badges, points, and score pressure.
  */
 
-import { t } from '../../../domain/i18n/core';
+import { getLang, t } from '../../../domain/i18n/core';
+import { availableIn } from '../../../domain/reading';
+import { readButton } from './read';
 import { pothi, type NotebookPage } from '../../../persistence/pothi';
 import { clear, el } from '../../util/dom';
 import { plainText } from '../../util/markup';
@@ -146,6 +148,8 @@ export function createNotebookScreen(): ScreenMeta {
             ]
           )
         );
+        if (availableIn(p.thread, getLang()))
+          view.appendChild(readButton(p.thread, 'chip page-read'));
       });
     },
   };

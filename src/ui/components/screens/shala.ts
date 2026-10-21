@@ -9,7 +9,9 @@ import {
   jaalFor,
   type Knot,
 } from '../../../domain/curriculum/curriculum';
-import { t } from '../../../domain/i18n/core';
+import { getLang, t } from '../../../domain/i18n/core';
+import { availableIn } from '../../../domain/reading';
+import { readButton } from './read';
 import { storage } from '../../../persistence/storage';
 import { el, svg, toast } from '../../util/dom';
 import { router, type ScreenMeta } from '../app/router';
@@ -114,6 +116,9 @@ export function createShalaScreen(): ScreenMeta {
           );
 
           block.appendChild(knotBtn);
+          if (availableIn(k.id, getLang())) {
+            block.appendChild(readButton(k.id, 'chip knot-read'));
+          }
         }
 
         view.appendChild(block);

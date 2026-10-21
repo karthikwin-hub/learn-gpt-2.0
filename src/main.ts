@@ -80,6 +80,7 @@ import { createCitizenScreen } from './ui/components/screens/citizen';
 import { createGovernScreen } from './ui/components/screens/govern';
 import { createShalaScreen } from './ui/components/screens/shala';
 import { createStopScreen } from './ui/components/screens/stop';
+import { createReadScreen } from './ui/components/screens/read';
 import { createWonderScreen } from './ui/components/screens/wonder';
 import { registerServiceWorker } from './ui/util/register-sw';
 
@@ -171,6 +172,7 @@ export function initApp(): void {
   router.register(createMistakeScreen());
   router.register(createExplainScreen());
   router.register(createStopScreen());
+  router.register(createReadScreen());
 
   // 4. Register service worker for offline shell
   registerServiceWorker();

@@ -12,6 +12,7 @@ import {
 } from '../../../domain/world/himalaya';
 import { t } from '../../../domain/i18n/core';
 import { figLine, figPath, figRect, figSvg, figText } from '../fig';
+import { renderIndiaInset } from './india-map';
 import { formatHeight, formatTemperature } from './parts';
 
 const GROUND = 186;
@@ -67,6 +68,7 @@ export function renderClimb(o: ClimbOptions = {}): SVGSVGElement {
     );
   }
   s.appendChild(figText(30, GROUND + 12, t('himalaya.plains'), { size: 11 }));
+  s.appendChild(renderIndiaInset({ zones: ['himalaya'] }, 150, 8, 50));
   if (h !== null) {
     const y = yOf(h);
     const c = temperatureAt(h);

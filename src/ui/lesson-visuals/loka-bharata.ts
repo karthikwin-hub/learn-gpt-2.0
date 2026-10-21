@@ -18,19 +18,19 @@ import { renderDay } from '../diagrams/loka/desert';
 import type { DesertSeason } from '../../domain/world/desert';
 import { renderPlain } from '../diagrams/loka/plains';
 import type { HimalayanRange } from '../../domain/world/himalaya';
-import { renderIndia } from '../diagrams/loka/states';
+import { mapCrop, mapPlaces, renderIndiaMap } from '../diagrams/loka/india-map';
 import type { VisualsTable } from './types';
 
 const C1_NEIGHBOURS = regionOf(EXAMPLE_REGION).neighbours;
 const c1Example = (step: number) => {
-  if (step === 0) return renderIndia();
+  if (step === 0) return renderIndiaMap();
   const caption =
     step === 1
       ? t('states.capIs', { capital: t(`states.cap.${EXAMPLE_REGION}`) })
       : step === 2
         ? t('states.factLang', { language: t(`states.lang.${regionOf(EXAMPLE_REGION).language}`) })
         : t(`states.n.${EXAMPLE_REGION}`);
-  return renderIndia({
+  return renderIndiaMap({
     chosen: EXAMPLE_REGION,
     found: step === 3 ? C1_NEIGHBOURS : [],
     caption,
@@ -75,17 +75,17 @@ const C9_EXAMPLE: readonly (readonly string[])[] = [
 
 export const LOKA_BHARATA: VisualsTable = {
   C9: {
-    prashna: () => renderIndia({ found: C9_FESTIVAL_STATES, caption: t('unity.january') }),
+    prashna: () => renderIndiaMap({ found: C9_FESTIVAL_STATES, caption: t('unity.january') }),
     cards: {
       what: () => renderGreetings(),
-      idea: () => renderIndia({ found: C9_FESTIVAL_STATES, caption: t('unity.january') }),
+      idea: () => renderIndiaMap({ found: C9_FESTIVAL_STATES, caption: t('unity.january') }),
       why: () => renderGreetings({ matched: C9_LANGUAGES }),
       example: (step) =>
-        renderIndia({ found: C9_EXAMPLE[step] ?? [], caption: t('unity.january') }),
+        renderIndiaMap({ found: C9_EXAMPLE[step] ?? [], caption: t('unity.january') }),
       where: () => renderGreetings({ matched: C9_LANGUAGES }),
     },
     mistake: (reveal) =>
-      renderIndia({
+      renderIndiaMap({
         found: [FESTIVAL_REGION.pongal, FESTIVAL_REGION.lohri],
         caption: reveal ? t('unity.january') : undefined,
       }),
@@ -105,7 +105,12 @@ export const LOKA_BHARATA: VisualsTable = {
           highlight: shown[shown.length - 1] ?? null,
         });
       },
-      where: () => renderGanga({ drawn: 1, shown: ['prayagraj', 'varanasi', 'patna'] }),
+      where: () =>
+        renderIndiaMap({
+          rivers: ['ganga', 'yamuna'],
+          places: mapPlaces(['prayagraj', 'varanasi', 'patna'], ['prayagraj']),
+          crop: mapCrop(31.5, 76, 21.5, 89.5),
+        }),
     },
     mistake: (reveal) =>
       reveal
@@ -123,7 +128,12 @@ export const LOKA_BHARATA: VisualsTable = {
           run: { krishna: step === 0 ? 0 : step === 1 ? 0.1 : step === 2 ? 0.6 : 1 },
           highlight: 'krishna',
         }),
-      where: () => renderPlateau({ run: { ...C7_ALL_EAST, narmada: 1 }, highlight: 'narmada' }),
+      where: () =>
+        renderIndiaMap({
+          zones: ['deccan', 'ghats'],
+          rivers: ['narmada', 'tapi', 'godavari', 'krishna', 'kaveri'],
+          crop: mapCrop(24.5, 68, 7.5, 88),
+        }),
     },
     mistake: (reveal) =>
       renderPlateau({ run: { godavari: reveal ? 1 : 0.1 }, highlight: 'godavari' }),
@@ -138,7 +148,7 @@ export const LOKA_BHARATA: VisualsTable = {
         const [season, hour] = C6_STEPS[step] ?? ['summer', 12];
         return renderDay({ season, hour, swing: step === 3 });
       },
-      where: () => renderDay({ season: 'winter', hour: 15 }),
+      where: () => renderIndiaMap({ zones: ['thar'], places: mapPlaces(['jaisalmer', 'bikaner']) }),
     },
     mistake: (reveal) => renderDay({ season: 'winter', hour: reveal ? 6 : 12 }),
   },
@@ -150,7 +160,11 @@ export const LOKA_BHARATA: VisualsTable = {
       why: () => renderPlain({ layers: 4, crops: true }),
       example: (step) =>
         step === 1 ? renderPlain({ silt: 0.4 }) : renderPlain({ layers: step === 3 ? 4 : 3 }),
-      where: () => renderPlain({ layers: 4, crops: true }),
+      where: () =>
+        renderIndiaMap({
+          found: ['punjab', 'up', 'bihar', 'wb'],
+          rivers: ['ganga', 'yamuna', 'brahmaputra'],
+        }),
     },
     mistake: (reveal) =>
       reveal ? renderPlain({ layers: 4, crops: true }) : renderPlain({ silt: 0.7 }),
@@ -165,7 +179,12 @@ export const LOKA_BHARATA: VisualsTable = {
         const [height, highlight] = C4_STOPS[step] ?? [null, null];
         return renderClimb({ height, highlight });
       },
-      where: () => renderClimb({ height: 6000, highlight: 'himadri' }),
+      where: () =>
+        renderIndiaMap({
+          zones: ['himalaya'],
+          rivers: ['ganga'],
+          places: mapPlaces(['shimla', 'darjeeling']),
+        }),
     },
     mistake: (reveal) => renderClimb({ height: reveal ? 4000 : 0 }),
   },
@@ -181,7 +200,10 @@ export const LOKA_BHARATA: VisualsTable = {
         return renderLand({ grown: size ? { riverbank: size } : {}, chosen: 'riverbank' });
       },
       where: () =>
-        renderLand({ grown: { crossroads: 'town', lakeside: 'town', riverbank: 'city' } }),
+        renderIndiaMap({
+          rivers: ['ganga', 'yamuna'],
+          places: mapPlaces(['delhi', 'mumbai', 'kolkata', 'chennai']),
+        }),
     },
     mistake: (reveal) =>
       reveal
@@ -205,29 +227,29 @@ export const LOKA_BHARATA: VisualsTable = {
   },
   C1: {
     prashna: () =>
-      renderIndia({
+      renderIndiaMap({
         chosen: BIGGEST_CITY_EXAMPLE,
         caption: t('states.biggest', { city: t('states.ahmedabad') }),
       }),
     cards: {
-      what: () => renderIndia(),
+      what: () => renderIndiaMap(),
       idea: () =>
-        renderIndia({
+        renderIndiaMap({
           chosen: EXAMPLE_REGION,
           caption: t('states.capIs', { capital: t(`states.cap.${EXAMPLE_REGION}`) }),
         }),
       why: () =>
-        renderIndia({
+        renderIndiaMap({
           chosen: EXAMPLE_REGION,
           found: C1_NEIGHBOURS,
           caption: t(`states.n.${EXAMPLE_REGION}`),
         }),
       example: c1Example,
       where: () =>
-        renderIndia({ chosen: EXAMPLE_REGION, caption: t(`states.n.${EXAMPLE_REGION}`) }),
+        renderIndiaMap({ chosen: EXAMPLE_REGION, caption: t(`states.n.${EXAMPLE_REGION}`) }),
     },
     mistake: (reveal) =>
-      renderIndia({
+      renderIndiaMap({
         chosen: BIGGEST_CITY_EXAMPLE,
         caption: reveal
           ? t('states.capIs', { capital: t(`states.cap.${BIGGEST_CITY_EXAMPLE}`) })

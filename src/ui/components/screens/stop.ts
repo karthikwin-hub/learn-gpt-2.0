@@ -5,7 +5,9 @@
  * model thumbnail, and offers a quiet return to the Loom or Notebook.
  */
 
-import { t } from '../../../domain/i18n/core';
+import { getLang, t } from '../../../domain/i18n/core';
+import { availableIn } from '../../../domain/reading';
+import { readButton } from './read';
 import { pothi, type NotebookPage } from '../../../persistence/pothi';
 import { clear, el } from '../../util/dom';
 import { plainText } from '../../util/markup';
@@ -72,6 +74,7 @@ export function createStopScreen(): ScreenMeta {
             text: t('stop.notebook'),
             onclick: () => router.go('notebook'),
           }),
+          ...(page && availableIn(page.thread, getLang()) ? [readButton(page.thread)] : []),
         ])
       );
 

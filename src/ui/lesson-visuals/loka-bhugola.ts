@@ -3,6 +3,7 @@
  */
 
 import { t } from '../../domain/i18n/core';
+import { renderIndiaMap } from '../diagrams/loka/india-map';
 import type { Landform } from '../../domain/world/landforms';
 import type { WaterStore } from '../../domain/world/spheres';
 import { renderSection, renderShape } from '../diagrams/loka/landforms';
@@ -39,7 +40,7 @@ export const LOKA_BHUGOLA: VisualsTable = {
       idea: () => renderSection({ rise: 1, highlight: 'plateau' }),
       why: () => renderSection({ rise: 1, highlight: 'plain' }),
       example: (step) => renderSection({ rise: 1, highlight: E3_RING[step] ?? null }),
-      where: () => renderShape('high', 'flat'),
+      where: () => renderIndiaMap({ zones: ['himalaya', 'plains', 'deccan'] }),
     },
     mistake: (reveal) =>
       reveal

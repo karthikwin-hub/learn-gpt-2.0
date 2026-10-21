@@ -13,19 +13,19 @@ test.describe('047 US7 C1 The states of India (#states)', () => {
     await page.getByLabel('My state').selectOption('telangana');
   }
 
-  test('US7-AS1: "Show India" shows 36 tiles, states and union territories marked, not to scale', async ({
+  test('US7-AS1: "Show India" shows the map of India, 36 regions with union territories marked, and its source', async ({
     page,
   }) => {
     await page.getByRole('button', { name: 'Show India' }).click();
     await expect(page.getByRole('button', { name: 'Choose my state' })).toBeVisible();
-    const map = page.locator('.model svg');
+    const map = page.locator('.model svg').first();
     await expect(map).toHaveAttribute(
       'aria-label',
-      /not to scale: 28 states and 8 union territories/
+      /Map of India: 28 states and 8 union territories/
     );
-    await expect(map.locator('rect[rx="6"]')).toHaveCount(36);
-    await expect(map.locator('rect[rx="6"][stroke-dasharray]')).toHaveCount(8);
-    await expect(map).toContainText('Not to scale');
+    await expect(map.locator('[data-region]')).toHaveCount(36);
+    await expect(map.locator('[data-region][data-kind="ut"]')).toHaveCount(8);
+    await expect(map).toContainText('Boundaries: Survey of India');
   });
 
   test('US7-AS2: choosing Telangana shows Hyderabad, Telugu and its four neighbours', async ({

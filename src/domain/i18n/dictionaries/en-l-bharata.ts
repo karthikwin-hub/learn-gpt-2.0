@@ -32,15 +32,15 @@ export const dictionary: Record<string, string> = {
   'gloss.capital.en': 'capital',
 
   'states.title': 'States of India',
-  'states.empty': 'India, before its tiles appear.',
-  'states.map': 'India in tiles, not to scale: {states} states and {uts} union territories',
+  'states.empty': 'India, before its states appear.',
+  'states.map': 'Map of India: {states} states and {uts} union territories',
   'states.state': 'State',
   'states.ut': 'Union territory',
-  'states.notToScale': 'Not to scale: one tile for each place.',
-  'states.s1': 'Watch India appear, one tile for each state and union territory.',
+  'states.source': 'Boundaries: Survey of India',
+  'states.s1': 'Watch the map of India fill in, one state or union territory at a time.',
   'states.showMe': 'Show India',
   'states.s1done':
-    '{states} states and {uts} union territories. A tile shows roughly where each one lies, not its size or shape.',
+    '{states} states and {uts} union territories. The union territories are shown in a different colour.',
   'states.toPick': 'Choose my state',
   'states.s2': 'Choose your state to see its capital, its main language and how many it touches.',
   'states.mine': 'My state',
@@ -170,7 +170,8 @@ export const dictionary: Record<string, string> = {
   'explain.C1.government': 'government',
   'explain.C1.market': 'market',
   'explain.C1.army': 'army',
-  'explain.C1.hint': 'Count the tiles with a solid edge, and think about who works in the capital.',
+  'explain.C1.hint':
+    'Count the places coloured as states, and think about who works in the capital.',
   'know.C1':
     'India has 28 states and 8 union territories; each state has a capital where its government works, and that is not always its biggest city.',
 
@@ -864,4 +865,15 @@ export const dictionary: Record<string, string> = {
   'unity.f.lohri': 'Lohri',
   'unity.f.bihu': 'Bihu',
   'unity.f.uttarayan': 'Uttarayan',
+  /* 048 map of India */
+  'map.p.darjeeling': 'Darjeeling',
+  'map.p.jaisalmer': 'Jaisalmer',
+  'map.p.bikaner': 'Bikaner',
+  'map.p.mahabaleshwar': 'Mahabaleshwar',
+  'map.z.himalaya': 'Himalaya',
+  'map.z.plains': 'Northern plains',
+  'map.z.thar': 'Thar desert',
+  'map.z.deccan': 'Deccan plateau',
+  'map.z.ghats': 'Western Ghats',
+  'map.approx': 'Shaded areas are approximate.',
 };

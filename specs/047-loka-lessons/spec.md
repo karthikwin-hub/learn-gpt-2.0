@@ -12,7 +12,7 @@ Each knot is built as a full seven-stage lesson to the same standard as the Gani
 
 - All five languages ship together. Translations are written directly in the target script (no translation API, site or library) and are **drafts until a native speaker reviews them**.
 - C1 is India-wide with a "my state" picker that shows the chosen state's capital, language and neighbours.
-- No political outline of India is traced. C1 uses a schematic tile map labelled "not to scale"; the geography lessons use cross-sections and schematic diagrams.
+- Superseded by 048 (product owner, 2026-10-21): C1 and C9 show the map of India drawn from Survey of India boundaries, captioned "Boundaries: Survey of India"; the geography lessons keep their cross-sections and schematic diagrams.
 - Feature freeze lifted for this work; the branch ends in a draft PR that the product owner merges.
 
 ## 3. Lessons
@@ -82,10 +82,10 @@ Each entry: the misconception, the Prashna (correct choice in bold), the bench s
 ### US7 · C1 The states of India (`#states`)
 - Misconception: a state's capital is always its biggest city.
 - Prashna: Ahmedabad is Gujarat's biggest city; is it the capital? **No, Gandhinagar.**
-- Bench: (1) watch the schematic tile map of 28 states and 8 union territories appear (not to scale); (2) choose "my state" and see its capital, main language and neighbours; (3) tap every neighbour of the chosen state (an island territory has none, and the bench says so).
+- Bench: (1) watch the map of India fill in with its 28 states and 8 union territories; (2) choose "my state" and see its capital, main language and neighbours; (3) tap every neighbour of the chosen state (an island territory has none, and the bench says so).
 - Mistake: Jai says Ahmedabad is the capital because a capital is always the biggest city.
 - Explain: "India has 28 {states} and 8 union territories. A capital is where the state's {government} works."
-- **US7-AS1** "Show India" shows 36 tiles, states and union territories marked differently, and a not-to-scale note.
+- **US7-AS1** "Show India" shows the map of India with 36 regions, states and union territories marked differently, and its source, "Boundaries: Survey of India" (changed by 048 with the product owner’s approval).
 - **US7-AS2** Choosing Telangana shows Hyderabad, Telugu, and its four neighbours.
 - **US7-AS3** Tapping a non-neighbour gets a reason; tapping all neighbours completes the bench.
 
