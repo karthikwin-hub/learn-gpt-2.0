@@ -17,7 +17,7 @@ import { tween } from '../../util/dom';
 import { readStep } from '../../util/bench';
 import { actionButton, lokaFrame, mistakeRow, pairPad, type Choice } from '../../util/loka-bench';
 import { enterThread } from '../../util/thread';
-import { renderIndia } from '../../diagrams/loka/states';
+import { renderIndiaMap } from '../../diagrams/loka/india-map';
 import { renderGreetings } from '../../diagrams/loka/unity';
 import type { ScreenMeta } from '../app/router';
 
@@ -60,7 +60,7 @@ export function createUnityScreen(): ScreenMeta {
           if (step === 1) {
             const shownFestivals = FESTIVALS.slice(0, lighted ? FESTIVALS.length : lit);
             f.model.appendChild(
-              renderIndia({
+              renderIndiaMap({
                 found: shownFestivals.map((x) => FESTIVAL_REGION[x]),
                 caption: january(),
               })
@@ -77,7 +77,10 @@ export function createUnityScreen(): ScreenMeta {
           }
           if (step === 2) {
             f.model.appendChild(
-              renderIndia({ found: festivals.map((x) => FESTIVAL_REGION[x]), caption: january() })
+              renderIndiaMap({
+                found: festivals.map((x) => FESTIVAL_REGION[x]),
+                caption: january(),
+              })
             );
             const placed: Record<string, Choice[]> = {};
             for (const x of festivals) placed[FESTIVAL_REGION[x]] = [festivalChoice(x)];

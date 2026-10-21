@@ -3,8 +3,8 @@
 Verify for every task: `npx vitest run src`, the task's acceptance spec, then `python3 scripts/harness/verify.py --fast`.
 
 - [x] T001 Spec, plan, tasks, progress, ADR-0004
-- [ ] T002 Boundary and river data; `scripts/geo/build_india_map.py`; `geo/india-map.ts` + tests; screenshot to the product owner
-- [ ] T003 US1 `renderIndiaMap`; C1 and C9 benches and pictures
+- [x] T002 Boundary and river data; `scripts/geo/build_india_map.py`; `geo/india-map.ts` + tests; screenshot to the product owner
+- [x] T003 US1 `renderIndiaMap`; C1 and C9 benches and pictures
 - [ ] T004 Map layers in C2–C8 and E3; locator maps on profile drawings
 - [x] T005 US2 Reading model, `#read` screen, entry points, UI words x5
 - [x] T006 Chapters I1, I2

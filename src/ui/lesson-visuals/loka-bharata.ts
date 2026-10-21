@@ -18,19 +18,19 @@ import { renderDay } from '../diagrams/loka/desert';
 import type { DesertSeason } from '../../domain/world/desert';
 import { renderPlain } from '../diagrams/loka/plains';
 import type { HimalayanRange } from '../../domain/world/himalaya';
-import { renderIndia } from '../diagrams/loka/states';
+import { renderIndiaMap } from '../diagrams/loka/india-map';
 import type { VisualsTable } from './types';
 
 const C1_NEIGHBOURS = regionOf(EXAMPLE_REGION).neighbours;
 const c1Example = (step: number) => {
-  if (step === 0) return renderIndia();
+  if (step === 0) return renderIndiaMap();
   const caption =
     step === 1
       ? t('states.capIs', { capital: t(`states.cap.${EXAMPLE_REGION}`) })
       : step === 2
         ? t('states.factLang', { language: t(`states.lang.${regionOf(EXAMPLE_REGION).language}`) })
         : t(`states.n.${EXAMPLE_REGION}`);
-  return renderIndia({
+  return renderIndiaMap({
     chosen: EXAMPLE_REGION,
     found: step === 3 ? C1_NEIGHBOURS : [],
     caption,
@@ -75,17 +75,17 @@ const C9_EXAMPLE: readonly (readonly string[])[] = [
 
 export const LOKA_BHARATA: VisualsTable = {
   C9: {
-    prashna: () => renderIndia({ found: C9_FESTIVAL_STATES, caption: t('unity.january') }),
+    prashna: () => renderIndiaMap({ found: C9_FESTIVAL_STATES, caption: t('unity.january') }),
     cards: {
       what: () => renderGreetings(),
-      idea: () => renderIndia({ found: C9_FESTIVAL_STATES, caption: t('unity.january') }),
+      idea: () => renderIndiaMap({ found: C9_FESTIVAL_STATES, caption: t('unity.january') }),
       why: () => renderGreetings({ matched: C9_LANGUAGES }),
       example: (step) =>
-        renderIndia({ found: C9_EXAMPLE[step] ?? [], caption: t('unity.january') }),
+        renderIndiaMap({ found: C9_EXAMPLE[step] ?? [], caption: t('unity.january') }),
       where: () => renderGreetings({ matched: C9_LANGUAGES }),
     },
     mistake: (reveal) =>
-      renderIndia({
+      renderIndiaMap({
         found: [FESTIVAL_REGION.pongal, FESTIVAL_REGION.lohri],
         caption: reveal ? t('unity.january') : undefined,
       }),
@@ -205,29 +205,29 @@ export const LOKA_BHARATA: VisualsTable = {
   },
   C1: {
     prashna: () =>
-      renderIndia({
+      renderIndiaMap({
         chosen: BIGGEST_CITY_EXAMPLE,
         caption: t('states.biggest', { city: t('states.ahmedabad') }),
       }),
     cards: {
-      what: () => renderIndia(),
+      what: () => renderIndiaMap(),
       idea: () =>
-        renderIndia({
+        renderIndiaMap({
           chosen: EXAMPLE_REGION,
           caption: t('states.capIs', { capital: t(`states.cap.${EXAMPLE_REGION}`) }),
         }),
       why: () =>
-        renderIndia({
+        renderIndiaMap({
           chosen: EXAMPLE_REGION,
           found: C1_NEIGHBOURS,
           caption: t(`states.n.${EXAMPLE_REGION}`),
         }),
       example: c1Example,
       where: () =>
-        renderIndia({ chosen: EXAMPLE_REGION, caption: t(`states.n.${EXAMPLE_REGION}`) }),
+        renderIndiaMap({ chosen: EXAMPLE_REGION, caption: t(`states.n.${EXAMPLE_REGION}`) }),
     },
     mistake: (reveal) =>
-      renderIndia({
+      renderIndiaMap({
         chosen: BIGGEST_CITY_EXAMPLE,
         caption: reveal
           ? t('states.capIs', { capital: t(`states.cap.${BIGGEST_CITY_EXAMPLE}`) })

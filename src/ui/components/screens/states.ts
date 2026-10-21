@@ -18,7 +18,7 @@ import { el, tween } from '../../util/dom';
 import { readStep } from '../../util/bench';
 import { actionButton, choiceRow, lokaFrame, mistakeRow } from '../../util/loka-bench';
 import { enterThread } from '../../util/thread';
-import { renderIndia } from '../../diagrams/loka/states';
+import { renderIndiaMap } from '../../diagrams/loka/india-map';
 import type { ScreenMeta } from '../app/router';
 
 /** Wrong choices offered beside the real neighbours. */
@@ -97,7 +97,7 @@ export function createStatesScreen(): ScreenMeta {
         f.setGuide(step, t(`states.s${step}`));
         f.repaint(() => {
           if (step === 1) {
-            f.model.appendChild(renderIndia({ shown }));
+            f.model.appendChild(renderIndiaMap({ shown }));
             f.actions.appendChild(
               shown === REGIONS.length
                 ? actionButton(t('states.toPick'), () => {
@@ -108,7 +108,7 @@ export function createStatesScreen(): ScreenMeta {
             );
           } else if (step === 2) {
             f.model.appendChild(
-              renderIndia({ chosen, caption: chosen ? nameOf(chosen) : undefined })
+              renderIndiaMap({ chosen, caption: chosen ? nameOf(chosen) : undefined })
             );
             const select = el(
               'select',
@@ -145,7 +145,7 @@ export function createStatesScreen(): ScreenMeta {
           } else {
             const home = chosen ?? EXAMPLE_REGION;
             const all = regionOf(home).neighbours;
-            f.model.appendChild(renderIndia({ chosen: home, found, caption: nameOf(home) }));
+            f.model.appendChild(renderIndiaMap({ chosen: home, found, caption: nameOf(home) }));
             if (!hasNeighbours(home)) {
               f.setSay(t('states.island', { name: nameOf(home) }));
               f.actions.appendChild(mistakeRow('C1'));
@@ -178,7 +178,7 @@ export function createStatesScreen(): ScreenMeta {
           2000,
           (p) => {
             shown = Math.round(p * REGIONS.length);
-            f.model.replaceChildren(renderIndia({ shown }));
+            f.model.replaceChildren(renderIndiaMap({ shown }));
           },
           () => {
             playing = false;

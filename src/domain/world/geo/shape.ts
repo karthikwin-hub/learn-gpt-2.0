@@ -43,6 +43,16 @@ export function boundsOf(rings: readonly (readonly Pt[])[]): Box {
   return box;
 }
 
+export function areaOf(ring: readonly Pt[]): number {
+  let sum = 0;
+  for (let i = 0, j = ring.length - 1; i < ring.length; j = i++) {
+    const [xi, yi] = ring[i] as Pt;
+    const [xj, yj] = ring[j] as Pt;
+    sum += xj * yi - xi * yj;
+  }
+  return Math.abs(sum) / 2;
+}
+
 /** Even-odd test against all rings, so holes and islands both count correctly. */
 export function insideRings(p: Pt, rings: readonly (readonly Pt[])[]): boolean {
   let hit = false;
