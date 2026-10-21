@@ -20,7 +20,8 @@ export const C2: Chapter = {
         'The words come from Arabic: kharif means autumn, when the monsoon crops are harvested, and rabi means spring, when the winter crops are harvested.',
       ],
       figure: 'C2:what',
-      caption: 'Kharif sown in June and July, rabi from October to December, zaid in March and April.',
+      caption:
+        'Kharif sown in June and July, rabi from October to December, zaid in March and April.',
     },
     {
       heading: 'Kharif: crops of the rain',
@@ -75,10 +76,26 @@ export const C2: Chapter = {
     },
   ],
   words: [
-    { id: 'crop', word: 'crop', meaning: 'A plant grown on purpose for food, cloth or other uses.' },
-    { id: 'crop-season', word: 'crop season', meaning: 'The time of year when certain crops are sown and grown.' },
-    { id: 'kharif', word: 'kharif', meaning: 'The monsoon crop season: sown in June and July, cut around October.' },
-    { id: 'rabi', word: 'rabi', meaning: 'The winter crop season: sown from October to December, cut in March and April.' },
+    {
+      id: 'crop',
+      word: 'crop',
+      meaning: 'A plant grown on purpose for food, cloth or other uses.',
+    },
+    {
+      id: 'crop-season',
+      word: 'crop season',
+      meaning: 'The time of year when certain crops are sown and grown.',
+    },
+    {
+      id: 'kharif',
+      word: 'kharif',
+      meaning: 'The monsoon crop season: sown in June and July, cut around October.',
+    },
+    {
+      id: 'rabi',
+      word: 'rabi',
+      meaning: 'The winter crop season: sown from October to December, cut in March and April.',
+    },
     { id: 'zaid', word: 'zaid', meaning: 'A short summer crop season between rabi and kharif.' },
   ],
   activity: {
@@ -93,8 +110,17 @@ export const C2: Chapter = {
   questions: [
     { q: 'Name India’s three crop seasons.', a: 'Kharif, rabi and zaid.' },
     { q: 'Why is rice a kharif crop?', a: 'It needs a lot of water, which the monsoon brings.' },
-    { q: 'When is wheat sown and when is it harvested?', a: 'Sown from October to December; harvested in March and April.' },
-    { q: 'What would happen to wheat sown in June?', a: 'It would get too much rain and warmth, and the harvest would fail.' },
-    { q: 'Name a harvest festival celebrated in mid-January.', a: 'Pongal, Lohri, Magh Bihu or Makar Sankranti.' },
+    {
+      q: 'When is wheat sown and when is it harvested?',
+      a: 'Sown from October to December; harvested in March and April.',
+    },
+    {
+      q: 'What would happen to wheat sown in June?',
+      a: 'It would get too much rain and warmth, and the harvest would fail.',
+    },
+    {
+      q: 'Name a harvest festival celebrated in mid-January.',
+      a: 'Pongal, Lohri, Magh Bihu or Makar Sankranti.',
+    },
   ],
 };

@@ -65,9 +65,21 @@ export const C7: Chapter = {
   ],
   words: [
     { id: 'plateau', word: 'plateau', meaning: 'High land with a wide, flat top.' },
-    { id: 'western-ghats', word: 'Western Ghats', meaning: 'The high hills along the west edge of the Deccan.' },
-    { id: 'tributary', word: 'tributary', meaning: 'A smaller river that flows into a bigger one.' },
-    { id: 'delta', word: 'delta', meaning: 'Flat land at a river’s mouth, built of silt, where the river splits into branches.' },
+    {
+      id: 'western-ghats',
+      word: 'Western Ghats',
+      meaning: 'The high hills along the west edge of the Deccan.',
+    },
+    {
+      id: 'tributary',
+      word: 'tributary',
+      meaning: 'A smaller river that flows into a bigger one.',
+    },
+    {
+      id: 'delta',
+      word: 'delta',
+      meaning: 'Flat land at a river’s mouth, built of silt, where the river splits into branches.',
+    },
     { id: 'rift-valley', word: 'rift valley', meaning: 'A long, low trough in the Earth’s crust.' },
   ],
   activity: {
@@ -80,10 +92,16 @@ export const C7: Chapter = {
     ],
   },
   questions: [
-    { q: 'Why do the Godavari, Krishna and Kaveri flow east?', a: 'The Deccan tilts down to the east, and water flows downhill.' },
+    {
+      q: 'Why do the Godavari, Krishna and Kaveri flow east?',
+      a: 'The Deccan tilts down to the east, and water flows downhill.',
+    },
     { q: 'Which two big rivers of the peninsula flow west?', a: 'The Narmada and the Tapi.' },
     { q: 'Where does the Krishna begin?', a: 'At Mahabaleshwar in the Western Ghats.' },
     { q: 'Which is the longest river of the peninsula?', a: 'The Godavari.' },
-    { q: 'Why are west coast rivers short and fast?', a: 'The Western Ghats are close to the sea, so the rivers rush steeply down.' },
+    {
+      q: 'Why are west coast rivers short and fast?',
+      a: 'The Western Ghats are close to the sea, so the rivers rush steeply down.',
+    },
   ],
 };

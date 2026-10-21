@@ -70,12 +70,36 @@ export const C1: Chapter = {
     },
   ],
   words: [
-    { id: 'state', word: 'state', meaning: 'A part of India with its own elected government and capital.' },
-    { id: 'union-territory', word: 'union territory', meaning: 'A part of India looked after mostly by the Union government.' },
-    { id: 'capital', word: 'capital', meaning: 'The city where a state or country’s government works.' },
-    { id: 'neighbour', word: 'neighbour state', meaning: 'A state that shares a border with another.' },
-    { id: 'district', word: 'district', meaning: 'A smaller part of a state, with its own offices.' },
-    { id: 'pin', word: 'PIN code', meaning: 'A six-digit number that tells the post office where a letter should go.' },
+    {
+      id: 'state',
+      word: 'state',
+      meaning: 'A part of India with its own elected government and capital.',
+    },
+    {
+      id: 'union-territory',
+      word: 'union territory',
+      meaning: 'A part of India looked after mostly by the Union government.',
+    },
+    {
+      id: 'capital',
+      word: 'capital',
+      meaning: 'The city where a state or country’s government works.',
+    },
+    {
+      id: 'neighbour',
+      word: 'neighbour state',
+      meaning: 'A state that shares a border with another.',
+    },
+    {
+      id: 'district',
+      word: 'district',
+      meaning: 'A smaller part of a state, with its own offices.',
+    },
+    {
+      id: 'pin',
+      word: 'PIN code',
+      meaning: 'A six-digit number that tells the post office where a letter should go.',
+    },
   ],
   activity: {
     title: 'My state card',
@@ -87,10 +111,22 @@ export const C1: Chapter = {
     ],
   },
   questions: [
-    { q: 'How many states and union territories does India have?', a: '28 states and 8 union territories.' },
+    {
+      q: 'How many states and union territories does India have?',
+      a: '28 states and 8 union territories.',
+    },
     { q: 'What is the capital of Telangana?', a: 'Hyderabad.' },
-    { q: 'Is the capital of a state always its biggest city? Give an example.', a: 'No. Gujarat’s capital is Gandhinagar, but its biggest city is Ahmedabad.' },
-    { q: 'Why were many state borders redrawn in 1956?', a: 'So that people who speak one language could, as far as possible, share a state.' },
-    { q: 'Which city is the capital of two states?', a: 'Chandigarh, the capital of Punjab and Haryana.' },
+    {
+      q: 'Is the capital of a state always its biggest city? Give an example.',
+      a: 'No. Gujarat’s capital is Gandhinagar, but its biggest city is Ahmedabad.',
+    },
+    {
+      q: 'Why were many state borders redrawn in 1956?',
+      a: 'So that people who speak one language could, as far as possible, share a state.',
+    },
+    {
+      q: 'Which city is the capital of two states?',
+      a: 'Chandigarh, the capital of Punjab and Haryana.',
+    },
   ],
 };

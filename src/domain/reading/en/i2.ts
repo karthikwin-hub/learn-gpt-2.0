@@ -70,12 +70,28 @@ export const I2: Chapter = {
   ],
   words: [
     { id: 'day', word: 'day', meaning: 'The time the Earth takes to spin once.' },
-    { id: 'year', word: 'year', meaning: 'The time the Earth takes to go once around the Sun, about 365¼ days.' },
+    {
+      id: 'year',
+      word: 'year',
+      meaning: 'The time the Earth takes to go once around the Sun, about 365¼ days.',
+    },
     { id: 'calendar', word: 'calendar', meaning: 'A way of arranging days into months and years.' },
-    { id: 'leap', word: 'leap year', meaning: 'A year with one extra day, 29 February, every fourth year.' },
-    { id: 'timeline', word: 'timeline', meaning: 'A line with years marked on it in order, like a number line.' },
+    {
+      id: 'leap',
+      word: 'leap year',
+      meaning: 'A year with one extra day, 29 February, every fourth year.',
+    },
+    {
+      id: 'timeline',
+      word: 'timeline',
+      meaning: 'A line with years marked on it in order, like a number line.',
+    },
     { id: 'decade', word: 'decade', meaning: 'Ten years.' },
-    { id: 'century', word: 'century', meaning: 'A hundred years; the 1st century CE was the years 1 to 100.' },
+    {
+      id: 'century',
+      word: 'century',
+      meaning: 'A hundred years; the 1st century CE was the years 1 to 100.',
+    },
   ],
   activity: {
     title: 'My family timeline',
@@ -87,10 +103,25 @@ export const I2: Chapter = {
     ],
   },
   questions: [
-    { q: 'Which is longer ago, 300 BCE or 200 BCE?', a: '300 BCE. BCE years count backwards, so a bigger BCE number is further in the past.' },
-    { q: 'How many years are there from 50 BCE to 50 CE?', a: '99 years: 49 + 1 + 49, because there is no year zero.' },
-    { q: 'In which century is the year 1947?', a: 'The 20th century, which ran from 1901 to 2000.' },
-    { q: 'Why do we add 29 February every fourth year?', a: 'A year is about 365¼ days; the four quarters add up to one extra day.' },
-    { q: 'Why does Eid come about 11 days earlier each year?', a: 'The Islamic calendar follows the Moon, and its year is about 354 days, shorter than the Sun year.' },
+    {
+      q: 'Which is longer ago, 300 BCE or 200 BCE?',
+      a: '300 BCE. BCE years count backwards, so a bigger BCE number is further in the past.',
+    },
+    {
+      q: 'How many years are there from 50 BCE to 50 CE?',
+      a: '99 years: 49 + 1 + 49, because there is no year zero.',
+    },
+    {
+      q: 'In which century is the year 1947?',
+      a: 'The 20th century, which ran from 1901 to 2000.',
+    },
+    {
+      q: 'Why do we add 29 February every fourth year?',
+      a: 'A year is about 365¼ days; the four quarters add up to one extra day.',
+    },
+    {
+      q: 'Why does Eid come about 11 days earlier each year?',
+      a: 'The Islamic calendar follows the Moon, and its year is about 354 days, shorter than the Sun year.',
+    },
   ],
 };

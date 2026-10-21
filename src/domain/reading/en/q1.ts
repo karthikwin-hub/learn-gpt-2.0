@@ -62,13 +62,37 @@ export const Q1: Chapter = {
     },
   ],
   words: [
-    { id: 'civics', word: 'civics', meaning: 'The study of how people govern themselves and live together.' },
+    {
+      id: 'civics',
+      word: 'civics',
+      meaning: 'The study of how people govern themselves and live together.',
+    },
     { id: 'law', word: 'law', meaning: 'A rule made for everyone in a country.' },
-    { id: 'government', word: 'government', meaning: 'The people chosen to make laws and do the shared jobs of a place.' },
-    { id: 'constitution', word: 'Constitution', meaning: 'India’s most important book of rules, in force since 26 January 1950.' },
-    { id: 'democracy', word: 'democracy', meaning: 'A way of governing in which the people choose their government by voting.' },
-    { id: 'level', word: 'level of government', meaning: 'Local, state or union: each looks after a bigger area than the one before.' },
-    { id: 'panchayat', word: 'panchayat', meaning: 'The elected local government of a village, led by the sarpanch.' },
+    {
+      id: 'government',
+      word: 'government',
+      meaning: 'The people chosen to make laws and do the shared jobs of a place.',
+    },
+    {
+      id: 'constitution',
+      word: 'Constitution',
+      meaning: 'India’s most important book of rules, in force since 26 January 1950.',
+    },
+    {
+      id: 'democracy',
+      word: 'democracy',
+      meaning: 'A way of governing in which the people choose their government by voting.',
+    },
+    {
+      id: 'level',
+      word: 'level of government',
+      meaning: 'Local, state or union: each looks after a bigger area than the one before.',
+    },
+    {
+      id: 'panchayat',
+      word: 'panchayat',
+      meaning: 'The elected local government of a village, led by the sarpanch.',
+    },
   ],
   activity: {
     title: 'Who looks after my street?',
@@ -80,10 +104,22 @@ export const Q1: Chapter = {
     ],
   },
   questions: [
-    { q: 'What is a government?', a: 'The people chosen to make laws and do the shared jobs of a place.' },
-    { q: 'Which level of government should fix a broken streetlight in a village?', a: 'The local government: the gram panchayat.' },
-    { q: 'Why is Republic Day on 26 January?', a: 'Because the Constitution came into force on 26 January 1950.' },
-    { q: 'Who elects the MP, and where does an MP work?', a: 'The voters of a constituency elect the MP, who works in the Lok Sabha in New Delhi.' },
+    {
+      q: 'What is a government?',
+      a: 'The people chosen to make laws and do the shared jobs of a place.',
+    },
+    {
+      q: 'Which level of government should fix a broken streetlight in a village?',
+      a: 'The local government: the gram panchayat.',
+    },
+    {
+      q: 'Why is Republic Day on 26 January?',
+      a: 'Because the Constitution came into force on 26 January 1950.',
+    },
+    {
+      q: 'Who elects the MP, and where does an MP work?',
+      a: 'The voters of a constituency elect the MP, who works in the Lok Sabha in New Delhi.',
+    },
     { q: 'At what age can a citizen of India vote?', a: 'At 18.' },
   ],
 };

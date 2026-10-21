@@ -13,7 +13,8 @@ export const C8: Chapter = {
         'Like all rivers, the Ganga always flows downhill, from its high source to its low mouth. It flows south out of the mountains, then turns east across the plains, because that is the way the land slopes.',
       ],
       figure: 'C8:what',
-      caption: 'The Ganga from the Gangotri glacier, about 4,000 metres, to the Sundarbans, about 0 metres.',
+      caption:
+        'The Ganga from the Gangotri glacier, about 4,000 metres, to the Sundarbans, about 0 metres.',
     },
     {
       heading: 'In the mountains',
@@ -70,10 +71,26 @@ export const C8: Chapter = {
   ],
   words: [
     { id: 'river-source', word: 'source', meaning: 'The place where a river begins.' },
-    { id: 'river-mouth', word: 'mouth', meaning: 'The place where a river meets the sea or a bigger river.' },
-    { id: 'tributary', word: 'tributary', meaning: 'A smaller river that flows into a bigger one.' },
-    { id: 'snow-fed', word: 'snow-fed river', meaning: 'A river fed by melting snow and glaciers, which flows all year.' },
-    { id: 'delta', word: 'delta', meaning: 'Flat land at a river’s mouth, built of silt, where the river splits into branches.' },
+    {
+      id: 'river-mouth',
+      word: 'mouth',
+      meaning: 'The place where a river meets the sea or a bigger river.',
+    },
+    {
+      id: 'tributary',
+      word: 'tributary',
+      meaning: 'A smaller river that flows into a bigger one.',
+    },
+    {
+      id: 'snow-fed',
+      word: 'snow-fed river',
+      meaning: 'A river fed by melting snow and glaciers, which flows all year.',
+    },
+    {
+      id: 'delta',
+      word: 'delta',
+      meaning: 'Flat land at a river’s mouth, built of silt, where the river splits into branches.',
+    },
   ],
   activity: {
     title: 'Trace the Ganga',
@@ -85,9 +102,15 @@ export const C8: Chapter = {
     ],
   },
   questions: [
-    { q: 'Where is the source of the Ganga, and where is its mouth?', a: 'Source: the Gangotri glacier in the Himalaya. Mouth: the Sundarbans, on the Bay of Bengal.' },
+    {
+      q: 'Where is the source of the Ganga, and where is its mouth?',
+      a: 'Source: the Gangotri glacier in the Himalaya. Mouth: the Sundarbans, on the Bay of Bengal.',
+    },
     { q: 'Where does the Yamuna join the Ganga?', a: 'At Prayagraj.' },
-    { q: 'Why does the Ganga flow all year?', a: 'It is snow-fed: melting snow and glaciers keep it flowing in the dry, hot months.' },
+    {
+      q: 'Why does the Ganga flow all year?',
+      a: 'It is snow-fed: melting snow and glaciers keep it flowing in the dry, hot months.',
+    },
     { q: 'At which town does the Ganga leave the mountains for the plains?', a: 'Haridwar.' },
     { q: 'What is the Ganga called in Bangladesh?', a: 'The Padma.' },
   ],

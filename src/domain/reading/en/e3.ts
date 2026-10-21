@@ -63,12 +63,24 @@ export const E3: Chapter = {
     },
   ],
   words: [
-    { id: 'landform', word: 'landform', meaning: 'A natural shape of the land, such as a mountain, plateau or plain.' },
+    {
+      id: 'landform',
+      word: 'landform',
+      meaning: 'A natural shape of the land, such as a mountain, plateau or plain.',
+    },
     { id: 'mountain', word: 'mountain', meaning: 'High land with a peaked top and steep sides.' },
     { id: 'plateau', word: 'plateau', meaning: 'High land with a wide, flat top.' },
     { id: 'plain', word: 'plain', meaning: 'Low, flat land, often made of river silt.' },
-    { id: 'mineral', word: 'mineral', meaning: 'A useful material dug from the ground, such as coal or iron.' },
-    { id: 'valley', word: 'valley', meaning: 'Low land between hills or mountains, often with a river.' },
+    {
+      id: 'mineral',
+      word: 'mineral',
+      meaning: 'A useful material dug from the ground, such as coal or iron.',
+    },
+    {
+      id: 'valley',
+      word: 'valley',
+      meaning: 'Low land between hills or mountains, often with a river.',
+    },
   ],
   activity: {
     title: 'Landforms in a tray',
@@ -80,10 +92,22 @@ export const E3: Chapter = {
     ],
   },
   questions: [
-    { q: 'What two things tell a mountain, a plateau and a plain apart?', a: 'How high the land is, and the shape of its top.' },
-    { q: 'Is the Deccan a mountain or a plateau? Why?', a: 'A plateau: it is high, but its top is wide and mostly flat.' },
+    {
+      q: 'What two things tell a mountain, a plateau and a plain apart?',
+      a: 'How high the land is, and the shape of its top.',
+    },
+    {
+      q: 'Is the Deccan a mountain or a plateau? Why?',
+      a: 'A plateau: it is high, but its top is wide and mostly flat.',
+    },
     { q: 'Which is the highest peak in India?', a: 'Kangchenjunga, 8,586 metres, in Sikkim.' },
-    { q: 'Why do most people live on plains?', a: 'The soil is rich, the land is flat to farm, water is close, and roads are easy to build.' },
-    { q: 'Which soil of the Deccan is good for cotton?', a: 'Black soil, formed from old lava rock.' },
+    {
+      q: 'Why do most people live on plains?',
+      a: 'The soil is rich, the land is flat to farm, water is close, and roads are easy to build.',
+    },
+    {
+      q: 'Which soil of the Deccan is good for cotton?',
+      a: 'Black soil, formed from old lava rock.',
+    },
   ],
 };

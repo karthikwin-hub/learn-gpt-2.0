@@ -71,7 +71,11 @@ export const C4: Chapter = {
     },
   ],
   words: [
-    { id: 'himalaya', word: 'Himalaya', meaning: 'The high mountains along the north of India; the name means home of snow.' },
+    {
+      id: 'himalaya',
+      word: 'Himalaya',
+      meaning: 'The high mountains along the north of India; the name means home of snow.',
+    },
     { id: 'mountain-range', word: 'mountain range', meaning: 'A long line of mountains.' },
     { id: 'glacier', word: 'glacier', meaning: 'A huge mass of ice that slides slowly downhill.' },
     { id: 'terrace', word: 'terrace', meaning: 'A flat step cut into a hillside for farming.' },
@@ -87,9 +91,18 @@ export const C4: Chapter = {
   },
   questions: [
     { q: 'What does the name Himalaya mean?', a: 'Home of snow.' },
-    { q: 'Name the three ranges of the Himalaya, from the plains northward.', a: 'Shivalik, Himachal and Himadri.' },
+    {
+      q: 'Name the three ranges of the Himalaya, from the plains northward.',
+      a: 'Shivalik, Himachal and Himadri.',
+    },
     { q: 'How much colder does it get for every 1,000 metres you climb?', a: 'About 6.5 °C.' },
-    { q: 'Why do rivers such as the Ganga flow all year?', a: 'They are fed by melting snow and glaciers in the hot months.' },
-    { q: 'How were the Himalaya formed?', a: 'India drifted north and pushed into Asia, crumpling the land between them upward.' },
+    {
+      q: 'Why do rivers such as the Ganga flow all year?',
+      a: 'They are fed by melting snow and glaciers in the hot months.',
+    },
+    {
+      q: 'How were the Himalaya formed?',
+      a: 'India drifted north and pushed into Asia, crumpling the land between them upward.',
+    },
   ],
 };

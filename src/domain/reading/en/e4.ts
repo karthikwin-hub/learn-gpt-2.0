@@ -63,14 +63,34 @@ export const E4: Chapter = {
     },
   ],
   words: [
-    { id: 'map', word: 'map', meaning: 'A drawing of a place seen from above, made smaller by the same amount everywhere.' },
+    {
+      id: 'map',
+      word: 'map',
+      meaning: 'A drawing of a place seen from above, made smaller by the same amount everywhere.',
+    },
     { id: 'globe', word: 'globe', meaning: 'A round model of the Earth.' },
-    { id: 'direction', word: 'direction', meaning: 'North, south, east, west, and the four between them.' },
-    { id: 'compass', word: 'compass', meaning: 'A tool whose magnetic needle points north and south.' },
-    { id: 'symbol', word: 'symbol', meaning: 'A small sign on a map that stands for a real thing.' },
+    {
+      id: 'direction',
+      word: 'direction',
+      meaning: 'North, south, east, west, and the four between them.',
+    },
+    {
+      id: 'compass',
+      word: 'compass',
+      meaning: 'A tool whose magnetic needle points north and south.',
+    },
+    {
+      id: 'symbol',
+      word: 'symbol',
+      meaning: 'A small sign on a map that stands for a real thing.',
+    },
     { id: 'legend', word: 'legend', meaning: 'The box on a map that explains its symbols.' },
     { id: 'scale', word: 'scale', meaning: 'How much a map is shrunk, such as 1 cm = 1 km.' },
-    { id: 'physical', word: 'physical map', meaning: 'A map of the land itself: mountains, plains, rivers and seas.' },
+    {
+      id: 'physical',
+      word: 'physical map',
+      meaning: 'A map of the land itself: mountains, plains, rivers and seas.',
+    },
   ],
   activity: {
     title: 'Map your room',

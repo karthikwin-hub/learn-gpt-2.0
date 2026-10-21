@@ -69,7 +69,11 @@ export const C5: Chapter = {
   words: [
     { id: 'plain', word: 'plain', meaning: 'Low, flat land, often made of river silt.' },
     { id: 'silt', word: 'silt', meaning: 'Fine soil carried and dropped by a river.' },
-    { id: 'flood', word: 'flood', meaning: 'When a river overflows its banks and spreads water over the land.' },
+    {
+      id: 'flood',
+      word: 'flood',
+      meaning: 'When a river overflows its banks and spreads water over the land.',
+    },
     { id: 'alluvium', word: 'alluvial soil', meaning: 'Rich soil made of silt brought by rivers.' },
     { id: 'doab', word: 'doab', meaning: 'The land between two rivers that meet.' },
   ],
@@ -84,9 +88,18 @@ export const C5: Chapter = {
   },
   questions: [
     { q: 'What is silt?', a: 'Fine soil carried and dropped by a river.' },
-    { q: 'How did the northern plains form?', a: 'Rivers carried silt down from the Himalaya and dropped it, flood after flood, layer on layer.' },
-    { q: 'Why is the soil of the plains good for farming?', a: 'It is soft, deep, full of plant food, holds water and has no big stones.' },
+    {
+      q: 'How did the northern plains form?',
+      a: 'Rivers carried silt down from the Himalaya and dropped it, flood after flood, layer on layer.',
+    },
+    {
+      q: 'Why is the soil of the plains good for farming?',
+      a: 'It is soft, deep, full of plant food, holds water and has no big stones.',
+    },
     { q: 'What does Punjab mean?', a: 'Five waters: the land of five rivers.' },
-    { q: 'Name three crops grown on the northern plains.', a: 'Wheat, rice and sugarcane, among others.' },
+    {
+      q: 'Name three crops grown on the northern plains.',
+      a: 'Wheat, rice and sugarcane, among others.',
+    },
   ],
 };

@@ -71,9 +71,21 @@ export const Q2: Chapter = {
     },
   ],
   words: [
-    { id: 'citizen', word: 'citizen', meaning: 'A member of a country, with rights and responsibilities.' },
-    { id: 'right', word: 'right', meaning: 'Something every citizen can expect, such as free school from 6 to 14.' },
-    { id: 'responsibility', word: 'responsibility', meaning: 'Something every citizen should do, such as looking after public things.' },
+    {
+      id: 'citizen',
+      word: 'citizen',
+      meaning: 'A member of a country, with rights and responsibilities.',
+    },
+    {
+      id: 'right',
+      word: 'right',
+      meaning: 'Something every citizen can expect, such as free school from 6 to 14.',
+    },
+    {
+      id: 'responsibility',
+      word: 'responsibility',
+      meaning: 'Something every citizen should do, such as looking after public things.',
+    },
     { id: 'public', word: 'public', meaning: 'Belonging to everyone, and paid for by everyone.' },
   ],
   activity: {
@@ -85,10 +97,16 @@ export const Q2: Chapter = {
     ],
   },
   questions: [
-    { q: 'What is the responsibility that goes with the right to free school?', a: 'To go to school and learn.' },
+    {
+      q: 'What is the responsibility that goes with the right to free school?',
+      a: 'To go to school and learn.',
+    },
     { q: 'Up to what age is schooling free for every child in India?', a: 'From 6 to 14.' },
     { q: 'Who pays for public things such as parks and buses?', a: 'All of us, through taxes.' },
-    { q: 'You find a tap dripping at school. What does a good citizen do?', a: 'Turn it off, or tell a teacher if it will not stop.' },
+    {
+      q: 'You find a tap dripping at school. What does a good citizen do?',
+      a: 'Turn it off, or tell a teacher if it will not stop.',
+    },
     { q: 'At what age does a citizen get the right to vote?', a: 'At 18.' },
   ],
 };

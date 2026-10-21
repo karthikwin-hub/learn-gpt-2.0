@@ -72,12 +72,28 @@ export const Q3: Chapter = {
     },
   ],
   words: [
-    { id: 'pollution', word: 'pollution', meaning: 'Harmful things getting into the air, water, land or our ears.' },
-    { id: 'pollutant', word: 'pollutant', meaning: 'A harmful thing that pollutes, such as smoke, sewage or plastic.' },
-    { id: 'aqi', word: 'Air Quality Index', meaning: 'A daily number that tells how clean or dirty the air is.' },
+    {
+      id: 'pollution',
+      word: 'pollution',
+      meaning: 'Harmful things getting into the air, water, land or our ears.',
+    },
+    {
+      id: 'pollutant',
+      word: 'pollutant',
+      meaning: 'A harmful thing that pollutes, such as smoke, sewage or plastic.',
+    },
+    {
+      id: 'aqi',
+      word: 'Air Quality Index',
+      meaning: 'A daily number that tells how clean or dirty the air is.',
+    },
     { id: 'sewage', word: 'sewage', meaning: 'Dirty water from toilets, kitchens and bathrooms.' },
     { id: 'compost', word: 'compost', meaning: 'Rich soil made from wet waste that has rotted.' },
-    { id: 'recycle', word: 'recycle', meaning: 'To turn used things, such as paper or tins, into new things.' },
+    {
+      id: 'recycle',
+      word: 'recycle',
+      meaning: 'To turn used things, such as paper or tins, into new things.',
+    },
   ],
   activity: {
     title: 'A week of waste',
@@ -90,9 +106,18 @@ export const Q3: Chapter = {
   },
   questions: [
     { q: 'Name the four kinds of pollution.', a: 'Air, water, land and noise pollution.' },
-    { q: 'Why can clear-looking water still be unsafe to drink?', a: 'It can carry germs too small to see.' },
-    { q: 'Which bin do banana peels and dry leaves go in?', a: 'The green bin, for wet waste that rots.' },
-    { q: 'Why is burning leaves a bad idea?', a: 'The smoke pollutes the air that everyone breathes.' },
+    {
+      q: 'Why can clear-looking water still be unsafe to drink?',
+      a: 'It can carry germs too small to see.',
+    },
+    {
+      q: 'Which bin do banana peels and dry leaves go in?',
+      a: 'The green bin, for wet waste that rots.',
+    },
+    {
+      q: 'Why is burning leaves a bad idea?',
+      a: 'The smoke pollutes the air that everyone breathes.',
+    },
     { q: 'What are the three Rs?', a: 'Reduce, reuse and recycle.' },
   ],
 };

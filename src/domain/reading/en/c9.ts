@@ -68,10 +68,22 @@ export const C9: Chapter = {
     },
   ],
   words: [
-    { id: 'scheduled-language', word: 'scheduled language', meaning: 'One of the 22 languages listed in the Constitution.' },
+    {
+      id: 'scheduled-language',
+      word: 'scheduled language',
+      meaning: 'One of the 22 languages listed in the Constitution.',
+    },
     { id: 'script', word: 'script', meaning: 'A set of letters for writing a language.' },
-    { id: 'classical', word: 'classical dance', meaning: 'An old dance form with careful rules, passed from teacher to student.' },
-    { id: 'unity-in-diversity', word: 'unity in diversity', meaning: 'Many different ways of living, held together as one country.' },
+    {
+      id: 'classical',
+      word: 'classical dance',
+      meaning: 'An old dance form with careful rules, passed from teacher to student.',
+    },
+    {
+      id: 'unity-in-diversity',
+      word: 'unity in diversity',
+      meaning: 'Many different ways of living, held together as one country.',
+    },
   ],
   activity: {
     title: 'A festival friend',
@@ -84,9 +96,15 @@ export const C9: Chapter = {
   },
   questions: [
     { q: 'How many scheduled languages does the Constitution list?', a: '22.' },
-    { q: 'What do Pongal, Lohri, Bihu and Uttarayan have in common?', a: 'They all celebrate the mid-January harvest and the Sun turning north.' },
+    {
+      q: 'What do Pongal, Lohri, Bihu and Uttarayan have in common?',
+      a: 'They all celebrate the mid-January harvest and the Sun turning north.',
+    },
     { q: 'Who wrote the national anthem?', a: 'Rabindranath Tagore.' },
     { q: 'In how many languages does a rupee note’s back panel write its value?', a: '15.' },
-    { q: 'What does unity in diversity mean?', a: 'Many different ways of living, held together as one country.' },
+    {
+      q: 'What does unity in diversity mean?',
+      a: 'Many different ways of living, held together as one country.',
+    },
   ],
 };

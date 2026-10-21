@@ -74,7 +74,11 @@ export const C6: Chapter = {
     { id: 'desert', word: 'desert', meaning: 'A place that gets very little rain.' },
     { id: 'dune', word: 'dune', meaning: 'A hill of sand piled up by the wind.' },
     { id: 'kund', word: 'kund', meaning: 'A covered underground tank that stores rainwater.' },
-    { id: 'camel', word: 'camel', meaning: 'A desert animal that can go for days without water; the ship of the desert.' },
+    {
+      id: 'camel',
+      word: 'camel',
+      meaning: 'A desert animal that can go for days without water; the ship of the desert.',
+    },
   ],
   activity: {
     title: 'Sand and water in the sun',
@@ -86,9 +90,18 @@ export const C6: Chapter = {
     ],
   },
   questions: [
-    { q: 'Why is the Thar so dry?', a: 'The monsoon winds reach it last and weakest, and the Aravalli hills do not stop the clouds.' },
-    { q: 'Why are desert nights so cold?', a: 'Sand cools fast, and the dry, clear air lets the heat escape into the sky.' },
-    { q: 'Is a desert always hot?', a: 'No. It is always dry, but winter nights and mornings can be cold.' },
+    {
+      q: 'Why is the Thar so dry?',
+      a: 'The monsoon winds reach it last and weakest, and the Aravalli hills do not stop the clouds.',
+    },
+    {
+      q: 'Why are desert nights so cold?',
+      a: 'Sand cools fast, and the dry, clear air lets the heat escape into the sky.',
+    },
+    {
+      q: 'Is a desert always hot?',
+      a: 'No. It is always dry, but winter nights and mornings can be cold.',
+    },
     { q: 'What is a kund?', a: 'A covered underground tank that stores rainwater.' },
     { q: 'How do desert houses stay cool?', a: 'Thick walls of stone and mud and small windows.' },
   ],

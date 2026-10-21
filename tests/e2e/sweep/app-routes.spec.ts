@@ -5,6 +5,7 @@ import {
   checkAccessibility,
 } from './helpers';
 import { LANGUAGES, playableLessons, url, type Lang } from './lesson-routes';
+import { chapterFor, chapterKnots } from '../../../src/domain/reading';
 
 /* Tokens a translated screen may show in Latin script: Roman numerals, units, gate names, single letters. */
 const LATIN_OK = /^(?:[IVXLCDM]+|[A-Za-z]|cm|mm|km|kg|mg|ml|mL|AM|PM|LCM|HCF|AND|OR|NOT|AI)$/;
@@ -123,6 +124,29 @@ for (const lang of LANGUAGES) {
     }
   });
 }
+
+test.describe('048 chapter sweep in en', () => {
+  test.beforeEach(async ({ page }) => {
+    await page.addInitScript(() => localStorage.setItem('gurukul:lang', 'en'));
+  });
+
+  for (const k of chapterKnots('en')) {
+    const chapter = chapterFor(k, 'en');
+    test(`${k}: Read the chapter shows every part and picture (US3-AS1)`, async ({ page }) => {
+      expect(chapter, `${k} chapter`).not.toBeNull();
+      if (!chapter) return;
+      const problems = watchConsole(page);
+      await open(page, 'en', url('read', { k }));
+      await expect(page.locator('.read h3')).toHaveCount(chapter.sections.length + 3);
+      const figures = chapter.sections.filter((s) => s.figure).length;
+      await expect(page.locator('.read-fig svg'), `${k} pictures`).toHaveCount(figures);
+      await expect(page.locator('.read-q')).toHaveCount(chapter.questions.length);
+      await checkScreen(page, 'en', `${k} read`);
+      await checkAccessibility(page);
+      expect(problems, `${k} console problems`).toEqual([]);
+    });
+  }
+});
 
 test.describe('046 reduced motion sweep', () => {
   for (const lang of ['en', 'hi'] as const) {

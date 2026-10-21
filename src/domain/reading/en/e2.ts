@@ -66,14 +66,34 @@ export const E2: Chapter = {
     },
   ],
   words: [
-    { id: 'continent', word: 'continent', meaning: 'One of the seven large pieces of land on Earth, such as Asia.' },
-    { id: 'ocean', word: 'ocean', meaning: 'One of the five great bodies of salt water, such as the Indian Ocean.' },
-    { id: 'domain', word: 'domain', meaning: 'One of the four parts of the Earth: land, water, air and life.' },
+    {
+      id: 'continent',
+      word: 'continent',
+      meaning: 'One of the seven large pieces of land on Earth, such as Asia.',
+    },
+    {
+      id: 'ocean',
+      word: 'ocean',
+      meaning: 'One of the five great bodies of salt water, such as the Indian Ocean.',
+    },
+    {
+      id: 'domain',
+      word: 'domain',
+      meaning: 'One of the four parts of the Earth: land, water, air and life.',
+    },
     { id: 'lithosphere', word: 'lithosphere', meaning: 'The solid land of rock and soil.' },
     { id: 'hydrosphere', word: 'hydrosphere', meaning: 'All the water on Earth.' },
     { id: 'atmosphere', word: 'atmosphere', meaning: 'The layer of air around the Earth.' },
-    { id: 'biosphere', word: 'biosphere', meaning: 'The zone where life is found, where land, water and air meet.' },
-    { id: 'fresh', word: 'fresh water', meaning: 'Water that is not salty, found in rivers, lakes and under the ground.' },
+    {
+      id: 'biosphere',
+      word: 'biosphere',
+      meaning: 'The zone where life is found, where land, water and air meet.',
+    },
+    {
+      id: 'fresh',
+      word: 'fresh water',
+      meaning: 'Water that is not salty, found in rivers, lakes and under the ground.',
+    },
   ],
   activity: {
     title: 'One drop in a hundred',
@@ -85,10 +105,19 @@ export const E2: Chapter = {
     ],
   },
   questions: [
-    { q: 'Name the four domains of the Earth.', a: 'Lithosphere (land), hydrosphere (water), atmosphere (air) and biosphere (life).' },
+    {
+      q: 'Name the four domains of the Earth.',
+      a: 'Lithosphere (land), hydrosphere (water), atmosphere (air) and biosphere (life).',
+    },
     { q: 'How much of the Earth’s surface is water?', a: 'About 71 parts in every 100.' },
-    { q: 'Which domain does a cloud belong to?', a: 'The hydrosphere, because it is made of water drops, floating in the atmosphere.' },
+    {
+      q: 'Which domain does a cloud belong to?',
+      a: 'The hydrosphere, because it is made of water drops, floating in the atmosphere.',
+    },
     { q: 'Of 100 drops of Earth’s water, how many are fresh water we can use?', a: 'About 1.' },
-    { q: 'Why do climbers on Mount Everest carry oxygen?', a: 'The air is much thinner high up, so each breath has less oxygen.' },
+    {
+      q: 'Why do climbers on Mount Everest carry oxygen?',
+      a: 'The air is much thinner high up, so each breath has less oxygen.',
+    },
   ],
 };

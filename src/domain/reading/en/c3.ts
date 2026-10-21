@@ -70,10 +70,18 @@ export const C3: Chapter = {
     },
   ],
   words: [
-    { id: 'settlement', word: 'settlement', meaning: 'A place where people live: a village, a town or a city.' },
+    {
+      id: 'settlement',
+      word: 'settlement',
+      meaning: 'A place where people live: a village, a town or a city.',
+    },
     { id: 'village', word: 'village', meaning: 'A small settlement where most people farm.' },
     { id: 'trade', word: 'trade', meaning: 'Buying and selling goods.' },
-    { id: 'port', word: 'port', meaning: 'A town or city by the sea or a river where ships load and unload.' },
+    {
+      id: 'port',
+      word: 'port',
+      meaning: 'A town or city by the sea or a river where ships load and unload.',
+    },
   ],
   activity: {
     title: 'Why is my town here?',
@@ -86,9 +94,18 @@ export const C3: Chapter = {
   },
   questions: [
     { q: 'What is a settlement?', a: 'A place where people live: a village, a town or a city.' },
-    { q: 'What three things help a settlement grow?', a: 'Water, flat land, and ways to travel and trade.' },
-    { q: 'Why is nobody living on the dry hilltop?', a: 'There is no water and no flat land for fields.' },
-    { q: 'Why did cities such as Mumbai and Chennai grow by the sea?', a: 'Ships could come and go, so they became ports for trade.' },
+    {
+      q: 'What three things help a settlement grow?',
+      a: 'Water, flat land, and ways to travel and trade.',
+    },
+    {
+      q: 'Why is nobody living on the dry hilltop?',
+      a: 'There is no water and no flat land for fields.',
+    },
+    {
+      q: 'Why did cities such as Mumbai and Chennai grow by the sea?',
+      a: 'Ships could come and go, so they became ports for trade.',
+    },
     { q: 'Name one old city on the Ganga.', a: 'Varanasi or Patna.' },
   ],
 };

@@ -66,10 +66,19 @@ export const E1: Chapter = {
     },
   ],
   words: [
-    { id: 'axis', word: 'axis', meaning: 'An imaginary line from the North Pole to the South Pole that the Earth spins around.' },
+    {
+      id: 'axis',
+      word: 'axis',
+      meaning:
+        'An imaginary line from the North Pole to the South Pole that the Earth spins around.',
+    },
     { id: 'rotation', word: 'rotation', meaning: 'The Earth’s spin, once in about 24 hours.' },
     { id: 'orbit', word: 'orbit', meaning: 'The path the Earth follows around the Sun.' },
-    { id: 'revolution', word: 'revolution', meaning: 'One trip of the Earth around the Sun, about 365¼ days.' },
+    {
+      id: 'revolution',
+      word: 'revolution',
+      meaning: 'One trip of the Earth around the Sun, about 365¼ days.',
+    },
   ],
   activity: {
     title: 'Day and night with a torch',
@@ -81,10 +90,25 @@ export const E1: Chapter = {
     ],
   },
   questions: [
-    { q: 'Why do we have day and night?', a: 'The Earth spins; the half facing the Sun has day and the half facing away has night.' },
-    { q: 'How long does the Earth take to go once around the Sun?', a: 'About 365¼ days: one year.' },
-    { q: 'Why does the Sun rise in Arunachal Pradesh before Gujarat?', a: 'The Earth spins from west to east, so eastern places turn into the sunlight first.' },
-    { q: 'Is it summer in India because the Earth is closest to the Sun?', a: 'No. The Earth is closest in January. Summer comes when our half leans toward the Sun.' },
-    { q: 'When India has summer, what season does Australia have?', a: 'Winter, because the southern half is leaning away from the Sun.' },
+    {
+      q: 'Why do we have day and night?',
+      a: 'The Earth spins; the half facing the Sun has day and the half facing away has night.',
+    },
+    {
+      q: 'How long does the Earth take to go once around the Sun?',
+      a: 'About 365¼ days: one year.',
+    },
+    {
+      q: 'Why does the Sun rise in Arunachal Pradesh before Gujarat?',
+      a: 'The Earth spins from west to east, so eastern places turn into the sunlight first.',
+    },
+    {
+      q: 'Is it summer in India because the Earth is closest to the Sun?',
+      a: 'No. The Earth is closest in January. Summer comes when our half leans toward the Sun.',
+    },
+    {
+      q: 'When India has summer, what season does Australia have?',
+      a: 'Winter, because the southern half is leaning away from the Sun.',
+    },
   ],
 };
