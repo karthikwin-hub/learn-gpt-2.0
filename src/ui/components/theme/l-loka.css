@@ -145,3 +145,71 @@
   stroke: var(--thread);
   stroke-width: 3;
 }
+
+/* 048 Read the chapter */
+.read .read-section {
+  margin-top: 24px;
+}
+
+.read h3 {
+  font-size: calc(20px * var(--bodha-scale));
+  margin: 0 0 8px;
+}
+
+.read p,
+.read li,
+.read dd,
+.read dt {
+  font-size: calc(var(--fs-body) * var(--bodha-scale));
+  line-height: 1.6;
+}
+
+.read-fig {
+  margin: 12px 0;
+}
+
+.read-fig figcaption {
+  margin-top: 6px;
+}
+
+.read-dyk {
+  margin: 12px 0;
+  padding: 12px 14px;
+  border-radius: 14px;
+  background: var(--leaf-soft);
+  border-left: 4px solid var(--thread);
+}
+
+.read-dyk-h {
+  font-weight: 700;
+  margin: 0 0 4px;
+}
+
+.read-words dt {
+  font-weight: 700;
+  margin-top: 8px;
+}
+
+.read-words dd {
+  margin: 0;
+}
+
+.read-q {
+  margin-bottom: 12px;
+}
+
+.read-a {
+  padding: 8px 12px;
+  border-radius: 12px;
+  background: var(--paper-raised);
+}
+
+.read-hear {
+  margin-top: 4px;
+}
+
+.knot-read,
+.page-read {
+  margin: 4px 0 12px auto;
+  display: block;
+}

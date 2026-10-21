@@ -6,7 +6,7 @@ Verify for every task: `npx vitest run src`, the task's acceptance spec, then `p
 - [ ] T002 Boundary and river data; `scripts/geo/build_india_map.py`; `geo/india-map.ts` + tests; screenshot to the product owner
 - [ ] T003 US1 `renderIndiaMap`; C1 and C9 benches and pictures
 - [ ] T004 Map layers in C2–C8 and E3; locator maps on profile drawings
-- [ ] T005 US2 Reading model, `#read` screen, entry points, UI words x5
+- [x] T005 US2 Reading model, `#read` screen, entry points, UI words x5
 - [ ] T006 Chapters I1, I2
 - [ ] T007 Chapters Q1, Q2
 - [ ] T008 Chapters E1, E2, E3, E4

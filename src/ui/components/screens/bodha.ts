@@ -6,6 +6,8 @@
 
 import { afterBodha, findKnot } from '../../../domain/curriculum/curriculum';
 import { getLang, t, tIn } from '../../../domain/i18n/core';
+import { availableIn } from '../../../domain/reading';
+import { readButton } from './read';
 import { getLesson } from '../../../domain/lesson/registry';
 import type { BodhaCard } from '../../../domain/lesson/types';
 import { storage } from '../../../persistence/storage';
@@ -341,6 +343,7 @@ export function createBodhaScreen(): ScreenMeta {
         },
       });
       actions.appendChild(toNextBtn);
+      if (availableIn(knotId, getLang())) actions.appendChild(readButton(knotId));
 
       if (cardIndex < cards.length - 1) {
         const nextBtn = el('button', {

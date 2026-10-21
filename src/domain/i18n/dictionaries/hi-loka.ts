@@ -202,4 +202,17 @@ export const dictionary: Record<string, string> = {
     'मानचित्र ऊपर से जगह दिखाता है; पैमाना, दिशा और चिह्न से रास्ता और दूरी निकाल सकते हो।',
   'mistake.E4.eq': '10 + 10 + 10 = 3 × 10 = 30 m',
   'mistake.I2.eq': '49 + 1 + 49 = <r>99</r>',
+  /* 048 Read the chapter */
+  'read.title': 'अध्याय पढ़ो',
+  'read.open': 'अध्याय पढ़ो',
+  'read.dyk': 'क्या तुम जानते हो?',
+  'read.words': 'जानने वाले शब्द',
+  'read.activity': 'घर पर करके देखो',
+  'read.check': 'खुद को जाँचो',
+  'read.show': 'उत्तर देखो',
+  'read.hide': 'उत्तर छिपाओ',
+  'read.hear': 'यह भाग सुनो',
+  'read.toLesson': 'पाठ करो',
+  'read.toShala': '{s} पर वापस',
+  'read.notYet': 'यह अध्याय अभी तुम्हारी भाषा में तैयार नहीं है।',
 };

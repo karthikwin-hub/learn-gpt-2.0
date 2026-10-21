@@ -235,4 +235,17 @@ export const dictionary: Record<string, string> = {
   /* Spot-the-mistake equation lines: <s> struck, <r> highlighted. */
   'mistake.E4.eq': '10 + 10 + 10 = 3 × 10 = 30 m',
   'mistake.I2.eq': '49 + 1 + 49 = <r>99</r>',
+  /* 048 Read the chapter */
+  'read.title': 'Read the chapter',
+  'read.open': 'Read the chapter',
+  'read.dyk': 'Did you know?',
+  'read.words': 'Words to know',
+  'read.activity': 'Try at home',
+  'read.check': 'Check yourself',
+  'read.show': 'Show answer',
+  'read.hide': 'Hide answer',
+  'read.hear': 'Hear this part',
+  'read.toLesson': 'Do the lesson',
+  'read.toShala': 'Back to {s}',
+  'read.notYet': 'This chapter is not ready in your language yet.',
 };
