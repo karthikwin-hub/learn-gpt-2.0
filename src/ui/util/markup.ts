@@ -16,6 +16,37 @@ export function plainText(str: string): string {
     .replace(/<\/?[sr]>/g, '');
 }
 
+/** A paragraph whose [[id|word]] terms are buttons that call `onTerm`. */
+export function richPara(
+  str: string,
+  onTerm: (id: string, shown: string) => void,
+  cls = 'bodha-text'
+): HTMLElement {
+  const p = el('p', { class: cls });
+  let lastIndex = 0;
+
+  str.replace(TERM_REGEX, (match, id: string, shown: string, offset: number) => {
+    if (offset > lastIndex) {
+      p.appendChild(document.createTextNode(str.slice(lastIndex, offset)));
+    }
+    const termBtn = el('button', {
+      class: 'term',
+      type: 'button',
+      text: shown,
+      onclick: () => onTerm(id, shown),
+    });
+    p.appendChild(termBtn);
+    lastIndex = offset + match.length;
+    return match;
+  });
+
+  if (lastIndex < str.length) {
+    p.appendChild(document.createTextNode(str.slice(lastIndex)));
+  }
+
+  return p;
+}
+
 export function markupLine(str: string, cls = 'eq'): HTMLElement {
   const line = el('div', { class: cls });
   let last = 0;

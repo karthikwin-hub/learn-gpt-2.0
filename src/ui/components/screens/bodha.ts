@@ -10,7 +10,7 @@ import { getLesson } from '../../../domain/lesson/registry';
 import type { BodhaCard } from '../../../domain/lesson/types';
 import { storage } from '../../../persistence/storage';
 import { clear, el } from '../../util/dom';
-import { plainText, TERM_REGEX } from '../../util/markup';
+import { plainText, richPara } from '../../util/markup';
 import { enterThread } from '../../util/thread';
 import { router, type ScreenMeta } from '../app/router';
 import { getVisuals } from '../../lesson-visuals';
@@ -18,32 +18,6 @@ import { renderLessonMissing } from './lesson-missing';
 import { voice } from '../voice/voice';
 
 const SIZES = ['1', '1.15', '1.3'];
-
-function richPara(str: string, onTerm: (id: string, shown: string) => void): HTMLElement {
-  const p = el('p', { class: 'bodha-text' });
-  let lastIndex = 0;
-
-  str.replace(TERM_REGEX, (match, id: string, shown: string, offset: number) => {
-    if (offset > lastIndex) {
-      p.appendChild(document.createTextNode(str.slice(lastIndex, offset)));
-    }
-    const termBtn = el('button', {
-      class: 'term',
-      type: 'button',
-      text: shown,
-      onclick: () => onTerm(id, shown),
-    });
-    p.appendChild(termBtn);
-    lastIndex = offset + match.length;
-    return match;
-  });
-
-  if (lastIndex < str.length) {
-    p.appendChild(document.createTextNode(str.slice(lastIndex)));
-  }
-
-  return p;
-}
 
 function getCardTexts(cid: string, card: BodhaCard, step: number): string[] {
   const key = `bodha.${cid}.${card.key}`;
